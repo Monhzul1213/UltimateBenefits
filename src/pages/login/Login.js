@@ -23,7 +23,7 @@ export function Login() {
               <input
                 placeholder="12345678"
                 className="register-input"
-                type="number"
+                type="tel"
                 maxLength={8}
               />
             </div>

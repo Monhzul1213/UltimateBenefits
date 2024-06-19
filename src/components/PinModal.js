@@ -1,6 +1,11 @@
 import { Input, Modal } from "antd";
 import LoginButton from "./LoginButton";
+import { useState } from "react";
+import OTPInput from "./OtpInput";
 const PinModal = ({ open, setOpen }) => {
+  const handleOtp = (e) => {
+    console.log("OTP WORKING", e);
+  };
   return (
     <Modal
       title="Enter your PIN"
@@ -12,7 +17,7 @@ const PinModal = ({ open, setOpen }) => {
       width={300}
     >
       <div>
-        <Input.OTP style={{ width: 250 }} length={4} />
+        <OTPInput length={4} onChange={handleOtp} />
         <LoginButton />
       </div>
     </Modal>
