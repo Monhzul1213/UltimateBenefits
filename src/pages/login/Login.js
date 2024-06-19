@@ -5,9 +5,26 @@ import "../../css/login.css";
 import { loginlogo, logo } from "../../assets";
 import PinModal from "../../components/PinModal";
 import LoginButton from "../../components/LoginButton";
+import { checkRegister } from "../../lib/actions/user.actions";
 
 export function Login() {
+  let [registerLetters] = useState([]);
   const [open, setOpen] = useState(false);
+  const [registerNums, setRegisterNums] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const handleInput = (e) => {
+    setRegisterNums(e.target.value);
+  };
+  const handleSelecet = (value, index) => {
+    registerLetters[index] = value;
+  };
+  const handleCheckRegister = async () => {
+    const register = registerLetters.join("") + registerNums;
+    setIsLoading(true);
+    const isSuccess = await checkRegister(register);
+    isSuccess && setOpen(true);
+    setIsLoading(false);
+  };
   return (
     <main className="login-page">
       <section className="left-section">
@@ -18,9 +35,10 @@ export function Login() {
           <div className="register">
             <p className="subtext">Регистрийн дугаар</p>
             <div className="input-div">
-              <RegisterSelect />
-              <RegisterSelect />
+              <RegisterSelect index={0} onChange={handleSelecet} />
+              <RegisterSelect index={1} onChange={handleSelecet} />
               <input
+                onChange={handleInput}
                 placeholder="12345678"
                 className="register-input"
                 type="tel"
@@ -28,9 +46,8 @@ export function Login() {
               />
             </div>
             <LoginButton
-              handleClick={() => {
-                setOpen(true);
-              }}
+              handleClick={handleCheckRegister}
+              isLoading={isLoading}
             />
           </div>
         </div>

@@ -2,10 +2,7 @@ import React from "react";
 import { alphabets } from "../constants";
 import { Select, ConfigProvider } from "antd";
 
-export function RegisterSelect() {
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
+export function RegisterSelect({ index, onChange }) {
   return (
     <ConfigProvider
       theme={{
@@ -17,14 +14,16 @@ export function RegisterSelect() {
       }}
     >
       <Select
-        defaultValue="У"
+        defaultValue="-"
         className="custom-select"
         style={{
           width: 60,
           height: 60,
         }}
         suffixIcon={null}
-        onChange={handleChange}
+        onChange={(value) => {
+          onChange(value, index);
+        }}
         options={alphabets}
       />
     </ConfigProvider>

@@ -1,9 +1,20 @@
 import { Modal } from "antd";
 import LoginButton from "./LoginButton";
 import OTPInput from "./OtpInput";
+import { useState } from "react";
+import { login } from "../lib/actions/user.actions";
 const PinModal = ({ open, setOpen }) => {
-  const handleOtp = (e) => {
-    console.log("OTP WORKING", e);
+  const [pin, setPin] = useState("");
+  const handlePin = (val) => {
+    setPin(val);
+  };
+  const handleLoginBtn = async () => {
+    if (pin.length === 4) {
+      await login();
+      setOpen(false);
+    } else {
+      alert("Invalid Pin");
+    }
   };
   return (
     <Modal
@@ -16,8 +27,8 @@ const PinModal = ({ open, setOpen }) => {
       width={300}
     >
       <div>
-        <OTPInput length={4} onChange={handleOtp} />
-        <LoginButton />
+        <OTPInput length={4} onChange={handlePin} />
+        <LoginButton handleClick={handleLoginBtn} />
       </div>
     </Modal>
   );
