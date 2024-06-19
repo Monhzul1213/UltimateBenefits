@@ -1,13 +1,17 @@
-import React from "react";
+import { useState } from "react";
 
 import { RegisterSelect } from "../../components/RegisterSelect";
 import "../../css/login.css";
 import { loginlogo, logo } from "../../assets";
+import PinModal from "../../components/PinModal";
+import LoginButton from "../../components/LoginButton";
 
 export function Login() {
+  const [open, setOpen] = useState(false);
   return (
     <main className="login-page">
       <section className="left-section">
+        <PinModal open={open} setOpen={setOpen} />
         <img className="login-logo" src={loginlogo} alt="" />
         <div className="input-section">
           <h1 className="login-header">Welcome back ULTIMATE family!</h1>
@@ -23,7 +27,11 @@ export function Login() {
                 maxLength={8}
               />
             </div>
-            <button className="login-button">Нэвтрэх</button>
+            <LoginButton
+              handleClick={() => {
+                setOpen(true);
+              }}
+            />
           </div>
         </div>
       </section>
