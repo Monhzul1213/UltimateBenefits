@@ -18,9 +18,6 @@ const LoginButton = ({ handleClick, isLoading }) => {
     >
       Нэвтрэх
     </Button>
-    // <button onClick={handleClick} className="login-button">
-    //   Нэвтрэх
-    // </button>
   );
 };
 

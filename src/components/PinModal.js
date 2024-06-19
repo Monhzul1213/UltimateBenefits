@@ -3,14 +3,14 @@ import LoginButton from "./LoginButton";
 import OTPInput from "./OtpInput";
 import { useState } from "react";
 import { login } from "../lib/actions/user.actions";
-const PinModal = ({ open, setOpen }) => {
+const PinModal = ({ open, setOpen, register }) => {
   const [pin, setPin] = useState("");
   const handlePin = (val) => {
     setPin(val);
   };
   const handleLoginBtn = async () => {
     if (pin.length === 4) {
-      await login();
+      await login(register, pin);
       setOpen(false);
     } else {
       alert("Invalid Pin");

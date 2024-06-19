@@ -28,7 +28,11 @@ export function Login() {
   return (
     <main className="login-page">
       <section className="left-section">
-        <PinModal open={open} setOpen={setOpen} />
+        <PinModal
+          open={open}
+          setOpen={setOpen}
+          register={registerLetters.join("") + registerNums}
+        />
         <img className="login-logo" src={loginlogo} alt="" />
         <div className="input-section">
           <h1 className="login-header">Welcome back ULTIMATE family!</h1>
