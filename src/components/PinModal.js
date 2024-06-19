@@ -1,6 +1,5 @@
-import { Input, Modal } from "antd";
+import { Modal } from "antd";
 import LoginButton from "./LoginButton";
-import { useState } from "react";
 import OTPInput from "./OtpInput";
 const PinModal = ({ open, setOpen }) => {
   const handleOtp = (e) => {
