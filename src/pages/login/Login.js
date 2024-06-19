@@ -1,6 +1,6 @@
 import React from "react";
 
-import {RegisterSelect} from "../../components/RegisterSelect";
+import { RegisterSelect } from "../../components/RegisterSelect";
 import "../../css/login.css";
 import { loginlogo, logo } from "../../assets";
 
@@ -13,7 +13,7 @@ export function Login() {
           <h1 className="login-header">Welcome back ULTIMATE family!</h1>
           <div className="register">
             <p className="subtext">Регистрийн дугаар</p>
-            <div>
+            <div className="input-div">
               <RegisterSelect />
               <RegisterSelect />
               <input
@@ -32,5 +32,4 @@ export function Login() {
       </section>
     </main>
   );
-};
-
+}
