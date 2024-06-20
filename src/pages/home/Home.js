@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
+import HeroSection from "../../components/HeroSection";
 
+import "../../css/home.css";
 
-
-export function Home(){
-
+export function Home() {
   return (
-    <div className='home_container'>
-        Hi home
-    </div>
-  )
+    <main className="home-container">
+      <HeroSection />
+    </main>
+  );
 }

@@ -3,10 +3,12 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./pages/login";
 import { Home } from "./pages/home";
+import { useAuth } from "./context/AuthProvider";
 
 export function App() {
-  const loggedIn = useSelector((state) => state.temp.loggedIn);
-  if (!loggedIn)
+  const { isAuth } = useAuth();
+  // const loggedIn = useSelector((state) => state.temp.loggedIn);
+  if (!isAuth)
     return (
       <BrowserRouter>
         <Suspense>

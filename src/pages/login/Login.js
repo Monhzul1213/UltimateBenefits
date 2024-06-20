@@ -5,26 +5,18 @@ import "../../css/login.css";
 import { loginlogo, logo } from "../../assets";
 import PinModal from "../../components/PinModal";
 import LoginButton from "../../components/LoginButton";
-import { checkRegister } from "../../lib/actions/user.actions";
+import { useAuth } from "../../context/AuthProvider";
 
 export function Login() {
   let [registerLetters] = useState([]);
-  const [open, setOpen] = useState(false);
   const [registerNums, setRegisterNums] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const handleInput = (e) => {
     setRegisterNums(e.target.value);
   };
   const handleSelecet = (value, index) => {
     registerLetters[index] = value;
   };
-  const handleCheckRegister = async () => {
-    const register = registerLetters.join("") + registerNums;
-    setIsLoading(true);
-    const isSuccess = await checkRegister(register);
-    isSuccess && setOpen(true);
-    setIsLoading(false);
-  };
+  const { handleCheckRegister, loading, open, setOpen } = useAuth();
   return (
     <main className="login-page">
       <section className="left-section">
@@ -50,8 +42,10 @@ export function Login() {
               />
             </div>
             <LoginButton
-              handleClick={handleCheckRegister}
-              isLoading={isLoading}
+              handleClick={() => {
+                handleCheckRegister(registerLetters, registerNums);
+              }}
+              loading={loading}
             />
           </div>
         </div>

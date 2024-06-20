@@ -1,32 +1,39 @@
 import axios from "axios";
 import { alert } from "./alert.actions";
+import { jwtDecode } from "jwt-decode";
+
+const apiUrl = process.env.REACT_APP_API_URL;
+const apiKey = process.env.REACT_APP_API_KEY;
+
 export const checkRegister = async (register) => {
   try {
     const res = await axios.post(
-      `http://192.168.1.34:8082/api/users/registerNumberCheck`,
+      `${apiUrl}/api/users/registerNumberCheck`,
       {
         UserID: register,
       },
-      { headers: { ultimatekey: "316c7b2e-058a-40da-b180-e02b5f6cf3c0" } }
+      { headers: { ultimatekey: apiKey } }
     );
     return res.data.success;
   } catch (error) {
-    alert(error.response.data.error.message, "error");
+    // alert(error.response.data.error.message, "error");
+    console.log("ERROR in checkRegister", error);
   }
 };
 
 export const login = async (register, pin) => {
   try {
     const res = await axios.post(
-      `http://192.168.1.34:8082/api/users/login`,
+      `${apiUrl}/api/users/login`,
       {
         UserID: register,
         Password: pin,
       },
-      { headers: { ultimatekey: "316c7b2e-058a-40da-b180-e02b5f6cf3c0" } }
+      { headers: { ultimatekey: apiKey } }
     );
-    alert("Амжилттай нэвтэрлээ", "success ");
-    console.log("Login working", res);
+    localStorage.setItem("userToken", res.data.result);
+    alert("Амжилттай нэвтэрлээ", "success");
+    return res.data.success;
   } catch (error) {
     alert(error.response.data.error.message, "error");
   }

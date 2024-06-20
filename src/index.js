@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 import { App } from "./App";
 import { store, persistor } from "./helpers/store";
+import AuthProviver from "./context/AuthProvider";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -13,7 +14,9 @@ root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <>
-        <App />
+        <AuthProviver>
+          <App />
+        </AuthProviver>
       </>
     </PersistGate>
   </Provider>
