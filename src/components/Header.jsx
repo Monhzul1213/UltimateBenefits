@@ -3,6 +3,7 @@ import { bell, mainLogo } from "../assets";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { useAuth } from "../context/AuthProvider/index";
+import { CiMenuFries } from "react-icons/ci";
 import "../css/header.css";
 
 const Header = () => {
@@ -14,6 +15,7 @@ const Header = () => {
         src={mainLogo}
         alt="Ultimate Benefits Logo"
       />
+      <CiMenuFries size={30} className="phone-menu" />
       <div className="header-right-side">
         <img className="header-notf" src={bell} alt="" />
         <Avatar

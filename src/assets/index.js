@@ -11,8 +11,10 @@ import heart from "./heart.svg";
 import learning from "./learning.svg";
 import bell from "./notification.svg";
 import rules from "./rules.svg";
+import heroLogo from "./heroLogo.svg";
 
 export {
+  heroLogo,
   logo,
   loginlogo,
   mainLogo,

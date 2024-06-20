@@ -1,5 +1,5 @@
 import React from "react";
-import { garchig, garchigIcon, mainLogo } from "../assets";
+import { garchigIcon, heroLogo } from "../assets";
 import Header from "./Header";
 
 const HeroSection = () => {
@@ -8,7 +8,7 @@ const HeroSection = () => {
       <Header />
       <div className="hero-content">
         <div className="hero-title">
-          <img src={mainLogo} alt="garchig" />
+          <img src={heroLogo} alt="garchig" />
           <p className="hero-desc">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea omnis
             asperiores illo qui est tempora, ipsam molestias quam impedit
