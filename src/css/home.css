@@ -69,6 +69,11 @@
   padding: 60px 30px;
   border: solid 1px #00c7f0;
   border-radius: 10px;
+  transition: all 0.5s;
+}
+.benefit:hover {
+  transform: scale(1.05);
+  background-color: rgb(255, 248, 255);
 }
 .benefit h3 {
   font-weight: 200;
