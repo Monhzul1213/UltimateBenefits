@@ -4,6 +4,7 @@ import { Login } from "./pages/login";
 import { Home } from "./pages/home";
 import { useAuth } from "./context/AuthProvider";
 import MyDrawer from "./components/Drawer";
+import { Discounts } from "./pages/discounts";
 
 export function App() {
   const { isAuth } = useAuth();
@@ -21,7 +22,14 @@ export function App() {
   return (
     <div className="App">
       <MyDrawer />
-      <Home />
+      <BrowserRouter>
+        <Suspense>
+          <Routes>
+            <Route path="*" element={<Home />} />
+            <Route path="/discounts" element={<Discounts />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
     </div>
   );
 }

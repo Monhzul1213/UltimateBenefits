@@ -11,7 +11,8 @@ export function Login() {
   let [registerLetters] = useState([]);
   const [registerNums, setRegisterNums] = useState("");
   const handleInput = (e) => {
-    setRegisterNums(e.target.value);
+    const newValue = e.target.value.replace(/[^0-9]/g, "");
+    setRegisterNums(newValue);
   };
   const handleSelecet = (value, index) => {
     registerLetters[index] = value;
@@ -34,10 +35,11 @@ export function Login() {
               <RegisterSelect index={0} onChange={handleSelecet} />
               <RegisterSelect index={1} onChange={handleSelecet} />
               <input
+                value={registerNums}
                 onChange={handleInput}
                 placeholder="12345678"
                 className="register-input"
-                type="tel"
+                type="text"
                 maxLength={8}
               />
             </div>

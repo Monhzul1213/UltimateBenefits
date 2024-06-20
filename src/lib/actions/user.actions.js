@@ -1,6 +1,5 @@
 import axios from "axios";
 import { alert } from "./alert.actions";
-import { jwtDecode } from "jwt-decode";
 
 const apiUrl = process.env.REACT_APP_API_URL;
 const apiKey = process.env.REACT_APP_API_KEY;
@@ -16,7 +15,11 @@ export const checkRegister = async (register) => {
     );
     return res.data.success;
   } catch (error) {
-    // alert(error.response.data.error.message, "error");
+    if (!error.response) {
+      alert("Уучлаарай, сүлжээ унасан байна", "error");
+    } else {
+      alert(error.response.data.error.message, "error");
+    }
     console.log("ERROR in checkRegister", error);
   }
 };

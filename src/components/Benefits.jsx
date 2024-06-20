@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { heart } from "../assets";
 import { benefits } from "../constants";
 import { FaArrowRight } from "react-icons/fa";
@@ -11,11 +12,11 @@ const Benefits = () => {
       </div>
       <section className="benefits">
         {benefits.map((fit) => (
-          <div className="benefit">
+          <a className="benefit" href={fit.route}>
             <img src={fit.icon} alt={fit.alt} />
             <h3>{fit.title}</h3>
             <FaArrowRight size={25} className="arrow" />
-          </div>
+          </a>
         ))}
       </section>
     </section>
