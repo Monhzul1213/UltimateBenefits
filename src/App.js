@@ -1,13 +1,12 @@
 import React, { Suspense } from "react";
-import { useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./pages/login";
 import { Home } from "./pages/home";
 import { useAuth } from "./context/AuthProvider";
+import MyDrawer from "./components/Drawer";
 
 export function App() {
   const { isAuth } = useAuth();
-  // const loggedIn = useSelector((state) => state.temp.loggedIn);
   if (!isAuth)
     return (
       <BrowserRouter>
@@ -21,6 +20,7 @@ export function App() {
 
   return (
     <div className="App">
+      <MyDrawer />
       <Home />
     </div>
   );

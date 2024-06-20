@@ -1,0 +1,83 @@
+.drawer-handle {
+  width: 25px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border-radius: 30px 0 0 30px;
+  z-index: 100;
+  cursor: pointer;
+  -webkit-box-shadow: -11px 2px 18px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -11px 2px 18px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: -11px 2px 18px -10px rgba(0, 0, 0, 0.75);
+}
+.drawer-arrow {
+  position: absolute;
+  top: 47%;
+  right: -10px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  box-shadow: -11px 2px 18px -10px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -11px 2px 18px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -11px 2px 18px -10px rgba(0, 0, 0, 0.75);
+  align-items: center;
+  background-color: white;
+}
+.drawer-container {
+  border-radius: 30px 0 0 30px;
+}
+.drawer-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.top-border {
+  margin-top: 10px;
+  width: 100%;
+  height: 3px;
+  border-radius: 100px;
+  background: rgb(102, 128, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(102, 128, 255, 1) 0%,
+    rgba(35, 0, 69, 1) 48%,
+    rgba(252, 70, 107, 1) 100%
+  );
+}
+.user-information {
+  margin-top: 15px;
+  width: 100%;
+  padding: 20px 0;
+}
+.user-information p {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+.logout {
+  width: 100%;
+  margin-top: 10px;
+  background-color: #00c7f0;
+  color: white;
+  padding: 20px;
+  border-radius: 15px;
+  font-weight: 600;
+}
+.drawer-arrow-in {
+  cursor: pointer;
+  position: absolute;
+  top: 47%;
+  left: -20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
