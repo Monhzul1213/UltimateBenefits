@@ -1,4 +1,3 @@
-import React from "react";
 import { alphabets } from "../constants";
 import { Select, ConfigProvider } from "antd";
 

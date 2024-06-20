@@ -1,4 +1,3 @@
-import React from "react";
 import { bell, mainLogo } from "../assets";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";

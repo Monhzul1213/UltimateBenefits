@@ -3,7 +3,6 @@ const cellRender = (cur) => {
   const year = cur.$d.getFullYear();
   const month = cur.$d.getMonth();
   const day = cur.$d.getDate();
-  console.log("CURRENT AND TODAY", year, month, day);
 };
 const MyCalendar = () => {
   const onPanelChange = (value, mode) => {

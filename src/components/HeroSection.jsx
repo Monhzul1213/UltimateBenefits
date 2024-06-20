@@ -1,4 +1,3 @@
-import React from "react";
 import { garchigIcon, heroLogo } from "../assets";
 import Header from "./Header";
 

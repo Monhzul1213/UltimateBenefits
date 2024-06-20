@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { heart } from "../assets";
 import { benefits } from "../constants";
 import { FaArrowRight } from "react-icons/fa";
