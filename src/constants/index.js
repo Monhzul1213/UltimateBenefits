@@ -1,3 +1,5 @@
+import { care, careers, clubs, discounts, learning, rules } from "../assets";
+
 export const alphabets = [
   { label: "А", value: "А" },
   { label: "Б", value: "Б" },
@@ -34,4 +36,13 @@ export const alphabets = [
   { label: "Э", value: "Э" },
   { label: "Ю", value: "Ю" },
   { label: "Я", value: "Я" },
+];
+
+export const benefits = [
+  { title: "Дүрэм журам", icon: rules, route: "/rules" },
+  { title: "Карьер хөгжил", icon: careers, route: "/careers" },
+  { title: "Сургалтын материал", icon: learning, route: "/learing" },
+  { title: "Хөнгөлөлт урамшуулал", icon: discounts, route: "/discounts" },
+  { title: "Нийгмийн хангамж", icon: care, route: "/care" },
+  { title: "Сонирхлын клуб", icon: clubs, route: "/clubs" },
 ];

@@ -20,7 +20,7 @@
 }
 .hero-content {
   display: flex;
-  gap: 30px;
+  gap: 80px;
   justify-content: center;
   align-items: center;
 }
@@ -35,4 +35,50 @@
   font-weight: 300;
   margin-top: 10px;
   line-height: 1.4;
+}
+
+.benefits-container {
+  width: 100%;
+  padding: 30px 150px;
+}
+.benefits-title {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.benefits-title h2 {
+  letter-spacing: -2px;
+  font-size: 50px;
+  font-weight: 900;
+  color: rgb(55, 55, 55);
+}
+.benefits-title img {
+  width: 55px;
+}
+.benefits {
+  margin-top: 40px;
+  display: flex;
+  gap: 35px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.benefit {
+  position: relative;
+  width: 190px;
+  height: 180px;
+  padding: 60px 30px;
+  border: solid 1px #00c7f0;
+  border-radius: 10px;
+}
+.benefit h3 {
+  font-weight: 200;
+  font-size: 26px;
+}
+.benefit img {
+  position: absolute;
+  width: 50px;
+  top: -30px;
+}
+.arrow {
+  margin: 25px 120px;
 }
