@@ -5,6 +5,7 @@ import { IoMdArrowDropright } from "react-icons/io";
 
 import "../css/drawer.css";
 import { useAuth } from "../context/AuthProvider";
+import MyCalendar from "./MyCalendar";
 const MyDrawer = () => {
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
@@ -59,6 +60,9 @@ const MyDrawer = () => {
         </div>
         <div className="drawer-arrow-in" onClick={onClose}>
           <IoMdArrowDropright size={40} color="#00c7f0" />
+        </div>
+        <div>
+          <MyCalendar />
         </div>
       </Drawer>
     </>
