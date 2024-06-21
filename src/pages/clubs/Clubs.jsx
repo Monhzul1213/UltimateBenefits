@@ -1,5 +1,10 @@
 import React from "react";
+import CustomHeader from "../../components/CustomHeader";
 
 export const Clubs = () => {
-  return <div>Clubs</div>;
+  return (
+    <>
+      <CustomHeader title="Сонирхлын клубууд" />
+    </>
+  );
 };

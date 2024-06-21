@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import { RegisterSelect } from "../../components/RegisterSelect";
 import "../../css/login.css";

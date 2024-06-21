@@ -10,18 +10,20 @@ const CustomHeader = ({ title }) => {
   return (
     <header className="custom-header">
       <div className="custom-header-title">
-        <img
-          className="custom-header-logo"
-          src={mainLogo}
-          alt="Ultimate Benefits Logo"
-        />
+        <a href="/">
+          <img
+            className="custom-header-logo"
+            src={mainLogo}
+            alt="Ultimate Benefits Logo"
+          />
+        </a>
         <h1>{title}</h1>
       </div>
-
-      <CiMenuFries size={30} className="phone-menu" color="white" />
+      <CiMenuFries size={30} className="phone-menu" />
       <div className="custom-header-right-side">
         <img className="custom-header-notf" src={bell} alt="" />
         <Avatar
+          src={user.Picture}
           style={{ backgroundColor: "white", marginLeft: 20 }}
           size={40}
           icon={<UserOutlined />}

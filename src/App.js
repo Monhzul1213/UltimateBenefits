@@ -1,15 +1,10 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login } from "./pages/login";
-import { Home } from "./pages/home";
+import { BrowserRouter, Routes, Route, unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
+import { Learning, Clubs, Care, Careers, Rules, Discounts, Home, Login } from "./pages";
 import { useAuth } from "./context/AuthProvider";
 import MyDrawer from "./components/Drawer";
-import { Discounts } from "./pages/discounts";
-import { Rules } from "./pages/rules";
-import { Careers } from "./pages/careers";
-import { Care } from "./pages/care";
-import { Learning } from "./pages/learning";
-import { Clubs } from "./pages/clubs";
 
 export function App() {
   const { isAuth } = useAuth();
@@ -27,7 +22,7 @@ export function App() {
   return (
     <div className="App">
       <MyDrawer />
-      <BrowserRouter>
+      <HistoryRouter history={createBrowserHistory()}>
         <Suspense>
           <Routes>
             <Route path="*" element={<Home />} />
@@ -39,7 +34,7 @@ export function App() {
             <Route path="/clubs" element={<Clubs />} />
           </Routes>
         </Suspense>
-      </BrowserRouter>
+      </HistoryRouter>
     </div>
   );
 }

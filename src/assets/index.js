@@ -12,8 +12,20 @@ import learning from "./learning.svg";
 import bell from "./notification.svg";
 import rules from "./rules.svg";
 import heroLogo from "./heroLogo.svg";
+import giveGift from "./giveGift.svg";
+import heartbeat from "./heartbeat.svg";
+import house from "./house.svg";
+import umbrella from "./umbrella.svg";
+import vaccine from "./vaccine.svg";
+import car from "./car.svg";
 
 export {
+  car,
+  giveGift,
+  heartbeat,
+  house,
+  umbrella,
+  vaccine,
   heroLogo,
   logo,
   loginlogo,
