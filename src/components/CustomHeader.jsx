@@ -3,18 +3,22 @@ import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { useAuth } from "../context/AuthProvider/index";
 import { CiMenuFries } from "react-icons/ci";
-import "../css/header.css";
+import "../css/customHeader.css";
 
-const Header = () => {
+const CustomHeader = ({ title }) => {
   const { user } = useAuth();
   return (
     <header className="header">
-      <img
-        className="header-logo"
-        src={mainLogo}
-        alt="Ultimate Benefits Logo"
-      />
-      <CiMenuFries color="white" size={30} className="phone-menu" />
+      <div className="header-title">
+        <img
+          className="header-logo"
+          src={mainLogo}
+          alt="Ultimate Benefits Logo"
+        />
+        <h1>{title}</h1>
+      </div>
+
+      <CiMenuFries size={30} className="phone-menu" color="white" />
       <div className="header-right-side">
         <img className="header-notf" src={bell} alt="" />
         <Avatar
@@ -31,4 +35,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default CustomHeader;
