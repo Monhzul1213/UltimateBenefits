@@ -32,28 +32,30 @@ const MyDrawer = () => {
       >
         <div className="drawer-content">
           <Avatar size={150} />
-          <h1>{user?.UserName}</h1>
+          <h1>
+            {user?.EmpLName} {user?.EmpFName}
+          </h1>
           <div className="top-border" />
           <div className="user-information">
             <p>
               <Avatar size={15} />
-              Программ хөгжүүлэгч
+              {user.PositionName}
             </p>
             <p>
               <Avatar size={15} />
-              95960202
+              {user?.Phone}
             </p>
             <p>
               <Avatar size={15} />
-              {user.Email}
+              {user?.WorkMail}
             </p>
             <p>
               <Avatar size={15} />
-              2024.06.18 аас хойш ажиллаж байгаа.
+              {user?.BeginContractDate} аас хойш ажиллаж байгаа.
             </p>
             <p>
               <Avatar size={15} />
-              БГД 17 хороо 44с-37 тоот
+              {user.Address}
             </p>
             <Button
               onClick={() => {

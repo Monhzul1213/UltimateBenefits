@@ -1,7 +1,7 @@
 import { Modal } from "antd";
 import LoginButton from "./LoginButton";
 import OTPInput from "./OtpInput";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 const PinModal = ({ open, setOpen, register }) => {
   const { handleLogin } = useAuth();
@@ -9,18 +9,6 @@ const PinModal = ({ open, setOpen, register }) => {
   const handlePin = (val) => {
     setPin(val);
   };
-  useEffect(() => {
-    const handleEnter = (event) => {
-      if (event.key === "Enter") {
-        handleLogin(register, pin);
-      }
-    };
-    document.addEventListener("keydown", handleEnter);
-    return () => {
-      document.removeEventListener("keydown", handleEnter);
-    };
-  }, []);
-
   return (
     <Modal
       title="Enter your PIN"

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { RegisterSelect } from "../../components/RegisterSelect";
 import "../../css/login.css";
@@ -18,17 +18,6 @@ export function Login() {
     registerLetters[index] = value;
   };
   const { handleCheckRegister, loading, open, setOpen } = useAuth();
-  useEffect(() => {
-    const handleEnter = (event) => {
-      if (event.key === "Enter") {
-        handleCheckRegister(registerLetters, registerNums);
-      }
-    };
-    document.addEventListener("keydown", handleEnter);
-    return () => {
-      document.removeEventListener("keydown", handleEnter);
-    };
-  }, []);
 
   return (
     <main className="login-page">

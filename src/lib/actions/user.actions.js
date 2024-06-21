@@ -23,6 +23,7 @@ export const login = async (register, pin) => {
       UserID: register,
       Password: pin,
     });
+    console.log("USER LOGGED IN", res);
     sessionStorage.setItem("userToken", res.data.result);
     alert("Амжилттай нэвтэрлээ", "success");
     return res.data.success;

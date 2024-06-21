@@ -23,7 +23,7 @@ const Header = () => {
           icon={<UserOutlined />}
         />
         <div className="header-user-section">
-          <h1>{user.UserName}</h1>
+          <h1>{user.EmpFName}</h1>
           <p>Программ хөгжүүлэгч</p>
         </div>
       </div>
