@@ -18,6 +18,7 @@ const Header = () => {
       <div className="header-right-side">
         <img className="header-notf" src={bell} alt="" />
         <Avatar
+          src={user.Picture}
           style={{ backgroundColor: "white", marginLeft: 20 }}
           size={40}
           icon={<UserOutlined />}
