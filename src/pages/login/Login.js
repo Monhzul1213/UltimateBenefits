@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { RegisterSelect } from "../../components/RegisterSelect";
 import "../../css/login.css";
@@ -18,13 +18,25 @@ export function Login() {
     registerLetters[index] = value;
   };
   const { handleCheckRegister, loading, open, setOpen } = useAuth();
+  useEffect(() => {
+    const handleEnter = (event) => {
+      if (event.key === "Enter") {
+        handleCheckRegister(registerLetters, registerNums);
+      }
+    };
+    document.addEventListener("keydown", handleEnter);
+    return () => {
+      document.removeEventListener("keydown", handleEnter);
+    };
+  }, []);
+
   return (
     <main className="login-page">
       <section className="left-section">
         <PinModal
           open={open}
           setOpen={setOpen}
-          register={registerLetters.join("") + registerNums}
+          register={registerLetters?.join("") + registerNums}
         />
         <img className="login-logo" src={loginlogo} alt="" />
         <div className="input-section">
