@@ -46,3 +46,36 @@ export const benefits = [
   { title: "Нийгмийн хангамж", icon: care, route: "/care" },
   { title: "Сонирхлын клуб", icon: clubs, route: "/clubs" },
 ];
+
+export const cares = [
+  {
+    icon: care,
+    title: "АЖИЛТНЫ ХУВИЙН ЭРҮҮЛ МЭНДИЙН ДААТГАЛ",
+    description: "",
+  },
+  {
+    icon: care,
+    title: "УРЬДЧИЛАН СЭРГИЙЛЭХ ҮЗЛЭГ, ШИНЖИЛГЭЭ",
+    description: "",
+  },
+  {
+    icon: care,
+    title: "ВАКЦИНЖУУЛАЛТ",
+    description: "",
+  },
+  {
+    icon: care,
+    title: "ОРОН СУУЦНЫ УРЬДЧИЛГАА",
+    description: "",
+  },
+  {
+    icon: care,
+    title: "БАЙГУУЛЛАГЫН МАШИН",
+    description: "",
+  },
+  {
+    icon: care,
+    title: "БҮТЭЭГДЭХҮҮН, ҮЙЛЧИЛГЭЭ",
+    description: "",
+  },
+];
