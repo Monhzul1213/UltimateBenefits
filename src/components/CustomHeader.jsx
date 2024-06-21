@@ -8,10 +8,10 @@ import "../css/customHeader.css";
 const CustomHeader = ({ title }) => {
   const { user } = useAuth();
   return (
-    <header className="header">
-      <div className="header-title">
+    <header className="custom-header">
+      <div className="custom-header-title">
         <img
-          className="header-logo"
+          className="custom-header-logo"
           src={mainLogo}
           alt="Ultimate Benefits Logo"
         />
@@ -19,14 +19,14 @@ const CustomHeader = ({ title }) => {
       </div>
 
       <CiMenuFries size={30} className="phone-menu" color="white" />
-      <div className="header-right-side">
-        <img className="header-notf" src={bell} alt="" />
+      <div className="custom-header-right-side">
+        <img className="custom-header-notf" src={bell} alt="" />
         <Avatar
           style={{ backgroundColor: "white", marginLeft: 20 }}
           size={40}
           icon={<UserOutlined />}
         />
-        <div className="header-user-section">
+        <div className="custom-header-user-section">
           <h1>{user.EmpFName}</h1>
           <p>Программ хөгжүүлэгч</p>
         </div>
