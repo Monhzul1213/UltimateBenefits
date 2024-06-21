@@ -31,7 +31,7 @@ const MyDrawer = () => {
         open={open}
       >
         <div className="drawer-content">
-          <Avatar size={150} />
+          <Avatar src={user.Picture} size={150} />
           <h1>
             {user?.EmpLName} {user?.EmpFName}
           </h1>

@@ -1,5 +1,11 @@
 import React from "react";
+import CustomHeader from "../../components/CustomHeader";
 
 export const Care = () => {
-  return <div>Care</div>;
+  return (
+    <>
+      <CustomHeader title="Нийгмийн хангамж" />
+      <main></main>
+    </>
+  );
 };
