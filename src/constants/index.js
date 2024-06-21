@@ -41,7 +41,7 @@ export const alphabets = [
 export const benefits = [
   { title: "Дүрэм журам", icon: rules, route: "/rules" },
   { title: "Карьер хөгжил", icon: careers, route: "/careers" },
-  { title: "Сургалтын материал", icon: learning, route: "/learing" },
+  { title: "Сургалтын материал", icon: learning, route: "/learning" },
   { title: "Хөнгөлөлт урамшуулал", icon: discounts, route: "/discounts" },
   { title: "Нийгмийн хангамж", icon: care, route: "/care" },
   { title: "Сонирхлын клуб", icon: clubs, route: "/clubs" },

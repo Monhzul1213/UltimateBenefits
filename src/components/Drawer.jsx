@@ -6,8 +6,9 @@ import { IoMdArrowDropright } from "react-icons/io";
 import "../css/drawer.css";
 import { useAuth } from "../context/AuthProvider";
 import MyCalendar from "./MyCalendar";
+
 const MyDrawer = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
@@ -54,7 +55,14 @@ const MyDrawer = () => {
               <Avatar size={15} />
               БГД 17 хороо 44с-37 тоот
             </p>
-            <Button className="logout">Системээс гарах</Button>
+            <Button
+              onClick={() => {
+                logout();
+              }}
+              className="logout"
+            >
+              Системээс гарах
+            </Button>
           </div>
           <div className="top-border" />
         </div>

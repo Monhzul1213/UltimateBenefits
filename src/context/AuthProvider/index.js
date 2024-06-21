@@ -6,6 +6,7 @@ import { jwtDecode } from "jwt-decode";
 export const authContext = createContext({
   handleCheckRegister: () => {},
   handleLogin: () => {},
+  logout: () => {},
   loading: false,
   user: null,
   isAuth: false,
@@ -37,7 +38,7 @@ const AuthProviver = ({ children }) => {
   };
 
   const checkIsLogged = () => {
-    const token = localStorage.getItem("userToken");
+    const token = sessionStorage.getItem("userToken");
     if (token) {
       const decoded = jwtDecode(JSON.stringify(token));
       console.log("USER", decoded);
@@ -45,6 +46,12 @@ const AuthProviver = ({ children }) => {
       setUser(decoded);
     }
   };
+  const logout = () => {
+    setIsAuth(false);
+    sessionStorage.removeItem("userToken");
+    alert("Амжилттай системээс гарлаа", "success");
+  };
+
   useEffect(() => {
     checkIsLogged();
   }, []);
@@ -55,6 +62,7 @@ const AuthProviver = ({ children }) => {
         handleCheckRegister,
         handleLogin,
         checkIsLogged,
+        logout,
         loading,
         user,
         isAuth,

@@ -34,7 +34,7 @@ export const login = async (register, pin) => {
       },
       { headers: { ultimatekey: apiKey } }
     );
-    localStorage.setItem("userToken", res.data.result);
+    sessionStorage.setItem("userToken", res.data.result);
     alert("Амжилттай нэвтэрлээ", "success");
     return res.data.success;
   } catch (error) {
