@@ -74,7 +74,7 @@ const Care = ({ size }) => {
               info={cares[3]}
             />
           </div>
-          <div className="cards cards-last ">
+          <div className="cards cards-last " id={isTwo && "cards-two"}>
             <CareCard
               isTwo={isTwo}
               hideIdx={hideIdx}
