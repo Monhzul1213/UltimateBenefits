@@ -15,6 +15,12 @@
   flex-direction: column;
   gap: 100px;
 }
+#cards-two {
+  width: 930px;
+  flex-direction: row;
+  gap: 0;
+  justify-content: space-between;
+}
 .care-card {
   width: 415px;
   height: 290px;
@@ -98,7 +104,6 @@
   background-color: gray;
 }
 .care-card-footer {
-  bottom: 30px;
   width: 100%;
   margin-top: auto;
   display: flex;
@@ -118,8 +123,21 @@
 
 @media only screen and (max-width: 1525px) {
   .cards-last {
+    width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .care-card {
+    width: 100%;
+  }
+  .care-card-description {
+    width: 100%;
+  }
+  .care-card-footer {
+    flex-direction: column;
+    gap: 10px;
   }
 }

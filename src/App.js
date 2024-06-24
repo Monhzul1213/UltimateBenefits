@@ -1,10 +1,24 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Routes, Route, unstable_HistoryRouter as HistoryRouter } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  unstable_HistoryRouter as HistoryRouter,
+} from "react-router-dom";
 import { createBrowserHistory } from "history";
 
-import { Learning, Clubs, Care, Careers, Rules, Discounts, Home, Login } from "./pages";
+import {
+  Learning,
+  Clubs,
+  Careers,
+  Rules,
+  Discounts,
+  Home,
+  Login,
+} from "./pages";
 import { useAuth } from "./context/AuthProvider";
 import MyDrawer from "./components/Drawer";
+import Care from "./pages/care/Care";
 
 export function App() {
   const { isAuth } = useAuth();

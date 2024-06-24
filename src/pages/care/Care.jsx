@@ -1,54 +1,38 @@
 import React, { useEffect, useState } from "react";
+import { withSize } from "react-sizeme";
+
 import CustomHeader from "../../components/CustomHeader";
 import CareCard from "../../components/CareCard";
 import { cares } from "../../constants";
 import "../../css/care.css";
 
-export const Care = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width:1525px)");
-    setIsMobile(mediaQuery.matches);
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-    mediaQuery.addEventListener("change", handleMediaQueryChange);
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
-  }, []);
+const Care = ({ size }) => {
+  const isOne = size?.width <= 1010;
+  const isTwo = size?.width <= 1525 && size?.width >= 1010;
+
   const [openIdx, setOpenIdx] = useState(null);
   const [hideIdx, setHideIdx] = useState(null);
   const handleCardOpen = (idx) => {
-    if (openIdx == idx) {
+    if (openIdx === idx) {
       setOpenIdx(null);
       setHideIdx(null);
     } else {
       setOpenIdx(idx);
-      setHideIdx(isMobile ? null : idx + 1);
+      if ((isTwo & (idx === 1)) | (idx === 4) | (idx === 7)) {
+        setHideIdx(idx - 1);
+      } else {
+        setHideIdx(isOne ? null : idx + 1);
+      }
     }
   };
   return (
     <>
       <CustomHeader title="Нийгмийн хангамж" />
       <main className="care-container">
-        {/* {cares.map((info, idx) => {
-          return (
-            <CareCard
-              setOpenIdx={setOpenIdx}
-              openIdx={openIdx}
-              key={idx}
-              icon={info.icon}
-              title={info.title}
-              description={info.description}
-              type={info.type}
-              idx={idx}
-            />
-          );
-        })} */}
         <div className="cards-container">
-          <div className="cards">
+          <div className="cards" id={isTwo && "cards-two"}>
             <CareCard
+              isTwo={isTwo}
               hideIdx={hideIdx}
               handleCardOpen={handleCardOpen}
               setOpenIdx={setOpenIdx}
@@ -57,6 +41,7 @@ export const Care = () => {
               info={cares[0]}
             />
             <CareCard
+              isTwo={isTwo}
               hideIdx={hideIdx}
               handleCardOpen={handleCardOpen}
               setOpenIdx={setOpenIdx}
@@ -65,8 +50,9 @@ export const Care = () => {
               info={cares[1]}
             />
           </div>
-          <div className="cards">
+          <div className="cards" id={isTwo && "cards-two"}>
             <CareCard
+              isTwo={isTwo}
               hideIdx={hideIdx}
               handleCardOpen={handleCardOpen}
               setOpenIdx={setOpenIdx}
@@ -75,6 +61,7 @@ export const Care = () => {
               info={cares[2]}
             />
             <CareCard
+              isTwo={isTwo}
               hideIdx={hideIdx}
               handleCardOpen={handleCardOpen}
               setOpenIdx={setOpenIdx}
@@ -83,8 +70,9 @@ export const Care = () => {
               info={cares[3]}
             />
           </div>
-          <div className="cards cards-last">
+          <div className="cards cards-last ">
             <CareCard
+              isTwo={isTwo}
               hideIdx={hideIdx}
               handleCardOpen={handleCardOpen}
               setOpenIdx={setOpenIdx}
@@ -93,6 +81,7 @@ export const Care = () => {
               info={cares[4]}
             />
             <CareCard
+              isTwo={isTwo}
               hideIdx={hideIdx}
               handleCardOpen={handleCardOpen}
               setOpenIdx={setOpenIdx}
@@ -106,3 +95,5 @@ export const Care = () => {
     </>
   );
 };
+
+export default withSize()(Care);

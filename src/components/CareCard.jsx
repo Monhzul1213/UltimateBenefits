@@ -1,16 +1,8 @@
 import { Button } from "antd";
-import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const CareCard = ({
-  info,
-  idx,
-  openIdx,
-  setOpenIdx,
-  hideIdx,
-  handleCardOpen,
-}) => {
+const CareCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
   const buttonText =
     info.type === "available"
       ? "Боломжтой"
@@ -19,27 +11,47 @@ const CareCard = ({
       : "Боломжгүй";
   const displayArrow = idx === openIdx ? "hide" : "show";
 
-  const variants = {
-    show: {
-      height: 680,
-      transition: { duration: 0.3, type: "easeInOut" },
-    },
-    hide: {
-      height: 290,
-      display: "block",
-      opacity: 1,
-      transition: {
-        height: { duration: 0.3, type: "easeInOut" },
-        display: { duration: 0.3, delay: 0.8 },
-        opacity: { duration: 0.3, delay: 0.8 },
-      },
-    },
-    none: {
-      display: "none",
-      opacity: 0,
-      transition: { opacity: { duration: 0.3 }, display: { delay: 0.3 } },
-    },
-  };
+  const variants = isTwo
+    ? {
+        show: {
+          width: 930,
+          transition: { duration: 0.3, type: "linear" },
+        },
+        hide: {
+          width: 415,
+          opacity: 1,
+          transition: {
+            opacity: { delay: 0.8 },
+          },
+        },
+        none: {
+          width: 0,
+          opacity: 0,
+          padding: 0,
+          transition: { duration: 0.3, type: "linear" },
+        },
+      }
+    : {
+        show: {
+          height: 680,
+          transition: { duration: 0.3, type: "easeInOut" },
+        },
+        hide: {
+          height: 290,
+          display: "block",
+          opacity: 1,
+          transition: {
+            height: { duration: 0.3, type: "easeInOut" },
+            display: { duration: 0.3, delay: 0.8 },
+            opacity: { duration: 0.3, delay: 0.8 },
+          },
+        },
+        none: {
+          display: "none",
+          opacity: 0,
+          transition: { opacity: { duration: 0.3 }, display: { delay: 0.3 } },
+        },
+      };
   const textVariants = {
     show: {
       opacity: 1,

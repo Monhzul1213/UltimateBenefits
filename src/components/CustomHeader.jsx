@@ -8,7 +8,7 @@ import "../css/customHeader.css";
 const CustomHeader = ({ title }) => {
   const { user } = useAuth();
   return (
-    <header className="custom-header">
+    <div className="custom-header">
       <div className="custom-header-title">
         <a href="/">
           <img
@@ -19,7 +19,7 @@ const CustomHeader = ({ title }) => {
         </a>
         <h1>{title}</h1>
       </div>
-      <CiMenuFries size={30} className="phone-menu" />
+      <CiMenuFries size={30} className="custom-phone-menu" />
       <div className="custom-header-right-side">
         <img className="custom-header-notf" src={bell} alt="" />
         <Avatar
@@ -33,7 +33,7 @@ const CustomHeader = ({ title }) => {
           <p>{user.PositionName}</p>
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 
