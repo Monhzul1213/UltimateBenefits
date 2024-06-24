@@ -28,7 +28,13 @@ const CareCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
           width: 0,
           opacity: 0,
           padding: 0,
-          transition: { duration: 0.3, type: "linear" },
+          display: "none",
+          transition: {
+            width: { duration: 0.3, type: "linear" },
+            opacity: { duration: 0.3, type: "linear" },
+            padding: { duration: 0.3, type: "linear" },
+            display: { delay: 0.4 },
+          },
         },
       }
     : {
@@ -56,7 +62,7 @@ const CareCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
     show: {
       opacity: 1,
       display: "flex",
-      transition: { duration: 0.5, delay: 0.6 },
+      transition: { duration: 0.5, delay: 0.8 },
     },
     hide: {
       opacity: 0,
@@ -66,6 +72,7 @@ const CareCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
   };
   return (
     <motion.div
+      id={isTwo && "care-card-two"}
       onClick={() => {
         handleCardOpen(idx);
       }}
@@ -79,17 +86,19 @@ const CareCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
       >
         {buttonText}
       </Button>
-      <div>
-        <img src={info.icon} alt={`${info.title}'s image`} />
-        <h3>{info.title}</h3>
+      <div id={isTwo && "care-card-two-flex"}>
+        <div>
+          <img src={info.icon} alt={`${info.title}'s image`} />
+          <h3>{info.title}</h3>
+        </div>
+        <motion.p
+          variants={textVariants}
+          animate={openIdx === idx ? "show" : "hide"}
+          className="care-card-description"
+        >
+          {info.description}
+        </motion.p>
       </div>
-      <motion.p
-        variants={textVariants}
-        animate={openIdx === idx ? "show" : "hide"}
-        className="care-card-description"
-      >
-        {info.description}
-      </motion.p>
       <motion.div
         initial={{ display: "none", opacity: 0 }}
         variants={textVariants}

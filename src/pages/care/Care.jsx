@@ -18,7 +18,11 @@ const Care = ({ size }) => {
       setHideIdx(null);
     } else {
       setOpenIdx(idx);
-      if ((isTwo & (idx === 1)) | (idx === 4) | (idx === 7)) {
+      if (
+        (isTwo & (idx === 1)) |
+        (isTwo & (idx === 4)) |
+        (isTwo & (idx === 7))
+      ) {
         setHideIdx(idx - 1);
       } else {
         setHideIdx(isOne ? null : idx + 1);
