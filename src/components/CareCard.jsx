@@ -36,7 +36,8 @@ const CareCard = ({
     },
     none: {
       display: "none",
-      transition: { duration: 0 },
+      opacity: 0,
+      transition: { opacity: { duration: 0.3 }, display: { delay: 0.3 } },
     },
   };
   const textVariants = {
