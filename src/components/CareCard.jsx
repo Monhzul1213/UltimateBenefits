@@ -18,6 +18,7 @@ const CareCard = ({
       : type === "used"
       ? "Ашигласан"
       : "Боломжгүй";
+  const displayArrow = idx === openIdx ? "hide" : "show";
 
   const variants = {
     show: {
@@ -33,12 +34,12 @@ const CareCard = ({
     show: {
       opacity: 1,
       display: "flex",
-      transition: { duration: 0.3, delay: 0.5 },
+      transition: { duration: 0.5, delay: 0.6 },
     },
     hide: {
       opacity: 0,
       display: "none",
-      transition: { duration: 0.3 },
+      transition: { duration: 0.1 },
     },
   };
   return (
@@ -80,7 +81,7 @@ const CareCard = ({
           Багцын мэдээлэл харах
         </Button>
       </motion.div>
-      <FaArrowRight size={25} className="care-card-arrow" />
+      <FaArrowRight size={25} className={`care-card-arrow ${displayArrow}`} />
     </motion.div>
   );
 };
