@@ -4,30 +4,40 @@ import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const CareCard = ({
-  icon,
-  title,
-  description,
-  type,
+  info,
   idx,
   openIdx,
   setOpenIdx,
+  hideIdx,
+  handleCardOpen,
 }) => {
   const buttonText =
-    type === "available"
+    info.type === "available"
       ? "Боломжтой"
-      : type === "used"
+      : info.type === "used"
       ? "Ашигласан"
       : "Боломжгүй";
   const displayArrow = idx === openIdx ? "hide" : "show";
 
   const variants = {
     show: {
-      height: 650,
+      height: 680,
       transition: { duration: 0.3, type: "easeInOut" },
     },
     hide: {
       height: 290,
-      transition: { duration: 0.3, type: "easeInOut" },
+      display: "block",
+      opacity: 1,
+      transition: {
+        height: { duration: 0.3, type: "easeInOut" },
+        display: { duration: 0.3, delay: 0.8 },
+        opacity: { duration: 0.3, delay: 0.8 },
+      },
+    },
+    none: {
+      display: "none",
+      opacity: 0,
+      transition: { opacity: { duration: 0.3 }, display: { delay: 0.3 } },
     },
   };
   const textVariants = {
@@ -45,32 +55,28 @@ const CareCard = ({
   return (
     <motion.div
       onClick={() => {
-        if (openIdx == idx) {
-          setOpenIdx(null);
-        } else {
-          setOpenIdx(idx);
-        }
+        handleCardOpen(idx);
       }}
       variants={variants}
-      animate={openIdx === idx ? "show" : "hide"}
-      className={`care-card care-card-${type}`}
+      animate={openIdx === idx ? "show" : idx === hideIdx ? "none" : "hide"}
+      className={`care-card care-card-${info.type}`}
     >
       <Button
         type="primary"
-        className={`care-card-button care-card-button-${type}`}
+        className={`care-card-button care-card-button-${info.type}`}
       >
         {buttonText}
       </Button>
       <div>
-        <img src={icon} alt={`${title}'s image`} />
-        <h3>{title}</h3>
+        <img src={info.icon} alt={`${info.title}'s image`} />
+        <h3>{info.title}</h3>
       </div>
       <motion.p
         variants={textVariants}
         animate={openIdx === idx ? "show" : "hide"}
         className="care-card-description"
       >
-        {description}
+        {info.description}
       </motion.p>
       <motion.div
         initial={{ display: "none", opacity: 0 }}
