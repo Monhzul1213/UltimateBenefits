@@ -7,7 +7,7 @@ import "../../css/care.css";
 export const Care = () => {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width:1010px)");
+    const mediaQuery = window.matchMedia("(max-width:1525px)");
     setIsMobile(mediaQuery.matches);
     const handleMediaQueryChange = (event) => {
       setIsMobile(event.matches);
@@ -83,7 +83,7 @@ export const Care = () => {
               info={cares[3]}
             />
           </div>
-          <div className="cards">
+          <div className="cards cards-last">
             <CareCard
               hideIdx={hideIdx}
               handleCardOpen={handleCardOpen}

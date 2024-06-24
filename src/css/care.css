@@ -115,3 +115,9 @@
   color: white;
   font-weight: 700;
 }
+
+@media only screen and (max-width: 1525px) {
+  .cards-last {
+    flex-direction: row;
+  }
+}
