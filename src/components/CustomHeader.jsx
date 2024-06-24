@@ -10,11 +10,13 @@ const CustomHeader = ({ title }) => {
   return (
     <header className="custom-header">
       <div className="custom-header-title">
-        <img
-          className="custom-header-logo"
-          src={mainLogo}
-          alt="Ultimate Benefits Logo"
-        />
+        <a href="/">
+          <img
+            className="custom-header-logo"
+            src={mainLogo}
+            alt="Ultimate Benefits Logo"
+          />
+        </a>
         <h1>{title}</h1>
       </div>
       <CiMenuFries size={30} className="phone-menu" />

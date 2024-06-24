@@ -34,6 +34,7 @@
 .input-div {
   display: flex;
   gap: 10px;
+  justify-content: space-between;
   width: 100%;
 }
 .login-header {
