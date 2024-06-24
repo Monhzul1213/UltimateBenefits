@@ -25,7 +25,7 @@ const Header = () => {
         />
         <div className="header-user-section">
           <h1>{user.EmpFName}</h1>
-          <p>Программ хөгжүүлэгч</p>
+          <p>{user.PositionName}</p>
         </div>
       </div>
     </header>
