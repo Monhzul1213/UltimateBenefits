@@ -61,8 +61,10 @@ const CareCard = ({
       >
         {buttonText}
       </Button>
-      <img src={icon} alt={`${title}'s image`} />
-      <h3>{title}</h3>
+      <div>
+        <img src={icon} alt={`${title}'s image`} />
+        <h3>{title}</h3>
+      </div>
       <motion.p
         variants={textVariants}
         animate={openIdx === idx ? "show" : "hide"}

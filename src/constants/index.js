@@ -72,7 +72,8 @@ export const cares = [
   {
     icon: heartbeat,
     title: "УРЬДЧИЛАН СЭРГИЙЛЭХ ҮЗЛЭГ, ШИНЖИЛГЭЭ",
-    description: "",
+    description:
+      "hjdsa hjaks hsdajkdh ajkshdjksah kjdsah jskahdjkashd kjsahd akjshd kajshd ksajdhjkashdjkas hdjksa hdjksa hjksahdajks hjksah dhd ashdkj asdhkjsa jk hajkshdkjas hdjk as hdsjahdkas hdjkasdhjaksh jkashd jkashd jksa dhjsahdjksa",
     type: "used",
   },
   {
