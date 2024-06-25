@@ -2,13 +2,15 @@ import { Button } from "antd";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const CareCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
-  const buttonText =
-    info.type === "available"
-      ? "Боломжтой"
-      : info.type === "used"
-      ? "Ашигласан"
-      : "Боломжгүй";
+const CareCard = ({
+  info,
+  idx,
+  openIdx,
+  hideIdx,
+  handleCardOpen,
+  isTwo,
+  cardData,
+}) => {
   const displayArrow = idx === openIdx ? "hide" : "show";
 
   const variants = isTwo
@@ -78,13 +80,13 @@ const CareCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
       }}
       variants={variants}
       animate={openIdx === idx ? "show" : idx === hideIdx ? "none" : "hide"}
-      className={`care-card care-card-${info.type}`}
+      className={`care-card care-card-${cardData.possible}`}
     >
       <Button
         type="primary"
-        className={`care-card-button care-card-button-${info.type}`}
+        className={`care-card-button care-card-button-${cardData.possible}`}
       >
-        {buttonText}
+        {cardData.possible}
       </Button>
       <div id={isTwo && "care-card-two-flex"}>
         <div>
@@ -96,7 +98,7 @@ const CareCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
           animate={openIdx === idx ? "show" : "hide"}
           className="care-card-description"
         >
-          {info.description}
+          {cardData.possibleDescr}
         </motion.p>
       </div>
       <motion.div
