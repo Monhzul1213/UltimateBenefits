@@ -39,7 +39,7 @@
 
 .benefits-container {
   width: 100%;
-  padding: 30px 150px;
+  padding: 30px 150px 70px 150px;
 }
 .benefits-title {
   display: flex;
@@ -107,6 +107,9 @@
   right: 10px;
 }
 footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
   display: flex;
   justify-content: space-between;
   padding: 20px 180px;
