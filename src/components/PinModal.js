@@ -1,7 +1,7 @@
 import { Modal } from "antd";
 import LoginButton from "./LoginButton";
 import OTPInput from "./OtpInput";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 const PinModal = ({ open, setOpen, register }) => {
   const { handleLogin } = useAuth();

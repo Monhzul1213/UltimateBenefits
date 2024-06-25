@@ -88,7 +88,7 @@ const CareCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
       </Button>
       <div id={isTwo && "care-card-two-flex"}>
         <div>
-          <img src={info.icon} alt={`${info.title}'s image`} />
+          <img src={info.icon} alt={`${info.title}`} />
           <h3>{info.title}</h3>
         </div>
         <motion.p

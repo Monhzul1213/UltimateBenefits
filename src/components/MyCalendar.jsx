@@ -1,8 +1,8 @@
 import { Calendar, ConfigProvider } from "antd";
 const cellRender = (cur) => {
-  const year = cur.$d.getFullYear();
-  const month = cur.$d.getMonth();
-  const day = cur.$d.getDate();
+  // const year = cur.$d.getFullYear();
+  // const month = cur.$d.getMonth();
+  // const day = cur.$d.getDate();
 };
 const MyCalendar = () => {
   const onPanelChange = (value, mode) => {

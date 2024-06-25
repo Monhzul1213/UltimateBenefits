@@ -11,7 +11,7 @@ const Benefits = () => {
       </div>
       <section className="benefits">
         {benefits.map((fit) => (
-          <a className="benefit" href={fit.route}>
+          <a key={fit.title} className="benefit" href={fit.route}>
             <img src={fit.icon} alt={fit.alt} />
             <h3>{fit.title}</h3>
             <FaArrowRight size={25} className="arrow" />

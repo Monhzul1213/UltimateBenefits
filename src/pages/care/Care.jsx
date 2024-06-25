@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { withSize } from "react-sizeme";
 
 import CustomHeader from "../../components/CustomHeader";
