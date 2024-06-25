@@ -55,7 +55,7 @@
   margin-top: 40px;
   font-size: 18px;
 }
-.care-card-available {
+.care-card-Боломжтой {
   border-radius: 20px;
   background: radial-gradient(
         circle at 100% 100%,
@@ -76,10 +76,10 @@
       calc(100% - 4px) no-repeat,
     linear-gradient(90deg, rgba(72, 171, 224, 0.935) 0%, #ff0000 100%);
 }
-.care-card-used {
+.care-card-Ашигласан {
   border: 2px solid #019444;
 }
-.care-card-unavailable {
+.care-card-Боломжгүй {
   border: 2px solid gray;
 }
 .care-card-arrow {
@@ -96,7 +96,7 @@
   top: -15px;
   right: 20px;
 }
-.care-card-button-available {
+.care-card-button-Боломжтой {
   background: rgb(226, 102, 255);
   background: linear-gradient(
     43deg,
@@ -105,10 +105,10 @@
     rgba(252, 70, 107, 1) 100%
   );
 }
-.care-card-button-used {
+.care-card-button-Ашигласан {
   background-color: #019444;
 }
-.care-card-button-unavailable {
+.care-card-button-Боломжгүй {
   background-color: gray;
 }
 .care-card-footer {
