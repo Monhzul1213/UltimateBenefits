@@ -40,9 +40,9 @@ const AuthProviver = ({ children }) => {
   const checkIsLogged = () => {
     const token = sessionStorage.getItem("userToken");
     if (token) {
+      setIsAuth(true);
       const decoded = jwtDecode(JSON.stringify(token));
       console.log("USER", decoded);
-      setIsAuth(true);
       setUser(decoded);
     }
   };

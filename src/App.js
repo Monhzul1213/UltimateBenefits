@@ -19,13 +19,14 @@ import {
 import { useAuth } from "./context/AuthProvider";
 import MyDrawer from "./components/Drawer";
 import Care from "./pages/care/Care";
+import Loader from "./components/Loader";
 
 export function App() {
   const { isAuth } = useAuth();
   if (!isAuth)
     return (
       <BrowserRouter>
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="*" element={<Login />} />
           </Routes>
@@ -37,7 +38,7 @@ export function App() {
     <div className="App">
       <MyDrawer />
       <HistoryRouter history={createBrowserHistory()}>
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="*" element={<Home />} />
             <Route path="/discounts" element={<Discounts />} />
