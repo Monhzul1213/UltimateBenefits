@@ -5,9 +5,9 @@ import CustomHeader from "../../components/CustomHeader";
 import CareCard from "../../components/CareCard";
 import { cares } from "../../constants";
 import "../../css/care.css";
-import { getCares } from "../../lib/actions/cares.action";
 import { useAuth } from "../../context/AuthProvider";
 import { Spin } from "antd";
+import { getCares } from "../../lib/actions/cares.action";
 
 const Care = ({ size }) => {
   const isOne = size?.width <= 1010;
