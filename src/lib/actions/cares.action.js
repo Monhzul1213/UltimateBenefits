@@ -8,6 +8,7 @@ export const getCares = async (userId) => {
         Authorization: `Bearer ${userToken}`,
       },
     });
+    console.log("DATA", data);
     return data;
   } catch (error) {
     if (!error.response) {

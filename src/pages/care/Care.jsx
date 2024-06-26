@@ -94,26 +94,28 @@ const Care = ({ size }) => {
                 info={cares[3]}
               />
             </div>
-            {/* <div className="cards cards-last " id={isTwo && "cards-two"}>
-            <CareCard
-              isTwo={isTwo}
-              hideIdx={hideIdx}
-              handleCardOpen={handleCardOpen}
-              setOpenIdx={setOpenIdx}
-              openIdx={openIdx}
-              idx={6}
-              info={cares[4]}
-            />
-            <CareCard
-              isTwo={isTwo}
-              hideIdx={hideIdx}
-              handleCardOpen={handleCardOpen}
-              setOpenIdx={setOpenIdx}
-              openIdx={openIdx}
-              idx={7}
-              info={cares[5]}
-            />
-          </div> */}
+            <div className="cards cards-last " id={isTwo && "cards-two"}>
+              <CareCard
+                cardData={cardData?.companyCar}
+                isTwo={isTwo}
+                hideIdx={hideIdx}
+                handleCardOpen={handleCardOpen}
+                setOpenIdx={setOpenIdx}
+                openIdx={openIdx}
+                idx={6}
+                info={cares[4]}
+              />
+              <CareCard
+                cardData={cardData?.companyProductLogo}
+                isTwo={isTwo}
+                hideIdx={hideIdx}
+                handleCardOpen={handleCardOpen}
+                setOpenIdx={setOpenIdx}
+                openIdx={openIdx}
+                idx={7}
+                info={cares[5]}
+              />
+            </div>
           </div>
         ) : (
           <Spin />

@@ -91,7 +91,7 @@ export const CareCard = ({
       <div id={isTwo && "care-card-two-flex"}>
         <div>
           <img src={info.icon} alt={`${info.title}`} />
-          <h3>{info.title}</h3>
+          <h3>{cardData.Name}</h3>
         </div>
         <motion.p
           variants={textVariants}
