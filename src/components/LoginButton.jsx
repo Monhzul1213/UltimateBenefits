@@ -1,6 +1,6 @@
 import { Button } from "antd";
 
-const LoginButton = ({ handleClick, loading }) => {
+export const LoginButton = ({ handleClick, loading }) => {
   const style = {
     width: "100%",
     height: "60px",
@@ -19,5 +19,3 @@ const LoginButton = ({ handleClick, loading }) => {
     </Button>
   );
 };
-
-export default LoginButton;

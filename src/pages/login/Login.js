@@ -1,11 +1,8 @@
 import { useState } from "react";
-
-import { RegisterSelect } from "../../components/RegisterSelect";
-import "../../css/login.css";
-import { loginlogo, logo } from "../../assets";
-import PinModal from "../../components/PinModal";
-import LoginButton from "../../components/LoginButton";
 import { useAuth } from "../../context/AuthProvider";
+import { loginlogo, logo } from "../../assets";
+import { PinModal, LoginButton, RegisterSelect } from "../../components";
+import "../../css/login.css";
 
 export function Login() {
   let [registerLetters] = useState([]);

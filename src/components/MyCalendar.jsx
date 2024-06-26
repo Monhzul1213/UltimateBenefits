@@ -4,7 +4,7 @@ const cellRender = (cur) => {
   // const month = cur.$d.getMonth();
   // const day = cur.$d.getDate();
 };
-const MyCalendar = () => {
+export const MyCalendar = () => {
   const onPanelChange = (value, mode) => {
     console.log(value.format("YYYY-MM-DD"), mode);
   };
@@ -28,5 +28,3 @@ const MyCalendar = () => {
     </>
   );
 };
-
-export default MyCalendar;

@@ -2,11 +2,11 @@ import { bell, mainLogo } from "../assets";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { useAuth } from "../context/AuthProvider/index";
-import { CiMenuFries } from "react-icons/ci";
-import "../css/customHeader.css";
 import { Link } from "react-router-dom";
 
-const CustomHeader = ({ title }) => {
+import "../css/customHeader.css";
+
+export const CustomHeader = ({ title }) => {
   const { user } = useAuth();
   return (
     <div className="custom-header">
@@ -36,5 +36,3 @@ const CustomHeader = ({ title }) => {
     </div>
   );
 };
-
-export default CustomHeader;

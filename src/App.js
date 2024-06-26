@@ -17,13 +17,13 @@ import {
   Login,
 } from "./pages";
 import { useAuth } from "./context/AuthProvider";
-import MyDrawer from "./components/Drawer";
 import Care from "./pages/care/Care";
-import Loader from "./components/Loader";
+import { MyDrawer, Loader } from "./components";
 
 export function App() {
   const { isAuth } = useAuth();
-  if (!isAuth)
+  const userToken = sessionStorage.getItem("userToken");
+  if (!userToken)
     return (
       <BrowserRouter>
         <Suspense fallback={<Loader />}>
@@ -35,21 +35,25 @@ export function App() {
     );
 
   return (
-    <div className="App">
-      <MyDrawer />
-      <HistoryRouter history={createBrowserHistory()}>
-        <Suspense fallback={<Loader />}>
-          <Routes>
-            <Route path="*" element={<Home />} />
-            <Route path="/discounts" element={<Discounts />} />
-            <Route path="/rules" element={<Rules />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/care" element={<Care />} />
-            <Route path="/learning" element={<Learning />} />
-            <Route path="/clubs" element={<Clubs />} />
-          </Routes>
-        </Suspense>
-      </HistoryRouter>
-    </div>
+    <>
+      {isAuth && (
+        <div className="App">
+          <MyDrawer />
+          <HistoryRouter history={createBrowserHistory()}>
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/discounts" element={<Discounts />} />
+                <Route path="/rules" element={<Rules />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/care" element={<Care />} />
+                <Route path="/learning" element={<Learning />} />
+                <Route path="/clubs" element={<Clubs />} />
+              </Routes>
+            </Suspense>
+          </HistoryRouter>
+        </div>
+      )}
+    </>
   );
 }

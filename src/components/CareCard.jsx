@@ -2,7 +2,7 @@ import { Button } from "antd";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const CareCard = ({
+export const CareCard = ({
   info,
   idx,
   openIdx,
@@ -116,5 +116,3 @@ const CareCard = ({
     </motion.div>
   );
 };
-
-export default CareCard;

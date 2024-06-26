@@ -1,7 +1,7 @@
 import { Spin } from "antd";
 import React from "react";
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div
       style={{
@@ -16,5 +16,3 @@ const Loader = () => {
     </div>
   );
 };
-
-export default Loader;

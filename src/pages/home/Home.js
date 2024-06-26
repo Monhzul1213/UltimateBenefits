@@ -1,9 +1,7 @@
 import React from "react";
-import HeroSection from "../../components/HeroSection";
-import Benefits from "../../components/Benefits";
+import { Benefits, HeroSection, Footer } from "../../components";
 
 import "../../css/home.css";
-import Footer from "../../components/Footer";
 
 export function Home() {
   return (

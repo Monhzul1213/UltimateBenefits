@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { withSize } from "react-sizeme";
-
-import CustomHeader from "../../components/CustomHeader";
-import CareCard from "../../components/CareCard";
 import { cares } from "../../constants";
-import "../../css/care.css";
 import { useAuth } from "../../context/AuthProvider";
 import { Spin } from "antd";
 import { getCares } from "../../lib/actions/cares.action";
+
+import { CustomHeader, CareCard } from "../../components";
+
+import "../../css/care.css";
 
 const Care = ({ size }) => {
   const isOne = size?.width <= 1010;

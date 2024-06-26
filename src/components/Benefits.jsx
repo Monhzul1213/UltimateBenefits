@@ -3,7 +3,7 @@ import { heart } from "../assets";
 import { benefits } from "../constants";
 import { FaArrowRight } from "react-icons/fa";
 
-const Benefits = () => {
+export const Benefits = () => {
   return (
     <section className="benefits-container">
       <div className="benefits-title">
@@ -22,5 +22,3 @@ const Benefits = () => {
     </section>
   );
 };
-
-export default Benefits;

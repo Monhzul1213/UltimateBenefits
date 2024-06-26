@@ -1,7 +1,7 @@
 import { garchigIcon, heroLogo } from "../assets";
-import Header from "./Header";
+import { Header } from "../components";
 
-const HeroSection = () => {
+export const HeroSection = () => {
   return (
     <section className="hero-container">
       <Header />
@@ -22,5 +22,3 @@ const HeroSection = () => {
     </section>
   );
 };
-
-export default HeroSection;
