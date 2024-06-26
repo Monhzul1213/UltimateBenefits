@@ -9,13 +9,13 @@ import { MyCalendar } from "../components";
 import "../css/drawer.css";
 
 export const MyDrawer = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, openDrawer, setOpenDrawer } = useAuth();
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
-    setOpen(true);
+    setOpenDrawer(true);
   };
   const onClose = () => {
-    setOpen(false);
+    setOpenDrawer(false);
   };
   return (
     <>
@@ -29,7 +29,7 @@ export const MyDrawer = () => {
         className="drawer-container"
         rootClassName="drawer-container"
         onClose={onClose}
-        open={open}
+        open={openDrawer}
       >
         <div className="drawer-content">
           <Avatar src={user?.Picture} size={150} />

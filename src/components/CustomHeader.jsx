@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "../css/customHeader.css";
 
 export const CustomHeader = ({ title }) => {
-  const { user } = useAuth();
+  const { user, setOpenDrawer } = useAuth();
   return (
     <div className="custom-header">
       <div className="custom-header-title">
@@ -20,7 +20,10 @@ export const CustomHeader = ({ title }) => {
         </Link>
         <h1>{title}</h1>
       </div>
-      <div className="custom-header-right-side">
+      <div
+        onClick={() => setOpenDrawer(true)}
+        className="custom-header-right-side"
+      >
         <img className="custom-header-notf" src={bell} alt="" />
         <Avatar
           src={user.Picture}

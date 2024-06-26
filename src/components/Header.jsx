@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthProvider/index";
 import "../css/header.css";
 
 export const Header = () => {
-  const { user } = useAuth();
+  const { user, setOpenDrawer } = useAuth();
   return (
     <header className="header">
       <img
@@ -13,7 +13,7 @@ export const Header = () => {
         src={mainLogo}
         alt="Ultimate Benefits Logo"
       />
-      <div className="header-right-side">
+      <div onClick={() => setOpenDrawer(true)} className="header-right-side">
         <img className="header-notf" src={bell} alt="" />
         <Avatar
           src={user.Picture}

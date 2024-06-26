@@ -13,6 +13,7 @@
   width: 23px;
 }
 .header-right-side {
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 20px;

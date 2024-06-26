@@ -36,6 +36,7 @@
 .custom-header-right-side {
   position: absolute;
   right: 100px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 20px;

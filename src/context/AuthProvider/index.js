@@ -11,6 +11,8 @@ export const authContext = createContext({
   user: null,
   isAuth: false,
   open: false,
+  openDrawer: false,
+  setOpenDrawer: () => {},
   setOpen: () => {},
 });
 const AuthProviver = ({ children }) => {
@@ -18,6 +20,7 @@ const AuthProviver = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleCheckRegister = async (registerLetters, registerNums) => {
     const register = registerLetters.join("") + registerNums;
@@ -67,6 +70,8 @@ const AuthProviver = ({ children }) => {
         user,
         isAuth,
         open,
+        openDrawer,
+        setOpenDrawer,
         setOpen,
       }}
     >
