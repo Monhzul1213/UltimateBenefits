@@ -1,5 +1,5 @@
 import React from "react";
-import CustomHeader from "../../components/CustomHeader";
+import { CustomHeader } from "../../components";
 
 export const Clubs = () => {
   return (

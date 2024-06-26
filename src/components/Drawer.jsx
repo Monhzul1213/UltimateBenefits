@@ -3,11 +3,12 @@ import { Avatar, Button, Drawer } from "antd";
 import { IoMdArrowDropleft } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
 
-import "../css/drawer.css";
 import { useAuth } from "../context/AuthProvider";
-import MyCalendar from "./MyCalendar";
+import { MyCalendar } from "../components";
 
-const MyDrawer = () => {
+import "../css/drawer.css";
+
+export const MyDrawer = () => {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
@@ -31,7 +32,7 @@ const MyDrawer = () => {
         open={open}
       >
         <div className="drawer-content">
-          <Avatar src={user.Picture} size={150} />
+          <Avatar src={user?.Picture} size={150} />
           <h1>
             {user?.EmpLName} {user?.EmpFName}
           </h1>
@@ -39,7 +40,7 @@ const MyDrawer = () => {
           <div className="user-information">
             <p>
               <Avatar size={15} />
-              {user.PositionName}
+              {user?.PositionName}
             </p>
             <p>
               <Avatar size={15} />
@@ -55,7 +56,7 @@ const MyDrawer = () => {
             </p>
             <p>
               <Avatar size={15} />
-              {user.Address}
+              {user?.Address}
             </p>
             <Button
               onClick={() => {
@@ -78,4 +79,3 @@ const MyDrawer = () => {
     </>
   );
 };
-export default MyDrawer;

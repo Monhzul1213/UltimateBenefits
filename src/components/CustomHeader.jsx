@@ -2,24 +2,24 @@ import { bell, mainLogo } from "../assets";
 import { UserOutlined } from "@ant-design/icons";
 import { Avatar } from "antd";
 import { useAuth } from "../context/AuthProvider/index";
-import { CiMenuFries } from "react-icons/ci";
+import { Link } from "react-router-dom";
+
 import "../css/customHeader.css";
 
-const CustomHeader = ({ title }) => {
+export const CustomHeader = ({ title }) => {
   const { user } = useAuth();
   return (
     <div className="custom-header">
       <div className="custom-header-title">
-        <a href="/">
+        <Link to="/">
           <img
             className="custom-header-logo"
             src={mainLogo}
             alt="Ultimate Benefits Logo"
           />
-        </a>
+        </Link>
         <h1>{title}</h1>
       </div>
-      <CiMenuFries size={30} className="custom-phone-menu" />
       <div className="custom-header-right-side">
         <img className="custom-header-notf" src={bell} alt="" />
         <Avatar
@@ -36,5 +36,3 @@ const CustomHeader = ({ title }) => {
     </div>
   );
 };
-
-export default CustomHeader;

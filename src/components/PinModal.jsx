@@ -1,9 +1,8 @@
 import { Modal } from "antd";
-import LoginButton from "./LoginButton";
-import OTPInput from "./OtpInput";
+import { LoginButton, OTPInput } from "../components";
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
-const PinModal = ({ open, setOpen, register }) => {
+export const PinModal = ({ open, setOpen, register }) => {
   const { handleLogin } = useAuth();
   const [pin, setPin] = useState("");
   const handlePin = (val) => {
@@ -30,4 +29,3 @@ const PinModal = ({ open, setOpen, register }) => {
     </Modal>
   );
 };
-export default PinModal;

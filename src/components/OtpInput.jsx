@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Input, Row, Col } from "antd";
 
-const OTPInput = ({ length, onChange }) => {
+export const OTPInput = ({ length, onChange }) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
 
   const handleChange = (value, index) => {
@@ -43,5 +43,3 @@ const OTPInput = ({ length, onChange }) => {
     </Row>
   );
 };
-
-export default OTPInput;

@@ -1,8 +1,13 @@
 import myAxios from "../axios";
 import { alert } from "./alert.actions";
 export const getCares = async (userId) => {
+  const userToken = sessionStorage.getItem("userToken");
   try {
-    const { data } = await myAxios.get(`/api/care/getCares?UserID=${userId}`);
+    const { data } = await myAxios.get(`/api/care/getCares?UserID=${userId}`, {
+      headers: {
+        Authorization: `Bearer ${userToken}`,
+      },
+    });
     return data;
   } catch (error) {
     if (!error.response) {

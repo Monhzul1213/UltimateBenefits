@@ -17,6 +17,9 @@
     rgba(0, 2, 3, 1) 74%,
     rgba(0, 92, 117, 1) 100%
   );
+  position: sticky;
+  top: 0;
+  z-index: 99;
 }
 .custom-header-title {
   display: flex;
@@ -45,27 +48,24 @@ p {
   font-size: 12px;
   color: rgb(175, 175, 175);
 }
-.custom-phone-menu {
-  display: none;
-}
 
 @media only screen and (max-width: 1065px) {
   .custom-header {
     padding: 30px;
   }
   .custom-header-right-side {
+    right: 30px;
+  }
+  .custom-header-user-section {
     display: none;
   }
-  .custom-phone-menu {
-    display: block;
-  }
 }
-@media only screen and (max-width: 655px) {
+@media only screen and (max-width: 730px) {
   .custom-header-title h1 {
     font-size: 18px;
   }
 }
-@media only screen and (max-width: 455px) {
+@media only screen and (max-width: 595px) {
   .custom-header-title h1 {
     display: none;
   }
