@@ -146,3 +146,36 @@ export const userCalendarItems = {
     },
   ],
 };
+
+export const learnVideos = [
+  {
+    author: "Г.ҮЛЭМЖЖАРГАЛ",
+    title: "ХӨДӨЛМӨРИЙН ДОТООД ЖУРАМ",
+    url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
+  },
+  {
+    author: "Г.ҮЛЭМЖЖАРГАЛ",
+    title: "СТРЕССЭЭ УДИРДАХ НЬ",
+    url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
+  },
+  {
+    author: "Г.ҮЛЭМЖЖАРГАЛ",
+    title: "TIME MANAGEMENT",
+    url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
+  },
+  {
+    author: "Г.ҮЛЭМЖЖАРГАЛ",
+    title: "EQ СЭТГЭЛ ХӨДЛӨЛИЙН ЧАДАМЖ",
+    url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
+  },
+  {
+    author: "Г.ҮЛЭМЖЖАРГАЛ",
+    title: "АЛБАН МЭЙЛ ИЛГЭЭХ",
+    url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
+  },
+  {
+    author: "Г.ҮЛЭМЖЖАРГАЛ",
+    title: "Бүртгэл хийх",
+    url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
+  },
+];
