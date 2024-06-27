@@ -100,3 +100,49 @@ export const cares = [
     type: "available",
   },
 ];
+
+export const userCalendarItems = {
+  userID: "УО03300910",
+  calendarItems: [
+    {
+      title: "My birthday",
+      date: "2024-10-09",
+      color: "blue",
+    },
+    {
+      title: "Today test",
+      date: "2024-06-27",
+      color: "blue",
+    },
+    {
+      title: "Today test",
+      date: "2024-06-27",
+      color: "green",
+    },
+    {
+      title: "Today test",
+      date: "2024-06-27",
+      color: "red",
+    },
+    {
+      title: "Camp",
+      date: "2024-06-28",
+      color: "red",
+    },
+    {
+      title: "Election Day",
+      date: "2024-06-28",
+      color: "blue",
+    },
+    {
+      title: "Test day",
+      date: "2024-06-28",
+      color: "green",
+    },
+    {
+      title: "Salary",
+      date: "2024-07-01",
+      color: "green",
+    },
+  ],
+};

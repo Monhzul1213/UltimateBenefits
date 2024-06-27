@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { Avatar, Button, Drawer } from "antd";
+import { Avatar, Button, Drawer, Dropdown } from "antd";
 import { IoMdArrowDropleft } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
+import { dateFormatter } from "../lib/utils/dateFormatter";
 
 import { useAuth } from "../context/AuthProvider";
-import { MyCalendar } from "../components";
+import { MyCalendar, AddCalendar, CalendarItem } from "../components";
 
+import { userCalendarItems } from "../constants";
 import "../css/drawer.css";
 
 export const MyDrawer = () => {
   const { user, logout, openDrawer, setOpenDrawer } = useAuth();
-  const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpenDrawer(true);
   };
@@ -72,8 +72,40 @@ export const MyDrawer = () => {
         <div className="drawer-arrow-in" onClick={onClose}>
           <IoMdArrowDropright size={40} color="#00c7f0" />
         </div>
-        <div>
+        <div className="calendar-section">
+          <Dropdown
+            dropdownRender={AddCalendar}
+            trigger={["click"]}
+            placement="bottomLeft"
+          >
+            <Button
+              className="add-calendar-btn add-calendar-btn-absolute"
+              type="primary"
+            >
+              +
+            </Button>
+          </Dropdown>
           <MyCalendar />
+          <div className="calendar-items-container">
+            <div className="calendar-item-cards-container">
+              <p>Today</p>
+              {userCalendarItems.calendarItems
+                .filter((item) => item.date === dateFormatter(new Date()))
+                .slice(0, 3)
+                .map((itm) => (
+                  <CalendarItem item={itm} />
+                ))}
+            </div>
+            <div className="calendar-item-cards-container">
+              <p>Coming</p>
+              {userCalendarItems.calendarItems
+                .filter((item) => item.date > dateFormatter(new Date()))
+                .slice(0, 3)
+                .map((itm) => (
+                  <CalendarItem item={itm} />
+                ))}
+            </div>
+          </div>
         </div>
       </Drawer>
     </>
