@@ -36,11 +36,12 @@ const Care = ({ size }) => {
   };
 
   const [cardData, setCardData] = useState();
-  const getCareData = async () => {
-    const caresData = await getCares(user.UserID);
-    setCardData(caresData);
-  };
+
   useEffect(() => {
+    const getCareData = async () => {
+      const caresData = await getCares(user.UserID);
+      setCardData(caresData);
+    };
     getCareData();
   }, []);
 
