@@ -177,5 +177,26 @@ export const learnVideos = [
     author: "Г.ҮЛЭМЖЖАРГАЛ",
     title: "Бүртгэл хийх",
     url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
+  }]
+export const discountsi = [
+  {
+    title: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ ",
+    description: "",
   },
+  {
+    title: "УТАСНЫ ТӨЛБӨР",
+    description: "",
+  },
+  {
+    title: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
+    description: "Lunch Menu",
+  },
+  {
+    title: "Төрсөн өдөр",
+    description: "",
+  },
+  {
+    title: "GYM",
+    description: "",
+  }
 ];
