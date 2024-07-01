@@ -110,21 +110,6 @@ export const userCalendarItems = {
       color: "blue",
     },
     {
-      title: "Today test",
-      date: "2024-06-27",
-      color: "blue",
-    },
-    {
-      title: "Today test",
-      date: "2024-06-27",
-      color: "green",
-    },
-    {
-      title: "Today test",
-      date: "2024-06-27",
-      color: "red",
-    },
-    {
       title: "Camp",
       date: "2024-06-28",
       color: "red",
@@ -135,13 +120,18 @@ export const userCalendarItems = {
       color: "blue",
     },
     {
-      title: "Test day",
-      date: "2024-06-28",
+      title: "Salary",
+      date: "2024-07-01",
       color: "green",
     },
     {
+      title: "Хурал 14:00",
+      date: "2024-07-02",
+      color: "red",
+    },
+    {
       title: "Salary",
-      date: "2024-07-01",
+      date: "2024-07-16",
       color: "green",
     },
   ],
@@ -177,7 +167,8 @@ export const learnVideos = [
     author: "Г.ҮЛЭМЖЖАРГАЛ",
     title: "Бүртгэл хийх",
     url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
-  }]
+  },
+];
 export const discountsi = [
   {
     title: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ ",
@@ -198,5 +189,5 @@ export const discountsi = [
   {
     title: "GYM",
     description: "",
-  }
+  },
 ];

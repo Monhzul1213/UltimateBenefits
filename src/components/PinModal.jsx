@@ -3,7 +3,7 @@ import { LoginButton, OTPInput } from "../components";
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
 export const PinModal = ({ open, setOpen, register }) => {
-  const { handleLogin } = useAuth();
+  const { handleLogin, loading } = useAuth();
   const [pin, setPin] = useState("");
   const handlePin = (val) => {
     setPin(val);
@@ -21,6 +21,7 @@ export const PinModal = ({ open, setOpen, register }) => {
       <div>
         <OTPInput length={4} onChange={handlePin} />
         <LoginButton
+          loading={loading}
           handleClick={() => {
             handleLogin(register, pin);
           }}

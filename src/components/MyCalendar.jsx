@@ -1,4 +1,4 @@
-import { Calendar, ConfigProvider } from "antd";
+import { Calendar, ConfigProvider, Tooltip } from "antd";
 import { userCalendarItems } from "../constants";
 import { dateFormatter } from "../lib/utils/dateFormatter";
 const cellRender = (cur) => {
@@ -8,10 +8,12 @@ const cellRender = (cur) => {
       {userCalendarItems.calendarItems.map((item, idx) => {
         if (item.date === date) {
           return (
-            <div
-              key={item.date + idx}
-              className={`calendar-small-dot ${item.color}`}
-            />
+            <Tooltip title={item.title}>
+              <div
+                key={item.date + idx}
+                className={`calendar-small-dot ${item.color}`}
+              />
+            </Tooltip>
           );
         }
       })}
