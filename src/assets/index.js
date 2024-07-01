@@ -18,6 +18,14 @@ import house from "./house.svg";
 import umbrella from "./umbrella.svg";
 import vaccine from "./vaccine.svg";
 import car from "./car.svg";
+import bonus1 from "./bonus1.png";
+import bonus2 from "./bonus2.png";
+import bday from "./bday.png";
+import phone from "./phone.png";
+import lunch1 from "./lunch1.png";
+import lunch2 from "./lunch2.png";
+import gym1 from "./gym1.png";
+import gym2 from "./gym2.png"
 
 export {
   car,
@@ -40,4 +48,12 @@ export {
   learning,
   bell,
   rules,
+  bonus1,
+  bonus2,
+  bday,
+  phone,
+  lunch1,
+  lunch2,
+  gym1,
+  gym2,
 };
