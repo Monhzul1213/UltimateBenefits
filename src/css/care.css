@@ -1,5 +1,4 @@
 .care-container {
-  width: calc(100vw - 25px);
   padding: 40px;
   display: flex;
   flex-wrap: wrap;

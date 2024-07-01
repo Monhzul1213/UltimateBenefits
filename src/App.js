@@ -12,12 +12,12 @@ import {
   Clubs,
   Careers,
   Rules,
-  Discounts,
   Home,
   Login,
 } from "./pages";
 import { useAuth } from "./context/AuthProvider";
 import Care from "./pages/care/Care";
+import Discounts from "./pages/discounts/Discounts";
 import { MyDrawer, Loader } from "./components";
 
 export function App() {
