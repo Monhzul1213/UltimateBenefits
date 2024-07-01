@@ -102,5 +102,7 @@
   }
   .register-input {
     width: 50%;
+    padding: 10px;
+    letter-spacing: 1px;
   }
 }

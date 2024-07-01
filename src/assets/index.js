@@ -18,8 +18,12 @@ import house from "./house.svg";
 import umbrella from "./umbrella.svg";
 import vaccine from "./vaccine.svg";
 import car from "./car.svg";
+import day01 from "./day01.png";
+import day16 from "./day16.png";
 
 export {
+  day01,
+  day16,
   car,
   giveGift,
   heartbeat,

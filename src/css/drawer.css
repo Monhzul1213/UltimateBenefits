@@ -179,3 +179,9 @@
   color: black;
   font-weight: 500;
 }
+
+@media only screen and (max-width: 470px) {
+  .calendar-wrapper {
+    padding-top: 40px;
+  }
+}

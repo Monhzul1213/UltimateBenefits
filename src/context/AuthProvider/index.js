@@ -32,9 +32,11 @@ const AuthProviver = ({ children }) => {
 
   const handleLogin = async (register, pin) => {
     if (pin.length === 4) {
+      setLoading(true);
       const isLogged = await login(register, pin);
       isLogged && checkIsLogged();
       setOpen(false);
+      setLoading(false);
     } else {
       alert("Нууц үг дутуу байна", "error");
     }
