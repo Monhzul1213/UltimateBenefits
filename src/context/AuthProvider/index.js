@@ -15,7 +15,7 @@ export const authContext = createContext({
   setOpenDrawer: () => {},
   setOpen: () => {},
 });
-const AuthProviver = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -82,7 +82,7 @@ const AuthProviver = ({ children }) => {
   );
 };
 
-export default AuthProviver;
+export default AuthProvider;
 export const useAuth = () => {
   return useContext(authContext);
 };

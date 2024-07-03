@@ -1,12 +1,10 @@
 import { Avatar, Button, Drawer, Dropdown } from "antd";
 import { IoMdArrowDropleft } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
-import { dateFormatter } from "../lib/utils/dateFormatter";
 
 import { useAuth } from "../context/AuthProvider";
 import { MyCalendar, AddCalendar, CalendarItem } from "../components";
 
-import { userCalendarItems } from "../constants";
 import "../css/drawer.css";
 import { useCalendar } from "../context/CalendarProvider";
 
@@ -91,14 +89,14 @@ export const MyDrawer = () => {
           <div className="calendar-items-container">
             <div className="calendar-item-cards-container">
               <p>Today</p>
-              {dayItems?.result.map((itm) => {
-                return <CalendarItem item={itm} />;
+              {dayItems?.result.map((itm, idx) => {
+                return <CalendarItem key={idx} item={itm} />;
               })}
             </div>
             <div className="calendar-item-cards-container">
               <p>Coming</p>
-              {dayItems?.allDay.map((itm) => (
-                <CalendarItem item={itm} />
+              {dayItems?.allDay.map((itm, idx) => (
+                <CalendarItem key={idx} isComing={true} item={itm} />
               ))}
             </div>
           </div>

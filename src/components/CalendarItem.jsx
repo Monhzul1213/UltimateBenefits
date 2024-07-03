@@ -1,16 +1,23 @@
 import { Tooltip } from "antd";
 import React from "react";
 
-export const CalendarItem = ({ item }) => {
+export const CalendarItem = ({ item, isComing = false }) => {
   return (
     <div className="calendar-item-card">
-      <div className={`${item.Color}`} />
-      <Tooltip title={`${item.BeginDate} ~ ${item.EndDate}`}>
-        <h2>{item.BeginDate.slice(-2)}</h2>
-      </Tooltip>
+      <div className={`${item?.Color}`} />
+      {isComing ? (
+        <>
+          <h2>{item?.EndDate.slice(-2)}</h2>
+        </>
+      ) : (
+        <figure>
+          <h3>{item?.DateName}</h3>
+          <h2>{item?.Today?.slice(-2)}</h2>
+        </figure>
+      )}
 
-      <Tooltip title={item.Descr}>
-        <p>{item.Descr}</p>
+      <Tooltip title={item?.Descr}>
+        <p>{item?.Descr}</p>
       </Tooltip>
     </div>
   );

@@ -12,6 +12,7 @@ export const calendarContext = createContext({
 });
 
 const CalendarProvider = ({ children }) => {
+  const apiKey = process.env.REACT_APP_API_KEY;
   const { user } = useAuth();
   const userToken = sessionStorage.getItem("userToken");
   const [calendarItems, setCalendarItems] = useState();
@@ -38,6 +39,7 @@ const CalendarProvider = ({ children }) => {
           Authorization: `Bearer ${userToken}`,
         },
       });
+      console.log("day item", data);
       setDayItems(data);
     } catch (error) {
       console.log("Error in getDayItems", error);
@@ -46,10 +48,10 @@ const CalendarProvider = ({ children }) => {
 
   useEffect(() => {
     if (userToken) {
-      getCalendarItems("2024");
+      getCalendarItems(dateFormatWithYear(new Date()));
       getDayItems(dateFormatWithYear(new Date()));
     }
-  }, [user]);
+  }, [user, userToken]);
   return (
     <calendarContext.Provider
       value={{
