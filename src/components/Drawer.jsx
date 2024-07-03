@@ -92,7 +92,6 @@ export const MyDrawer = () => {
             <div className="calendar-item-cards-container">
               <p>Today</p>
               {dayItems?.result.map((itm) => {
-                console.log("ITEM", itm);
                 return <CalendarItem item={itm} />;
               })}
             </div>

@@ -38,7 +38,6 @@ const CalendarProvider = ({ children }) => {
           Authorization: `Bearer ${userToken}`,
         },
       });
-      console.log("getting day items", day, data);
       setDayItems(data);
     } catch (error) {
       console.log("Error in getDayItems", error);
@@ -47,7 +46,7 @@ const CalendarProvider = ({ children }) => {
 
   useEffect(() => {
     if (userToken) {
-      getCalendarItems("2020");
+      getCalendarItems("2024");
       getDayItems(dateFormatWithYear(new Date()));
     }
   }, [user]);

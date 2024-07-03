@@ -156,11 +156,13 @@
 .calendar-items-container {
   display: flex;
   gap: 20px;
-}
-.calendar-item-cards-container {
   width: 100%;
 }
+.calendar-item-cards-container {
+  width: 50%;
+}
 .calendar-item-card {
+  width: 100%;
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -175,9 +177,14 @@
   border-radius: 50%;
 }
 .calendar-item-card p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-size: 13px;
   color: black;
   font-weight: 500;
+  width: 100px;
 }
 
 @media only screen and (max-width: 470px) {

@@ -1,4 +1,4 @@
-import { Calendar, ConfigProvider, Tooltip } from "antd";
+import { Calendar, ConfigProvider } from "antd";
 import {
   dateFormatWithYear,
   dateFormatter,
@@ -18,12 +18,10 @@ const CellRender = (cur) => {
           item.Year == year
         ) {
           return (
-            <Tooltip title={item.Descr}>
-              <div
-                key={item.BeginDate + idx}
-                className={`calendar-small-dot ${item.Color}`}
-              />
-            </Tooltip>
+            <div
+              key={item.BeginDate + idx}
+              className={`calendar-small-dot ${item.Color}`}
+            />
           );
         }
       })}
@@ -32,9 +30,11 @@ const CellRender = (cur) => {
 };
 export const MyCalendar = () => {
   const { getDayItems, getCalendarItems } = useCalendar();
+  const handlePanel = (cur) => {
+    getCalendarItems(cur.$y);
+  };
   const handleChange = (cur) => {
     getDayItems(dateFormatWithYear(cur.$d));
-    // getCalendarItems(dateFormatWithYear(cur.$d));
   };
   return (
     <div className="calendar-wrapper">
@@ -49,6 +49,7 @@ export const MyCalendar = () => {
         }}
       >
         <Calendar
+          onPanelChange={handlePanel}
           onSelect={handleChange}
           cellRender={CellRender}
           fullscreen={false}
