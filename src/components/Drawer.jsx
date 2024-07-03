@@ -8,9 +8,11 @@ import { MyCalendar, AddCalendar, CalendarItem } from "../components";
 
 import { userCalendarItems } from "../constants";
 import "../css/drawer.css";
+import { useCalendar } from "../context/CalendarProvider";
 
 export const MyDrawer = () => {
   const { user, logout, openDrawer, setOpenDrawer } = useAuth();
+  const { dayItems } = useCalendar();
   const showDrawer = () => {
     setOpenDrawer(true);
   };
@@ -89,21 +91,16 @@ export const MyDrawer = () => {
           <div className="calendar-items-container">
             <div className="calendar-item-cards-container">
               <p>Today</p>
-              {userCalendarItems.calendarItems
-                .filter((item) => item.date === dateFormatter(new Date()))
-                .slice(0, 3)
-                .map((itm) => (
-                  <CalendarItem item={itm} />
-                ))}
+              {dayItems?.result.map((itm) => {
+                console.log("ITEM", itm);
+                return <CalendarItem item={itm} />;
+              })}
             </div>
             <div className="calendar-item-cards-container">
               <p>Coming</p>
-              {userCalendarItems.calendarItems
-                .filter((item) => item.date > dateFormatter(new Date()))
-                .slice(0, 3)
-                .map((itm) => (
-                  <CalendarItem item={itm} />
-                ))}
+              {dayItems?.allDay.map((itm) => (
+                <CalendarItem item={itm} />
+              ))}
             </div>
           </div>
         </div>

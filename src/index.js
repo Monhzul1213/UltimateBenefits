@@ -7,6 +7,7 @@ import "./index.css";
 import { App } from "./App";
 import { store, persistor } from "./helpers/store";
 import AuthProviver from "./context/AuthProvider";
+import CalendarProvider from "./context/CalendarProvider";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -15,7 +16,9 @@ root.render(
     <PersistGate persistor={persistor}>
       <>
         <AuthProviver>
-          <App />
+          <CalendarProvider>
+            <App />
+          </CalendarProvider>
         </AuthProviver>
       </>
     </PersistGate>

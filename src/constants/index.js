@@ -105,11 +105,6 @@ export const userCalendarItems = {
   userID: "УО03300910",
   calendarItems: [
     {
-      title: "My birthday",
-      date: "2024-10-09",
-      color: "blue",
-    },
-    {
       title: "Camp",
       date: "2024-06-28",
       color: "red",
@@ -133,6 +128,11 @@ export const userCalendarItems = {
       title: "Salary",
       date: "2024-07-16",
       color: "green",
+    },
+    {
+      title: "My birthday",
+      date: "2024-10-09",
+      color: "blue",
     },
   ],
 };
