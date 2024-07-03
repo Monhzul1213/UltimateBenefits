@@ -186,6 +186,9 @@
   font-weight: 500;
   width: 100px;
 }
+.calendar-item-card h3 {
+  font-size: 10px;
+}
 
 @media only screen and (max-width: 470px) {
   .calendar-wrapper {

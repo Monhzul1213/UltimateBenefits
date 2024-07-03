@@ -7,8 +7,8 @@ const RuleCover = ({ title, lists }) => {
         <h2>{title}</h2>
         <ul>
           <div className="page-style-dot" />
-          {lists.map((list) => (
-            <li>{list}</li>
+          {lists.map((list, idx) => (
+            <li key={idx}>{list}</li>
           ))}
         </ul>
       </div>

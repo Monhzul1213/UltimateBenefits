@@ -15,7 +15,7 @@ const CellRender = (cur) => {
         if (
           item.BeginDate <= date &&
           item.EndDate >= date &&
-          item.Year == year
+          item.Year === year
         ) {
           return (
             <div
@@ -24,6 +24,7 @@ const CellRender = (cur) => {
             />
           );
         }
+        return null;
       })}
     </div>
   );
@@ -31,7 +32,7 @@ const CellRender = (cur) => {
 export const MyCalendar = () => {
   const { getDayItems, getCalendarItems } = useCalendar();
   const handlePanel = (cur) => {
-    getCalendarItems(cur.$y);
+    getCalendarItems(dateFormatWithYear(cur.$d));
   };
   const handleChange = (cur) => {
     getDayItems(dateFormatWithYear(cur.$d));

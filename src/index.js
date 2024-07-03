@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 import { App } from "./App";
 import { store, persistor } from "./helpers/store";
-import AuthProviver from "./context/AuthProvider";
+import AuthProvider from "./context/AuthProvider";
 import CalendarProvider from "./context/CalendarProvider";
 
 const root = createRoot(document.getElementById("root"));
@@ -15,11 +15,11 @@ root.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
       <>
-        <AuthProviver>
+        <AuthProvider>
           <CalendarProvider>
             <App />
           </CalendarProvider>
-        </AuthProviver>
+        </AuthProvider>
       </>
     </PersistGate>
   </Provider>
