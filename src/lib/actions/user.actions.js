@@ -28,6 +28,7 @@ export const login = async (register, pin) => {
     alert("Амжилттай нэвтэрлээ", "success");
     return res.data.success;
   } catch (error) {
+    console.log("ERROR", error);
     alert(error.response.data.error.message, "error");
   }
 };

@@ -110,6 +110,21 @@ export const userCalendarItems = {
       color: "blue",
     },
     {
+      title: "Today test",
+      date: "2024-06-27",
+      color: "blue",
+    },
+    {
+      title: "Today test",
+      date: "2024-06-27",
+      color: "green",
+    },
+    {
+      title: "Today test",
+      date: "2024-06-27",
+      color: "red",
+    },
+    {
       title: "Camp",
       date: "2024-06-28",
       color: "red",
@@ -133,6 +148,11 @@ export const userCalendarItems = {
       title: "Salary",
       date: "2024-07-16",
       color: "green",
+    },
+    {
+      title: "My birthday",
+      date: "2024-10-09",
+      color: "blue",
     },
   ],
 };

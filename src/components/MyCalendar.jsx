@@ -1,19 +1,27 @@
-import { Calendar, ConfigProvider, Tooltip } from "antd";
-import { userCalendarItems } from "../constants";
-import { dateFormatter } from "../lib/utils/dateFormatter";
-const cellRender = (cur) => {
+import { Calendar, ConfigProvider } from "antd";
+import {
+  dateFormatWithYear,
+  dateFormatter,
+  getYear,
+} from "../lib/utils/dateFormatter";
+import { useCalendar } from "../context/CalendarProvider";
+const CellRender = (cur) => {
+  const { calendarItems } = useCalendar();
   const date = dateFormatter(cur.$d);
+  const year = getYear(cur.$d);
   return (
     <div style={{ display: "flex", justifyContent: "center", gap: "3px" }}>
-      {userCalendarItems.calendarItems.map((item, idx) => {
-        if (item.date === date) {
+      {calendarItems?.map((item, idx) => {
+        if (
+          item.BeginDate <= date &&
+          item.EndDate >= date &&
+          item.Year == year
+        ) {
           return (
-            <Tooltip title={item.title}>
-              <div
-                key={item.date + idx}
-                className={`calendar-small-dot ${item.color}`}
-              />
-            </Tooltip>
+            <div
+              key={item.BeginDate + idx}
+              className={`calendar-small-dot ${item.Color}`}
+            />
           );
         }
       })}
@@ -21,6 +29,13 @@ const cellRender = (cur) => {
   );
 };
 export const MyCalendar = () => {
+  const { getDayItems, getCalendarItems } = useCalendar();
+  const handlePanel = (cur) => {
+    getCalendarItems(cur.$y);
+  };
+  const handleChange = (cur) => {
+    getDayItems(dateFormatWithYear(cur.$d));
+  };
   return (
     <div className="calendar-wrapper">
       <ConfigProvider
@@ -33,7 +48,12 @@ export const MyCalendar = () => {
           },
         }}
       >
-        <Calendar cellRender={cellRender} fullscreen={false} />
+        <Calendar
+          onPanelChange={handlePanel}
+          onSelect={handleChange}
+          cellRender={CellRender}
+          fullscreen={false}
+        />
       </ConfigProvider>
     </div>
   );
