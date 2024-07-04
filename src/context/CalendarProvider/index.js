@@ -31,6 +31,7 @@ const CalendarProvider = ({ children }) => {
       setCalendarItems(data.result);
       console.log("CALENDER ITEMS", data.result);
     } catch (error) {
+      console.log("ERROR IN ITEMS", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -47,8 +48,9 @@ const CalendarProvider = ({ children }) => {
         },
       });
       setDayItems(data);
-      console.log("One calender item", data.result);
+      console.log("One calender item", data);
     } catch (error) {
+      console.log("ERROR DAY IN ITEMS", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -57,12 +59,12 @@ const CalendarProvider = ({ children }) => {
     }
   };
 
-  const addCalendar = async (Today, Descr, Color) => {
+  const addCalendar = async (RestDate, Descr, Color) => {
     try {
       const { data } = await myAxios.post(
         "/api/calendar",
         {
-          Today,
+          RestDate,
           Descr,
           Color,
         },
@@ -73,7 +75,7 @@ const CalendarProvider = ({ children }) => {
         }
       );
       alert(data.message, "success");
-      getCalendarItems(Today);
+      getCalendarItems(RestDate);
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
@@ -82,12 +84,13 @@ const CalendarProvider = ({ children }) => {
       }
     }
   };
-  const editCalendar = async (id, Today, Descr, Color) => {
+  const editCalendar = async (id, RestDate, Descr, Color) => {
+    console.log("UPDATING CALENDER", id, RestDate, Descr, Color);
     try {
       const { data } = await myAxios.put(
         `/api/calendar/${id}`,
         {
-          Today,
+          RestDate,
           Descr,
           Color,
         },
@@ -97,6 +100,8 @@ const CalendarProvider = ({ children }) => {
           },
         }
       );
+      getCalendarItems(RestDate);
+      alert(data.message, "success");
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");

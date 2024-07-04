@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useCalendar } from "../context/CalendarProvider";
-import { Button, DatePicker } from "antd";
+import { Button, DatePicker, Input } from "antd";
+import dayjs from "dayjs";
+import { FaCheck } from "react-icons/fa";
+import { HiMiniXMark } from "react-icons/hi2";
 import { dateFormatWithYear } from "../lib/utils/dateFormatter";
-import moment from "moment";
 
 const EditCalendarSection = ({
   editTitle,
@@ -12,11 +14,11 @@ const EditCalendarSection = ({
   editId,
 }) => {
   const { editCalendar } = useCalendar();
-  const [pickedDate, setPickedDate] = useState(moment(editDate));
+  const [pickedDate, setPickedDate] = useState(editDate);
   const [title, setTitle] = useState(editTitle);
   const [color, setColor] = useState(editColor);
   const onCalendarChange = (date, dateString) => {
-    setPickedDate(date);
+    setPickedDate(dateString);
   };
   const handleInput = (e) => {
     setTitle(e.target.value);
@@ -25,56 +27,93 @@ const EditCalendarSection = ({
     setColor(selected);
   };
   const handleEdit = () => {
-    if (pickedDate) {
-      editCalendar(dateFormatWithYear(editId, pickedDate?.$d), title, color);
-      editDone();
-    }
+    editCalendar(editId, pickedDate, title, color);
+    editDone();
   };
-  console.log("moment", pickedDate);
   return (
-    <div className="calendar-adding">
-      <div className="calendar-input">
-        <DatePicker
-          defaultValue={pickedDate}
-          onChange={onCalendarChange}
-          placeholder={editDate}
-          suffixIcon={false}
-          allowClear={false}
-          variant="borderless"
-        />
-        <input value={title} type="text" onChange={handleInput} />
-      </div>
-      <div className="calendar-dots">
-        <div
-          onClick={() => {
-            handleColor("green");
-          }}
-          className={`green ${color === "green" && "selected-color"}`}
-        ></div>
-        <div
-          onClick={() => {
-            handleColor("red");
-          }}
-          className={`red ${color === "red" && "selected-color"}`}
-        ></div>
-        <div
-          onClick={() => {
-            handleColor("blue");
-          }}
-          className={`blue ${color === "blue" && "selected-color"}`}
-        ></div>
-      </div>
-
-      <Button
-        onClick={() => {
-          handleEdit();
+    <div className="calendar-edit-container ">
+      <DatePicker
+        allowClear={false}
+        style={{ width: "100%" }}
+        value={dayjs(pickedDate)}
+        onChange={onCalendarChange}
+        placeholder={editDate}
+        suffixIcon={false}
+      />
+      <div
+        style={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 5,
         }}
-        className="add-calendar-btn"
-        type="primary"
       >
-        +
-      </Button>
+        <Input value={title} onChange={handleInput} />
+        <Button
+          onClick={() => {
+            handleEdit();
+          }}
+          type="primary"
+          style={{ width: "100%" }}
+          size="middle"
+        >
+          <FaCheck />
+        </Button>
+
+        <div className="calendar-dots">
+          <div
+            onClick={() => {
+              handleColor("green");
+            }}
+            className={`green ${color === "green" && "selected-color"}`}
+          />
+          <div
+            onClick={() => {
+              handleColor("red");
+            }}
+            className={`red ${color === "red" && "selected-color"}`}
+          />
+          <div
+            onClick={() => {
+              handleColor("blue");
+            }}
+            className={`blue ${color === "blue" && "selected-color"}`}
+          />
+        </div>
+      </div>
+      <HiMiniXMark
+        onClick={() => {
+          editDone();
+        }}
+        size={20}
+        style={{ position: "absolute", top: 0, right: 5, cursor: "pointer" }}
+      />
     </div>
+    // <div className="calendar-adding">
+    //   <div className="calendar-input">
+    //     <DatePicker
+    //       value={dayjs(pickedDate)}
+    //       onChange={onCalendarChange}
+    //       placeholder={editDate}
+    //       suffixIcon={false}
+    //       allowClear={false}
+    //       variant="borderless"
+    //     />
+    //     <input value={title} type="text" onChange={handleInput} />
+    //   </div>
+    //
+
+    //   <Button
+    //     onClick={() => {
+    //       handleEdit();
+    //     }}
+    //     className="add-calendar-btn"
+    //     type="primary"
+    //   >
+    //     +
+    //   </Button>
+    // </div>
   );
 };
 
