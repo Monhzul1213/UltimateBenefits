@@ -7,9 +7,12 @@ export const getLearningData = async (UserID) => {
         Authorization: `Bearer ${userToken}`,
       },
     });
-    console.log("learning data", data);
     return data.result;
   } catch (error) {
-    console.log("error in get learning data", error);
+    if (!error.response) {
+      alert("Уучлаарай, сүлжээ унасан байна", "error");
+    } else {
+      alert(error.response.data.error.message, "error");
+    }
   }
 };

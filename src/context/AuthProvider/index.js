@@ -47,7 +47,6 @@ const AuthProvider = ({ children }) => {
     if (token) {
       setIsAuth(true);
       const decoded = jwtDecode(JSON.stringify(token));
-      console.log("USER", decoded);
       setUser(decoded);
     }
   };
