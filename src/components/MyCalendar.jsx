@@ -12,14 +12,10 @@ const CellRender = (cur) => {
   return (
     <div style={{ display: "flex", justifyContent: "center", gap: "3px" }}>
       {calendarItems?.map((item, idx) => {
-        if (
-          item.BeginDate <= date &&
-          item.EndDate >= date &&
-          item.Year === year
-        ) {
+        if (item?.RestDate == date && item?.Year === year) {
           return (
             <div
-              key={item.BeginDate + idx}
+              key={item.RestDate + idx}
               className={`calendar-small-dot ${item.Color}`}
             />
           );
