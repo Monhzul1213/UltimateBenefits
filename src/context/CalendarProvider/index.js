@@ -31,7 +31,6 @@ const CalendarProvider = ({ children }) => {
       setCalendarItems(data.result);
       console.log("CALENDER ITEMS", data.result);
     } catch (error) {
-      console.log("ERROR IN ITEMS", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -48,9 +47,7 @@ const CalendarProvider = ({ children }) => {
         },
       });
       setDayItems(data);
-      console.log("One calender item", data);
     } catch (error) {
-      console.log("ERROR DAY IN ITEMS", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
