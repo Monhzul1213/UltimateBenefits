@@ -8,7 +8,6 @@ export const getCares = async (userId) => {
         Authorization: `Bearer ${userToken}`,
       },
     });
-    console.log("DATA", data);
     return data;
   } catch (error) {
     if (!error.response) {
@@ -16,6 +15,5 @@ export const getCares = async (userId) => {
     } else {
       alert(error.response.data.error.message, "error");
     }
-    console.log("ERROR IN GET CARES", error);
   }
 };

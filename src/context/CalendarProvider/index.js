@@ -3,16 +3,19 @@ import { createContext, useContext, useEffect, useState } from "react";
 import myAxios from "../../lib/axios";
 import { useAuth } from "../AuthProvider";
 import { dateFormatWithYear } from "../../lib/utils/dateFormatter";
+import { alert } from "../../lib/actions/alert.actions";
 
 export const calendarContext = createContext({
   calendarItems: [{}],
   dayItems: {},
   getDayItems: () => {},
   getCalendarItems: () => {},
+  addCalendar: () => {},
+  editCalendar: () => {},
+  deleteCalendar: () => {},
 });
 
 const CalendarProvider = ({ children }) => {
-  const apiKey = process.env.REACT_APP_API_KEY;
   const { user } = useAuth();
   const userToken = sessionStorage.getItem("userToken");
   const [calendarItems, setCalendarItems] = useState();
@@ -25,10 +28,14 @@ const CalendarProvider = ({ children }) => {
           Authorization: `Bearer ${userToken}`,
         },
       });
-      console.log("Calendar items", data.result);
       setCalendarItems(data.result);
+      console.log("CALENDER ITEMS", data.result);
     } catch (error) {
-      console.log("Error in getCalendarItems", error);
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
     }
   };
 
@@ -39,10 +46,73 @@ const CalendarProvider = ({ children }) => {
           Authorization: `Bearer ${userToken}`,
         },
       });
-      console.log("day item", data);
       setDayItems(data);
+      console.log("One calender item", data.result);
     } catch (error) {
-      console.log("Error in getDayItems", error);
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
+    }
+  };
+
+  const addCalendar = async (Today, Descr, Color) => {
+    try {
+      const { data } = await myAxios.post(
+        "/api/calendar",
+        {
+          Today,
+          Descr,
+          Color,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      alert(data.message, "success");
+      getCalendarItems(Today);
+    } catch (error) {
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
+    }
+  };
+  const editCalendar = async (id, Today, Descr, Color) => {
+    try {
+      const { data } = await myAxios.put(
+        `/api/calendar/${id}`,
+        {
+          Today,
+          Descr,
+          Color,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+    } catch (error) {
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
+    }
+  };
+  const deleteCalendar = async () => {
+    try {
+    } catch (error) {
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
     }
   };
 
@@ -59,6 +129,8 @@ const CalendarProvider = ({ children }) => {
         dayItems,
         getDayItems,
         getCalendarItems,
+        addCalendar,
+        editCalendar,
       }}
     >
       {children}

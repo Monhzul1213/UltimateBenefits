@@ -13,7 +13,6 @@ export const checkRegister = async (register) => {
     } else {
       alert(error.response.data.error.message, "error");
     }
-    console.log("ERROR in checkRegister", error);
   }
 };
 
@@ -23,12 +22,14 @@ export const login = async (register, pin) => {
       UserID: register,
       Password: pin,
     });
-    console.log("USER LOGGED IN", res);
     sessionStorage.setItem("userToken", res.data.result);
     alert("Амжилттай нэвтэрлээ", "success");
     return res.data.success;
   } catch (error) {
-    console.log("ERROR", error);
-    alert(error.response.data.error.message, "error");
+    if (!error.response) {
+      alert("Уучлаарай, сүлжээ унасан байна", "error");
+    } else {
+      alert(error.response.data.error.message, "error");
+    }
   }
 };

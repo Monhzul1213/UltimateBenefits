@@ -1,4 +1,4 @@
-import { Avatar, Button, Drawer, Dropdown } from "antd";
+import { Avatar, Button, Drawer, Dropdown, Popover } from "antd";
 import { IoMdArrowDropleft } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
 
@@ -11,6 +11,7 @@ import { useCalendar } from "../context/CalendarProvider";
 export const MyDrawer = () => {
   const { user, logout, openDrawer, setOpenDrawer } = useAuth();
   const { dayItems } = useCalendar();
+
   const showDrawer = () => {
     setOpenDrawer(true);
   };
@@ -73,9 +74,9 @@ export const MyDrawer = () => {
           <IoMdArrowDropright size={40} color="#00c7f0" />
         </div>
         <div className="calendar-section">
-          <Dropdown
-            dropdownRender={AddCalendar}
-            trigger={["click"]}
+          <Popover
+            content={AddCalendar}
+            trigger={"click"}
             placement="bottomLeft"
           >
             <Button
@@ -84,7 +85,7 @@ export const MyDrawer = () => {
             >
               +
             </Button>
-          </Dropdown>
+          </Popover>
           <MyCalendar />
           <div className="calendar-items-container">
             <div className="calendar-item-cards-container">

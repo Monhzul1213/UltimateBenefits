@@ -135,9 +135,10 @@
   gap: 10px;
 }
 .calendar-dots div {
-  width: 14px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .calendar-small-dot {
   width: 6px;
@@ -152,6 +153,9 @@
 }
 .blue {
   background-color: #00adee;
+}
+.selected-color {
+  border: 3px solid #00c7f0;
 }
 .calendar-items-container {
   display: flex;
