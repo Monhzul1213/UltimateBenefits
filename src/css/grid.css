@@ -1,0 +1,71 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    background-color: #ffd700;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .grid-container::before,
+  .grid-container::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #ffa500;
+  }
+  
+  .grid-container::before {
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 0 100%, 100% 0);
+  }
+  
+  .grid-container::after {
+    bottom: 0;
+    right: 0;
+    clip-path: polygon(100% 100%, 0 100%, 100% 0);
+  }
+  
+  .grid-item {
+    background-color: #fff5e6;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .item-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .item-line {
+    height: 10px;
+    background-color: #ffe4b5;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .item-line.short {
+    width: 60%;
+  }
+  
+  /* Dotted lines for gaps */
+  .grid-container {
+    background-image: 
+      repeating-linear-gradient(to right, transparent, transparent 18px, #ff6347 18px, #ff6347 20px),
+      repeating-linear-gradient(to bottom, transparent, transparent 18px, #ff69b4 18px, #ff69b4 20px);
+    background-size: 
+      calc(33.33% - 13.33px) 100%,
+      100% calc(50% - 10px);
+    background-position: 
+      calc(33.33% + 6.67px) 0,
+      0 calc(50% + 10px);
+    background-repeat: repeat-x, repeat-y;
+  }
