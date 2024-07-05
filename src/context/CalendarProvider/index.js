@@ -57,6 +57,7 @@ const CalendarProvider = ({ children }) => {
   };
 
   const addCalendar = async (RestDate, Descr, Color) => {
+    console.log("RESTDATE", RestDate);
     try {
       const { data } = await myAxios.post(
         "/api/calendar",
@@ -74,6 +75,7 @@ const CalendarProvider = ({ children }) => {
       alert(data.message, "success");
       getCalendarItems(RestDate);
     } catch (error) {
+      console.log("ERROR IN POST CALENDAR", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -107,8 +109,16 @@ const CalendarProvider = ({ children }) => {
       }
     }
   };
-  const deleteCalendar = async () => {
+  const deleteCalendar = async (id, RestDate) => {
     try {
+      const { data } = await myAxios.delete(`/api/calendar/${id}`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      });
+      getCalendarItems(data.result);
+      getDayItems(data.result);
+      alert(data.message, "success");
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
@@ -133,6 +143,7 @@ const CalendarProvider = ({ children }) => {
         getCalendarItems,
         addCalendar,
         editCalendar,
+        deleteCalendar,
       }}
     >
       {children}
