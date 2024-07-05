@@ -20,7 +20,6 @@ import { useAuth } from "./context/AuthProvider";
 import Care from "./pages/care/Care";
 import Discounts from "./pages/discounts/Discounts";
 import { MyDrawer, Loader } from "./components";
-
 export function App() {
   const { isAuth } = useAuth();
   const userToken = sessionStorage.getItem("userToken");

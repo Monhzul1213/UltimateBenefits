@@ -28,6 +28,12 @@ import lunch1 from "./lunch1.png";
 import lunch2 from "./lunch2.png";
 import gym1 from "./gym1.png";
 import gym2 from "./gym2.png";
+import hands from "./hands.png";
+import dotka from "./dotka.png";
+import volleyball from "./volleyball.png";
+import movie from "./movie.png";
+import people from "./peoples.png";
+
 
 export {
   day01,
@@ -60,4 +66,10 @@ export {
   lunch2,
   gym1,
   gym2,
+  hands,
+  dotka,
+  volleyball,
+  movie,
+  people,
+
 };
