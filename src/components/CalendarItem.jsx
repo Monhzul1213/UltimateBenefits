@@ -4,10 +4,13 @@ import AddCalendarInput from "./AddCalendarInput";
 import EditCalendarSection from "./EditCalendarSection";
 import { alert } from "../lib/actions/alert.actions";
 import { useCalendar } from "../context/CalendarProvider";
+import { useAuth } from "../context/AuthProvider";
+import { checkRole } from "../lib/utils/checkRole";
 
 export const CalendarItem = ({ item, isComing = false }) => {
   const [isEditing, setIsEditing] = useState(false);
   const { deleteCalendar } = useCalendar();
+  const { user } = useAuth();
   const editDone = () => {
     setIsEditing(false);
   };
@@ -50,7 +53,7 @@ export const CalendarItem = ({ item, isComing = false }) => {
             editColor={item?.Color}
           />
         </div>
-      ) : (
+      ) : checkRole(user?.Role) ? (
         <Dropdown menu={{ items }} trigger={["contextMenu"]}>
           <div className="calendar-item-card">
             <div className={`${item?.Color}`} />
@@ -63,6 +66,17 @@ export const CalendarItem = ({ item, isComing = false }) => {
             </Tooltip>
           </div>
         </Dropdown>
+      ) : (
+        <div className="calendar-item-card">
+          <div className={`${item?.Color}`} />
+          <figure>
+            <h3>{item?.DateName}</h3>
+            <h2>{item?.RestDate?.slice(-2)}</h2>
+          </figure>
+          <Tooltip title={item?.Descr}>
+            <p>{item?.Descr}</p>
+          </Tooltip>
+        </div>
       )}
     </>
   );

@@ -48,6 +48,7 @@ const AuthProvider = ({ children }) => {
       setIsAuth(true);
       const decoded = jwtDecode(JSON.stringify(token));
       setUser(decoded);
+      console.log("USER LOGGED IN", decoded);
     }
   };
   const logout = () => {

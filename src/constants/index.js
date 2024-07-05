@@ -58,6 +58,7 @@ export const benefits = [
   { title: "Хөнгөлөлт урамшуулал", icon: discounts, route: "/discounts" },
   { title: "Нийгмийн хангамж", icon: care, route: "/care" },
   { title: "Сонирхлын клуб", icon: clubs, route: "/clubs" },
+  { title: "Ажилтнууд", icon: clubs, route: "/employees" },
 ];
 
 export const cares = [

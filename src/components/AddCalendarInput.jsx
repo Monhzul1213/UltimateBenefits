@@ -22,7 +22,7 @@ const AddCalendarInput = ({}) => {
       addCalendar(dateFormatWithYear(pickedDate?.$d), title, color);
       setTitle("");
       setColor("green");
-      setPickedDate("");
+      setPickedDate(null);
     }
   };
 
@@ -30,6 +30,7 @@ const AddCalendarInput = ({}) => {
     <div className="calendar-adding">
       <div className="calendar-input">
         <DatePicker
+          value={pickedDate}
           onChange={onCalendarChange}
           placeholder="____-__-__"
           suffixIcon={false}
