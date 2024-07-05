@@ -22,8 +22,8 @@ export const Header = () => {
           icon={<UserOutlined />}
         />
         <div className="header-user-section">
-          <h1>{user.EmpFName}</h1>
-          <p>{user.PositionName}</p>
+          <h1>{user.FirstName}</h1>
+          <p>{user.Position}</p>
         </div>
       </div>
     </header>

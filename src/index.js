@@ -8,6 +8,7 @@ import { App } from "./App";
 import { store, persistor } from "./helpers/store";
 import AuthProvider from "./context/AuthProvider";
 import CalendarProvider from "./context/CalendarProvider";
+import EmployeeProvider from "./context/EmployeeProvider";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -17,7 +18,9 @@ root.render(
       <>
         <AuthProvider>
           <CalendarProvider>
-            <App />
+            <EmployeeProvider>
+              <App />
+            </EmployeeProvider>
           </CalendarProvider>
         </AuthProvider>
       </>

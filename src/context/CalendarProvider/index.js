@@ -8,6 +8,9 @@ import { alert } from "../../lib/actions/alert.actions";
 export const calendarContext = createContext({
   calendarItems: [{}],
   dayItems: {},
+  calendarLoading: false,
+  calenderFailed: false,
+  retryCalendarData: () => {},
   getDayItems: () => {},
   getCalendarItems: () => {},
   addCalendar: () => {},
@@ -20,6 +23,8 @@ const CalendarProvider = ({ children }) => {
   const userToken = sessionStorage.getItem("userToken");
   const [calendarItems, setCalendarItems] = useState();
   const [dayItems, setDayItems] = useState();
+  const [calendarLoading, setCalendarLoading] = useState(false);
+  const [calenderFailed, setCalendarFailed] = useState(false);
 
   const getCalendarItems = async (year) => {
     try {
@@ -29,17 +34,13 @@ const CalendarProvider = ({ children }) => {
         },
       });
       setCalendarItems(data.result);
-      console.log("CALENDER ITEMS", data.result);
     } catch (error) {
-      if (!error.response) {
-        alert("Уучлаарай, сүлжээ унасан байна", "error");
-      } else {
-        alert(error.response.data.error.message, "error");
-      }
+      setCalendarFailed(true);
     }
   };
 
   const getDayItems = async (day) => {
+    setCalendarLoading(true);
     try {
       const { data } = await myAxios.get(`/api/calendar/getCalendar/${day}`, {
         headers: {
@@ -48,11 +49,9 @@ const CalendarProvider = ({ children }) => {
       });
       setDayItems(data);
     } catch (error) {
-      if (!error.response) {
-        alert("Уучлаарай, сүлжээ унасан байна", "error");
-      } else {
-        alert(error.response.data.error.message, "error");
-      }
+      setCalendarFailed(true);
+    } finally {
+      setCalendarLoading(false);
     }
   };
 
@@ -134,11 +133,20 @@ const CalendarProvider = ({ children }) => {
       getDayItems(dateFormatWithYear(new Date()));
     }
   }, [user, userToken]);
+  const retryCalendarData = () => {
+    if (userToken) {
+      getCalendarItems(dateFormatWithYear(new Date()));
+      getDayItems(dateFormatWithYear(new Date()));
+    }
+  };
   return (
     <calendarContext.Provider
       value={{
         calendarItems,
         dayItems,
+        calendarLoading,
+        calenderFailed,
+        retryCalendarData,
         getDayItems,
         getCalendarItems,
         addCalendar,

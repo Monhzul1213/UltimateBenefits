@@ -86,7 +86,15 @@
 .calendar-section {
   position: relative;
 }
-
+.calendar-loading {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
 .add-calendar-btn {
   cursor: pointer;
   width: 30px;
