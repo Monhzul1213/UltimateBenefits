@@ -1,17 +1,54 @@
-import { Avatar } from "antd";
+import { Avatar, Button, Modal } from "antd";
 import React from "react";
+import { FaPlay } from "react-icons/fa";
 
-export const VideoCard = ({ video }) => {
+export const VideoCard = ({
+  iframeRef,
+  learning,
+  showModal,
+  closeModal,
+  openModal,
+  idx,
+}) => {
+  const stopVideo = () => {
+    if (iframeRef.current) {
+      iframeRef.current.src = learning.Note;
+    }
+  };
   return (
     <div className="video-card">
-      <iframe className="video-frame" src={video.url}></iframe>
+      <div
+        className="play-container"
+        onClick={() => {
+          showModal(idx);
+        }}
+      >
+        <FaPlay color="white" size={40} />
+      </div>
       <div className="video-desc">
         <Avatar className="video-author-avatar" size={60} />
         <div>
-          <p>{video.author}</p>
-          <h4>{video.title}</h4>
+          <p>{learning.CreatedUserName}</p>
+          <h4>{learning.Descr}</h4>
         </div>
       </div>
+      <Modal
+        width="80%"
+        className="video-modal"
+        centered
+        closeIcon={null}
+        open={openModal === idx}
+        footer={null}
+      >
+        <iframe
+          ref={iframeRef}
+          allowFullScreen={true}
+          title={learning.Descr}
+          className="video-frame"
+          src={learning.Note}
+        ></iframe>
+        <Button onClick={closeModal}>Хаах</Button>
+      </Modal>
     </div>
   );
 };

@@ -48,7 +48,6 @@ const DiscountsCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) =
           transition: { opacity: { duration: 0.3 }, display: { delay: 0.3 } },
         },
       };
-
   const textVariants = {
     show: {
       opacity: 1,

@@ -58,6 +58,7 @@ export const benefits = [
   { title: "Хөнгөлөлт урамшуулал", icon: discounts, route: "/discounts" },
   { title: "Нийгмийн хангамж", icon: care, route: "/care" },
   { title: "Сонирхлын клуб", icon: clubs, route: "/clubs" },
+  { title: "Ажилтнууд", icon: clubs, route: "/employees" },
 ];
 
 export const cares = [
@@ -135,14 +136,24 @@ export const userCalendarItems = {
       color: "blue",
     },
     {
-      title: "Test day",
-      date: "2024-06-28",
-      color: "green",
-    },
-    {
       title: "Salary",
       date: "2024-07-01",
       color: "green",
+    },
+    {
+      title: "Хурал 14:00",
+      date: "2024-07-02",
+      color: "red",
+    },
+    {
+      title: "Salary",
+      date: "2024-07-16",
+      color: "green",
+    },
+    {
+      title: "My birthday",
+      date: "2024-10-09",
+      color: "blue",
     },
   ],
 };
@@ -199,4 +210,26 @@ export const discountsi = [
     title: "GYM",
     description: "",
   }
+];
+export const discountsi = [
+  {
+    title: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ ",
+    description: "",
+  },
+  {
+    title: "УТАСНЫ ТӨЛБӨР",
+    description: "",
+  },
+  {
+    title: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
+    description: "Lunch Menu",
+  },
+  {
+    title: "Төрсөн өдөр",
+    description: "",
+  },
+  {
+    title: "GYM",
+    description: "",
+  },
 ];

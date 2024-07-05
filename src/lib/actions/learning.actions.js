@@ -1,14 +1,13 @@
 import myAxios from "../axios";
-import { alert } from "./alert.actions";
-export const getCares = async (userId) => {
+export const getLearningData = async (UserID) => {
   const userToken = sessionStorage.getItem("userToken");
   try {
-    const { data } = await myAxios.get(`/api/care/getCares?UserID=${userId}`, {
+    const { data } = await myAxios.get("/api/learning/getLearning", {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },
     });
-    return data;
+    return data.result;
   } catch (error) {
     if (!error.response) {
       alert("Уучлаарай, сүлжээ унасан байна", "error");

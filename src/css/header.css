@@ -18,9 +18,8 @@
   align-items: center;
   gap: 20px;
 }
-.header-user-section h1,
-p {
-  margin: 0;
+.header-user-section h1 {
+  font-size: 30px;
 }
 .header-user-section p {
   font-size: 12px;

@@ -18,6 +18,11 @@ import house from "./house.svg";
 import umbrella from "./umbrella.svg";
 import vaccine from "./vaccine.svg";
 import car from "./car.svg";
+<<<<<<< HEAD
+=======
+import day01 from "./day01.png";
+import day16 from "./day16.png";
+>>>>>>> main
 import bonus1 from "./bonus1.png";
 import bonus2 from "./bonus2.png";
 import bday from "./bday.png";
@@ -25,9 +30,21 @@ import phone from "./phone.png";
 import lunch1 from "./lunch1.png";
 import lunch2 from "./lunch2.png";
 import gym1 from "./gym1.png";
+<<<<<<< HEAD
 import gym2 from "./gym2.png"
+=======
+import gym2 from "./gym2.png";
+import hands from "./hands.png";
+import dotka from "./dotka.png";
+import volleyball from "./volleyball.png";
+import movie from "./movie.png";
+import people from "./peoples.png";
+
+>>>>>>> main
 
 export {
+  day01,
+  day16,
   car,
   giveGift,
   heartbeat,
@@ -56,4 +73,13 @@ export {
   lunch2,
   gym1,
   gym2,
+<<<<<<< HEAD
+=======
+  hands,
+  dotka,
+  volleyball,
+  movie,
+  people,
+
+>>>>>>> main
 };

@@ -86,7 +86,15 @@
 .calendar-section {
   position: relative;
 }
-
+.calendar-loading {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
 .add-calendar-btn {
   cursor: pointer;
   width: 30px;
@@ -103,9 +111,8 @@
 }
 .calendar-section-container {
   width: 300px;
-  height: 300px;
   background-color: white;
-  padding: 20px 30px;
+  padding: 30px;
   border-radius: 0px 30px 30px 30px;
   -webkit-box-shadow: 0px 0px 16px 5px rgba(0, 0, 0, 0.44);
   -moz-box-shadow: 0px 0px 16px 5px rgba(0, 0, 0, 0.44);
@@ -135,9 +142,10 @@
   gap: 10px;
 }
 .calendar-dots div {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .calendar-small-dot {
   width: 6px;
@@ -153,14 +161,19 @@
 .blue {
   background-color: #00adee;
 }
+.selected-color {
+  border: 3px solid #00c7f0;
+}
 .calendar-items-container {
   display: flex;
   gap: 20px;
-}
-.calendar-item-cards-container {
   width: 100%;
 }
+.calendar-item-cards-container {
+  width: 50%;
+}
 .calendar-item-card {
+  width: 100%;
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -175,7 +188,35 @@
   border-radius: 50%;
 }
 .calendar-item-card p {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-size: 13px;
   color: black;
   font-weight: 500;
+  width: 100px;
+}
+.calendar-item-card h3 {
+  font-size: 10px;
+}
+.calendar-edit-container {
+  position: relative;
+  margin-top: 10px;
+  padding: 20px 10px 10px 10px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+@media only screen and (max-width: 470px) {
+  .calendar-wrapper {
+    padding-top: 40px;
+  }
+}
+
+@media only screen and (max-width: 470px) {
+  .calendar-wrapper {
+    padding-top: 40px;
+  }
 }

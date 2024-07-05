@@ -14,12 +14,12 @@ import {
   Rules,
   Home,
   Login,
+  Employees,
 } from "./pages";
 import { useAuth } from "./context/AuthProvider";
 import Care from "./pages/care/Care";
 import Discounts from "./pages/discounts/Discounts";
 import { MyDrawer, Loader } from "./components";
-
 export function App() {
   const { isAuth } = useAuth();
   const userToken = sessionStorage.getItem("userToken");
@@ -49,6 +49,7 @@ export function App() {
                 <Route path="/care" element={<Care />} />
                 <Route path="/learning" element={<Learning />} />
                 <Route path="/clubs" element={<Clubs />} />
+                <Route path="/employees" element={<Employees />} />
               </Routes>
             </Suspense>
           </HistoryRouter>

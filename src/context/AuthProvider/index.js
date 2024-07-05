@@ -15,7 +15,7 @@ export const authContext = createContext({
   setOpenDrawer: () => {},
   setOpen: () => {},
 });
-const AuthProviver = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -32,9 +32,11 @@ const AuthProviver = ({ children }) => {
 
   const handleLogin = async (register, pin) => {
     if (pin.length === 4) {
+      setLoading(true);
       const isLogged = await login(register, pin);
       isLogged && checkIsLogged();
       setOpen(false);
+      setLoading(false);
     } else {
       alert("Нууц үг дутуу байна", "error");
     }
@@ -45,8 +47,8 @@ const AuthProviver = ({ children }) => {
     if (token) {
       setIsAuth(true);
       const decoded = jwtDecode(JSON.stringify(token));
-      console.log("USER", decoded);
       setUser(decoded);
+      console.log("USER LOGGED IN", decoded);
     }
   };
   const logout = () => {
@@ -80,7 +82,7 @@ const AuthProviver = ({ children }) => {
   );
 };
 
-export default AuthProviver;
+export default AuthProvider;
 export const useAuth = () => {
   return useContext(authContext);
 };
