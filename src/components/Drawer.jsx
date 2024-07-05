@@ -75,6 +75,8 @@ export const MyDrawer = () => {
         </div>
         <div className="calendar-section">
           <Popover
+            arrow={false}
+            overlayInnerStyle={{ padding: 0, boxShadow: "none" }}
             content={AddCalendar}
             trigger={"click"}
             placement="bottomLeft"

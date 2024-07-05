@@ -7,8 +7,8 @@ export const AddCalendar = () => {
       <h1>Тэмдэглэл нэмэх</h1>
       <div className="calendar-adding-container">
         <AddCalendarInput />
-        <AddCalendarInput />
-        <AddCalendarInput />
+        {/* <AddCalendarInput />
+        <AddCalendarInput /> */}
       </div>
     </section>
   );
