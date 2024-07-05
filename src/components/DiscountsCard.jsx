@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 
-const DiscountsCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo}) => {
-
+const DiscountsCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo }) => {
   const variants = isTwo
     ? {
         show: {
@@ -49,6 +48,7 @@ const DiscountsCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo}) =>
           transition: { opacity: { duration: 0.3 }, display: { delay: 0.3 } },
         },
       };
+
   const textVariants = {
     show: {
       opacity: 1,
@@ -61,18 +61,18 @@ const DiscountsCard = ({ info, idx, openIdx, hideIdx, handleCardOpen, isTwo}) =>
       transition: { duration: 0.1 },
     },
   };
-  return ( 
+
+  
+  return (
     <motion.div
-      id={isTwo && "discounts-card-two"}
-      onClick={() => {
-        handleCardOpen(idx);
-      }}
+      id={isTwo && "discounts-card-two" }
+      onClick={() => handleCardOpen(idx)}
       variants={variants}
       animate={openIdx === idx ? "show" : idx === hideIdx ? "none" : "hide"}
-      className={`care-card care-card-${info.type}`}
+      className={`discounts-card discounts-card-${info.type}`}
     >
-      <div id={isTwo && "discounts-card-two-flex"}>
-      <div> 
+      <div id={isTwo && "discounts-card-two-flex" }>
+        <div>
           <h3>{info.title}</h3>
         </div>
         <motion.p

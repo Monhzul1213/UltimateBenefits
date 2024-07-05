@@ -10,12 +10,6 @@
   flex-wrap: wrap;
   justify-content: center;
 }
-.cards-container1 {
-  display: flex;
-  gap: 50px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 .cards {
   display: flex;
   flex-direction: column;
