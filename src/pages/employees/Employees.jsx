@@ -1,78 +1,148 @@
-import React, { useState } from "react";
-import { CustomHeader } from "../../components";
+import { CustomHeader, Loader } from "../../components";
 import * as XLSX from "xlsx";
+import { useEmployee } from "../../context/EmployeeProvider";
+import { Button, Dropdown } from "antd";
+import { IoIosAdd } from "react-icons/io";
+import "../../css/employees.css";
+import { IoReload } from "react-icons/io5";
+import { useRef, useState } from "react";
+import EmpTable from "../../components/EmpTable";
+import EmpCountCard from "../../components/EmpCountCard";
 
 export const Employees = () => {
-  const [data, setData] = React.useState(null);
-  const [headers, setHeaders] = useState([]);
-  const [empForm, setEmpForm] = useState({
-    UserID: "",
-    CpnyID: "",
-    LastName: "",
-    FirstName: "",
-    Department: "",
-    Position: "",
-    BirthDate: "",
-    Email: "",
-    PhoneNumber: "",
-    Address: "",
-    HireDate: "",
-    Role: "",
-    Status: "A",
-  });
-
+  const [fileName, setFileName] = useState();
+  const inputRef = useRef();
+  const {
+    addEmployee,
+    setEmpForm,
+    empForm,
+    empCount,
+    empFailed,
+    empLoading,
+    getEmployees,
+  } = useEmployee();
   const handleFileUpload = (e) => {
-    const reader = new FileReader();
-    reader.readAsBinaryString(e.target.files[0]);
-    reader.onload = (e) => {
-      const data = e.target.result;
-      const workbook = XLSX.read(data, { type: "binary" });
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const parsedData = XLSX.utils.sheet_to_json(sheet);
-      setData(parsedData);
-      console.log("SHEET DATA", parsedData);
-      formatData(parsedData);
-    };
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name);
+      const reader = new FileReader();
+      reader.readAsBinaryString(file);
+      reader.onload = (e) => {
+        const data = e.target.result;
+        const workbook = XLSX.read(data, { type: "binary" });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const parsedData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+        const sheetHeaders = parsedData[1];
+        const sheetData = parsedData.slice(1);
+        setEmpForm(formatData(sheetData, sheetHeaders));
+      };
+    }
   };
-  const formatData = (data) => {
-    data.map((row) => {
-      Object.values(row).map((item, index) => {
-        // console.log("item", item);
-        // setEmpForm((prevState) => ({
-        //   ...prevState,
-        //   userID: index === 1 && item,
-        // }));
+  const formatData = (data, headers) => {
+    const dat1 = data.map((row) => {
+      const rowData = {};
+      headers.forEach((header, index) => {
+        rowData[header] = row[index];
       });
+      return rowData;
     });
-    console.log("EMP", empForm);
+    dat1.shift();
+    return dat1;
   };
+
+  const items = [
+    {
+      key: "1",
+      label: (
+        <div
+          onClick={() => {
+            inputRef.current.click();
+          }}
+        >
+          Excel-ээр нэмэх
+        </div>
+      ),
+    },
+    {
+      key: "2",
+      label: <div>Нэмэх</div>,
+    },
+  ];
+
   return (
     <>
-      <CustomHeader title="Ажилтнууд" />
-      <div>
-        <input type="file" onChange={handleFileUpload} />
-      </div>
-      <div>
-        <table>
-          <thead>
-            <tr>
-              {data &&
-                Object.values(data[0])?.map((item, idx) => (
-                  <th key={idx}>{item}</th>
-                ))}
-            </tr>
-          </thead>
-          <tbody>
-            {data?.map((row, idx) => (
-              <tr key={idx}>
-                {Object.values(row).map((item, idx) => (
-                  <td key={idx}>{item}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <CustomHeader title="Ажилтнуудын мэдээлэл" />
+      <div className="employee-container">
+        <div className="employee-add-section">
+          <Dropdown menu={{ items }}>
+            <Button
+              size="large"
+              style={{ fontWeight: 600 }}
+              type="primary"
+              icon={<IoIosAdd size={28} />}
+            >
+              ажилтнууд нэмэх
+            </Button>
+          </Dropdown>
+          {fileName && (
+            <div className="employee-add-section">
+              <Button
+                icon={<IoIosAdd size={28} />}
+                type="primary"
+                size="large"
+                style={{
+                  backgroundColor: "green",
+                  color: "white",
+                  width: "195px",
+                }}
+                onClick={addEmployee}
+              >
+                {fileName}
+              </Button>
+            </div>
+          )}
+
+          <input
+            style={{ display: "none" }}
+            type="file"
+            ref={inputRef}
+            onChange={handleFileUpload}
+          />
+        </div>
+        <div className="employee-count-card-container">
+          <EmpCountCard
+            title="Нийт ажилтнууд"
+            count={empCount?.userTotalCount}
+          />
+          <EmpCountCard
+            title="Идэвхтэй ажилтнууд"
+            count={empCount?.activeUserCount}
+          />
+          <EmpCountCard
+            title="Идэвхгүй ажилтнууд"
+            count={empCount?.inactiveUserCount}
+          />
+          <EmpCountCard title="Эрэгтэй ажилтнууд" count={empCount?.maleCount} />
+          <EmpCountCard
+            title="Эмэгтэй ажилтнууд"
+            count={empCount?.femaleCount}
+          />
+        </div>
+        <div className="employee-table-container">
+          {empLoading ? (
+            <Loader />
+          ) : empFailed ? (
+            <div className="employee-error">
+              <p>Алдаа гарлаа</p>
+              <Button onClick={getEmployees} icon={<IoReload />}>
+                Дахин оролдох
+              </Button>
+            </div>
+          ) : (
+            <EmpTable empForm={empForm} />
+          )}
+        </div>
       </div>
     </>
   );
