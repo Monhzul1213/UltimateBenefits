@@ -34,7 +34,6 @@ import volleyball from "./volleyball.png";
 import movie from "./movie.png";
 import people from "./peoples.png";
 
-
 export {
   day01,
   day16,
@@ -71,5 +70,4 @@ export {
   volleyball,
   movie,
   people,
-
 };
