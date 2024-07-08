@@ -208,7 +208,36 @@
   border-radius: 15px;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
+.avatar-container {
+  position: relative;
+  display: inline-block;
+}
 
+.avatar {
+  display: block;
+  transition: filter 0.3s ease;
+  cursor: pointer;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.avatar-container:hover .avatar {
+  filter: blur(5px);
+}
+
+.avatar-container:hover .edit-icon {
+  opacity: 1;
+}
 @media only screen and (max-width: 470px) {
   .calendar-wrapper {
     padding-top: 40px;

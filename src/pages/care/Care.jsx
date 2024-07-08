@@ -50,7 +50,7 @@ const Care = ({ size }) => {
       <CustomHeader title="Нийгмийн хангамж" />
       <main className="care-container">
         {cardData ? (
-          <div className="cards-container">
+          <div className="care-cards-container">
             <div className="cards" id={isTwo && "cards-two"}>
               <CareCard
                 cardData={cardData?.healthInsurance}

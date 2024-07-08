@@ -25,12 +25,8 @@
     "react-sizeme": "^3.0.2",
     "redux-persist": "^6.0.0",
     "sweetalert2": "^11.6.13",
-<<<<<<< HEAD
-    "web-vitals": "^2.1.4"
-=======
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
->>>>>>> main
   },
   "scripts": {
     "start": "react-scripts start",

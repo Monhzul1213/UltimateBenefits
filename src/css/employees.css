@@ -1,0 +1,71 @@
+.employee-container {
+  padding: 20px 95px 30px 70px;
+}
+.employee-add-section {
+  width: 100%;
+  margin: 20px 0;
+  text-align: right;
+}
+.employee-table-container {
+  margin-top: 30px;
+}
+.employee-count-card-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.employee-count-card {
+  border-radius: 10px;
+  width: 19%;
+  height: 150px;
+  background-color: #f2f5f9;
+  padding: 30px;
+  display: flex;
+  gap: 30px;
+  color: #373d74;
+}
+.employee-count-card-icon {
+  border-radius: 10px;
+  background-color: #e3eeff;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  color: #1f72fd;
+  align-items: center;
+}
+.employee-count-card-info p {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: grey;
+}
+.employee-count-card-info h3 {
+  font-size: 50px;
+}
+.employee-error {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+  font-size: 25px;
+}
+.employee-error button {
+  margin-top: 20px;
+}
+@media only screen and (max-width: 1350px) {
+  .employee-container {
+    padding: 10px 35px 10px 10px;
+  }
+  .employee-count-card-container {
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  .employee-count-card {
+    width: 48%;
+  }
+}
+@media only screen and (max-width: 794px) {
+  .employee-count-card {
+    width: 100%;
+  }
+}
