@@ -6,8 +6,8 @@ const EmpTable = ({ empForm }) => {
   const columns = [
     {
       title: "Регистерийн дугаар",
-      dataIndex: "UserID",
-      key: "UserID",
+      dataIndex: "RegisterNumber",
+      key: "RegisterNumber",
       width: 125,
       // responsive: ["xl"],
     },

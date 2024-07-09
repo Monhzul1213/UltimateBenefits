@@ -8,9 +8,16 @@ import { IoReload } from "react-icons/io5";
 import { useRef, useState } from "react";
 import EmpTable from "../../components/EmpTable";
 import EmpCountCard from "../../components/EmpCountCard";
+import EmpModal from "../../components/EmpModal";
 
 export const Employees = () => {
   const [fileName, setFileName] = useState();
+  const [open, setOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const inputRef = useRef();
   const {
     addEmployee,
@@ -66,84 +73,96 @@ export const Employees = () => {
     },
     {
       key: "2",
-      label: <div>Нэмэх</div>,
+      label: (
+        <div
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          Нэмэх
+        </div>
+      ),
     },
   ];
 
   return (
     <>
       <CustomHeader title="Ажилтнуудын мэдээлэл" />
-      <div className="employee-container">
-        <div className="employee-add-section">
-          <Dropdown menu={{ items }}>
-            <Button
-              size="large"
-              style={{ fontWeight: 600 }}
-              type="primary"
-              icon={<IoIosAdd size={28} />}
-            >
-              ажилтнууд нэмэх
-            </Button>
-          </Dropdown>
-          {fileName && (
-            <div className="employee-add-section">
+      {empLoading ? (
+        <Loader />
+      ) : empFailed ? (
+        <div className="employee-error">
+          <p>Алдаа гарлаа</p>
+          <Button onClick={getEmployees} icon={<IoReload />}>
+            Дахин оролдох
+          </Button>
+        </div>
+      ) : (
+        <div className="employee-container">
+          <div className="employee-add-section">
+            <Dropdown menu={{ items }}>
               <Button
-                icon={<IoIosAdd size={28} />}
-                type="primary"
                 size="large"
-                style={{
-                  backgroundColor: "green",
-                  color: "white",
-                  width: "195px",
-                }}
-                onClick={addEmployee}
+                style={{ fontWeight: 600 }}
+                type="primary"
+                icon={<IoIosAdd size={28} />}
               >
-                {fileName}
+                Ажилтан нэмэх
               </Button>
-            </div>
-          )}
+            </Dropdown>
+            {fileName && (
+              <div className="employee-add-section">
+                <Button
+                  icon={<IoIosAdd size={28} />}
+                  type="primary"
+                  size="large"
+                  style={{
+                    backgroundColor: "green",
+                    color: "white",
+                    width: "195px",
+                  }}
+                  onClick={() => {
+                    addEmployee(empForm, false);
+                  }}
+                >
+                  {fileName}
+                </Button>
+              </div>
+            )}
 
-          <input
-            style={{ display: "none" }}
-            type="file"
-            ref={inputRef}
-            onChange={handleFileUpload}
-          />
-        </div>
-        <div className="employee-count-card-container">
-          <EmpCountCard
-            title="Нийт ажилтнууд"
-            count={empCount?.userTotalCount}
-          />
-          <EmpCountCard
-            title="Идэвхтэй ажилтнууд"
-            count={empCount?.activeUserCount}
-          />
-          <EmpCountCard
-            title="Идэвхгүй ажилтнууд"
-            count={empCount?.inactiveUserCount}
-          />
-          <EmpCountCard title="Эрэгтэй ажилтнууд" count={empCount?.maleCount} />
-          <EmpCountCard
-            title="Эмэгтэй ажилтнууд"
-            count={empCount?.femaleCount}
-          />
-        </div>
-        <div className="employee-table-container">
-          {empLoading ? (
-            <Loader />
-          ) : empFailed ? (
-            <div className="employee-error">
-              <p>Алдаа гарлаа</p>
-              <Button onClick={getEmployees} icon={<IoReload />}>
-                Дахин оролдох
-              </Button>
-            </div>
-          ) : (
+            <input
+              style={{ display: "none" }}
+              type="file"
+              ref={inputRef}
+              onChange={handleFileUpload}
+            />
+          </div>
+          <div className="employee-count-card-container">
+            <EmpCountCard
+              title="Нийт ажилтан"
+              count={empCount?.userTotalCount}
+            />
+            <EmpCountCard
+              title="Идэвхтэй ажилтан"
+              count={empCount?.activeUserCount}
+            />
+            <EmpCountCard
+              title="Идэвхгүй ажилтан"
+              count={empCount?.inactiveUserCount}
+            />
+            <EmpCountCard title="Эрэгтэй ажилтан" count={empCount?.maleCount} />
+            <EmpCountCard
+              title="Эмэгтэй ажилтан"
+              count={empCount?.femaleCount}
+            />
+          </div>
+          <div className="employee-table-container">
             <EmpTable empForm={empForm} />
-          )}
+          </div>
         </div>
-      </div>
+      )}
+
+      <EmpModal open={open} isEdit={isEdit} handleClose={handleClose} />
     </>
   );
 };

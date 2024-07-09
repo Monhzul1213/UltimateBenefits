@@ -1,16 +1,18 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import myAxios from "../../lib/axios";
 import { useAuth } from "../AuthProvider";
+import { alert } from "../../lib/actions/alert.actions";
 
 export const employeeContext = createContext({
   setEmpForm: () => {},
   empCount: [{}],
   empForm: [{}],
-  columns: [{}],
   empLoading: false,
   empFailed: false,
+  empFormEdit: {},
   addEmployee: () => {},
   getEmployees: () => {},
+  handleEmpForm: () => {},
 });
 const EmployeeProvider = ({ children }) => {
   const { user } = useAuth();
@@ -18,7 +20,18 @@ const EmployeeProvider = ({ children }) => {
   const [empLoading, setEmpLoading] = useState(false);
   const [empFailed, setEmpFailed] = useState(false);
   const [empForm, setEmpForm] = useState();
-  const [columns, setColumns] = useState();
+  const [empFormEdit, setEmpFormEdit] = useState();
+
+  const handleEmpForm = (name, value) => {
+    setEmpFormEdit((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setEmpFormEdit((prev) => ({
+      ...prev,
+      ["Status"]: "A",
+    }));
+  };
 
   const getEmployees = async () => {
     setEmpLoading(true);
@@ -38,17 +51,25 @@ const EmployeeProvider = ({ children }) => {
       setEmpLoading(false);
     }
   };
-  const addEmployee = async () => {
-    console.log("ADDING EMPLOYEE", empForm);
+  const addEmployee = async (employees, isOne) => {
+    console.log("ADDING EMPLOYEE", employees);
+    const empData = isOne ? [employees] : employees;
     try {
-      const { data } = await myAxios.post("/api/users/register", empForm, {
+      const { data } = await myAxios.post("/api/users/register", empData, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log("Employees added", data);
+      alert("Ажилтан амжилттай нэмэгдлээ", "success");
+      getEmployees();
+      setEmpFormEdit();
     } catch (error) {
-      console.log("Error in adding employee", error);
+      console.log("Error", error);
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
     }
   };
   useEffect(() => {
@@ -59,11 +80,13 @@ const EmployeeProvider = ({ children }) => {
   return (
     <employeeContext.Provider
       value={{
+        getEmployees,
         setEmpForm,
         addEmployee,
+        handleEmpForm,
         empCount,
         empForm,
-        columns,
+        empFormEdit,
         empFailed,
         empLoading,
       }}
