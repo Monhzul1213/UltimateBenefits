@@ -16,6 +16,22 @@ export const Employees = () => {
   const [isEdit, setIsEdit] = useState(false);
   const handleClose = () => {
     setOpen(false);
+    setIsEdit(false);
+    setEmpFormEdit({
+      LastName: "",
+      FirstName: "",
+      RegisterID: "",
+      Gender: "",
+      CpnyID: "",
+      Department: "",
+      Position: "",
+      BirthDate: "",
+      Email: "",
+      PhoneNumber: "",
+      Address: "",
+      HireDate: "",
+      Role: "",
+    });
   };
 
   const inputRef = useRef();
@@ -27,6 +43,7 @@ export const Employees = () => {
     empFailed,
     empLoading,
     getEmployees,
+    setEmpFormEdit,
   } = useEmployee();
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -157,7 +174,11 @@ export const Employees = () => {
             />
           </div>
           <div className="employee-table-container">
-            <EmpTable empForm={empForm} />
+            <EmpTable
+              empForm={empForm}
+              setOpen={setOpen}
+              setIsEdit={setIsEdit}
+            />
           </div>
         </div>
       )}

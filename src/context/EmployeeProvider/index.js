@@ -13,6 +13,8 @@ export const employeeContext = createContext({
   addEmployee: () => {},
   getEmployees: () => {},
   handleEmpForm: () => {},
+  setEmpFormEdit: () => {},
+  editEmployee: () => {},
 });
 const EmployeeProvider = ({ children }) => {
   const { user } = useAuth();
@@ -20,7 +22,21 @@ const EmployeeProvider = ({ children }) => {
   const [empLoading, setEmpLoading] = useState(false);
   const [empFailed, setEmpFailed] = useState(false);
   const [empForm, setEmpForm] = useState();
-  const [empFormEdit, setEmpFormEdit] = useState();
+  const [empFormEdit, setEmpFormEdit] = useState({
+    LastName: "",
+    FirstName: "",
+    RegisterID: "",
+    Gender: "",
+    CpnyID: "",
+    Department: "",
+    Position: "",
+    BirthDate: "",
+    Email: "",
+    PhoneNumber: "",
+    Address: "",
+    HireDate: "",
+    Role: "",
+  });
 
   const handleEmpForm = (name, value) => {
     setEmpFormEdit((prev) => ({
@@ -41,7 +57,7 @@ const EmployeeProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log(data.user);
+      console.log(data);
       setEmpCount(data.user);
       setEmpForm(data.result);
       setEmpFailed(false);
@@ -72,6 +88,26 @@ const EmployeeProvider = ({ children }) => {
       }
     }
   };
+  const editEmployee = async (id) => {
+    console.log("editing user", empFormEdit);
+
+    try {
+      const data = await myAxios.put(`/api/users/${id}`, empFormEdit, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      getEmployees();
+      console.log("Edit employee", data);
+    } catch (error) {
+      console.log("Error", error);
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
+    }
+  };
   useEffect(() => {
     if (user) {
       getEmployees();
@@ -80,10 +116,12 @@ const EmployeeProvider = ({ children }) => {
   return (
     <employeeContext.Provider
       value={{
+        editEmployee,
         getEmployees,
         setEmpForm,
         addEmployee,
         handleEmpForm,
+        setEmpFormEdit,
         empCount,
         empForm,
         empFormEdit,
