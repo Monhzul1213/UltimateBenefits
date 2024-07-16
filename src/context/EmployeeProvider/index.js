@@ -25,7 +25,7 @@ const EmployeeProvider = ({ children }) => {
   const [empFormEdit, setEmpFormEdit] = useState({
     LastName: "",
     FirstName: "",
-    RegisterID: "",
+    RegisterNumber: "",
     Gender: "",
     CpnyID: "",
     Department: "",
