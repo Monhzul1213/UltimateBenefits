@@ -36,16 +36,13 @@ const EmployeeProvider = ({ children }) => {
     Address: "",
     HireDate: "",
     Role: "",
+    Status: "",
   });
 
   const handleEmpForm = (name, value) => {
     setEmpFormEdit((prev) => ({
       ...prev,
       [name]: value,
-    }));
-    setEmpFormEdit((prev) => ({
-      ...prev,
-      ["Status"]: "A",
     }));
   };
 
@@ -57,7 +54,6 @@ const EmployeeProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log(data);
       setEmpCount(data.user);
       setEmpForm(data.result);
       setEmpFailed(false);
@@ -80,7 +76,6 @@ const EmployeeProvider = ({ children }) => {
       getEmployees();
       setEmpFormEdit();
     } catch (error) {
-      console.log("Error", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -89,18 +84,16 @@ const EmployeeProvider = ({ children }) => {
     }
   };
   const editEmployee = async (id) => {
-    console.log("editing user", empFormEdit);
-
+    setEmpLoading(true);
     try {
       const data = await myAxios.put(`/api/users/${id}`, empFormEdit, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
+      alert("Амжилттай өөрчлөгдлөө", "success");
       getEmployees();
-      console.log("Edit employee", data);
     } catch (error) {
-      console.log("Error", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {

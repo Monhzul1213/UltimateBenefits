@@ -37,7 +37,7 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
         />
 
         <div className="emp-modal-flex">
-          <div>
+          <div style={{ width: "100%" }}>
             <p>Овог</p>
             <Input
               value={empFormEdit.LastName}
@@ -46,7 +46,7 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
               onChange={handleInput}
             />
           </div>
-          <div>
+          <div style={{ width: "100%" }}>
             <p>Нэр</p>
             <Input
               value={empFormEdit.FirstName}
@@ -57,7 +57,7 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
           </div>
         </div>
         <div className="emp-modal-flex">
-          <div>
+          <div style={{ width: "100%" }}>
             <p>Имэйл хаяг</p>
             <Input
               value={empFormEdit.Email}
@@ -66,7 +66,7 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
               onChange={handleInput}
             />
           </div>
-          <div>
+          <div style={{ width: "100%" }}>
             <p>Утасны дугаар</p>
             <Input
               value={empFormEdit.PhoneNumber}
@@ -76,13 +76,15 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
             />
           </div>
         </div>
-        <p>Компани</p>
-        <Input
-          value={empFormEdit.CpnyID}
-          name="CpnyID"
-          placeholder="Компани"
-          onChange={handleInput}
-        />
+        <div>
+          <p>Компани</p>
+          <Input
+            value={empFormEdit.CpnyID}
+            name="CpnyID"
+            placeholder="Компани"
+            onChange={handleInput}
+          />
+        </div>
         <Input
           value={empFormEdit.Department}
           name="Department"
@@ -137,6 +139,17 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
                 ]}
               />
             </div>
+            <Select
+              value={empFormEdit.Status}
+              style={{ width: "100%" }}
+              name="Role"
+              placeholder="Төлөв"
+              onChange={handleSelect}
+              options={[
+                { value: "A", label: "Идэвхтэй", name: "Status" },
+                { value: "I", label: "Идэвхгүй", name: "Status" },
+              ]}
+            />
           </>
         ) : (
           <>
@@ -176,6 +189,16 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
                 ]}
               />
             </div>
+            <Select
+              style={{ width: "100%" }}
+              name="Role"
+              placeholder="Төлөв"
+              onChange={handleSelect}
+              options={[
+                { value: "A", label: "Идэвхтэй", name: "Status" },
+                { value: "I", label: "Идэвхгүй", name: "Status" },
+              ]}
+            />
           </>
         )}
 

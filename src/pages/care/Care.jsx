@@ -51,7 +51,7 @@ const Care = ({ size }) => {
       <main className="care-container">
         {cardData ? (
           <div className="care-cards-container">
-            <div className="cards" id={isTwo && "cards-two"}>
+            <div className="care-cards" id={isTwo && "cards-two"}>
               <CareCard
                 cardData={cardData?.healthInsurance}
                 isTwo={isTwo}
@@ -73,7 +73,7 @@ const Care = ({ size }) => {
                 info={cares[1]}
               />
             </div>
-            <div className="cards" id={isTwo && "cards-two"}>
+            <div className="care-cards" id={isTwo && "cards-two"}>
               <CareCard
                 cardData={cardData?.vaccine}
                 isTwo={isTwo}
@@ -95,7 +95,7 @@ const Care = ({ size }) => {
                 info={cares[3]}
               />
             </div>
-            <div className="cards cards-last " id={isTwo && "cards-two"}>
+            <div className="care-cards cards-last " id={isTwo && "cards-two"}>
               <CareCard
                 cardData={cardData?.companyCar}
                 isTwo={isTwo}
