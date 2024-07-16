@@ -52,6 +52,25 @@
 .employee-error button {
   margin-top: 20px;
 }
+
+.emp-modal-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.emp-modal-flex {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+}
+.emp-modal-buttons {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
 @media only screen and (max-width: 1350px) {
   .employee-container {
     padding: 10px 35px 10px 10px;

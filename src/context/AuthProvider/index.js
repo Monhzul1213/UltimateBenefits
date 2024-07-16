@@ -69,7 +69,8 @@ const AuthProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log("data changing photo", data);
+      console.log("CHANGE PHOTE", data);
+      alert("Зураг амжилттай солигдлоо");
     } catch (error) {
       console.log("error in changing photo", error);
     }

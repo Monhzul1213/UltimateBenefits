@@ -26,7 +26,7 @@ export const CustomHeader = ({ title }) => {
       >
         <img className="custom-header-notf" src={bell} alt="" />
         <Avatar
-          src={user.Picture}
+          src={user?.Picture?.replace("./public/upload/", "/upload/")}
           style={{ backgroundColor: "white", marginLeft: 20 }}
           size={40}
           icon={<UserOutlined />}

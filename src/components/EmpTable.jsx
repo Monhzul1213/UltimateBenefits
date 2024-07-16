@@ -1,13 +1,20 @@
 import { ConfigProvider, Table } from "antd";
 import React from "react";
 import { FaUserEdit } from "react-icons/fa";
+import { useEmployee } from "../context/EmployeeProvider";
 
-const EmpTable = ({ empForm }) => {
+const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
+  const { setEmpFormEdit } = useEmployee();
+  const handleEdit = (info) => {
+    setOpen(true);
+    setEmpFormEdit(info);
+    setIsEdit(true);
+  };
   const columns = [
     {
       title: "Регистерийн дугаар",
-      dataIndex: "UserID",
-      key: "UserID",
+      dataIndex: "RegisterNumber",
+      key: "RegisterNumber",
       width: 125,
       // responsive: ["xl"],
     },
@@ -104,8 +111,11 @@ const EmpTable = ({ empForm }) => {
       key: "operation",
       fixed: "right",
       width: 100,
-      render: () => (
-        <div style={{ textAlign: "center", cursor: "pointer" }}>
+      render: (info) => (
+        <div
+          onClick={() => handleEdit(info)}
+          style={{ textAlign: "center", cursor: "pointer" }}
+        >
           <FaUserEdit size={30} />
         </div>
       ),
