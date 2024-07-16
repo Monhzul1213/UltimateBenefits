@@ -1,8 +1,9 @@
 import myAxios from "../axios";
+import { alert } from "./alert.actions";
 export const getLearningData = async (UserID) => {
   const userToken = sessionStorage.getItem("userToken");
   try {
-    const { data } = await myAxios.get("/api/learning/getLearning", {
+    const { data } = await myAxios.get("/api/training/getTraining", {
       headers: {
         Authorization: `Bearer ${userToken}`,
       },

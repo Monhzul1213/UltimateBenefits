@@ -47,7 +47,7 @@ export function App() {
                 <Route path="/rules" element={<Rules />} />
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/care" element={<Care />} />
-                <Route path="/learning" element={<Learning />} />
+                <Route path="/training" element={<Learning />} />
                 <Route path="/clubs" element={<Clubs />} />
                 <Route path="/employees" element={<Employees />} />
               </Routes>

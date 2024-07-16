@@ -23,7 +23,7 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       dataIndex: "CpnyID",
       key: "CpnyID",
       width: 100,
-      // responsive: ["xl"],
+      responsive: ["xl"],
     },
     {
       title: "Овог",
@@ -44,13 +44,31 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       dataIndex: "Department",
       key: "Department",
       width: 150,
-      // responsive: ["xl"],
+      filterSearch: true,
+      render: (text) => <p style={{ fontSize: 14 }}>{text}</p>,
+      filters: [
+        {
+          text: "Захиргаа, үйл ажиллагааны алба",
+          value: "Захиргаа, үйл ажиллагааны алба",
+        },
+        {
+          text: "Програм хангамжийн хөгжүүлэлтийн алба",
+          value: "Програм хангамжийн хөгжүүлэлтийн алба",
+        },
+        {
+          text: "Програм хангамжийн үйл ажиллагаа хариуцсан алба",
+          value: "Програм хангамжийн үйл ажиллагаа хариуцсан алба",
+        },
+      ],
+      onFilter: (value, record) => record.Department.indexOf(value) === 0,
+      responsive: ["xl"],
     },
     {
       title: "Албан тушаал",
       dataIndex: "Position",
       key: "Position",
       width: 150,
+      render: (text) => <p style={{ fontSize: 14 }}>{text}</p>,
       // responsive: ["xl"],
     },
     {
@@ -66,12 +84,36 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       width: 92,
       // responsive: ["lg"],
       render: (text) => <p>{text === "M" ? "Эрэгтэй" : "Эмэгтэй"}</p>,
+      filterSearch: true,
+      filters: [
+        {
+          text: "Эрэгтэй",
+          value: "M",
+        },
+        {
+          text: "Эмэгтэй",
+          value: "F",
+        },
+      ],
+      onFilter: (value, record) => record.Gender.indexOf(value) === 0,
     },
     {
       title: "Имэйл хаяг",
       dataIndex: "Email",
       key: "Email",
       width: 95,
+      filterSearch: true,
+      filters: [
+        {
+          text: "Ажлийн имэйлтэй",
+          value: "@ultimate.mn",
+        },
+        {
+          text: "Хувийн имэйлтэй",
+          value: ".com",
+        },
+      ],
+      onFilter: (value, record) => record.Email.includes(value),
     },
     {
       title: "Утасны дугаар",
@@ -83,8 +125,9 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       title: "Гэрийн хаяг",
       dataIndex: "Address",
       key: "Address",
-      width: 120,
-      // responsive: ["xl"],
+      width: 140,
+      render: (text) => <p style={{ fontSize: 12 }}>{text}</p>,
+      responsive: ["xl"],
     },
     {
       title: "Ажилд орсон огноо",
@@ -105,6 +148,18 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       key: "Status",
       width: 100,
       render: (text) => <p>{text == "A" ? "Идэвхтэй" : "Идэвхгүй"}</p>,
+      filterSearch: true,
+      filters: [
+        {
+          text: "Идэвхтэй",
+          value: "A",
+        },
+        {
+          text: "Идэвхгүй",
+          value: "I",
+        },
+      ],
+      onFilter: (value, record) => record.Status.indexOf(value) === 0,
     },
     {
       title: "Засах",
@@ -135,7 +190,7 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
     >
       <Table
         bordered
-        pagination={false}
+        pagination={{ position: ["bottomCenter"] }}
         dataSource={empForm}
         columns={columns}
         scroll={{
