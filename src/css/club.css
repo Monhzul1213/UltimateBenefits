@@ -3,15 +3,31 @@
 }
 
 .cards-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, auto);
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  display: flex;
+  
+  /* max-width: 1200px; */
+  /* margin: 0 auto; */
 }
 
-.card {
+.image-container-1st {
+  /* flex: 0 0 30%; */
+}
+
+.image-container-2nd{
+  display: flex;
+  gap: 25px;
+}
+.image-container-3rd {
+  /* flex: 0 0 35%; */
+  display: flex;
+  gap: 25px;
+}
+.Clubs{
+  margin: 10px;
+  padding: auto;
+}
+
+.image-container {
   position: relative;
   border-radius: 10px;
   overflow: hidden;
@@ -19,11 +35,11 @@
   cursor: pointer;
 }
 
-.card:hover {
+.image-container:hover {
   transform: scale(1.05);
 }
 
-.card img {
+.image-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -31,114 +47,50 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card-title {
-  position: sticky;
+.club-card {
+  position: absolute;
   bottom: 10px;
   left: 10px;
   color: white;
-  font-size: 18px;
+  font-size: 30px;
   font-weight: bold;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.movie-card {
-  grid-column: 1;
-  grid-row: 1 / span 2;
+.image-container.movie {
+  height: 500px;
 }
 
-.english-card {
-  grid-column: 2;
-  grid-row: 1;
+.image-container.english,
+.image-container.adventure,
+.image-container.sports,
+.image-container.dota {
+  height: 200px;
 }
 
-.adventure-card {
-  grid-column: 2 / span 2;
-  grid-row: 2;
-}
-
-.sports-card {
-  grid-column: 3;
-  grid-row: 1;
-}
-
-.dota-card {
-  grid-column: 2;
-  grid-row: 2;
-}
-
-.movie-image 
-{ height: 700px;
-  position: relative;
-  top: 0px;
-  left: -310px;
- }
-.english-image { 
-  width: 250PX;
-  height: 300px; 
-  position: relative;
-  top: 0;
-  left: -380PX;
-}
-.adventure-image { 
-  height: 300px; 
-  width: 600PX;
-  position: relative;
-  top: -826pX;
-  right: -300PX;}
-.sports-image { 
-  position: relative;
-  top: -900px;
-  left: 190px;
-  height: 350px; 
-  width: 600PX;}
-.dota-image { 
-  height: 350px;
-  width: 250px;
-  position: relative;
-  top: -900px; 
-  left: 130px;
-}
-
-@media (max-width: 1525px) {
-  .cards-container.narrow {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .narrow .movie-card {
-    grid-row: 1 / span 3;
-  }
-
-  .narrow .adventure-card {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .narrow .sports-card {
-    grid-column: 2;
-    grid-row: 3;
-  }
-
-  .narrow .dota-card {
-    grid-column: 1;
-    grid-row: 4;
-  }
-}
-
-@media (max-width: 1010px) {
+@media (max-width: 1024px) {
   .cards-container {
-    grid-template-columns: 1fr;
+      flex-direction: column;
   }
 
-  .card {
-    grid-column: 1;
-    grid-row: auto;
+  .image-container-1st,
+  .image-container-2nd,
+  .image-container-3rd {
+      flex: 0 0 auto;
   }
 
-  .movie-image,
-  .english-image,
-  .adventure-image,
-  .sports-image,
-  .dota-image {
-    height: 300px;
+  .image-container.movie,
+  .image-container.english,
+  .image-container.adventure,
+  .image-container.sports,
+  .image-container.dota {
+      height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-container-2nd,
+  .image-container-3rd {
+      flex-direction: column;
   }
 }
