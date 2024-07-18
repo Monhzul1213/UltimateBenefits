@@ -1,10 +1,14 @@
 .learning-container {
   width: 100vw;
   overflow: hidden;
+  padding: 30px 80px;
+  text-align: right;
+}
+.learning-videos-container {
+  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  padding: 50px 30px;
+  justify-content: space-between;
   gap: 50px;
 }
 .video-card {
