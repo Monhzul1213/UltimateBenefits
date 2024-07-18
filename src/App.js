@@ -9,7 +9,6 @@ import { createBrowserHistory } from "history";
 
 import {
   Learning,
-  Clubs,
   Careers,
   Rules,
   Home,
@@ -18,6 +17,7 @@ import {
 import { useAuth } from "./context/AuthProvider";
 import Care from "./pages/care/Care";
 import Discounts from "./pages/discounts/Discounts";
+import Clubs from "./pages/clubs/Clubs";
 import { MyDrawer, Loader } from "./components";
 export function App() {
   const { isAuth } = useAuth();

@@ -11,6 +11,11 @@ import {
   rules,
   umbrella,
   vaccine,
+  volleyball,
+  hands,
+  movie,
+  people,
+  dotka,
 } from "../assets";
 
 export const alphabets = [
@@ -211,3 +216,30 @@ export const discountsi = [
     description: "",
   },
 ];
+  export const clubsItems = [
+    {
+      description: "moviemovie",
+      Image : movie
+    },
+    {
+      title: "ENGLISH LANGUAGE CLUB",
+      description: "itsenglish",
+      Image : hands
+
+    },
+    {
+      title: "ADVENTURE CLUB",
+      description: "exploreadventure",
+      Image : people
+    },
+    {
+      title: "SPORTS CLUB",
+      description: "letsplay",
+      Image : volleyball
+    },
+    {
+    description: "dotka",
+    Image : dotka
+    },
+    
+  ]
