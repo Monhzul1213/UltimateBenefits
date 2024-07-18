@@ -13,10 +13,14 @@ import { IoReload } from "react-icons/io5";
 export const Learning = () => {
   const iframeRef = useRef(null);
   const { user } = useAuth();
-  const { learningDatas, loading, isFailed, getLearningData } = useTraining();
+  const { learningDatas, loading, isFailed, getLearningData, getTrainingType } =
+    useTraining();
   const [addModal, setAddModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [openModal, setOpenModal] = useState(-1);
+  const handleTrainingModal = (isOpen) => {
+    setAddModal(isOpen);
+  };
   const showModal = (index) => {
     setOpenModal(index);
   };
@@ -25,6 +29,7 @@ export const Learning = () => {
   };
   useEffect(() => {
     getLearningData();
+    getTrainingType();
   }, []);
 
   return (
@@ -53,7 +58,13 @@ export const Learning = () => {
           ) : isFailed ? (
             <div className="employee-error">
               <p>Алдаа гарлаа</p>
-              <Button onClick={getLearningData} icon={<IoReload />}>
+              <Button
+                onClick={() => {
+                  getLearningData();
+                  getTrainingType();
+                }}
+                icon={<IoReload />}
+              >
                 Дахин оролдох
               </Button>
             </div>
@@ -72,7 +83,11 @@ export const Learning = () => {
           )}
         </section>
       </main>
-      <TrainingModal addModal={addModal} isEdit={isEdit} />
+      <TrainingModal
+        addModal={addModal}
+        isEdit={isEdit}
+        handleTrainingModal={handleTrainingModal}
+      />
     </>
   );
 };

@@ -3,11 +3,14 @@ import { alert } from "./alert.actions";
 export const getCares = async (userId) => {
   const userToken = sessionStorage.getItem("userToken");
   try {
-    const { data } = await myAxios.get(`/api/care/getCares?UserID=${userId}`, {
-      headers: {
-        Authorization: `Bearer ${userToken}`,
-      },
-    });
+    const { data } = await myAxios.get(
+      `/api/socialProvision?UserID=${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    );
     return data;
   } catch (error) {
     // console.log("ERROR IN GET CARES", error);
