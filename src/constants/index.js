@@ -219,6 +219,7 @@ export const discountsi = [
 ];
   export const clubsItems = [
     {
+      title :"MOVIE CLUB",
       description: "moviemovie",
       Image : movie
     },
@@ -234,11 +235,12 @@ export const discountsi = [
       Image : people
     },
     {
-      title: "SPORTS CLUB",
+      title: "SPORT CLUB",
       description: "letsplay",
       Image : volleyball
     },
     {
+    title: "E-SPORT CLUB",
     description: "dotka",
     Image : dotka
     },

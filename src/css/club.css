@@ -1,30 +1,14 @@
 .club-container {
   padding: 20px;
+  max-width: 1100px; 
+  margin: 0 auto;
 }
 
 .cards-container {
-  display: flex;
+  display: grid;
   
-  /* max-width: 1200px; */
-  /* margin: 0 auto; */
-}
-
-.image-container-1st {
-  /* flex: 0 0 30%; */
-}
-
-.image-container-2nd{
-  display: flex;
-  gap: 25px;
-}
-.image-container-3rd {
-  /* flex: 0 0 35%; */
-  display: flex;
-  gap: 25px;
-}
-.Clubs{
-  margin: 10px;
-  padding: auto;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 45px;
 }
 
 .image-container {
@@ -33,6 +17,7 @@
   overflow: hidden;
   transition: transform 0.3s ease;
   cursor: pointer;
+  aspect-ratio: 16 / 9;
 }
 
 .image-container:hover {
@@ -42,55 +27,52 @@
 .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  object-fit: fill;
 }
 
-.club-card {
+.card-title {
   position: absolute;
   bottom: 10px;
   left: 10px;
   color: white;
-  font-size: 30px;
+  font-size:  24px;
   font-weight: bold;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.image-container.movie {
-  height: 500px;
+.add-club {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border: 3px dashed #00a2ff;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
-.image-container.english,
-.image-container.adventure,
-.image-container.sports,
-.image-container.dota {
-  height: 200px;
+.add-club-button {
+  justify-content: center;
+  align-items: center;
+  padding: 50px 130px;
+  
+  font-size: 48px;
+  color: #999;
 }
 
 @media (max-width: 1024px) {
-  .cards-container {
-      flex-direction: column;
-  }
-
-  .image-container-1st,
-  .image-container-2nd,
-  .image-container-3rd {
-      flex: 0 0 auto;
-  }
-
-  .image-container.movie,
-  .image-container.english,
-  .image-container.adventure,
-  .image-container.sports,
-  .image-container.dota {
-      height: 300px;
+  .club-container {
+    max-width: 95%;
   }
 }
 
 @media (max-width: 768px) {
-  .image-container-2nd,
-  .image-container-3rd {
-      flex-direction: column;
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .cards-container {
+    grid-template-columns: 1fr;
   }
 }

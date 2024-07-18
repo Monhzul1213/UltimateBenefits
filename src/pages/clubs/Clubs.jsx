@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import { withSize } from "react-sizeme";
+import { useAuth } from "../../context/AuthProvider";
 import { CustomHeader } from "../../components";
 import { clubsItems } from "../../constants";
+import { Button } from "antd";
 import "../../css/club.css";
 
-const Clubs = ({ size }) => {
-  const [openIdx, setOpenIdx] = useState(null);
 
+const ClubCard = ({ club, onClick }) => (
+  <div className="image-container" onClick={onClick}>
+    <img src={club.Image} alt={club.altText} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+    <div className="card-title">{club.title}</div>
+  </div>
+);
+
+const Clubs = () => {
   const handleCardOpen = (idx) => {
-    setOpenIdx(openIdx === idx ? null : idx);
+    console.log(`Opening card ${idx}`);
+  };
+
+  const handleAddClub = () => {
+    console.log("Adding new club");
   };
 
   return (
@@ -16,35 +28,11 @@ const Clubs = ({ size }) => {
       <CustomHeader title="Сонирхлын клубууд" />
       <main className="club-container">
         <div className="cards-container">
-          <div className="image-container-1st">
-            <div className="image-container movie" onClick={() => handleCardOpen(0)}>
-              <img src={clubsItems[0].Image} alt={clubsItems[0].altText} className={clubsItems[0].className} />
-              <div className="club-card">{clubsItems[0].title}</div>
-            </div>
-          </div>
-          <div className="ClubscardGroupped" >
-          
-          <div className="image-container-2nd">
-            <div className="image-container english" onClick={() => handleCardOpen(1)}>
-              <img src={clubsItems[1].Image} alt={clubsItems[1].altText} className={clubsItems[1].className} />
-              <div className="club-card">{clubsItems[1].title}</div>
-            </div>
-            <div className="image-container adventure" onClick={() => handleCardOpen(2)}>
-              <img src={clubsItems[2].Image} alt={clubsItems[2].altText} className={clubsItems[2].className} />
-              <div className="club-card">{clubsItems[2].title}</div>
-            </div>
-          </div>
-          
-          <div className="image-container-3rd">
-            <div className="image-container sports" onClick={() => handleCardOpen(3)}>
-              <img src={clubsItems[3].Image} alt={clubsItems[3].altText} className={clubsItems[3].className} />
-              <div className="club-card">{clubsItems[3].title}</div>
-            </div>
-            <div className="image-container dota" onClick={() => handleCardOpen(4)}>
-              <img src={clubsItems[4].Image} alt={clubsItems[4].altText} className={clubsItems[4].className} />
-              <div className="club-card">{clubsItems[4].title}</div>
-            </div>
-          </div>
+          {clubsItems.map((club, index) => (
+            <ClubCard key={index} club={club} onClick={() => handleCardOpen(index)} />
+          ))}
+          <div className="image-container add-club" onClick={handleAddClub}>
+            <div className="add-club-button">+</div>
           </div>
         </div>
       </main>
@@ -52,4 +40,4 @@ const Clubs = ({ size }) => {
   );
 };
 
-export default withSize()(Clubs);
+export default Clubs;
