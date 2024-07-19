@@ -11,6 +11,14 @@ import {
   rules,
   umbrella,
   vaccine,
+  bonus1,
+  bonus2,
+  phone,
+  lunch1,
+  lunch2,
+  bday,
+  gym1,
+  gym2,
   volleyball,
   hands,
   movie,
@@ -197,52 +205,51 @@ export const learnVideos = [
 ];
 export const discountsi = [
   {
-    title: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ ",
-    description: "",
+    description: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
+    images: [bonus1, bonus2],
   },
   {
-    title: "УТАСНЫ ТӨЛБӨР",
-    description: "",
+    description: "УТАСНЫ ТӨЛБӨР",
+    images: [phone],
   },
   {
-    title: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
-    description: "Lunch Menu",
+    description: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
+    images: [lunch1, lunch2],
   },
   {
-    title: "Төрсөн өдөр",
     description: "",
+    images: [bday],
   },
   {
-    title: "GYM",
-    description: "",
+    description: "GYM",
+    images: [gym1, gym2],
   },
 ];
-  export const clubsItems = [
-    {
-      title :"MOVIE CLUB",
-      description: "moviemovie",
-      Image : movie
-    },
-    {
-      title: "ENGLISH LANGUAGE CLUB",
-      description: "itsenglish",
-      Image : hands
 
-    },
-    {
-      title: "ADVENTURE CLUB",
-      description: "exploreadventure",
-      Image : people
-    },
-    {
-      title: "SPORT CLUB",
-      description: "letsplay",
-      Image : volleyball
-    },
-    {
+export const clubsItems = [
+  {
+    title: "MOVIE CLUB",
+    description: "moviemovie",
+    Image: movie,
+  },
+  {
+    title: "ENGLISH LANGUAGE CLUB",
+    description: "itsenglish",
+    Image: hands,
+  },
+  {
+    title: "ADVENTURE CLUB",
+    description: "exploreadventure",
+    Image: people,
+  },
+  {
+    title: "SPORT CLUB",
+    description: "letsplay",
+    Image: volleyball,
+  },
+  {
     title: "E-SPORT CLUB",
     description: "dotka",
-    Image : dotka
-    },
-    
-  ]
+    Image: dotka,
+  },
+];

@@ -10,8 +10,16 @@ import {
 } from "../assets";
 
 export const TrainingFileCard = ({ learning }) => {
-  const downloadFile = () => {
-    // const fileName =
+  const handleDownloadFile = () => {
+    const fileName = learning?.FileDesc.split("/").pop();
+    console.log("filename", fileName);
+    const aTag = document.createElement("a");
+    aTag.href = learning?.FileDesc.replace("./public/training/", "/training/");
+    console.log("href", aTag.href);
+    aTag.setAttribute("download", fileName);
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
   };
   return (
     <div className="video-card">
@@ -68,7 +76,12 @@ export const TrainingFileCard = ({ learning }) => {
           </div>
         </div>
         <div style={{ textAlign: "right" }}>
-          <img className="downloadfile-icon" src={downloadFile} alt="" />
+          <img
+            onClick={handleDownloadFile}
+            className="downloadfile-icon"
+            src={downloadFile}
+            alt=""
+          />
         </div>
       </div>
     </div>
