@@ -2,11 +2,13 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { checkRegister, login } from "../../lib/actions/user.actions";
 import { alert } from "../../lib/actions/alert.actions";
 import { jwtDecode } from "jwt-decode";
+import myAxios from "../../lib/axios";
 
 export const authContext = createContext({
   handleCheckRegister: () => {},
   handleLogin: () => {},
   logout: () => {},
+  changeUserPhoto: () => {},
   loading: false,
   user: null,
   isAuth: false,
@@ -57,6 +59,23 @@ const AuthProvider = ({ children }) => {
     alert("Амжилттай системээс гарлаа", "success");
   };
 
+  const changeUserPhoto = async (photo) => {
+    try {
+      let formData = new FormData();
+      formData.append("profile", photo);
+      const data = myAxios.put(`/api/users/profile/${user.ID}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      console.log("CHANGE PHOTE", data);
+      alert("Зураг амжилттай солигдлоо");
+    } catch (error) {
+      console.log("error in changing photo", error);
+    }
+  };
+
   useEffect(() => {
     checkIsLogged();
   }, []);
@@ -64,6 +83,7 @@ const AuthProvider = ({ children }) => {
   return (
     <authContext.Provider
       value={{
+        changeUserPhoto,
         handleCheckRegister,
         handleLogin,
         checkIsLogged,

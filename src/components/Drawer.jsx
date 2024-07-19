@@ -2,6 +2,7 @@ import { Avatar, Button, Drawer, Dropdown, Popover, Spin } from "antd";
 import { IoMdArrowDropleft } from "react-icons/io";
 import { IoMdArrowDropright } from "react-icons/io";
 import { IoReload } from "react-icons/io5";
+import { CiEdit } from "react-icons/ci";
 
 import { useAuth } from "../context/AuthProvider";
 import { MyCalendar, AddCalendar, CalendarItem } from "../components";
@@ -9,17 +10,26 @@ import { MyCalendar, AddCalendar, CalendarItem } from "../components";
 import "../css/drawer.css";
 import { useCalendar } from "../context/CalendarProvider";
 import { checkRole } from "../lib/utils/checkRole";
+import { useRef } from "react";
 
 export const MyDrawer = () => {
-  const { user, logout, openDrawer, setOpenDrawer } = useAuth();
+  const { user, logout, openDrawer, setOpenDrawer, changeUserPhoto } =
+    useAuth();
   const { dayItems, calendarLoading, calenderFailed, retryCalendarData } =
     useCalendar();
-
+  const inputRef = useRef();
   const showDrawer = () => {
     setOpenDrawer(true);
   };
   const onClose = () => {
     setOpenDrawer(false);
+  };
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    console.log("file", file);
+    if (file) {
+      changeUserPhoto(file);
+    }
   };
   return (
     <>
@@ -36,7 +46,23 @@ export const MyDrawer = () => {
         open={openDrawer}
       >
         <div className="drawer-content">
-          <Avatar src={user?.Picture} size={150} />
+          <div className="avatar-container">
+            <Avatar
+              onClick={() => {
+                inputRef.current.click();
+              }}
+              className="avatar"
+              src={user?.Picture?.replace("./public/upload/", "/upload/")}
+              size={150}
+            />
+            <CiEdit className="edit-icon" size={40} />
+            <input
+              ref={inputRef}
+              type="file"
+              style={{ display: "none" }}
+              onChange={handleFileUpload}
+            />
+          </div>
           <h1>
             {user?.LastName} {user?.FirstName}
           </h1>

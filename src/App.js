@@ -9,9 +9,8 @@ import { createBrowserHistory } from "history";
 
 import {
   Learning,
-  Clubs,
   Careers,
-  Rules,
+  NewRules,
   Home,
   Login,
   Employees,
@@ -19,6 +18,7 @@ import {
 import { useAuth } from "./context/AuthProvider";
 import Care from "./pages/care/Care";
 import Discounts from "./pages/discounts/Discounts";
+import Clubs from "./pages/clubs/Clubs";
 import { MyDrawer, Loader } from "./components";
 export function App() {
   const { isAuth } = useAuth();
@@ -44,10 +44,10 @@ export function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/discounts" element={<Discounts />} />
-                <Route path="/rules" element={<Rules />} />
+                <Route path="/rules" element={<NewRules />} />
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/care" element={<Care />} />
-                <Route path="/learning" element={<Learning />} />
+                <Route path="/training" element={<Learning />} />
                 <Route path="/clubs" element={<Clubs />} />
                 <Route path="/employees" element={<Employees />} />
               </Routes>

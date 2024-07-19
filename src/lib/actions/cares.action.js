@@ -10,6 +10,7 @@ export const getCares = async (userId) => {
     });
     return data;
   } catch (error) {
+    // console.log("ERROR IN GET CARES", error);
     if (!error.response) {
       alert("Уучлаарай, сүлжээ унасан байна", "error");
     } else {

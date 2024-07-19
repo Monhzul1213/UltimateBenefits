@@ -19,6 +19,11 @@ import {
   bday,
   gym1, 
   gym2,
+  volleyball,
+  hands,
+  movie,
+  people,
+  dotka,
 } from "../assets";
 
 export const alphabets = [
@@ -62,7 +67,7 @@ export const alphabets = [
 export const benefits = [
   { title: "Дүрэм журам", icon: rules, route: "/rules" },
   { title: "Карьер хөгжил", icon: careers, route: "/careers" },
-  { title: "Сургалтын материал", icon: learning, route: "/learning" },
+  { title: "Сургалтын материал", icon: learning, route: "/training" },
   { title: "Хөнгөлөлт урамшуулал", icon: discounts, route: "/discounts" },
   { title: "Нийгмийн хангамж", icon: care, route: "/care" },
   { title: "Сонирхлын клуб", icon: clubs, route: "/clubs" },
@@ -219,3 +224,36 @@ export const discountsi = [
       images: [gym1, gym2] 
   }
 ];
+    title: "GYM",
+    description: "",
+  },
+];
+  export const clubsItems = [
+    {
+      title :"MOVIE CLUB",
+      description: "moviemovie",
+      Image : movie
+    },
+    {
+      title: "ENGLISH LANGUAGE CLUB",
+      description: "itsenglish",
+      Image : hands
+
+    },
+    {
+      title: "ADVENTURE CLUB",
+      description: "exploreadventure",
+      Image : people
+    },
+    {
+      title: "SPORT CLUB",
+      description: "letsplay",
+      Image : volleyball
+    },
+    {
+    title: "E-SPORT CLUB",
+    description: "dotka",
+    Image : dotka
+    },
+    
+  ]
