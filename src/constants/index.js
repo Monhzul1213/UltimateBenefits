@@ -11,6 +11,14 @@ import {
   rules,
   umbrella,
   vaccine,
+  bonus1,
+  bonus2,
+  phone,
+  lunch1, 
+  lunch2,
+  bday,
+  gym1, 
+  gym2,
   volleyball,
   hands,
   movie,
@@ -193,26 +201,29 @@ export const learnVideos = [
     author: "Г.ҮЛЭМЖЖАРГАЛ",
     title: "Бүртгэл хийх",
     url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
-  },
-];
+  }]
 export const discountsi = [
   {
-    title: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ ",
-    description: "",
+    description: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
+    images: [bonus1, bonus2] 
   },
   {
-    title: "УТАСНЫ ТӨЛБӨР",
-    description: "",
+    description: "УТАСНЫ ТӨЛБӨР",
+    images: [phone] 
   },
   {
-    title: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
-    description: "Lunch Menu",
+    description: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
+    images: [lunch1, lunch2] 
   },
   {
-    title: "Төрсөн өдөр",
-    description: "",
+      description: "",
+      images: [bday] 
   },
   {
+      description: "GYM",
+      images: [gym1, gym2] 
+  }
+];
     title: "GYM",
     description: "",
   },

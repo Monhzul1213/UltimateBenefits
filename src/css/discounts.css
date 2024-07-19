@@ -1,3 +1,115 @@
+.discounts-container {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: auto; /* Adjusted for flexible height */
+  gap: 40px;
+  max-width: 1400px;
+  width: 100%; /* Ensures grid is responsive */
+}
+
+.card {
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 280px; /* Fixed height */
+  width: 380px; /* Fixed width */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card.highlight {
+  border: 3px solid #007bff; /* More prominent border for highlight */
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+}
+
+.discount-image {
+  width: 100%; /* Responsive width */
+  height: 100%; /* Responsive height */
+  object-fit: cover; /* Ensures images cover the card area without distortion */
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 0.5s ease;
+}
+
+.discount-image.first-image {
+  z-index: 1;
+  opacity: 1;
+}
+
+.discount-image.second-image {
+  z-index: 2;
+  opacity: 0;
+}
+
+.card.highlight:hover .discount-image.second-image {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Responsive width */
+  height: 100%; /* Responsive height */
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.discounts-card {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size:  28px;
+  font-weight: bold;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.8);
+  z-index: 3; /* Ensures text is on top of overlay */
+}
+
+.add-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px dashed #ccc;
+  border-radius: 12px;
+  height: 280px; /* Fixed height */
+  width: 380px; /* Fixed width */
+  transition: background-color 0.3s ease;
+}
+
+.add-card:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.add-button {
+  background: none;
+  border: none;
+  font-size: 3em;
+  color: #007bff;
+  cursor: pointer;
+  
 .discounts-card {
   width: 300px;
   height: 560px;
