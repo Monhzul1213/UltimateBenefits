@@ -224,10 +224,7 @@ export const discountsi = [
       images: [gym1, gym2] 
   }
 ];
-    title: "GYM",
-    description: "",
-  },
-];
+  
   export const clubsItems = [
     {
       title :"MOVIE CLUB",
