@@ -120,6 +120,10 @@
 .training-category-selected {
   border: 2px solid rgb(154, 154, 247);
 }
+.downloadfile-icon {
+  width: 45px;
+  cursor: pointer;
+}
 @media only screen and (max-width: 1275px) {
   .learning-videos-container {
     justify-content: center;

@@ -88,7 +88,7 @@ export const Learning = () => {
             <>
               {learningDatas?.map((learning, idx) => {
                 if (learning.IsFile == "Y") {
-                  return <TrainingFileCard learning={learning} />;
+                  return <TrainingFileCard key={idx} learning={learning} />;
                 } else {
                   return (
                     <VideoCard
