@@ -1,320 +1,112 @@
-.discounts-card {
-<<<<<<< HEAD
-  width: 300px;
-  height: 660px;
-  top: 20px;
-  left: 10px;
-  border-radius: 10px;
-  transition: all 0.3s;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-}
-.discounts-card1 {
-  width: 300px;
-  height: 660px;
-  border-radius: 10px;
-  transition: all 0.3s;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-}
-
-.discounts-card-footer-btn {
-  height: 30px;
-  border-radius: 15px;
-  width: 60%;
-  margin: 0 auto;
-}
-
 .discounts-container {
   padding: 40px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: left;
-}
-
-#discounts-card-two h3 {
-  width: 250px;
-}
-
-#discounts-card-two-flex {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
 }
 
-.discountsl-container {
-  flex-wrap: wrap;
-  display: flex;
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: auto; /* Adjusted for flexible height */
   gap: 40px;
+  max-width: 1400px;
+  width: 100%; /* Ensures grid is responsive */
 }
 
-.discounts-photo {
-  width: 10%;
-  height: 20%;
-  object-fit: cover;
-}
-
-.image-container {
+.card {
   position: relative;
-  display: inline-block;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 280px; /* Fixed height */
+  width: 380px; /* Fixed width */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.bonus1-image {
-  display: block;
-  height: 660px;
-  width: 300px;
+.card.highlight {
+  border: 3px solid #007bff; /* More prominent border for highlight */
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
-.bonus2-image {
-  position: absolute;
-  top: 260px;
-  left: 0;
-  display: block;
-  height: 405px;
-  width: 310px;
+.card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
 
-.lunch1-image {
-  display: block;
-  width: 510px;
-  height: 300px;
-}
-
-.lunch2-image {
-  position: absolute;
-  top: 20px;
-  left: 280px;
-  display: block;
-  width: 300px;
-  height: 270px;
-}
-
-.gym1-image {
-  display: block;
-  height: 300px;
-  width: 280px;
-}
-
-.gym2-image {
+.discount-image {
+  width: 100%; /* Responsive width */
+  height: 100%; /* Responsive height */
+  object-fit: cover; /* Ensures images cover the card area without distortion */
   position: absolute;
   top: 0;
   left: 0;
-  height: 50px;
-  width: 60px;
+  transition: opacity 0.5s ease;
 }
 
-.phone-image {
+.discount-image.first-image {
+  z-index: 1;
+  opacity: 1;
+}
+
+.discount-image.second-image {
+  z-index: 2;
+  opacity: 0;
+}
+
+.card.highlight:hover .discount-image.second-image {
+  opacity: 1;
+}
+
+.overlay {
   position: absolute;
-  top: 210px;
-  left: 430px;
-  height: 250px;
-  width: 220px;
+  top: 0;
+  left: 0;
+  width: 100%; /* Responsive width */
+  height: 100%; /* Responsive height */
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.bday-image {
-  display: block;
-  width: 510px;
-  height: 300px;
+.card:hover .overlay {
+  opacity: 1;
 }
 
-.discounts-card-b {
-  height: 200px;
-  width: 300px;
-  border-radius: 20px;
-  background: radial-gradient(
-      circle at 100% 100%,
-      #ffffff 0,
-      #ffffff 18px,
-      transparent 18px
-  ) 0% 0%/20px 20px no-repeat,
-  radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 18px, transparent 18px)
-      100% 0%/20px 20px no-repeat,
-  radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 18px, transparent 18px)
-      0% 100%/20px 20px no-repeat,
-  radial-gradient(circle at 0 0, #ffffff 0, #ffffff 18px, transparent 18px)
-      100% 100%/20px 20px no-repeat,
-  linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
-      calc(100% - 40px) no-repeat,
-  linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 40px)
-      calc(100% - 4px) no-repeat,
-  linear-gradient(90deg, rgba(72, 171, 224, 0.935) 0%, #ff0000 100%);
-}
-
-.discounts-card-l {
-  height: 300px;
-  width: 510px;
-  border-radius: 20px;
-  background: radial-gradient(
-      circle at 100% 100%,
-      #ffffff 0,
-      #ffffff 18px,
-      transparent 18px
-  ) 0% 0%/20px 20px no-repeat,
-  radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 18px, transparent 18px)
-      100% 0%/20px 20px no-repeat,
-  radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 18px, transparent 18px)
-      0% 100%/20px 20px no-repeat,
-  radial-gradient(circle at 0 0, #ffffff 0, #ffffff 18px, transparent 18px)
-      100% 100%/20px 20px no-repeat,
-  linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
-      calc(100% - 40px) no-repeat,
-  linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 40px)
-      calc(100% - 4px) no-repeat,
-  linear-gradient(90deg, rgba(72, 171, 224, 0.935) 0%, #ff0000 100%);
-}
-
-.discounts-card-p {
-  height: 300px;
-  width: 280px;
-  border-radius: 20px;
-  background: radial-gradient(
-      circle at 100% 100%,
-      #ffffff 0,
-      #ffffff 18px,
-      transparent 18px
-  ) 0% 0%/20px 20px no-repeat,
-  radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 18px, transparent 18px)
-      100% 0%/20px 20px no-repeat,
-  radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 18px, transparent 18px)
-      0% 100%/20px 20px no-repeat,
-  radial-gradient(circle at 0 0, #ffffff 0, #ffffff 18px, transparent 18px)
-      100% 100%/20px 20px no-repeat,
-  linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 4px)
-      calc(100% - 40px) no-repeat,
-  linear-gradient(#ffffff, #ffffff) 50% 50% / calc(100% - 40px)
-      calc(100% - 4px) no-repeat,
-  linear-gradient(90deg, rgba(72, 171, 224, 0.935) 0%, #ff0000 100%);
-=======
-    width: 300px;
-    height: 560px;
-    border-radius: 20px;
-    padding: 40px;
-    border-radius: 10px;
-    transition: all 0.5s;
-    position: relative;
-    transition: all 0.5s;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-}
-.discounts-card1 {
-    width: 300px;
-    height: 250px;
-    border-radius: 20px;
-    padding: 40px;
-    border-radius: 10px;
-    transition: all 0.5s;
-    position: relative;
-    transition: all 0.5s;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-}
-.discounts-card2 {
-    width: 450px;
-    height: 250px;
-    border-radius: 20px;
-    padding: 40px;
-    border-radius: 10px;
-    transition: all 0.5s;
-    position: relative;
-    transition: all 0.5s;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-}
-.discounts-card-footer-btn {
-    height: 30px;
-    border-radius: 15px;
-    width: 60%;
-    margin: 0 auto;
-}
-.discounts-container {
-    padding: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-#discounts-card-two h3 {
-    width: 150px;
-}
-#discounts-card-two-flex {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
 .discounts-card {
-    width: 300px;
-    height: 700px;
-    border-radius: 20px;
-    border-radius: 10px;
-    transition: all 0.5s;
-    position: relative;
-    transition: all 0.5s;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size:  28px;
+  font-weight: bold;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.8);
+  z-index: 3; /* Ensures text is on top of overlay */
 }
-.discounts-photo {
-    width: 10%;
-    height: 20%;
-    object-fit: cover;
+
+.add-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px dashed #ccc;
+  border-radius: 12px;
+  height: 280px; /* Fixed height */
+  width: 380px; /* Fixed width */
+  transition: background-color 0.3s ease;
 }
-.image-container {
-    position: relative;
-    display: inline-block; 
+
+.add-card:hover {
+  background-color: rgba(0, 123, 255, 0.1);
 }
-.bonus1-image {
-    display: block;
-    height:700px;
-    width:300px;
-}
-.bonus2-image {
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    display: block;
-    height:700px;
-    width:300px;
-}
-.lunch1-image {
-    display: block;
-    width: 450px;
-    height: 250px;
-}
-.lunch2-image {
-    position: absolute;
-    top: 0; 
-    right: 0; 
-    display: block;
-    width: 280px;
-    height: 250px;
-}
-.gym1-image {
-    display: block;
-    height:300px;
-    width:250px;
-}
-.gym2-image {
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    height:50px;
-    width:60px;
-}
-.phone-image {
-    display: block;
-    right: 0; 
-    height:300px;
-    width:250px;
-}
-.bday-image{
-    display: block;
-    height:250px;
-    width:400px;
->>>>>>> main
+
+.add-button {
+  background: none;
+  border: none;
+  font-size: 3em;
+  color: #007bff;
+  cursor: pointer;
 }

@@ -11,6 +11,14 @@ import {
   rules,
   umbrella,
   vaccine,
+  bonus1,
+  bonus2,
+  phone,
+  lunch1, 
+  lunch2,
+  bday,
+  gym1, 
+  gym2,
 } from "../assets";
 
 export const alphabets = [
@@ -191,45 +199,23 @@ export const learnVideos = [
   }]
 export const discountsi = [
   {
-    title: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ ",
-    description: "",
+    description: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
+    images: [bonus1, bonus2] 
   },
   {
-    title: "УТАСНЫ ТӨЛБӨР",
-    description: "",
+    description: "УТАСНЫ ТӨЛБӨР",
+    images: [phone] 
   },
   {
-    title: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
-    description: "Lunch Menu",
+    description: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
+    images: [lunch1, lunch2] 
   },
   {
-    title: "Төрсөн өдөр",
-    description: "",
+      description: "",
+      images: [bday] 
   },
   {
-    title: "GYM",
-    description: "",
+      description: "GYM",
+      images: [gym1, gym2] 
   }
-];
-export const discountsi = [
-  {
-    title: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ ",
-    description: "",
-  },
-  {
-    title: "УТАСНЫ ТӨЛБӨР",
-    description: "",
-  },
-  {
-    title: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
-    description: "Lunch Menu",
-  },
-  {
-    title: "Төрсөн өдөр",
-    description: "",
-  },
-  {
-    title: "GYM",
-    description: "",
-  },
 ];
