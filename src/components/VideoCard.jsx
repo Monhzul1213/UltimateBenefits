@@ -12,7 +12,7 @@ export const VideoCard = ({
 }) => {
   const stopVideo = () => {
     if (iframeRef.current) {
-      iframeRef.current.src = learning.Note;
+      iframeRef.current.src = learning.FileDesc;
     }
   };
   return (
@@ -26,10 +26,14 @@ export const VideoCard = ({
         <FaPlay color="white" size={40} />
       </div>
       <div className="video-desc">
-        <Avatar className="video-author-avatar" size={60} />
+        <Avatar
+          src={learning?.Picture.replace("./public/upload/", "/upload/")}
+          className="video-author-avatar"
+          size={60}
+        />
         <div>
-          <p>{learning.CreatedUserName}</p>
-          <h4>{learning.Descr}</h4>
+          <p>{learning.UserName}</p>
+          <h4>{learning.Name}</h4>
         </div>
       </div>
       <Modal
@@ -43,9 +47,9 @@ export const VideoCard = ({
         <iframe
           ref={iframeRef}
           allowFullScreen={true}
-          title={learning.Descr}
+          title={learning.Name}
           className="video-frame"
-          src={learning.Note}
+          src={learning.FileDesc}
         ></iframe>
         <Button onClick={closeModal}>Хаах</Button>
       </Modal>

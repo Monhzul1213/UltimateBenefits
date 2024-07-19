@@ -9,6 +9,9 @@ const trainContext = createContext({
   handleTrainForm: () => {},
   addLearningData: () => {},
   addTrainingType: () => {},
+  clearTrainForm: () => {},
+  handleSelectedCategory: () => {},
+  selectedCategory: 1,
   trainingTypes: [],
   learningDatas: [],
   loading: false,
@@ -20,23 +23,35 @@ const TrainProvider = ({ children }) => {
   const userToken = sessionStorage.getItem("userToken");
   const [learningDatas, setLearningDatas] = useState();
   const [trainingTypes, setTrainingTypes] = useState();
+  const [selectedCategory, setSelectedCategory] = useState(1);
   const [loading, setIsLoading] = useState(true);
   const [isFailed, setIsFailed] = useState(false);
   const [trainForm, setTrainForm] = useState({
     Name: "",
-    Type: "",
+    CategoryID: "",
     IsFile: "N",
     FileDescr: "",
   });
   const handleTrainForm = (name, value) => {
     setTrainForm((prev) => ({ ...prev, [name]: value }));
   };
+  const clearTrainForm = () => {
+    setTrainForm({
+      Name: "",
+      CategoryID: "",
+      IsFile: "N",
+      FileDescr: "",
+    });
+  };
+  const handleSelectedCategory = (id) => {
+    setSelectedCategory(id);
+  };
 
-  const getLearningData = async () => {
+  const getLearningData = async (id) => {
     setIsLoading(true);
     setIsFailed(false);
     try {
-      const { data } = await myAxios.get("/api/training", {
+      const { data } = await myAxios.get(`/api/training?CategoryID=${id}`, {
         headers: {
           Authorization: `Bearer ${userToken}`,
         },
@@ -44,10 +59,11 @@ const TrainProvider = ({ children }) => {
       console.log("LEARNING DATA", data);
       setLearningDatas(data.result);
     } catch (error) {
+      console.log("ERROR IN GET TRAININGS", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
-        alert(error.response.data.error.message, "error");
+        // alert(error.response.data.error.message, "error");
       }
       setIsFailed(true);
     } finally {
@@ -56,12 +72,13 @@ const TrainProvider = ({ children }) => {
   };
   const getTrainingType = async () => {
     try {
-      const { data } = await myAxios.get("/api/trainingType", {
+      const { data } = await myAxios.get("/api/training/category", {
         headers: {
           Authorization: `Bearer ${userToken}`,
         },
       });
       setTrainingTypes(data.result);
+      setSelectedCategory(data?.result[0]?.ID);
       console.log(data);
     } catch (error) {
       if (!error.response) {
@@ -75,7 +92,7 @@ const TrainProvider = ({ children }) => {
   const addTrainingType = async (Name) => {
     try {
       const { data } = await myAxios.post(
-        "/api/trainingType",
+        "/api/training/category",
         {
           Name,
         },
@@ -99,7 +116,7 @@ const TrainProvider = ({ children }) => {
   const addLearningData = async () => {
     const formData = new FormData();
     formData.append("Name", trainForm.Name);
-    formData.append("Type", trainForm.Type);
+    formData.append("CategoryID", trainForm.CategoryID);
     formData.append("IsFile", trainForm.IsFile);
     formData.append("FileDesc", trainForm.FileDescr);
     try {
@@ -110,7 +127,8 @@ const TrainProvider = ({ children }) => {
           Authorization: `Bearer ${userToken}`,
         },
       });
-      console.log("ADDED LEARNING DATA", data);
+      alert("Амжилттай хадгаллаа", "success");
+      getLearningData(selectedCategory);
     } catch (error) {
       console.log("error in adding data", error);
       if (!error.response) {
@@ -128,12 +146,15 @@ const TrainProvider = ({ children }) => {
         learningDatas,
         trainForm,
         trainingTypes,
+        selectedCategory,
         getLearningData,
         isFailed,
         handleTrainForm,
         getTrainingType,
         addLearningData,
         addTrainingType,
+        clearTrainForm,
+        handleSelectedCategory,
       }}
     >
       {children}

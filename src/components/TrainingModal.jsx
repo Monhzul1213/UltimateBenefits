@@ -17,7 +17,7 @@ const content = (
       {trainingTypes?.map((type) => (
         <Button
           onClick={() => {
-            handleTrainForm("Type", type.ID);
+            handleTrainForm("CategoryID", type.ID);
             setSelectedType(type.Name);
           }}
           type="text"
@@ -54,6 +54,7 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
     trainForm,
     addTrainingType,
     trainingTypes,
+    clearTrainForm,
   } = useTraining();
   const handleInput = (e) => {
     handleTrainForm(e.target.name, e.target.value);
@@ -73,6 +74,8 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
     <Modal
       onCancel={() => {
         handleTrainingModal(false);
+        setSelectedType(null);
+        clearTrainForm();
       }}
       footer={null}
       closable={false}
@@ -85,6 +88,7 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
           <Input
             name="Name"
             onChange={handleInput}
+            value={trainForm.Name}
             placeholder="Сургалтын гарчигаа оруулна уу"
           />
         </div>
@@ -121,7 +125,11 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
             </Popover>
           </div>
         </div>
-        <Checkbox className="training-checkbox" onChange={handleCheck}>
+        <Checkbox
+          checked={trainForm?.IsFile === "N" ? false : true}
+          className="training-checkbox"
+          onChange={handleCheck}
+        >
           Файл эсэх
         </Checkbox>
 
@@ -150,12 +158,19 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
             style={{ fontWeight: 700 }}
             onClick={() => {
               handleTrainingModal(false);
+              setSelectedType(null);
+              clearTrainForm();
             }}
           >
             Хаах
           </Button>
           <Button
-            onClick={addLearningData}
+            onClick={() => {
+              addLearningData();
+              handleTrainingModal(false);
+              setSelectedType(null);
+              clearTrainForm();
+            }}
             style={{ fontWeight: 700, marginLeft: 10 }}
             type="primary"
           >
