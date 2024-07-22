@@ -44,6 +44,7 @@ export const TrainingFileCard = ({
     },
   ];
   const handleDownloadFile = () => {
+    console.log("FILE DEST", learning?.FileDesc);
     const fileName = learning?.FileDesc.split("/").pop();
     console.log("filename", fileName);
     const aTag = document.createElement("a");
