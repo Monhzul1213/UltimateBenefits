@@ -24,10 +24,12 @@ import bonus1 from "./bonus1.png";
 import bonus2 from "./bonus2.png";
 import bday from "./bday.png";
 import phone from "./phone.png";
+import phone1 from "./phone1.png";
 import lunch1 from "./lunch1.png";
 import lunch2 from "./lunch2.png";
 import gym1 from "./gym1.png";
 import gym2 from "./gym2.png";
+import add_card from "./add_card.png";
 import hands from "./hands.png";
 import dotka from "./dotka.png";
 import volleyball from "./volleyball.png";
@@ -61,10 +63,12 @@ export {
   bonus2,
   bday,
   phone,
+  phone1,
   lunch1,
   lunch2,
   gym1,
   gym2,
+  add_card,
   hands,
   dotka,
   volleyball,
