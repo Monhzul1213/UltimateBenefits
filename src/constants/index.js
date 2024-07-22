@@ -1,3 +1,4 @@
+import { DescriptionsContext } from "antd/es/descriptions";
 import {
   car,
   care,
@@ -16,6 +17,7 @@ import {
   movie,
   people,
   dotka,
+  AddClubs,
 } from "../assets";
 
 export const alphabets = [
@@ -219,30 +221,71 @@ export const discountsi = [
 ];
   export const clubsItems = [
     {
-      title :"MOVIE CLUB",
-      description: "moviemovie",
-      Image : movie
+      title: "MOVIE NIGHT",
+      Image : movie,
+      altText: "Movie Club Image",
+      description: "Join our Movie Club to watch Netflix and discuss great films together!",
+      members: [
+        { name: "John Doe", position: "President", company: "UltimateSOlution", telephone: "99999999" }
+      ],
+      fbLink: "https://www.facebook.com/groups/329454226106597",
+      icon: "path/to/movie-club-icon.png",
+      category: "Entertainment"
     },
     {
-      title: "ENGLISH LANGUAGE CLUB",
-      description: "itsenglish",
-      Image : hands
+      title: "ENGLISH CLUB",
+      Image : hands,
+      altText: "Movie Club Image",
+      description: "Англи хэлний мэдлэгээ сайжруулах, бусадтай санаа бодлоо солилцох зорилгоор 7 хоног бүрийн Мягмар гарагийн 08:30 цагт",
+      members: [
+        { name: "John Doe", position: "President", company: "UltimateSOlution", telephone: "99999999" }
+      ],
+      fbLink: "https://www.facebook.com/groups/329454226106597",
+      icon: "path/to/movie-club-icon.png",
+      category: "Entertainment"
 
     },
     {
       title: "ADVENTURE CLUB",
-      description: "exploreadventure",
-      Image : people
+      Image : people,
+      altText: "Movie Club Image",
+      description: "Join our Movie Club to watch and discuss great films together!",
+      members: [
+        { name: "Ulemjjargal", position: "HR", company: "UltimateSOlution", telephone: "99059766" },
+        {name: "Enerel", position: "MANAGER", company: "MEP", Contact: "99055489"}
+      ],
+      fbLink: "https://www.facebook.com/groups/329454226106597",
+      icon: "path/to/movie-club-icon.png",
+      category: "Entertainment"
     },
     {
       title: "SPORT CLUB",
-      description: "letsplay",
-      Image : volleyball
+      Image : volleyball,
+      altText: "Movie Club Image",
+      description: "Өсвөрийн зохион бүтээгчдийн ахлах сургуулиын спорт зааланд 7 хоног бүрийн Пүрэв гарагийн 19:00-21.00 цагийн хооронд",
+      members: [
+        { name: "John Doe", position: "President", company: "UltimateSOlution", telephone: "99999999" }
+      ],
+      fbLink: "https://www.facebook.com/groups/329454226106597",
+      icon: "path/to/movie-club-icon.png",
+      category: "Entertainment"
     },
     {
     title: "E-SPORT CLUB",
-    description: "dotka",
-    Image : dotka
+    Image : dotka,
+    altText: "Movie Club Image",
+    description: "E-sport-д сонирхолтой хэн ч нэгдэх боломжтой ",
+    members: [
+      { name: "John Doe", position: "CEE", company: "UltimateSolutions", telephone: "99999999" }
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment"
     },
+    {
+     description : "Border",
+     Image: AddClubs
+    },
+
     
   ]
