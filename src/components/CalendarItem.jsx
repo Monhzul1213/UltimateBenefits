@@ -1,13 +1,12 @@
-import { Dropdown, Input, Tooltip } from "antd";
-import React, { useState } from "react";
-import AddCalendarInput from "./AddCalendarInput";
+import { Dropdown, Tooltip } from "antd";
+import { useState } from "react";
 import EditCalendarSection from "./EditCalendarSection";
 import { alert } from "../lib/actions/alert.actions";
 import { useCalendar } from "../context/CalendarProvider";
 import { useAuth } from "../context/AuthProvider";
 import { checkRole } from "../lib/utils/checkRole";
 
-export const CalendarItem = ({ item, isComing = false }) => {
+export const CalendarItem = ({ item }) => {
   const [isEditing, setIsEditing] = useState(false);
   const { deleteCalendar } = useCalendar();
   const { user } = useAuth();
@@ -15,7 +14,7 @@ export const CalendarItem = ({ item, isComing = false }) => {
     setIsEditing(false);
   };
   const handleClick = ({ key }) => {
-    if (item.CalendarID == 0) {
+    if (item.CalendarID === "0") {
       alert("Уучлаарай, өөрчлөх боломжгүй тэмдэглэл!", "warning");
       return;
     }

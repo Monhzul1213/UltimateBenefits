@@ -122,6 +122,13 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       width: 105,
     },
     {
+      title: "Ажлийн утас",
+      dataIndex: "WorkPhone",
+      key: "WorkPhone",
+      width: 105,
+      render: (text) => <p>{text ? text : "Байхгүй"}</p>,
+    },
+    {
       title: "Гэрийн хаяг",
       dataIndex: "Address",
       key: "Address",
@@ -147,7 +154,7 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       dataIndex: "Status",
       key: "Status",
       width: 100,
-      render: (text) => <p>{text == "A" ? "Идэвхтэй" : "Идэвхгүй"}</p>,
+      render: (text) => <p>{text === "A" ? "Идэвхтэй" : "Идэвхгүй"}</p>,
       filterSearch: true,
       filters: [
         {

@@ -14,4 +14,5 @@ export * from "./RegisterSelect";
 export * from "./AddCalendar";
 export * from "./CalendarItem";
 export * from "./VideoCard";
+export * from "./TrainingFileCard";
 export * from "./clubsCard";

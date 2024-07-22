@@ -14,10 +14,10 @@ import {
   bonus1,
   bonus2,
   phone,
-  lunch1, 
+  lunch1,
   lunch2,
   bday,
-  gym1, 
+  gym1,
   gym2,
   volleyball,
   hands,
@@ -201,56 +201,55 @@ export const learnVideos = [
     author: "Г.ҮЛЭМЖЖАРГАЛ",
     title: "Бүртгэл хийх",
     url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
-  }]
+  },
+];
 export const discountsi = [
   {
     description: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
-    images: [bonus1, bonus2] 
+    images: [bonus1, bonus2],
   },
   {
     description: "УТАСНЫ ТӨЛБӨР",
-    images: [phone] 
+    images: [phone],
   },
   {
     description: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
-    images: [lunch1, lunch2] 
+    images: [lunch1, lunch2],
   },
   {
-      description: "",
-      images: [bday] 
+    description: "",
+    images: [bday],
   },
   {
-      description: "GYM",
-      images: [gym1, gym2] 
-  }
+    description: "GYM",
+    images: [gym1, gym2],
+  },
 ];
-  
-  export const clubsItems = [
-    {
-      title :"MOVIE CLUB",
-      description: "moviemovie",
-      Image : movie
-    },
-    {
-      title: "ENGLISH LANGUAGE CLUB",
-      description: "itsenglish",
-      Image : hands
 
-    },
-    {
-      title: "ADVENTURE CLUB",
-      description: "exploreadventure",
-      Image : people
-    },
-    {
-      title: "SPORT CLUB",
-      description: "letsplay",
-      Image : volleyball
-    },
-    {
+export const clubsItems = [
+  {
+    title: "MOVIE CLUB",
+    description: "moviemovie",
+    Image: movie,
+  },
+  {
+    title: "ENGLISH LANGUAGE CLUB",
+    description: "itsenglish",
+    Image: hands,
+  },
+  {
+    title: "ADVENTURE CLUB",
+    description: "exploreadventure",
+    Image: people,
+  },
+  {
+    title: "SPORT CLUB",
+    description: "letsplay",
+    Image: volleyball,
+  },
+  {
     title: "E-SPORT CLUB",
     description: "dotka",
-    Image : dotka
-    },
-    
-  ]
+    Image: dotka,
+  },
+];
