@@ -75,6 +75,15 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
               onChange={handleInput}
             />
           </div>
+          <div style={{ width: "100%" }}>
+            <p>Ажлийн утас</p>
+            <Input
+              value={empFormEdit.WorkPhone}
+              name="WorkPhone"
+              placeholder="Ажлийн утас"
+              onChange={handleInput}
+            />
+          </div>
         </div>
         <div>
           <p>Компани</p>

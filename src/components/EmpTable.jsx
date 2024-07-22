@@ -122,6 +122,13 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       width: 105,
     },
     {
+      title: "Ажлийн утас",
+      dataIndex: "WorkPhone",
+      key: "WorkPhone",
+      width: 105,
+      render: (text) => <p>{text ? text : "Байхгүй"}</p>,
+    },
+    {
       title: "Гэрийн хаяг",
       dataIndex: "Address",
       key: "Address",

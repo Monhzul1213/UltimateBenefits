@@ -33,6 +33,7 @@ const EmployeeProvider = ({ children }) => {
     BirthDate: "",
     Email: "",
     PhoneNumber: "",
+    WorkPhone: "",
     Address: "",
     HireDate: "",
     Role: "",
@@ -54,6 +55,7 @@ const EmployeeProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
+      console.log("EMP DATA", data);
       setEmpCount(data.user);
       setEmpForm(data.result);
       setEmpFailed(false);
