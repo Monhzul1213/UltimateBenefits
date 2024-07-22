@@ -33,8 +33,28 @@ import dotka from "./dotka.png";
 import volleyball from "./volleyball.png";
 import movie from "./movie.png";
 import people from "./peoples.png";
+<<<<<<< HEAD
 import AddClubs from "./AddClubs.png";
+=======
+import downloadFile from "./downloadFile.png";
+import excelBack from "./excelBack.png";
+import excelIcon from "./excelIcon.png";
+import nemeh from "./nemeh.png";
+import pdfBack from "./pdfBack.png";
+import pdfIcon from "./pdfIcon.png";
+import wordBack from "./wordBack.png";
+import wordIcon from "./wordIcon.png";
+
+>>>>>>> main
 export {
+  downloadFile,
+  excelBack,
+  excelIcon,
+  nemeh,
+  pdfBack,
+  pdfIcon,
+  wordBack,
+  wordIcon,
   day01,
   day16,
   car,
@@ -70,5 +90,9 @@ export {
   volleyball,
   movie,
   people,
+<<<<<<< HEAD
   AddClubs,
 };
+=======
+};
+>>>>>>> main

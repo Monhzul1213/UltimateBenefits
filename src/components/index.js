@@ -17,3 +17,4 @@ export * from "./VideoCard";
 export * from "./ClubsModal";
 export * from "./AddClub";
 export * from "./modalSignup";
+export * from "./TrainingFileCard";

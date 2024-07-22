@@ -1,129 +1,112 @@
-.discounts-card {
-  width: 300px;
-  height: 560px;
-  border-radius: 20px;
-  padding: 40px;
-  border-radius: 10px;
-  transition: all 0.5s;
-  position: relative;
-  transition: all 0.5s;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-}
-.discounts-card1 {
-  width: 300px;
-  height: 250px;
-  border-radius: 20px;
-  padding: 40px;
-  border-radius: 10px;
-  transition: all 0.5s;
-  position: relative;
-  transition: all 0.5s;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-}
-.discounts-card2 {
-  width: 450px;
-  height: 250px;
-  border-radius: 20px;
-  padding: 40px;
-  border-radius: 10px;
-  transition: all 0.5s;
-  position: relative;
-  transition: all 0.5s;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-}
-.discounts-card-footer-btn {
-  height: 30px;
-  border-radius: 15px;
-  width: 60%;
-  margin: 0 auto;
-}
 .discounts-container {
-  padding: 50px;
+  padding: 20px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-}
-#discounts-card-two h3 {
-  width: 150px;
-}
-#discounts-card-two-flex {
-  display: flex;
   align-items: center;
-  margin-bottom: 10px;
 }
-.discounts-card {
-  width: 300px;
-  height: 700px;
-  border-radius: 20px;
-  border-radius: 10px;
-  transition: all 0.5s;
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: auto; /* Adjusted for flexible height */
+  gap: 40px;
+  max-width: 1400px;
+  width: 100%; /* Ensures grid is responsive */
+}
+
+.card {
   position: relative;
-  transition: all 0.5s;
   cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 280px; /* Fixed height */
+  width: 380px; /* Fixed width */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-.discounts-photo {
-  width: 10%;
-  height: 20%;
-  object-fit: cover;
+
+.card.highlight {
+  border: 3px solid #007bff; /* More prominent border for highlight */
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
-.image-container {
-  position: relative;
-  display: inline-block;
+
+.card:hover {
+  transform: scale(1.07);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
 }
-.bonus1-image {
-  display: block;
-  height: 700px;
-  width: 300px;
-}
-.bonus2-image {
+
+.discount-image {
+  width: 100%; /* Responsive width */
+  height: 100%; /* Responsive height */
+  object-fit: cover; /* Ensures images cover the card area without distortion */
   position: absolute;
   top: 0;
   left: 0;
-  display: block;
-  height: 700px;
-  width: 300px;
+  transition: opacity 0.5s ease;
 }
-.lunch1-image {
-  display: block;
-  width: 450px;
-  height: 250px;
+
+.discount-image.first-image {
+  z-index: 1;
+  opacity: 1;
 }
-.lunch2-image {
-  position: absolute;
-  top: 0;
-  right: 0;
-  display: block;
-  width: 280px;
-  height: 250px;
+
+.discount-image.second-image {
+  z-index: 2;
+  opacity: 0;
 }
-.gym1-image {
-  display: block;
-  height: 300px;
-  width: 250px;
+
+.card.highlight:hover .discount-image.second-image {
+  opacity: 1;
 }
-.gym2-image {
+
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
-  height: 50px;
-  width: 60px;
+  width: 100%; /* Responsive width */
+  height: 100%; /* Responsive height */
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-.phone-image {
-  display: block;
-  right: 0;
-  height: 300px;
-  width: 250px;
+
+.card:hover .overlay {
+  opacity: 1;
 }
-.bday-image {
-  display: block;
-  height: 250px;
-  width: 400px;
+
+.discounts-card {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size:  28px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 3; /* Ensures text is on top of overlay */
+}
+
+.add-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px dashed #ccc;
+  border-radius: 12px;
+  height: 280px; /* Fixed height */
+  width: 380px; /* Fixed width */
+  transition: background-color 0.3s ease;
+}
+
+.add-card:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.add-button {
+  background: none;
+  border: none;
+  font-size: 3em;
+  color: #007bff;
+  cursor: pointer;
 }
