@@ -141,6 +141,12 @@
     width: 95%;
     height: 100%;
   }
+  .training-file-title {
+    position: relative;
+    color: white;
+    font-size: 25px;
+    width: 80%;
+  }
 }
 @media only screen and (max-width: 460px) {
   .video-card {
@@ -151,5 +157,12 @@
   }
   .video-author-avatar {
     display: none;
+  }
+  .training-category {
+    padding: 10px;
+  }
+  .training-category h2 {
+    font-size: 12px;
+    font-weight: 400;
   }
 }

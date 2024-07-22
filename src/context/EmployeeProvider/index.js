@@ -67,7 +67,7 @@ const EmployeeProvider = ({ children }) => {
     console.log("ADDING EMPLOYEE", employees);
     const empData = isOne ? [employees] : employees;
     try {
-      const { data } = await myAxios.post("/api/users/register", empData, {
+      await myAxios.post("/api/users/register", empData, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
@@ -86,7 +86,7 @@ const EmployeeProvider = ({ children }) => {
   const editEmployee = async (id) => {
     setEmpLoading(true);
     try {
-      const data = await myAxios.put(`/api/users/${id}`, empFormEdit, {
+      await myAxios.put(`/api/users/${id}`, empFormEdit, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },

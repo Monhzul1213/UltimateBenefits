@@ -4,7 +4,6 @@ import { Button, DatePicker, Input } from "antd";
 import dayjs from "dayjs";
 import { FaCheck } from "react-icons/fa";
 import { HiMiniXMark } from "react-icons/hi2";
-import { dateFormatWithYear } from "../lib/utils/dateFormatter";
 
 const EditCalendarSection = ({
   editTitle,
@@ -17,7 +16,7 @@ const EditCalendarSection = ({
   const [pickedDate, setPickedDate] = useState(editDate);
   const [title, setTitle] = useState(editTitle);
   const [color, setColor] = useState(editColor);
-  const onCalendarChange = (date, dateString) => {
+  const onCalendarChange = (_, dateString) => {
     setPickedDate(dateString);
   };
   const handleInput = (e) => {

@@ -147,7 +147,7 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       dataIndex: "Status",
       key: "Status",
       width: 100,
-      render: (text) => <p>{text == "A" ? "Идэвхтэй" : "Идэвхгүй"}</p>,
+      render: (text) => <p>{text === "A" ? "Идэвхтэй" : "Идэвхгүй"}</p>,
       filterSearch: true,
       filters: [
         {

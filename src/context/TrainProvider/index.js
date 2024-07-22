@@ -10,7 +10,12 @@ const trainContext = createContext({
   addLearningData: () => {},
   addTrainingType: () => {},
   clearTrainForm: () => {},
+  editTrainForm: () => {},
   handleSelectedCategory: () => {},
+  setSelectedType: () => {},
+  deleteLearningData: () => {},
+  updateLearningData: () => {},
+  selectedType: "",
   selectedCategory: 1,
   trainingTypes: [],
   learningDatas: [],
@@ -20,9 +25,9 @@ const trainContext = createContext({
 });
 
 const TrainProvider = ({ children }) => {
-  const userToken = sessionStorage.getItem("userToken");
   const [learningDatas, setLearningDatas] = useState();
   const [trainingTypes, setTrainingTypes] = useState();
+  const [selectedType, setSelectedType] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(1);
   const [loading, setIsLoading] = useState(true);
   const [isFailed, setIsFailed] = useState(false);
@@ -43,6 +48,9 @@ const TrainProvider = ({ children }) => {
       FileDescr: "",
     });
   };
+  const editTrainForm = (value) => {
+    setTrainForm(value);
+  };
   const handleSelectedCategory = (id) => {
     setSelectedCategory(id);
   };
@@ -53,7 +61,7 @@ const TrainProvider = ({ children }) => {
     try {
       const { data } = await myAxios.get(`/api/training?CategoryID=${id}`, {
         headers: {
-          Authorization: `Bearer ${userToken}`,
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
       console.log("LEARNING DATA", data);
@@ -63,7 +71,7 @@ const TrainProvider = ({ children }) => {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
-        // alert(error.response.data.error.message, "error");
+        alert("Алдаа гарлаа", "error");
       }
       setIsFailed(true);
     } finally {
@@ -74,31 +82,32 @@ const TrainProvider = ({ children }) => {
     try {
       const { data } = await myAxios.get("/api/training/category", {
         headers: {
-          Authorization: `Bearer ${userToken}`,
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
       setTrainingTypes(data.result);
       setSelectedCategory(data?.result[0]?.ID);
       console.log(data);
     } catch (error) {
+      console.log("ERROR IN GET TYPES", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
-        alert(error.response.data.error.message, "error");
+        alert("Алдаа гарлаа", "error");
       }
     }
   };
 
   const addTrainingType = async (Name) => {
     try {
-      const { data } = await myAxios.post(
+      await myAxios.post(
         "/api/training/category",
         {
           Name,
         },
         {
           headers: {
-            Authorization: `Bearer ${userToken}`,
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
           },
         }
       );
@@ -108,7 +117,7 @@ const TrainProvider = ({ children }) => {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
-        alert(error.response.data.error.message, "error");
+        alert("Алдаа гарлаа", "error");
       }
     }
   };
@@ -121,10 +130,10 @@ const TrainProvider = ({ children }) => {
     formData.append("FileDesc", trainForm.FileDescr);
     try {
       console.log("Addid train data", trainForm);
-      const data = await myAxios.post("/api/training", formData, {
+      await myAxios.post("/api/training", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${userToken}`,
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
       alert("Амжилттай хадгаллаа", "success");
@@ -134,11 +143,54 @@ const TrainProvider = ({ children }) => {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
-        alert(error.response.data.error.message, "error");
+        alert("Алдаа гарлаа", "error");
       }
     }
   };
-
+  const deleteLearningData = async (id) => {
+    console.log("DELETE data", id);
+    try {
+      await myAxios.delete(`/api/training/${id}`, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай устгагдлаа", "success");
+      getLearningData(1);
+    } catch (error) {
+      console.log("error in delte data", error);
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert("Алдаа гарлаа", "error");
+      }
+    }
+  };
+  const updateLearningData = async (id) => {
+    const formData = new FormData();
+    formData.append("Name", trainForm.Name);
+    formData.append("CategoryID", trainForm.CategoryID);
+    formData.append("IsFile", trainForm.IsFile);
+    formData.append("FileDesc", trainForm.FileDescr);
+    try {
+      console.log("edit data", formData);
+      await myAxios.put(`/api/training/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай засагдлаа", "success");
+    } catch (error) {
+      console.log("error in update data", error);
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert("Алдаа гарлаа", "error");
+      }
+    }
+  };
   return (
     <trainContext.Provider
       value={{
@@ -155,6 +207,11 @@ const TrainProvider = ({ children }) => {
         addTrainingType,
         clearTrainForm,
         handleSelectedCategory,
+        editTrainForm,
+        deleteLearningData,
+        selectedType,
+        setSelectedType,
+        updateLearningData,
       }}
     >
       {children}

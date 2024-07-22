@@ -2,6 +2,7 @@ import { Button, Checkbox, Input, Modal, Popover, Space, Upload } from "antd";
 import { useState } from "react";
 import { useTraining } from "../context/TrainProvider";
 import { MdOutlineFileUpload } from "react-icons/md";
+import { alert } from "../lib/actions/alert.actions";
 
 const content = (
   addTrainingType,
@@ -14,8 +15,9 @@ const content = (
 ) => {
   return (
     <div className="training-type-box">
-      {trainingTypes?.map((type) => (
+      {trainingTypes?.map((type, index) => (
         <Button
+          key={index}
           onClick={() => {
             handleTrainForm("CategoryID", type.ID);
             setSelectedType(type.Name);
@@ -45,9 +47,13 @@ const content = (
   );
 };
 
-const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
+const TrainingModal = ({
+  addModal,
+  isEdit,
+  handleTrainingModal,
+  setIsEdit,
+}) => {
   const [newType, setNewType] = useState("");
-  const [selectedType, setSelectedType] = useState("");
   const {
     handleTrainForm,
     addLearningData,
@@ -55,6 +61,9 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
     addTrainingType,
     trainingTypes,
     clearTrainForm,
+    selectedType,
+    setSelectedType,
+    updateLearningData,
   } = useTraining();
   const handleInput = (e) => {
     handleTrainForm(e.target.name, e.target.value);
@@ -66,16 +75,24 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
     handleTrainForm("IsFile", target.checked ? "Y" : "N");
   };
   const handleFileChange = ({ file }) => {
-    if (file?.status != "removed") {
+    if (file?.status !== "removed") {
       handleTrainForm("FileDescr", file);
     }
   };
+  const [warningMessage, setWarningMessage] = useState({});
+
+  const validateForm = () => {
+    if (!trainForm.Name) {
+    }
+  };
+
   return (
     <Modal
       onCancel={() => {
         handleTrainingModal(false);
         setSelectedType(null);
         clearTrainForm();
+        setIsEdit(false);
       }}
       footer={null}
       closable={false}
@@ -137,7 +154,8 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
           <div>
             <p>Бичлэгний холбоос</p>
             <Input
-              name="FileDescr"
+              value={isEdit ? trainForm.FileDesc : trainForm.FileDescr}
+              name={isEdit ? "FileDesc" : "FileDescr"}
               placeholder="https://www.youtube.com/embed/example"
               onChange={handleInput}
             />
@@ -145,11 +163,17 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
         ) : (
           <div className="training-file-box">
             <Upload
+              accept=".doc,.pptx,.pdf,xlsx"
               onChange={handleFileChange}
               beforeUpload={() => false}
               maxCount={1}
             >
               <Button icon={<MdOutlineFileUpload />}>Файл хавсаргах</Button>
+              {isEdit && !trainForm.FileDescr && (
+                <p style={{ textAlign: "center", marginTop: 10 }}>
+                  {trainForm?.FileDesc?.split("/").pop()}
+                </p>
+              )}
             </Upload>
           </div>
         )}
@@ -160,22 +184,38 @@ const TrainingModal = ({ addModal, isEdit, handleTrainingModal }) => {
               handleTrainingModal(false);
               setSelectedType(null);
               clearTrainForm();
+              setIsEdit(false);
             }}
           >
             Хаах
           </Button>
-          <Button
-            onClick={() => {
-              addLearningData();
-              handleTrainingModal(false);
-              setSelectedType(null);
-              clearTrainForm();
-            }}
-            style={{ fontWeight: 700, marginLeft: 10 }}
-            type="primary"
-          >
-            Нэмэх
-          </Button>
+          {isEdit ? (
+            <Button
+              onClick={() => {
+                updateLearningData(trainForm.ID);
+                handleTrainingModal(false);
+                setSelectedType(null);
+                clearTrainForm();
+              }}
+              style={{ fontWeight: 700, marginLeft: 10 }}
+              type="primary"
+            >
+              Өөрчлөлт хадгалах
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                addLearningData();
+                handleTrainingModal(false);
+                setSelectedType(null);
+                clearTrainForm();
+              }}
+              style={{ fontWeight: 700, marginLeft: 10 }}
+              type="primary"
+            >
+              Нэмэх
+            </Button>
+          )}
         </div>
       </div>
     </Modal>

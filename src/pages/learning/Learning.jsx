@@ -10,7 +10,6 @@ import "../../css/learning.css";
 import { useAuth } from "../../context/AuthProvider";
 import { checkRole } from "../../lib/utils/checkRole";
 import { Button } from "antd";
-import { IoIosAdd } from "react-icons/io";
 import TrainingModal from "../../components/TrainingModal";
 import { useTraining } from "../../context/TrainProvider";
 import { IoReload } from "react-icons/io5";
@@ -61,7 +60,7 @@ export const Learning = () => {
               }}
               key={index}
               className={`training-category ${
-                selectedCategory == item.ID && "training-category-selected"
+                selectedCategory === item.ID && "training-category-selected"
               }`}
             >
               <h2>{item.Name}</h2>
@@ -87,8 +86,16 @@ export const Learning = () => {
           ) : (
             <>
               {learningDatas?.map((learning, idx) => {
-                if (learning.IsFile == "Y") {
-                  return <TrainingFileCard key={idx} learning={learning} />;
+                if (learning.IsFile === "Y") {
+                  return (
+                    <TrainingFileCard
+                      key={idx}
+                      learning={learning}
+                      setIsEdit={setIsEdit}
+                      isEdit={isEdit}
+                      handleTrainingModal={handleTrainingModal}
+                    />
+                  );
                 } else {
                   return (
                     <VideoCard
@@ -98,7 +105,10 @@ export const Learning = () => {
                       closeModal={closeModal}
                       openModal={openModal}
                       key={idx}
+                      setIsEdit={setIsEdit}
+                      isEdit={isEdit}
                       learning={learning}
+                      handleTrainingModal={handleTrainingModal}
                     />
                   );
                 }
@@ -121,6 +131,7 @@ export const Learning = () => {
         addModal={addModal}
         isEdit={isEdit}
         handleTrainingModal={handleTrainingModal}
+        setIsEdit={setIsEdit}
       />
     </>
   );
