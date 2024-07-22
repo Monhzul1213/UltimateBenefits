@@ -43,7 +43,7 @@ const Care = ({ size }) => {
       setCardData(caresData);
     };
     getCareData();
-  }, []);
+  }, [user.UserID]);
 
   return (
     <>

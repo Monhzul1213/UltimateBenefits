@@ -1,6 +1,6 @@
 // components/ClubsCard.jsx
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const ClubsCard = ({ image, alt, className }) => {
   return (
@@ -22,3 +22,4 @@ const ClubsCard = ({ image, alt, className }) => {
 };
 
 export default ClubsCard;
+

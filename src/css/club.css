@@ -1,31 +1,36 @@
 .club-container {
   padding: 20px;
-  max-width: 1100px; 
-  margin: 0 auto;
+  /* max-width: 1100px;  */
+  margin: 20px;
 }
 
 .cards-container {
   display: grid;
-  
   grid-template-columns: repeat(3, 1fr);
-  gap: 45px;
+  gap: 15px;
+  margin: 5px;
 }
 
 .image-container {
+  /* margin: 8px; */
   position: relative;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease;
   cursor: pointer;
-  aspect-ratio: 16 / 9;
 }
 
 .image-container:hover {
   transform: scale(1.05);
 }
 
-.image-container img {
-  width: 100%;
+.club-image-container {
+  width: 350px;
+  height: 220px;
+}
+
+.club-image-container img {
+  width: 350px;
   height: 100%;
   object-fit: fill;
 }
@@ -35,33 +40,92 @@
   bottom: 10px;
   left: 10px;
   color: white;
-  font-size:  24px;
+  font-size: 24px;
   font-weight: bold;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
-.add-club {
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
-  border: 3px dashed #00a2ff;
-  border-radius: 10px;
-  cursor: pointer;
+  z-index: 1000;
 }
 
-.add-club-button {
-  justify-content: center;
-  align-items: center;
-  padding: 50px 130px;
-  
-  font-size: 48px;
-  color: #999;
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.modal-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.modal-section-title {
+  font-size: 18px;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.club-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.member-info {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.member-info p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.modal-close-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 20px;
+}
+
+.modal-close-button:hover {
+  background-color: #0056b3;
 }
 
 @media (max-width: 1024px) {
   .club-container {
     max-width: 95%;
+  }
+  .cards-container {
+    justify-content: center;
   }
 }
 

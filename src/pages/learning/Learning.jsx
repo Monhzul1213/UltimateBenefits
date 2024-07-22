@@ -1,22 +1,40 @@
 import React, { useEffect, useRef, useState } from "react";
-import { CustomHeader, Loader, VideoCard } from "../../components";
+import {
+  CustomHeader,
+  Loader,
+  TrainingFileCard,
+  VideoCard,
+} from "../../components";
 
 import "../../css/learning.css";
 import { useAuth } from "../../context/AuthProvider";
 import { checkRole } from "../../lib/utils/checkRole";
 import { Button } from "antd";
-import { IoIosAdd } from "react-icons/io";
 import TrainingModal from "../../components/TrainingModal";
 import { useTraining } from "../../context/TrainProvider";
 import { IoReload } from "react-icons/io5";
+import { nemeh } from "../../assets";
 
 export const Learning = () => {
   const iframeRef = useRef(null);
   const { user } = useAuth();
-  const { learningDatas, loading, isFailed, getLearningData } = useTraining();
+  const {
+    learningDatas,
+    loading,
+    isFailed,
+    getLearningData,
+    getTrainingType,
+    trainingTypes,
+    handleSelectedCategory,
+    selectedCategory,
+  } = useTraining();
   const [addModal, setAddModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [openModal, setOpenModal] = useState(-1);
+
+  const handleTrainingModal = (isOpen) => {
+    setAddModal(isOpen);
+  };
   const showModal = (index) => {
     setOpenModal(index);
   };
@@ -24,7 +42,8 @@ export const Learning = () => {
     setOpenModal(-1);
   };
   useEffect(() => {
-    getLearningData();
+    getLearningData(1);
+    getTrainingType();
   }, []);
 
   return (
@@ -32,47 +51,88 @@ export const Learning = () => {
       <CustomHeader title="Сургалтын материал" />
 
       <main className="learning-container">
-        {checkRole(user?.Role) && (
-          <div>
-            <Button
-              size="large"
-              style={{ fontWeight: 600 }}
-              type="primary"
-              icon={<IoIosAdd size={28} />}
+        <div className="training-categorys-container">
+          {trainingTypes?.map((item, index) => (
+            <div
               onClick={() => {
-                setAddModal(true);
+                getLearningData(item.ID);
+                handleSelectedCategory(item.ID);
               }}
+              key={index}
+              className={`training-category ${
+                selectedCategory === item.ID && "training-category-selected"
+              }`}
             >
-              Сургалт нэмэх
-            </Button>
-          </div>
-        )}
+              <h2>{item.Name}</h2>
+            </div>
+          ))}
+        </div>
         <section className="learning-videos-container">
           {loading ? (
             <Loader />
           ) : isFailed ? (
             <div className="employee-error">
               <p>Алдаа гарлаа</p>
-              <Button onClick={getLearningData} icon={<IoReload />}>
+              <Button
+                onClick={() => {
+                  getLearningData(1);
+                  getTrainingType();
+                }}
+                icon={<IoReload />}
+              >
                 Дахин оролдох
               </Button>
             </div>
           ) : (
-            learningDatas?.map((learning, idx) => (
-              <VideoCard
-                iframeRef={iframeRef}
-                idx={idx}
-                showModal={showModal}
-                closeModal={closeModal}
-                openModal={openModal}
-                key={idx}
-                learning={learning}
-              />
-            ))
+            <>
+              {learningDatas?.map((learning, idx) => {
+                if (learning.IsFile === "Y") {
+                  return (
+                    <TrainingFileCard
+                      key={idx}
+                      learning={learning}
+                      setIsEdit={setIsEdit}
+                      isEdit={isEdit}
+                      handleTrainingModal={handleTrainingModal}
+                    />
+                  );
+                } else {
+                  return (
+                    <VideoCard
+                      iframeRef={iframeRef}
+                      idx={idx}
+                      showModal={showModal}
+                      closeModal={closeModal}
+                      openModal={openModal}
+                      key={idx}
+                      setIsEdit={setIsEdit}
+                      isEdit={isEdit}
+                      learning={learning}
+                      handleTrainingModal={handleTrainingModal}
+                    />
+                  );
+                }
+              })}
+              {checkRole(user?.Role) && (
+                <img
+                  onClick={() => {
+                    setAddModal(true);
+                  }}
+                  className="training-add"
+                  src={nemeh}
+                  alt=""
+                />
+              )}
+            </>
           )}
         </section>
       </main>
-      <TrainingModal addModal={addModal} isEdit={isEdit} />
+      <TrainingModal
+        addModal={addModal}
+        isEdit={isEdit}
+        handleTrainingModal={handleTrainingModal}
+        setIsEdit={setIsEdit}
+      />
     </>
   );
 };

@@ -3,7 +3,7 @@ import { useCalendar } from "../context/CalendarProvider";
 import { Button, DatePicker } from "antd";
 import { dateFormatWithYear } from "../lib/utils/dateFormatter";
 
-const AddCalendarInput = ({}) => {
+const AddCalendarInput = () => {
   const { addCalendar } = useCalendar();
   const [pickedDate, setPickedDate] = useState();
   const [title, setTitle] = useState("");
