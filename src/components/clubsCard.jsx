@@ -22,3 +22,4 @@ const ClubsCard = ({ image, alt, className }) => {
 };
 
 export default ClubsCard;
+
