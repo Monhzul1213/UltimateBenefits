@@ -14,11 +14,13 @@ import {
   bonus1,
   bonus2,
   phone,
-  lunch1,
+  phone1,
+  lunch1, 
   lunch2,
   bday,
-  gym1,
+  gym1, 
   gym2,
+  add_card,
   volleyball,
   hands,
   movie,
@@ -202,30 +204,38 @@ export const learnVideos = [
     author: "Г.ҮЛЭМЖЖАРГАЛ",
     title: "Бүртгэл хийх",
     url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
-  },
-];
+  }]
 export const discountsi = [
   {
-    description: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
-    images: [bonus1, bonus2],
+    title:"САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
+    description: "Сар бүрийн шилдэг гүйцэтгэлийн урамшуулал-Сар бүрийн АГҮ-р тэргүүлсэн алба бүрийн 1 шилдэг ажилтан 300,000₮",
+    images: [bonus1, bonus2] 
   },
   {
-    description: "УТАСНЫ ТӨЛБӨР",
-    images: [phone],
+    title:"УТАСНЫ ТӨЛБӨР",
+    description: "Байгууллагын дугаар ашигладаг албан тушаалтнуудын утасны төлбөрийн хөнгөлөлт",
+    images: [phone1, phone] 
   },
   {
-    description: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
-    images: [lunch1, lunch2],
+    title:"АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
+    description: "Өдрийн сет хоол-Өдрийн хоолны төлбөрийн 40%-ийг байгууллагаас хөнгөлнө",
+    images: [lunch1, lunch2] 
   },
   {
-    description: "",
-    images: [bday],
+    description: "          ",
+    images: [bday] 
   },
   {
-    description: "GYM",
-    images: [gym1, gym2],
+    title: "GYM",
+    description: "3 сар дарааллан Сарын шилдэг ажилтан болсон тохиолдолд Gold's gym 3 сарын эрх",
+    images: [gym1, gym2] 
   },
+  {
+    description: "           ",
+    images: [add_card]
+  }
 ];
+  
   export const clubsItems = [
     {
       title: "MOVIE NIGHT",
