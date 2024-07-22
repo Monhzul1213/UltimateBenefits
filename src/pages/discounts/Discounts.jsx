@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import React, { useState } from "react";
 import { withSize } from "react-sizeme";
 import { CustomHeader } from "../../components";
 import { discountsi } from "../../constants";

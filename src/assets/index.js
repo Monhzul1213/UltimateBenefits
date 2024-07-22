@@ -91,9 +91,5 @@ export {
   volleyball,
   movie,
   people,
-<<<<<<< HEAD
-};
-=======
   AddClubs,
 };
->>>>>>> main
