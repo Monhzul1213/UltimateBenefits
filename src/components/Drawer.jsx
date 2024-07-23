@@ -84,7 +84,7 @@ export const MyDrawer = () => {
               <Avatar size={15} />
               {user?.HireDate} аас хойш ажиллаж байгаа.
             </p>
-            <p>
+            <p style={{ textAlign: "left" }}>
               <Avatar size={15} />
               {user?.Address}
             </p>
@@ -115,7 +115,7 @@ export const MyDrawer = () => {
                 className="add-calendar-btn add-calendar-btn-absolute"
                 type="primary"
               >
-                +
+                <h1>+</h1>
               </Button>
             </Popover>
           ) : (

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { heart } from "../assets";
+import { clubs, heart } from "../assets";
 import { benefits } from "../constants";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaUsers } from "react-icons/fa";
 
 export const Benefits = () => {
   return (
@@ -18,6 +18,11 @@ export const Benefits = () => {
             <FaArrowRight size={25} className="arrow" />
           </Link>
         ))}
+        <Link to="/employees" className="benefit">
+          <img src={clubs} alt="employe icon" />
+          <h3>Ажилтнууд</h3>
+          <FaArrowRight size={25} className="arrow" />
+        </Link>
       </section>
     </section>
   );
