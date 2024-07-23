@@ -1,3 +1,4 @@
+import { downloadFile } from "../../assets";
 import { alert } from "../../lib/actions/alert.actions";
 import myAxios from "../../lib/axios";
 
@@ -22,6 +23,7 @@ const trainContext = createContext({
   loading: false,
   isFailed: false,
   trainForm: {},
+  downloadFile: () => {},
 });
 
 const TrainProvider = ({ children }) => {
@@ -191,9 +193,32 @@ const TrainProvider = ({ children }) => {
       }
     }
   };
+
+  const downloadFile = async (filePath) => {
+    try {
+      const { data } = await myAxios.get(
+        `/api/file/download?filePath=${filePath}`,
+        {
+          responseType: "blob",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      const url = window.URL.createObjectURL(new Blob([data]));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "1.pdf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {}
+  };
   return (
     <trainContext.Provider
       value={{
+        downloadFile,
         loading,
         learningDatas,
         trainForm,

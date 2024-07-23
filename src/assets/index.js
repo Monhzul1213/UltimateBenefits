@@ -36,7 +36,7 @@ import volleyball from "./volleyball.png";
 import movie from "./movie.png";
 import people from "./peoples.png";
 import AddClubs from "./AddClubs.png";
-import downloadFile from "./downloadFile.png";
+import downloadFileIcon from "./downloadFile.png";
 import excelBack from "./excelBack.png";
 import excelIcon from "./excelIcon.png";
 import nemeh from "./nemeh.png";
@@ -46,7 +46,7 @@ import wordBack from "./wordBack.png";
 import wordIcon from "./wordIcon.png";
 
 export {
-  downloadFile,
+  downloadFileIcon,
   excelBack,
   excelIcon,
   nemeh,
