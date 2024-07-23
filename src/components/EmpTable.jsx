@@ -122,7 +122,7 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       width: 105,
     },
     {
-      title: "Ажлийн утас",
+      title: "Ажлын утас",
       dataIndex: "WorkPhone",
       key: "WorkPhone",
       width: 105,

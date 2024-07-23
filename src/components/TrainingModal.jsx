@@ -97,22 +97,30 @@ const TrainingModal = ({
       footer={null}
       closable={false}
       open={addModal}
-      title={isEdit ? "Мэдээлэл засах" : "Сургалт нэмэх"}
     >
       <div className="training-modal-container">
+        <div className="emp-modal-header">
+          <h2>{isEdit ? "Мэдээлэл засах" : "Сургалт нэмэх"}</h2>
+        </div>
         <div className="training-modal-input">
-          <p>Гарчиг</p>
+          <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
+            Гарчиг
+          </p>
           <Input
+            size="large"
+            variant="filled"
             name="Name"
             onChange={handleInput}
             value={trainForm.Name}
-            placeholder="Сургалтын гарчигаа оруулна уу"
+            placeholder="Хөдөлмөрийн дотоод журам"
           />
         </div>
 
         <div className="training-modal-input">
           <div className="training-modal-input">
-            <p>Сургалтын төрөл</p>
+            <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
+              Сургалтын төрөл
+            </p>
             <Popover
               placement="bottomLeft"
               content={content(
@@ -127,10 +135,12 @@ const TrainingModal = ({
               trigger="click"
             >
               <Button
+                size="large"
                 style={
                   selectedType
                     ? { fontWeight: 400, color: "black", width: "100%" }
                     : {
+                        fontSize: 15,
                         fontWeight: 300,
                         color: "gray",
                         width: "100%",
@@ -152,8 +162,12 @@ const TrainingModal = ({
 
         {trainForm.IsFile === "N" ? (
           <div>
-            <p>Бичлэгний холбоос</p>
+            <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
+              Бичлэгний холбоос
+            </p>
             <Input
+              size="large"
+              variant="filled"
               value={isEdit ? trainForm.FileDesc : trainForm.FileDescr}
               name={isEdit ? "FileDesc" : "FileDescr"}
               placeholder="https://www.youtube.com/embed/example"
@@ -177,8 +191,9 @@ const TrainingModal = ({
             </Upload>
           </div>
         )}
-        <div>
+        <div className="emp-modal-buttons">
           <Button
+            size="large"
             style={{ fontWeight: 700 }}
             onClick={() => {
               handleTrainingModal(false);
@@ -191,6 +206,7 @@ const TrainingModal = ({
           </Button>
           {isEdit ? (
             <Button
+              size="large"
               onClick={() => {
                 updateLearningData(trainForm.ID);
                 handleTrainingModal(false);
@@ -204,6 +220,7 @@ const TrainingModal = ({
             </Button>
           ) : (
             <Button
+              size="large"
               onClick={() => {
                 addLearningData();
                 handleTrainingModal(false);

@@ -54,7 +54,7 @@
 }
 
 .emp-modal-container {
-  width: 100%;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -62,9 +62,22 @@
 .emp-modal-flex {
   width: 100%;
   display: flex;
-  gap: 10px;
+  gap: 30px;
+  margin-top: 10px;
+}
+.emp-modal-header {
+  width: 100%;
+  text-align: center;
+  height: 50px;
+  border-bottom: 1px solid #e3eeff;
+}
+.emp-modal-flex p {
+  margin-bottom: 5px;
 }
 .emp-modal-buttons {
+  margin-top: 25px;
+  border-top: 1px solid #e3eeff;
+  padding-top: 20px;
   width: 100%;
   display: flex;
   gap: 10px;

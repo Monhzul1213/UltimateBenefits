@@ -5,6 +5,7 @@ import { PinModal, LoginButton, RegisterSelect } from "../../components";
 import "../../css/login.css";
 
 export function Login() {
+  const [openAb, setOpenAb] = useState();
   let [registerLetters] = useState([]);
   const [registerNums, setRegisterNums] = useState("");
   const handleInput = (e) => {
@@ -30,8 +31,20 @@ export function Login() {
           <div className="register">
             <p className="subtext">Регистрийн дугаар</p>
             <div className="input-div">
-              <RegisterSelect index={0} onChange={handleSelecet} />
-              <RegisterSelect index={1} onChange={handleSelecet} />
+              <RegisterSelect
+                registerLetters={registerLetters}
+                open={openAb}
+                setOpen={setOpenAb}
+                index={0}
+                onChange={handleSelecet}
+              />
+              <RegisterSelect
+                registerLetters={registerLetters}
+                open={openAb}
+                setOpen={setOpenAb}
+                index={1}
+                onChange={handleSelecet}
+              />
               <input
                 value={registerNums}
                 onChange={handleInput}
