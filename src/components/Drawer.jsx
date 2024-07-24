@@ -52,7 +52,7 @@ export const MyDrawer = () => {
                 inputRef.current.click();
               }}
               className="avatar"
-              src={user?.Picture?.replace("./public/upload/", "/upload/")}
+              src={user?.Picture}
               size={150}
             />
             <CiEdit className="edit-icon" size={40} />

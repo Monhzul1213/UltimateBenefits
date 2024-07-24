@@ -16,7 +16,7 @@ export const Header = () => {
       <div onClick={() => setOpenDrawer(true)} className="header-right-side">
         <img className="header-notf" src={bell} alt="" />
         <Avatar
-          src={user?.Picture?.replace("./public/upload/", "/upload/")}
+          src={user?.Picture}
           style={{ backgroundColor: "white", marginLeft: 20 }}
           size={40}
           icon={<UserOutlined />}
