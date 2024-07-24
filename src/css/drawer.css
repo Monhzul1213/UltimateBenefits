@@ -102,7 +102,13 @@
   border-radius: 50%;
   background-color: #00c7f0;
   border: 0;
-  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-calendar-btn h1 {
+  font-size: 20px;
+  transform: translateY(-1px);
 }
 .add-calendar-btn-absolute {
   position: absolute;

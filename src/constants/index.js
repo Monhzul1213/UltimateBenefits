@@ -15,10 +15,10 @@ import {
   bonus2,
   phone,
   phone1,
-  lunch1, 
+  lunch1,
   lunch2,
   bday,
-  gym1, 
+  gym1,
   gym2,
   add_card,
   volleyball,
@@ -74,7 +74,6 @@ export const benefits = [
   { title: "Хөнгөлөлт урамшуулал", icon: discounts, route: "/discounts" },
   { title: "Нийгмийн хангамж", icon: care, route: "/care" },
   { title: "Сонирхлын клуб", icon: clubs, route: "/clubs" },
-  { title: "Ажилтнууд", icon: clubs, route: "/employees" },
 ];
 
 export const cares = [
@@ -204,105 +203,218 @@ export const learnVideos = [
     author: "Г.ҮЛЭМЖЖАРГАЛ",
     title: "Бүртгэл хийх",
     url: "https://www.youtube.com/embed/0QXj4ZfZ1Z",
-  }]
+  },
+];
 export const discountsi = [
   {
-    title:"САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
-    description: "Сар бүрийн шилдэг гүйцэтгэлийн урамшуулал-Сар бүрийн АГҮ-р тэргүүлсэн алба бүрийн 1 шилдэг ажилтан 300,000₮",
-    images: [bonus1, bonus2] 
+    title: "САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
+    description:
+      "Сар бүрийн шилдэг гүйцэтгэлийн урамшуулал-Сар бүрийн АГҮ-р тэргүүлсэн алба бүрийн 1 шилдэг ажилтан 300,000₮",
+    images: [bonus1, bonus2],
   },
   {
-    title:"УТАСНЫ ТӨЛБӨР",
-    description: "Байгууллагын дугаар ашигладаг албан тушаалтнуудын утасны төлбөрийн хөнгөлөлт",
-    images: [phone1, phone] 
+    title: "УТАСНЫ ТӨЛБӨР",
+    description:
+      "Байгууллагын дугаар ашигладаг албан тушаалтнуудын утасны төлбөрийн хөнгөлөлт",
+    images: [phone1, phone],
   },
   {
-    title:"АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
-    description: "Өдрийн сет хоол-Өдрийн хоолны төлбөрийн 40%-ийг байгууллагаас хөнгөлнө",
-    images: [lunch1, lunch2] 
+    title: "АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
+    description:
+      "Өдрийн сет хоол-Өдрийн хоолны төлбөрийн 40%-ийг байгууллагаас хөнгөлнө",
+    images: [lunch1, lunch2],
   },
   {
     description: "          ",
-    images: [bday] 
+    images: [bday],
   },
   {
     title: "GYM",
-    description: "3 сар дарааллан Сарын шилдэг ажилтан болсон тохиолдолд Gold's gym 3 сарын эрх",
-    images: [gym1, gym2] 
+    description:
+      "3 сар дарааллан Сарын шилдэг ажилтан болсон тохиолдолд Gold's gym 3 сарын эрх",
+    images: [gym1, gym2],
   },
   {
     description: "           ",
-    images: [add_card]
-  }
+    images: [add_card],
+  },
 ];
-  
-  export const clubsItems = [
-    {
-      title: "MOVIE NIGHT",
-      Image : movie,
-      altText: "Movie Club Image",
-      description: "Join our Movie Club to watch Netflix and discuss great films together!",
-      members: [
-        { name: "John Doe", position: "President", company: "UltimateSOlution", telephone: "99999999" }
-      ],
-      fbLink: "https://www.facebook.com/groups/329454226106597",
-      icon: "path/to/movie-club-icon.png",
-      category: "Entertainment"
-    },
-    {
-      title: "ENGLISH CLUB",
-      Image : hands,
-      altText: "Movie Club Image",
-      description: "Англи хэлний мэдлэгээ сайжруулах, бусадтай санаа бодлоо солилцох зорилгоор 7 хоног бүрийн Мягмар гарагийн 08:30 цагт",
-      members: [
-        { name: "John Doe", position: "President", company: "UltimateSOlution", telephone: "99999999" }
-      ],
-      fbLink: "https://www.facebook.com/groups/329454226106597",
-      icon: "path/to/movie-club-icon.png",
-      category: "Edutainment"
 
-    },
-    {
-      title: "ADVENTURE CLUB",
-      Image : people,
-      altText: "Movie Club Image",
-      description: "Join our Movie Club to watch and discuss great films together!",
-      members: [
-        { name: "Ulemjjargal", position: "HR", company: "UltimateSOlution", telephone: "99059766" },
-        {name: "Enerel", position: "MANAGER", company: "MEP", Contact: "99055489"}
-      ],
-      fbLink: "https://www.facebook.com/groups/329454226106597",
-      icon: "path/to/movie-club-icon.png",
-      category: "Entertainment"
-    },
-    {
-      title: "SPORT CLUB",
-      Image : volleyball,
-      altText: "Sport Club Image",
-      description: "Өсвөрийн зохион бүтээгчдийн ахлах сургуулиын спорт зааланд 7 хоног бүрийн Пүрэв гарагийн 19:00-21.00 цагийн хооронд",
-      members: [
-        { name: "John Doe", position: "President", company: "UltimateSOlution", telephone: "99999999" }
-      ],
-      fbLink: "https://www.facebook.com/groups/329454226106597",
-      icon: "path/to/movie-club-icon.png",
-      category: "Entertainment"
-    },
-    {
-    title: "E-SPORT CLUB",
-    Image : dotka,
-    altText: "E-sport Club Image",
-    description: "E-sport-д сонирхолтой хэн ч нэгдэх боломжтой ",
+export const clubsItems = [
+  {
+    title: "MOVIE NIGHT",
+    Image: movie,
+    altText: "Movie Club Image",
+    description:
+      "Join our Movie Club to watch Netflix and discuss great films together!",
     members: [
-      { name: "John Doe", position: "CEE", company: "UltimateSolutions", telephone: "99999999" }
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
     ],
     fbLink: "https://www.facebook.com/groups/329454226106597",
     icon: "path/to/movie-club-icon.png",
-    category: "Entertainment"
-    },
-    {
-     description : "Border",
-     Image: AddClubs
-    },
-
-    
-  ]
+    category: "Entertainment",
+  },
+  {
+    title: "ENGLISH CLUB",
+    Image: hands,
+    altText: "Movie Club Image",
+    description:
+      "Англи хэлний мэдлэгээ сайжруулах, бусадтай санаа бодлоо солилцох зорилгоор 7 хоног бүрийн Мягмар гарагийн 08:30 цагт",
+    members: [
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Edutainment",
+  },
+  {
+    title: "ADVENTURE CLUB",
+    Image: people,
+    altText: "Movie Club Image",
+    description:
+      "Join our Movie Club to watch and discuss great films together!",
+    members: [
+      {
+        name: "Ulemjjargal",
+        position: "HR",
+        company: "UltimateSOlution",
+        telephone: "99059766",
+      },
+      {
+        name: "Enerel",
+        position: "MANAGER",
+        company: "MEP",
+        Contact: "99055489",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    title: "SPORT CLUB",
+    Image: volleyball,
+    altText: "Sport Club Image",
+    description:
+      "Өсвөрийн зохион бүтээгчдийн ахлах сургуулиын спорт зааланд 7 хоног бүрийн Пүрэв гарагийн 19:00-21.00 цагийн хооронд",
+    members: [
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    title: "E-SPORT CLUB",
+    Image: dotka,
+    altText: "E-sport Club Image",
+    description: "E-sport-д сонирхолтой хэн ч нэгдэх боломжтой ",
+    members: [
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    title: "ENGLISH CLUB",
+    Image: hands,
+    altText: "Movie Club Image",
+    description:
+      "Англи хэлний мэдлэгээ сайжруулах, бусадтай санаа бодлоо солилцох зорилгоор 7 хоног бүрийн Мягмар гарагийн 08:30 цагт",
+    members: [
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    title: "ADVENTURE CLUB",
+    Image: people,
+    altText: "Movie Club Image",
+    description:
+      "Join our Movie Club to watch and discuss great films together!",
+    members: [
+      {
+        name: "Ulemjjargal",
+        position: "HR",
+        company: "UltimateSOlution",
+        telephone: "99059766",
+      },
+      {
+        name: "Enerel",
+        position: "MANAGER",
+        company: "MEP",
+        Contact: "99055489",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    title: "SPORT CLUB",
+    Image: volleyball,
+    altText: "Movie Club Image",
+    description:
+      "Өсвөрийн зохион бүтээгчдийн ахлах сургуулиын спорт зааланд 7 хоног бүрийн Пүрэв гарагийн 19:00-21.00 цагийн хооронд",
+    members: [
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    title: "E-SPORT CLUB",
+    Image: dotka,
+    altText: "Movie Club Image",
+    description: "E-sport-д сонирхолтой хэн ч нэгдэх боломжтой ",
+    members: [
+      {
+        name: "John Doe",
+        position: "CEE",
+        company: "UltimateSolutions",
+        telephone: "99999999",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    description: "Border",
+    Image: AddClubs,
+  },
+];

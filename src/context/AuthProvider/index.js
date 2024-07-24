@@ -16,8 +16,10 @@ export const authContext = createContext({
   openDrawer: false,
   setOpenDrawer: () => {},
   setOpen: () => {},
+  userPicture: {},
 });
 const AuthProvider = ({ children }) => {
+  const [userPicture, setUserPicture] = useState();
   const [user, setUser] = useState();
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -75,14 +77,38 @@ const AuthProvider = ({ children }) => {
       console.log("error in changing photo", error);
     }
   };
+  const getUserPicture = async () => {
+    try {
+      const { data } = await myAxios.get(
+        "api/file/download/Image?filePath=C:/Users/nanza/Downloads/1.jpg",
+        {
+          responseType: "blob",
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      setUserPicture(data);
+      console.log("PICTURE", data);
+    } catch (error) {
+      console.log("ERROR IN GET PICTURE", error);
+    }
+  };
 
   useEffect(() => {
     checkIsLogged();
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      getUserPicture();
+    }
+  }, [user]);
+
   return (
     <authContext.Provider
       value={{
+        userPicture,
         changeUserPhoto,
         handleCheckRegister,
         handleLogin,

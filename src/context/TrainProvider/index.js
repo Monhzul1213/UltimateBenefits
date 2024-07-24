@@ -195,6 +195,8 @@ const TrainProvider = ({ children }) => {
   };
 
   const downloadFile = async (filePath) => {
+    const fileName = filePath.split("/").pop();
+    console.log("fileName", fileName);
     try {
       const { data } = await myAxios.get(
         `/api/file/download?filePath=${filePath}`,
@@ -208,7 +210,7 @@ const TrainProvider = ({ children }) => {
       const url = window.URL.createObjectURL(new Blob([data]));
       const a = document.createElement("a");
       a.href = url;
-      a.download = "1.pdf";
+      a.download = fileName;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
