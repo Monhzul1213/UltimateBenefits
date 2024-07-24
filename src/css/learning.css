@@ -6,6 +6,7 @@
   justify-content: center;
 }
 .learning-videos-container {
+  overflow: hidden;
   max-width: 1670px;
   margin-top: 30px;
   display: flex;
