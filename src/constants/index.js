@@ -259,7 +259,7 @@ export const discountsi = [
       ],
       fbLink: "https://www.facebook.com/groups/329454226106597",
       icon: "path/to/movie-club-icon.png",
-      category: "Entertainment"
+      category: "Edutainment"
 
     },
     {
@@ -278,7 +278,7 @@ export const discountsi = [
     {
       title: "SPORT CLUB",
       Image : volleyball,
-      altText: "Movie Club Image",
+      altText: "Sport Club Image",
       description: "Өсвөрийн зохион бүтээгчдийн ахлах сургуулиын спорт зааланд 7 хоног бүрийн Пүрэв гарагийн 19:00-21.00 цагийн хооронд",
       members: [
         { name: "John Doe", position: "President", company: "UltimateSOlution", telephone: "99999999" }
@@ -290,7 +290,7 @@ export const discountsi = [
     {
     title: "E-SPORT CLUB",
     Image : dotka,
-    altText: "Movie Club Image",
+    altText: "E-sport Club Image",
     description: "E-sport-д сонирхолтой хэн ч нэгдэх боломжтой ",
     members: [
       { name: "John Doe", position: "CEE", company: "UltimateSolutions", telephone: "99999999" }
