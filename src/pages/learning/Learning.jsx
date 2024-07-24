@@ -51,81 +51,83 @@ export const Learning = () => {
       <CustomHeader title="Сургалтын материал" />
 
       <main className="learning-container">
-        <div className="training-categorys-container">
-          {trainingTypes?.map((item, index) => (
-            <div
-              onClick={() => {
-                getLearningData(item.ID);
-                handleSelectedCategory(item.ID);
-              }}
-              key={index}
-              className={`training-category ${
-                selectedCategory === item.ID && "training-category-selected"
-              }`}
-            >
-              <h2>{item.Name}</h2>
-            </div>
-          ))}
-        </div>
-        <section className="learning-videos-container">
-          {loading ? (
-            <Loader />
-          ) : isFailed ? (
-            <div className="employee-error">
-              <p>Алдаа гарлаа</p>
-              <Button
+        <div className="learning-page">
+          <div className="training-categorys-container">
+            {trainingTypes?.map((item, index) => (
+              <div
                 onClick={() => {
-                  getLearningData(1);
-                  getTrainingType();
+                  getLearningData(item.ID);
+                  handleSelectedCategory(item.ID);
                 }}
-                icon={<IoReload />}
+                key={index}
+                className={`training-category ${
+                  selectedCategory === item.ID && "training-category-selected"
+                }`}
               >
-                Дахин оролдох
-              </Button>
-            </div>
-          ) : (
-            <>
-              {learningDatas?.map((learning, idx) => {
-                if (learning.IsFile === "Y") {
-                  return (
-                    <TrainingFileCard
-                      key={idx}
-                      learning={learning}
-                      setIsEdit={setIsEdit}
-                      isEdit={isEdit}
-                      handleTrainingModal={handleTrainingModal}
-                    />
-                  );
-                } else {
-                  return (
-                    <VideoCard
-                      iframeRef={iframeRef}
-                      idx={idx}
-                      showModal={showModal}
-                      closeModal={closeModal}
-                      openModal={openModal}
-                      key={idx}
-                      setIsEdit={setIsEdit}
-                      isEdit={isEdit}
-                      learning={learning}
-                      handleTrainingModal={handleTrainingModal}
-                    />
-                  );
-                }
-              })}
-              {checkRole(user?.Role) && (
-                <img
+                <h2>{item.Name}</h2>
+              </div>
+            ))}
+          </div>
+          <section className="learning-videos-container">
+            {loading ? (
+              <Loader />
+            ) : isFailed ? (
+              <div className="employee-error">
+                <p>Алдаа гарлаа</p>
+                <Button
                   onClick={() => {
-                    setAddModal(true);
+                    getLearningData(1);
+                    getTrainingType();
                   }}
-                  className="training-add"
-                  src={nemeh}
-                  alt=""
-                />
-              )}
-            </>
-          )}
-        </section>
+                  icon={<IoReload />}
+                >
+                  Дахин оролдох
+                </Button>
+              </div>
+            ) : (
+              <>
+                {learningDatas?.map((learning, idx) => {
+                  if (learning.IsFile === "Y") {
+                    return (
+                      <TrainingFileCard
+                        key={idx}
+                        learning={learning}
+                        setIsEdit={setIsEdit}
+                        isEdit={isEdit}
+                        handleTrainingModal={handleTrainingModal}
+                      />
+                    );
+                  } else {
+                    return (
+                      <VideoCard
+                        iframeRef={iframeRef}
+                        idx={idx}
+                        showModal={showModal}
+                        closeModal={closeModal}
+                        openModal={openModal}
+                        key={idx}
+                        setIsEdit={setIsEdit}
+                        isEdit={isEdit}
+                        learning={learning}
+                        handleTrainingModal={handleTrainingModal}
+                      />
+                    );
+                  }
+                })}
+                {checkRole(user?.Role) && (
+                  <img
+                    onClick={() => {
+                      setAddModal(true);
+                    }}
+                    className="training-add"
+                    src={nemeh}
+                    alt=""
+                  />
+                )}
+              </>
+            )}
+          </section>
+        </div>
       </main>
       <TrainingModal
         addModal={addModal}

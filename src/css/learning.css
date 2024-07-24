@@ -2,8 +2,11 @@
   width: 100vw;
   overflow: hidden;
   padding: 20px 80px;
+  display: flex;
+  justify-content: center;
 }
 .learning-videos-container {
+  max-width: 1670px;
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
