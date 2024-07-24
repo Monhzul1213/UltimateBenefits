@@ -275,6 +275,83 @@ export const clubsItems = [
     ],
     fbLink: "https://www.facebook.com/groups/329454226106597",
     icon: "path/to/movie-club-icon.png",
+    category: "Edutainment",
+  },
+  {
+    title: "ADVENTURE CLUB",
+    Image: people,
+    altText: "Movie Club Image",
+    description:
+      "Join our Movie Club to watch and discuss great films together!",
+    members: [
+      {
+        name: "Ulemjjargal",
+        position: "HR",
+        company: "UltimateSOlution",
+        telephone: "99059766",
+      },
+      {
+        name: "Enerel",
+        position: "MANAGER",
+        company: "MEP",
+        Contact: "99055489",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    title: "SPORT CLUB",
+    Image: volleyball,
+    altText: "Sport Club Image",
+    description:
+      "Өсвөрийн зохион бүтээгчдийн ахлах сургуулиын спорт зааланд 7 хоног бүрийн Пүрэв гарагийн 19:00-21.00 цагийн хооронд",
+    members: [
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    title: "E-SPORT CLUB",
+    Image: dotka,
+    altText: "E-sport Club Image",
+    description: "E-sport-д сонирхолтой хэн ч нэгдэх боломжтой ",
+    members: [
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
+    category: "Entertainment",
+  },
+  {
+    title: "ENGLISH CLUB",
+    Image: hands,
+    altText: "Movie Club Image",
+    description:
+      "Англи хэлний мэдлэгээ сайжруулах, бусадтай санаа бодлоо солилцох зорилгоор 7 хоног бүрийн Мягмар гарагийн 08:30 цагт",
+    members: [
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
+    ],
+    fbLink: "https://www.facebook.com/groups/329454226106597",
+    icon: "path/to/movie-club-icon.png",
     category: "Entertainment",
   },
   {
