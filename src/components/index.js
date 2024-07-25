@@ -18,3 +18,5 @@ export * from "./ClubsModal";
 export * from "./AddClub";
 export * from "./modalSignup";
 export * from "./TrainingFileCard";
+export * from "./DiscountsAdd";
+export * from "./DiscountsOption";

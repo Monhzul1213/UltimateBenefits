@@ -11,15 +11,11 @@ import {
   rules,
   umbrella,
   vaccine,
-  bonus1,
-  bonus2,
+  bonus,
   phone,
-  phone1,
-  lunch1, 
-  lunch2,
+  lunch, 
   bday,
-  gym1, 
-  gym2,
+  gym,
   add_card,
   volleyball,
   hands,
@@ -207,28 +203,29 @@ export const learnVideos = [
   }]
 export const discountsi = [
   {
-    title:"САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
-    description: "Сар бүрийн шилдэг гүйцэтгэлийн урамшуулал-Сар бүрийн АГҮ-р тэргүүлсэн алба бүрийн 1 шилдэг ажилтан 300,000₮",
-    images: [bonus1, bonus2] 
+    title:"ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
+    description: "Сар бүрийн АГҮ-р тэргүүлсэн алба бүрийн 1 шилдэг ажилтан 300,000₮",
+    images: [bonus] 
   },
   {
     title:"УТАСНЫ ТӨЛБӨР",
     description: "Байгууллагын дугаар ашигладаг албан тушаалтнуудын утасны төлбөрийн хөнгөлөлт",
-    images: [phone1, phone] 
+    images: [phone] 
   },
   {
     title:"АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
     description: "Өдрийн сет хоол-Өдрийн хоолны төлбөрийн 40%-ийг байгууллагаас хөнгөлнө",
-    images: [lunch1, lunch2] 
+    images: [lunch] 
   },
   {
-    description: "          ",
+    title: " ЦАЛИНТАЙ ЧӨЛӨӨ",
+    description: "   ",
     images: [bday] 
   },
   {
-    title: "GYM",
+    title: "ФИТНЕССИЙН ЭРХ",
     description: "3 сар дарааллан Сарын шилдэг ажилтан болсон тохиолдолд Gold's gym 3 сарын эрх",
-    images: [gym1, gym2] 
+    images: [gym] 
   },
   {
     description: "           ",

@@ -1,38 +1,84 @@
-import React, { useState } from 'react';
-import { Button, Modal, Radio } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Button, Modal, Switch, Form, Input } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 
 const DiscountsCard = ({ visible, onClose, data }) => {
-  const [value, setValue] = useState(1);
+  const [isActive, setIsActive] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [description, setDescription] = useState(data?.description || '');
 
-  const onChange = (e) => {
-    console.log('radio checked', e.target.value);
-    setValue(e.target.value);
+  useEffect(() => {
+    if (data) {
+      setIsActive(data.status === 1);
+      setDescription(data.description || '');
+    }
+  }, [data]);
+
+  const handleStatusChange = (checked) => {
+    setIsActive(checked);
+    console.log(`Status changed to: ${checked ? 'Active' : 'Inactive'}`);
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = () => {
+    setIsEditing(false);
+    console.log('Saved:', { description, isActive });
+    onClose();
   };
 
   if (!data) return null;
 
   return (
     <Modal
-      title={data.title || ''}
+      title={
+        <div style={{ textAlign: 'center', paddingBottom: '10px', borderBottom: '1px solid #f0f0f0' }}>
+          {data.title || ''}
+        </div>
+      }
       open={visible}
-      onOk={onClose}
       onCancel={onClose}
-      footer={[
-        <Button key="close" type="primary" onClick={onClose}>
-          Хаах
-        </Button>
-      ]}
+      footer={null} // Remove default footer to add custom footer
+      centered
     >
-      {/* Display Description */}
-      <p>{data.description || 'No description available'}</p>
+      <Form layout="vertical">
+        <Form.Item label="Тайлбар" style={{ marginBottom: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            {isEditing ? (
+              <Input.TextArea
+                rows={4}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                style={{ flex: 1 }}
+              />
+            ) : (
+              <p style={{ flex: 1 }}>{description || 'No description available'}</p>
+            )}
+            <EditOutlined
+              style={{ marginLeft: 10, cursor: 'pointer' }}
+              onClick={handleEdit}
+            />
+          </div>
+        </Form.Item>
 
-      {/* Radio Group */}
-      <Radio.Group onChange={onChange} value={value}>
-        <Radio value={0}>Идэвхгүй</Radio>
-        <Radio value={1}>Идэвхтэй</Radio>
-      </Radio.Group>
+        <Form.Item label="Төлөв">
+          <label>
+            <Switch checked={isActive} onChange={handleStatusChange} disabled={!isEditing} />{' '}
+            {isActive ? 'Идэвхтэй' : 'Идэвхгүй'}
+          </label>
+        </Form.Item>
 
-      {/* Additional content could go here */}
+        <div style={{ textAlign: 'center', marginTop: '20px', borderTop: '1px solid #f0f0f0', paddingTop: '10px' }}>
+          <Button key="cancel" type="default" onClick={onClose} style={{ marginRight: '10px' }}>
+            Болих
+          </Button>
+          <Button key="save" type="primary" onClick={handleSave} disabled={!isEditing}>
+            Хадгалах
+          </Button>
+        </div>
+      </Form>
     </Modal>
   );
 };
