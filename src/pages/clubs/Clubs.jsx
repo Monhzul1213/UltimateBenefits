@@ -1,18 +1,43 @@
 import React, { useState } from "react";
 import { CustomHeader } from "../../components";
 import { clubsItems } from "../../constants";
+import { ClubsModal, AddClubModal } from "../../components";
 import "../../css/club.css";
-import {ClubsModal} from "../../components"; 
+import { Alert } from "../../lib/actions/alert.actions";
+
+const AlertMessage = () => {
+  const [visible, setVisible] = useState(true);
+  const handleDismiss = () => {
+    setVisible(false);
+  };
+
+  return (
+    visible && (
+      <div className="alert-message">
+        <button onClick={handleDismiss}>Dismiss</button>
+      </div>
+    )
+  );
+};
 
 const ClubCard = ({ club, onClick }) => (
   <div className="image-container club-image-container" onClick={onClick}>
     <img src={club.Image} alt={club.altText} />
-    <div className="card-title">{club.title}</div>
+    <div className="card-title">
+      {club.title.split(' ')[0]}<br />{club.title.split(' ')[1]}
+    </div>
+  </div>
+);
+
+const AddClubCard = ({ onClick }) => (
+  <div className="image-container club-image-container add-club-card" onClick={onClick}>
+    <img src={clubsItems[clubsItems.length - 1].Image} alt="Add New Club" />
   </div>
 );
 
 const Clubs = () => {
   const [selectedClub, setSelectedClub] = useState(null);
+  const [isAddClubModalOpen, setIsAddClubModalOpen] = useState(false);
 
   const handleCardOpen = (club) => {
     setSelectedClub(club);
@@ -22,17 +47,27 @@ const Clubs = () => {
     setSelectedClub(null);
   };
 
+  const handleAddClubClick = () => {
+    setIsAddClubModalOpen(true);
+  };
+
+  const handleCloseAddClubModal = () => {
+    setIsAddClubModalOpen(false);
+  };
+
   return (
     <>
       <CustomHeader title="Сонирхлын клубууд" />
       <main className="club-container">
         <div className="cards-container">
-          {clubsItems.map((club, index) => (
+          {clubsItems.slice(0, -1).map((club, index) => (
             <ClubCard key={index} club={club} onClick={() => handleCardOpen(club)} />
           ))}
+          <AddClubCard onClick={handleAddClubClick} />
         </div>
       </main>
       <ClubsModal isOpen={!!selectedClub} onClose={handleCloseModal} club={selectedClub} />
+      <AddClubModal isOpen={isAddClubModalOpen} onClose={handleCloseAddClubModal} />
     </>
   );
 };

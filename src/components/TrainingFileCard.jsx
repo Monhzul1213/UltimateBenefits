@@ -1,6 +1,6 @@
 import { Avatar, Dropdown } from "antd";
 import {
-  downloadFile,
+  downloadFileIcon,
   excelBack,
   excelIcon,
   pdfBack,
@@ -16,8 +16,13 @@ export const TrainingFileCard = ({
   setIsEdit,
   handleTrainingModal,
 }) => {
-  const { editTrainForm, setSelectedType, trainingTypes, deleteLearningData } =
-    useTraining();
+  const {
+    editTrainForm,
+    setSelectedType,
+    trainingTypes,
+    deleteLearningData,
+    downloadFile,
+  } = useTraining();
   const handleClick = () => {
     setIsEdit(true);
     editTrainForm(learning);
@@ -43,17 +48,7 @@ export const TrainingFileCard = ({
       onClick: handleDeleteClick,
     },
   ];
-  const handleDownloadFile = () => {
-    const fileName = learning?.FileDesc.split("/").pop();
-    console.log("filename", fileName);
-    const aTag = document.createElement("a");
-    aTag.href = learning?.FileDesc?.replace("./public/training/", "/training/");
-    console.log("href", aTag.href);
-    aTag.setAttribute("download", fileName);
-    document.body.appendChild(aTag);
-    aTag.click();
-    aTag.remove();
-  };
+
   return (
     <Dropdown menu={{ items }} trigger={["contextMenu"]}>
       <div className="video-card">
@@ -101,7 +96,7 @@ export const TrainingFileCard = ({
         >
           <div className="video-desc">
             <Avatar
-              src={learning?.Picture?.replace("./public/upload/", "/upload/")}
+              src={learning?.Picture}
               className="video-author-avatar"
               size={60}
             />
@@ -112,9 +107,11 @@ export const TrainingFileCard = ({
           </div>
           <div style={{ textAlign: "right" }}>
             <img
-              onClick={handleDownloadFile}
+              onClick={() => {
+                downloadFile(learning.FileDesc);
+              }}
               className="downloadfile-icon"
-              src={downloadFile}
+              src={downloadFileIcon}
               alt=""
             />
           </div>

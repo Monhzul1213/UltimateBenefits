@@ -15,7 +15,7 @@ export * from "./AddCalendar";
 export * from "./CalendarItem";
 export * from "./VideoCard";
 export * from "./ClubsModal";
-export * from "./AddClub";
+export * from "./AddClubModal";
 export * from "./modalSignup";
 export * from "./TrainingFileCard";
 export * from "./DiscountsAdd";

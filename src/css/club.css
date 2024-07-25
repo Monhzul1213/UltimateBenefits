@@ -1,19 +1,18 @@
 .club-container {
   padding: 20px;
-  /* max-width: 1100px;  */
-  margin: 20px;
+  max-width: 1100px; 
 }
 
 .cards-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin: 5px;
+  gap: 30px;
 }
 
 .image-container {
-  /* margin: 8px; */
   position: relative;
+  margin-top: 30px;
+  margin-left: 30px;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -25,14 +24,14 @@
 }
 
 .club-image-container {
-  width: 350px;
-  height: 220px;
+  width: 415px;
+  height: 290px;
 }
 
 .club-image-container img {
-  width: 350px;
+  width: 415px;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
 }
 
 .card-title {
@@ -40,8 +39,9 @@
   bottom: 10px;
   left: 10px;
   color: white;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 35px;
+  font-family: 'Montserrat BLACK', sans-serif;
+  font-weight:bold;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
@@ -62,30 +62,22 @@
   background-color: white;
   padding: 20px;
   border-radius: 8px;
-  max-width: 400px;
-  width: 90%;
+  width: 400px;
   max-height: 80vh;
   overflow-y: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.modal-title {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 10px;
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .modal-description {
   font-size: 14px;
   color: #666;
   margin-bottom: 20px;
-}
-
-.modal-section-title {
-  font-size: 18px;
-  color: #333;
-  margin-top: 20px;
-  margin-bottom: 10px;
 }
 
 .club-info p {
@@ -118,6 +110,80 @@
 
 .modal-close-button:hover {
   background-color: #0056b3;
+}
+
+.add-club-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.date-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.date-inputs input {
+  flex: 1;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 100px;
+}
+.cancel-button, .submit-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
 }
 
 @media (max-width: 1024px) {

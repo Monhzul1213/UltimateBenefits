@@ -23,16 +23,17 @@ import day16 from "./day16.png";
 import bonus from "./bonus.png";
 import bday from "./bday.png";
 import phone from "./phone.png";
-import lunch from "./lunch.png";
-import gym from "./gym.png";
-import add_card from "./add_card.png";
+import lunch1 from "./lunch1.png";
+import lunch2 from "./lunch2.png";
+import gym1 from "./gym1.png";
+import gym2 from "./gym2.png";
 import hands from "./hands.png";
 import dotka from "./dotka.png";
 import volleyball from "./volleyball.png";
 import movie from "./movie.png";
 import people from "./peoples.png";
 import AddClubs from "./AddClubs.png";
-import downloadFile from "./downloadFile.png";
+import downloadFileIcon from "./downloadFile.png";
 import excelBack from "./excelBack.png";
 import excelIcon from "./excelIcon.png";
 import nemeh from "./nemeh.png";
@@ -42,7 +43,7 @@ import wordBack from "./wordBack.png";
 import wordIcon from "./wordIcon.png";
 
 export {
-  downloadFile,
+  downloadFileIcon,
   excelBack,
   excelIcon,
   nemeh,
@@ -75,9 +76,10 @@ export {
   bonus,
   bday,
   phone,
-  lunch,
-  gym,
-  add_card,
+  lunch1,
+  lunch2,
+  gym1,
+  gym2,
   hands,
   dotka,
   volleyball,

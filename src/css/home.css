@@ -6,6 +6,7 @@
 .hero-container {
   width: 100%;
   height: 60%;
+  min-height: 570px;
   color: white;
   background: rgb(2, 0, 36);
   background: linear-gradient(
@@ -18,6 +19,10 @@
     rgba(0, 92, 117, 1) 100%
   );
 }
+.hero-content-container {
+  display: flex;
+  justify-content: center;
+}
 .hero-content {
   display: flex;
   gap: 80px;
@@ -25,7 +30,7 @@
   align-items: center;
 }
 .hero-title {
-  width: 35%;
+  width: 40%;
 }
 .hero-image {
   width: 350px;
@@ -36,10 +41,14 @@
   margin-top: 10px;
   line-height: 1.4;
 }
-
+.benefits-container-container {
+  display: flex;
+  justify-content: center;
+}
 .benefits-container {
-  width: calc(100vw - 25px);
-  padding: 30px 150px 70px 150px;
+  width: calc(100vw - 80px);
+  padding: 40px 0px;
+  max-width: 1725px;
 }
 .benefits-title {
   display: flex;
@@ -59,7 +68,7 @@
   margin-top: 40px;
   display: flex;
   gap: 35px;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
 }
 .benefit {
@@ -107,7 +116,7 @@
   right: 10px;
 }
 footer {
-  position: fixed;
+  /* position: fixed; */
   width: 100%;
   bottom: 0px;
   display: flex;
@@ -129,6 +138,11 @@ footer {
 footer h4 {
   font-size: 18px;
   font-weight: 250;
+}
+@media only screen and (max-width: 1620px) {
+  .benefits {
+    justify-content: flex-start;
+  }
 }
 @media only screen and (max-width: 768px) {
   .hero-content {
