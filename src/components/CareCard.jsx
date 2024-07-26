@@ -80,17 +80,17 @@ export const CareCard = ({
       }}
       variants={variants}
       animate={openIdx === idx ? "show" : idx === hideIdx ? "none" : "hide"}
-      className={`care-card care-card-${cardData?.possible}`}
+      className={`care-card care-card-${cardData?.AvailableDesc}`}
     >
       <Button
         type="primary"
-        className={`care-card-button care-card-button-${cardData?.possible}`}
+        className={`care-card-button care-card-button-${cardData?.AvailableDesc}`}
       >
-        {cardData?.possible}
+        {cardData?.AvailableDesc}
       </Button>
       <div id={isTwo && "care-card-two-flex"}>
         <div>
-          <img src={info.icon} alt={`${info.title}`} />
+          <img src={"data:image/jpeg;base64," + cardData.Image} />
           <h3>{cardData?.Name.toUpperCase()}</h3>
         </div>
         <motion.p
@@ -98,7 +98,7 @@ export const CareCard = ({
           animate={openIdx === idx ? "show" : "hide"}
           className="care-card-description"
         >
-          {cardData?.possibleDescr}
+          {cardData?.Descr}
         </motion.p>
       </div>
       <motion.div

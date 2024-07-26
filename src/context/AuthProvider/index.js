@@ -14,13 +14,13 @@ export const authContext = createContext({
   isAuth: false,
   open: false,
   openDrawer: false,
+  userImage: "",
   setOpenDrawer: () => {},
   setOpen: () => {},
-  userPicture: {},
 });
 const AuthProvider = ({ children }) => {
-  const [userPicture, setUserPicture] = useState();
   const [user, setUser] = useState();
+  const [userImage, setImage] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -48,11 +48,14 @@ const AuthProvider = ({ children }) => {
 
   const checkIsLogged = () => {
     const token = sessionStorage.getItem("userToken");
+    const image = sessionStorage.getItem("userImage");
     if (token) {
       setIsAuth(true);
       const decoded = jwtDecode(JSON.stringify(token));
       setUser(decoded);
-      console.log("USER LOGGED IN", decoded);
+    }
+    if (image) {
+      setImage(image);
     }
   };
   const logout = () => {
@@ -71,27 +74,9 @@ const AuthProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log("CHANGE PHOTE", data);
       alert("Зураг амжилттай солигдлоо");
     } catch (error) {
       console.log("error in changing photo", error);
-    }
-  };
-  const getUserPicture = async () => {
-    try {
-      const { data } = await myAxios.get(
-        "api/file/download/Image?filePath=C:/Users/nanza/Downloads/1.jpg",
-        {
-          responseType: "blob",
-          headers: {
-            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-          },
-        }
-      );
-      setUserPicture(data);
-      console.log("PICTURE", data);
-    } catch (error) {
-      console.log("ERROR IN GET PICTURE", error);
     }
   };
 
@@ -99,16 +84,9 @@ const AuthProvider = ({ children }) => {
     checkIsLogged();
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      getUserPicture();
-    }
-  }, [user]);
-
   return (
     <authContext.Provider
       value={{
-        userPicture,
         changeUserPhoto,
         handleCheckRegister,
         handleLogin,
@@ -121,6 +99,7 @@ const AuthProvider = ({ children }) => {
         openDrawer,
         setOpenDrawer,
         setOpen,
+        userImage,
       }}
     >
       {children}

@@ -94,11 +94,11 @@ export const TrainingFileCard = ({
             alignItems: "center",
           }}
         >
-          <div className="video-desc">
+          <div style={{ marginTop: 20 }} className="video-desc">
             <Avatar
               src={learning?.Picture}
               className="video-author-avatar"
-              size={60}
+              size={50}
             />
             <div>
               <p>{learning.UserName}</p>
