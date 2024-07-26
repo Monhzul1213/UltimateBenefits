@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // import styles
 
-const MyEditor = () => {
-  const [value, setValue] = useState("");
+const MyEditor = ({ handleDetailForm, value }) => {
   const handlechange = (e) => {
-    console.log("e", e);
+    handleDetailForm("Text", e);
   };
   return (
     <div>

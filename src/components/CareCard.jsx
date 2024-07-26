@@ -80,8 +80,14 @@ export const CareCard = ({
     },
   };
 
-  const { setCategoryEdit, setCategoryForm, deleteCareCategory, setEditImg } =
-    useCare();
+  const {
+    setCategoryEdit,
+    setCategoryForm,
+    deleteCareCategory,
+    setEditImg,
+    setSelectedCategory,
+    getCareDetail,
+  } = useCare();
   const handleEdit = () => {
     setCategoryEdit(true);
     setCategoryForm(cardData);
@@ -106,6 +112,7 @@ export const CareCard = ({
   };
   const handleAddDetail = () => {
     handleDetailModal(true);
+    setSelectedCategory(cardData.ID);
   };
   const items = [
     {
@@ -167,7 +174,12 @@ export const CareCard = ({
               className="care-card-footer"
             >
               <Button className="care-card-footer-btn">Буцах</Button>
-              <Button className="care-card-footer-btn btn-primary">
+              <Button
+                onClick={() => {
+                  getCareDetail(cardData.ID);
+                }}
+                className="care-card-footer-btn btn-primary"
+              >
                 Багцын мэдээлэл харах
               </Button>
             </motion.div>
@@ -213,7 +225,12 @@ export const CareCard = ({
             className="care-card-footer"
           >
             <Button className="care-card-footer-btn">Буцах</Button>
-            <Button className="care-card-footer-btn btn-primary">
+            <Button
+              onClick={() => {
+                getCareDetail(cardData.ID);
+              }}
+              className="care-card-footer-btn btn-primary"
+            >
               Багцын мэдээлэл харах
             </Button>
           </motion.div>

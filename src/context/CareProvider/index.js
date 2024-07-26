@@ -10,7 +10,11 @@ const CareContext = createContext({
   careFailed: false,
   careCategoryForm: {},
   editImg: "",
+  careDetailForm: "",
+  selectedCategory: 0,
+  setSelectedCategory: () => {},
   handleCategoryForm: () => {},
+  handleDetailForm: () => {},
   createCareCategory: () => {},
   editCareCategory: () => {},
   deleteCareCategory: () => {},
@@ -18,6 +22,7 @@ const CareContext = createContext({
   getCareDetail: () => {},
   createCareDetail: () => {},
   clearForm: () => {},
+  clearDetailForm: () => {},
   categoryEdit: false,
   setCategoryEdit: () => {},
   setCategoryForm: () => {},
@@ -52,6 +57,23 @@ const CareProvider = ({ children }) => {
   };
   const handleCategoryForm = (name, value) => {
     setCategoryForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  //Detail section
+  const [careDetailForm, setCareDetailForm] = useState({
+    Name: "",
+    Text: "",
+  });
+  const [selectedCategory, setSelectedCategory] = useState();
+  const handleDetailForm = (name, value) => {
+    setCareDetailForm((prev) => ({ ...prev, [name]: value }));
+  };
+  const clearDetailForm = () => {
+    setCareDetailForm({
+      Name: "",
+      Text: "",
+    });
+    setSelectedCategory(null);
   };
 
   const getCares = async () => {
@@ -148,17 +170,20 @@ const CareProvider = ({ children }) => {
   };
   const getCareDetail = async (id) => {
     try {
-      const { data } = await myAxios.get(`/api/socialProvision/detail/${id}`, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-        },
-      });
+      const { data } = await myAxios.get(
+        `/api/socialProvision/category/detail/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      console.log("CARE DETAIL data", data);
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
-        alert(error.response.data.error.message, "error");
+        // alert(error.response.data.error.message, "error");
       }
     }
   };
@@ -185,9 +210,23 @@ const CareProvider = ({ children }) => {
     }
   };
   const createCareDetail = async () => {
+    console.log("CREATING DETAIL", selectedCategory, careDetailForm);
     try {
-      myAxios.get(`/api/socialProvision/detail`);
+      await myAxios.post(
+        `/api/socialProvision/category/detail`,
+        {
+          Name: careDetailForm.Name,
+          Text: careDetailForm.Text,
+          CategoryID: parseInt(selectedCategory),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
     } catch (error) {
+      console.log("ERROR IN CREATE DETAIL", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -205,10 +244,14 @@ const CareProvider = ({ children }) => {
         careCategoryForm,
         categoryEdit,
         editImg,
+        selectedCategory,
+        getCareDetail,
+        setSelectedCategory,
         setCategoryEdit,
         setCategoryForm,
         setEditImg,
         handleCategoryForm,
+        handleDetailForm,
         createCareCategory,
         editCareCategory,
         deleteCareCategory,
@@ -216,6 +259,8 @@ const CareProvider = ({ children }) => {
         editCareDetail,
         deleteCareDetail,
         clearForm,
+        clearDetailForm,
+        careDetailForm,
       }}
     >
       {children}

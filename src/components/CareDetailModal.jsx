@@ -5,22 +5,15 @@ import MyEditor from "./MyEditor";
 const CareDetailModal = ({ open, handleDetailModal }) => {
   let fileName = "";
   const {
-    handleCategoryForm,
-    careCategoryForm,
-    createCareCategory,
-    clearForm,
+    handleDetailForm,
+    careDetailForm,
+    createCareDetail,
+    clearDetailForm,
     categoryEdit,
     editCareCategory,
-    editImg,
   } = useCare();
   const handleInput = (e) => {
-    handleCategoryForm(e.target.name, e.target.value);
-  };
-  const handleFileChange = ({ file }) => {
-    if (file?.status !== "removed") {
-      handleCategoryForm("Image", file);
-      fileName = file.name;
-    }
+    handleDetailForm(e.target.name, e.target.value);
   };
 
   return (
@@ -43,7 +36,7 @@ const CareDetailModal = ({ open, handleDetailModal }) => {
             Гарчиг
           </p>
           <Input
-            value={careCategoryForm.Name}
+            value={careDetailForm.Name}
             size="large"
             variant="filled"
             name="Name"
@@ -55,7 +48,10 @@ const CareDetailModal = ({ open, handleDetailModal }) => {
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
             Агуулга
           </p>
-          <MyEditor />
+          <MyEditor
+            handleDetailForm={handleDetailForm}
+            value={careDetailForm.Text}
+          />
         </div>
         <div className="emp-modal-buttons">
           <Button
@@ -63,7 +59,7 @@ const CareDetailModal = ({ open, handleDetailModal }) => {
             style={{ fontWeight: 700 }}
             onClick={() => {
               handleDetailModal(false);
-              clearForm();
+              clearDetailForm();
             }}
           >
             Хаах
@@ -72,8 +68,8 @@ const CareDetailModal = ({ open, handleDetailModal }) => {
             <Button
               size="large"
               onClick={() => {
-                editCareCategory(careCategoryForm?.ID);
-                clearForm();
+                editCareCategory(careDetailForm?.ID);
+                clearDetailForm();
                 handleDetailModal(false);
               }}
               style={{ fontWeight: 700, marginLeft: 10 }}
@@ -85,8 +81,8 @@ const CareDetailModal = ({ open, handleDetailModal }) => {
             <Button
               size="large"
               onClick={() => {
-                createCareCategory();
-                clearForm();
+                createCareDetail();
+                clearDetailForm();
                 handleDetailModal(false);
               }}
               style={{ fontWeight: 700, marginLeft: 10 }}
