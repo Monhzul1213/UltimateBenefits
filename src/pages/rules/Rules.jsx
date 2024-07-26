@@ -1,114 +1,119 @@
-import HTMLFlipBook from "react-pageflip";
-import { CustomHeader } from "../../components";
-import "../../css/rule.css";
-import { BiSolidRightArrow, BiSolidLeftArrow } from "react-icons/bi";
+import React, { useState } from "react";
+import { withSize } from "react-sizeme";
+import { CustomHeader, ClubCard } from "../../components";
+import "../../css/club.css";
 
-import { day01, day16 } from "../../assets";
-import RuleCover from "../../components/RuleCover";
-import RuleContent from "../../components/RuleContent";
-import { useEffect, useRef, useState } from "react";
-import { Button } from "antd";
+export const Clubs = () => {
+   return (
+     <>
+       <CustomHeader title="Дүрэм журам" />
+     </>
+   );
+ };
 
-const ruleSalaryContent = () => (
-  <div className="rule-desc">
-    <div className="rule-date">
-      <img className="calendar-image" src={day16} alt="day16" />
-      <p>
-        <span>16</span>-ны өдрийн цалин нийт цалингийн
-        <span>50%</span> байна.
-      </p>
-    </div>
-    <div className="rule-date">
-      <img src={day01} alt="day01" />
-      <p>
-        <span>1</span>-ний өдрийн сарын сүүл цалингаас
-        <span>НДШ, ХХОАТ</span> болон бусад суутгал шимтгэлийг суутгаж,
-        шаардлагтай нэмэгдлийг нэмж олгоно.
-      </p>
-    </div>
-  </div>
-);
 
-export const Rules = () => {
-  const [dimensions, setDimensions] = useState({ width: 500, height: 650 });
-  const flipBook = useRef(null);
-  const handleNextPage = () => {
-    if (flipBook.current) {
-      flipBook.current.pageFlip().flipNext();
+const Clubs = ({ size }) => {
+  const isOne = size?.width <= 1010;
+  const isTwo = size?.width <= 1525 && size?.width > 1010;
+  const [openIdx, setOpenIdx] = useState(null);
+  const [hideIdx, setHideIdx] = useState(null);
+
+  const handleCardOpen = (idx) => {
+    if (openIdx === idx) {
+      setOpenIdx(null);
+      setHideIdx(null);
+    } else {
+      setOpenIdx(idx);
+      if (isTwo && (idx === 1 || idx === 4 || idx === 7)) {
+        setHideIdx(idx - 1);
+      } else {
+        setHideIdx(isOne ? null : idx + 1);
+      }
     }
   };
 
-  const handlePreviousPage = () => {
-    if (flipBook.current) {
-      flipBook.current.pageFlip().flipPrev();
-    }
-  };
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth < 1000 ? window.innerWidth - 80 : 500;
-      setDimensions({ width });
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   return (
     <>
-      <CustomHeader title="Дүрэм журам" />
-      <main className="rules-container">
-        <HTMLFlipBook
-          ref={flipBook}
-          width={dimensions.width}
-          height={600}
-          minHeight={400}
-          maxShadowOpacity={0.5}
-          mobileScrollSupport={true}
-        >
-          <div style={{ width: "100%", height: "100%" }}>
-            <RuleCover
-              title="Цалин хөлс"
-              lists={[
-                "Цалин / үндсэн, нэмэгдэл, хангамж, урамшуулал, хуримтлуулах",
-                "Цалин хэзээ хэрхэн авах вэ?",
-              ]}
-            />
+      <CustomHeader title={"Сонирхлын клубууд"} />
+      <main className="discounts-container">
+        <div className="cards-container">
+        <div className="image-container">
+              {/* <img className="bonus1-image" src={bonus1} alt="Bonus" />
+              <img className="bonus2-image" src={bonus2} alt="Bonus" /> */}
+          <div className="discounts-card">
+              <ClubCard
+                isTwo={isTwo}
+                hideIdx={hideIdx}
+                handleCardOpen={handleCardOpen}
+                setOpenIdx={setOpenIdx}
+                openIdx={openIdx}
+                idx={0}
+                // info={discountsi[0]}
+              />
+            </div>
           </div>
-          <div>
-            <RuleContent
-              header="Цалин хөлс"
-              title="Цалин хэзээ, хэрхэн авах вэ?"
-              content={ruleSalaryContent()}
-            />
+          <div className={`cards ${isTwo ? "cards-two" : ""}`}>
+          {/* <img className="phone-image" src={phone} alt="Phone" /> */}
+            <div className="discounts-card">
+              <ClubCard
+                isTwo={isTwo}
+                hideIdx={hideIdx}
+                handleCardOpen={handleCardOpen}
+                setOpenIdx={setOpenIdx}
+                openIdx={openIdx}
+                idx={1}
+                // info={discountsi[1]}
+              />
+            </div>
+            <div className="image-container">
+                {/* <img className="lunch1-image full-image" src={lunch1} alt="Lunch" />
+                <img className="lunch2-image" src={lunch2} alt="Lunch" /> */}
+            <div className="discounts-card">
+                <ClubCard
+                  isTwo={isTwo}
+                  hideIdx={hideIdx}
+                  handleCardOpen={handleCardOpen}
+                  setOpenIdx={setOpenIdx}
+                  openIdx={openIdx}
+                  idx={2}
+                  // info={discountsi[2]}
+                />
+              </div>
+            </div>
           </div>
-          <div style={{ width: "100%", height: "100%" }}>
-            <RuleCover
-              title="Цалин хөлс"
-              lists={[
-                "Цалин / үндсэн, нэмэгдэл, хангамж, урамшуулал, хуримтлуулах",
-                "Цалин хэзээ хэрхэн авах вэ?",
-              ]}
-            />
+          <div className={`cards ${isTwo ? "cards-two" : ""}`}>
+          {/* <img className="bday-image" src={bday} alt="Bday" /> */}
+            <div className="discounts-card">
+              <ClubCard
+                isTwo={isTwo}
+                hideIdx={hideIdx}
+                handleCardOpen={handleCardOpen}
+                setOpenIdx={setOpenIdx}
+                openIdx={openIdx}
+                idx={3}
+                // info={discountsi[3]}
+              />
+            </div>
+            <div className="image-container">
+                {/* <img className="gym1-image full-image" src={gym1} alt="Gym" />
+                <img className="gym2-image" src={gym2} alt="Gym" /> */}
+            <div className="discounts-card">
+                <ClubCard
+                  isTwo={isTwo}
+                  hideIdx={hideIdx}
+                  handleCardOpen={handleCardOpen}
+                  setOpenIdx={setOpenIdx}
+                  openIdx={openIdx}
+                  idx={4}
+                  // info={discountsi[4]}
+                />
+              </div>
+            </div>
           </div>
-          <div>
-            <RuleContent
-              header="Цалин хөлс"
-              title="Цалин хэзээ, хэрхэн авах вэ?"
-              content={ruleSalaryContent()}
-            />
-          </div>
-        </HTMLFlipBook>
+        </div>
       </main>
-
-      <div className="flip-page-buttons">
-        <Button type="primary" onClick={handlePreviousPage}>
-          <BiSolidLeftArrow size={25} />
-        </Button>
-        <Button type="primary" onClick={handleNextPage}>
-          <BiSolidRightArrow size={25} />
-        </Button>
-      </div>
     </>
   );
 };
+
+export default withSize()(Clubs);
