@@ -18,7 +18,7 @@ const options = [
 
 const DiscountsOption = ({ visible, onClose }) => {
   const [description, setDescription] = useState('');
-  const [dates, setDates] = useState([null, null]);
+  const [setDates] = useState([null, null]);
 
   const handleOk = () => {
     if (onClose) onClose();
@@ -37,7 +37,7 @@ const DiscountsOption = ({ visible, onClose }) => {
       }
       visible={visible}
       onCancel={handleCancel}
-      footer={null} // Remove default footer to customize
+      footer={null} 
     >
       <Form layout="vertical">
         <Form.Item
@@ -79,12 +79,14 @@ const DiscountsOption = ({ visible, onClose }) => {
         </Form.Item>
 
         <div style={{ textAlign: 'center', marginTop: '20px', borderTop: '1px solid #f0f0f0', paddingTop: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
           <Button key="cancel" type="default" onClick={handleCancel} style={{ marginRight: '10px' }}>
             Болих
           </Button>
-          <Button key="save" type="primary" onClick={handleOk}>
-            Хадгалах
+          <Button key="send" type="primary" onClick={handleOk}>
+            Илгээх
           </Button>
+        </div>
         </div>
       </Form>
     </Modal>

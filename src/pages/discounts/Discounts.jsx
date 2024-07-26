@@ -12,7 +12,7 @@ const Discounts = ({ size }) => {
   const [openIdx, setOpenIdx] = useState(null);
   const [modalData, setModalData] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
-  const [isOptionsVisible, setIsOptionsVisible] = useState(false); // New state for DiscountsOption
+  const [isOptionsVisible, setIsOptionsVisible] = useState(false); 
 
   const handleCardOpen = (idx) => {
     const discount = discountsi[idx];

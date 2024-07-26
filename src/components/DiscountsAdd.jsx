@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, Switch, Modal } from 'antd';
+import { Form, Input, Button, Switch, Modal, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 
 const DiscountsAdd = ({ visible, onClose }) => {
   const [isActive, setIsActive] = useState(true);
+  const [imageUrl, setImageUrl] = useState(null);
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', { ...values, status: isActive });
+    console.log('Received values of form: ', { ...values, status: isActive, imageUrl });
     onClose();
   };
 
   const handleStatusChange = (checked) => {
     setIsActive(checked);
+  };
+
+  const handleImageChange = ({ file }) => {
+    if (file.status === 'done') {
+      setImageUrl(URL.createObjectURL(file.originFileObj));
+    }
   };
 
   return (
@@ -23,7 +31,7 @@ const DiscountsAdd = ({ visible, onClose }) => {
           ХӨНГӨЛӨЛТ УРАМШУУЛАЛ НЭМЭХ
         </div>
       }
-      footer={null} 
+      footer={null}
     >
       <Form
         id="discounts-form"
@@ -34,7 +42,7 @@ const DiscountsAdd = ({ visible, onClose }) => {
         <Form.Item
           name="discountName"
           label="Хөнгөлөлт, урамшууллын нэр"
-          rules={[{ required: true, message: 'Хөнгөлөлт, урамшууллын нэрээ оруулна уу' }]}
+          rules={[{message: 'Хөнгөлөлт, урамшууллын нэрээ оруулна уу' }]}
         >
           <Input placeholder="Хөнгөлөлт, урамшууллын нэрээ оруулна уу" />
         </Form.Item>
@@ -42,7 +50,7 @@ const DiscountsAdd = ({ visible, onClose }) => {
         <Form.Item
           name="description"
           label="Тайлбар"
-          rules={[{ required: true, message: 'Тайлбараа оруулна уу' }]}
+          rules={[{message: 'Тайлбараа оруулна уу' }]}
         >
           <Input placeholder="Тайлбараа оруулна уу" />
         </Form.Item>
@@ -55,6 +63,18 @@ const DiscountsAdd = ({ visible, onClose }) => {
           <Input.TextArea placeholder="Дэлгэрэнгүй мэдээллийг оруулна уу" />
         </Form.Item>
 
+        <Form.Item label="Зураг">
+          <Upload
+            name="image"
+            listType="picture"
+            beforeUpload={() => false} 
+            onChange={handleImageChange}
+          >
+            <Button icon={<UploadOutlined />}>Зураг сонгох</Button>
+          </Upload>
+          {imageUrl && <img src={imageUrl} alt="Preview" style={{ width: '100%', marginTop: '10px' }} />}
+        </Form.Item>
+
         <Form.Item label="Төлөв">
           <label>
             <Switch checked={isActive} onChange={handleStatusChange} /> {isActive ? 'Идэвхтэй' : 'Идэвхгүй'}
@@ -62,12 +82,14 @@ const DiscountsAdd = ({ visible, onClose }) => {
         </Form.Item>
 
         <div style={{ textAlign: 'center', marginTop: '20px', borderTop: '1px solid #f0f0f0', paddingTop: '10px' }}>
-          <Button key="cancel" type="default" onClick={onClose} style={{ marginRight: '10px' }}>
-            Болих
-          </Button>
-          <Button key="save" type="primary" htmlType="submit" form="discounts-form">
-            Хадгалах
-          </Button>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+            <Button key="cancel" type="default" onClick={onClose} style={{ marginRight: '10px' }}>
+              Болих
+            </Button>
+            <Button key="save" type="primary" htmlType="submit" form="discounts-form">
+              Хадгалах
+            </Button>
+          </div>
         </div>
       </Form>
     </Modal>

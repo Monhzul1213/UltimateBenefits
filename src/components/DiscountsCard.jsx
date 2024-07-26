@@ -40,7 +40,7 @@ const DiscountsCard = ({ visible, onClose, data }) => {
       }
       open={visible}
       onCancel={onClose}
-      footer={null} // Remove default footer to add custom footer
+      footer={null}
       centered
     >
       <Form layout="vertical">
@@ -71,12 +71,14 @@ const DiscountsCard = ({ visible, onClose, data }) => {
         </Form.Item>
 
         <div style={{ textAlign: 'center', marginTop: '20px', borderTop: '1px solid #f0f0f0', paddingTop: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
           <Button key="cancel" type="default" onClick={onClose} style={{ marginRight: '10px' }}>
             Болих
           </Button>
           <Button key="save" type="primary" onClick={handleSave} disabled={!isEditing}>
             Хадгалах
           </Button>
+          </div>
         </div>
       </Form>
     </Modal>

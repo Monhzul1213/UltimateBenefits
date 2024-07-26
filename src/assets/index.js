@@ -23,10 +23,9 @@ import day16 from "./day16.png";
 import bonus from "./bonus.png";
 import bday from "./bday.png";
 import phone from "./phone.png";
-import lunch1 from "./lunch1.png";
-import lunch2 from "./lunch2.png";
-import gym1 from "./gym1.png";
-import gym2 from "./gym2.png";
+import lunch from "./lunch.png";
+import gym from "./gym.png";
+import add_card from "./add_card.png"
 import hands from "./hands.png";
 import dotka from "./dotka.png";
 import volleyball from "./volleyball.png";
@@ -76,10 +75,9 @@ export {
   bonus,
   bday,
   phone,
-  lunch1,
-  lunch2,
-  gym1,
-  gym2,
+  lunch,
+  gym,
+  add_card,
   hands,
   dotka,
   volleyball,
