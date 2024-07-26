@@ -44,8 +44,16 @@ import pdfBack from "./pdfBack.png";
 import pdfIcon from "./pdfIcon.png";
 import wordBack from "./wordBack.png";
 import wordIcon from "./wordIcon.png";
+import RulesBod from "./RulesBod.png";
+import RulesDj from "./RulesDJ.png";
+import RulesGa from "./RulesGA.png";
+import RulesHut from "./RulesHut.png";
 
 export {
+  RulesBod,
+  RulesDj,
+  RulesGa,
+  RulesHut,
   downloadFileIcon,
   excelBack,
   excelIcon,

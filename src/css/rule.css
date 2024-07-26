@@ -1,4 +1,4 @@
-.rules-container {
+/* .rules-container {
   width: calc(100vw - 25px);
   height: 80vh;
   display: flex;
@@ -156,4 +156,28 @@
   .flip-page-buttons {
     margin-top: -50px;
   }
+} */
+
+.rules-card-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin: 50px;
+}
+
+.rule-category-card {
+  width: 415px;
+  height: 290px;
+  background-color: blueviolet;
+  padding: 30px;
+  border-radius: 15px;
+}
+.rule-category-card img {
+  width: 100px;
+}
+.rule-category-card h3 {
+  margin-top: 90px;
+  font-size: 25px;
+  color: white;
 }
