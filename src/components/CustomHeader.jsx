@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import "../css/customHeader.css";
 
 export const CustomHeader = ({ title }) => {
-  const { user, setOpenDrawer } = useAuth();
+  const { user, setOpenDrawer, userImage } = useAuth();
   return (
     <div className="custom-header">
       <div className="custom-header-title">
@@ -26,7 +26,7 @@ export const CustomHeader = ({ title }) => {
       >
         <img className="custom-header-notf" src={bell} alt="" />
         <Avatar
-          src={user?.Picture}
+          src={"data:image/jpeg;base64," + userImage}
           style={{ backgroundColor: "white", marginLeft: 20 }}
           size={40}
           icon={<UserOutlined />}

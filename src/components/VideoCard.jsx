@@ -54,9 +54,9 @@ export const VideoCard = ({
         </div>
         <div className="video-desc">
           <Avatar
-            src={learning?.Picture.replace("./public/upload/", "/upload/")}
+            src={learning?.Picture}
             className="video-author-avatar"
-            size={60}
+            size={50}
           />
           <div>
             <p>{learning.UserName}</p>

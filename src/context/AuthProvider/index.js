@@ -14,11 +14,13 @@ export const authContext = createContext({
   isAuth: false,
   open: false,
   openDrawer: false,
+  userImage: "",
   setOpenDrawer: () => {},
   setOpen: () => {},
 });
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const [userImage, setImage] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -46,11 +48,14 @@ const AuthProvider = ({ children }) => {
 
   const checkIsLogged = () => {
     const token = sessionStorage.getItem("userToken");
+    const image = sessionStorage.getItem("userProfile");
     if (token) {
       setIsAuth(true);
       const decoded = jwtDecode(JSON.stringify(token));
       setUser(decoded);
-      console.log("USER LOGGED IN", decoded);
+    }
+    if (image) {
+      setImage(image);
     }
   };
   const logout = () => {
@@ -63,14 +68,19 @@ const AuthProvider = ({ children }) => {
     try {
       let formData = new FormData();
       formData.append("profile", photo);
-      const data = myAxios.put(`/api/users/profile/${user.ID}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-        },
-      });
-      console.log("CHANGE PHOTE", data);
+      const { data } = await myAxios.put(
+        `/api/users/profile/${user.ID}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
       alert("Зураг амжилттай солигдлоо");
+      setImage(data.result);
+      sessionStorage.setItem("userProfile", data.result);
     } catch (error) {
       console.log("error in changing photo", error);
     }
@@ -95,6 +105,7 @@ const AuthProvider = ({ children }) => {
         openDrawer,
         setOpenDrawer,
         setOpen,
+        userImage,
       }}
     >
       {children}

@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Input, Row, Col } from "antd";
 
-export const OTPInput = ({ length, onChange }) => {
+export const OTPInput = ({ length, onChange, register, pin, handleLogin }) => {
   const [otp, setOtp] = useState(Array(length).fill(""));
-
+  const otpRef = useRef();
+  const noRef = useRef();
+  const focusOtp = () => {
+    otpRef.current.focus({
+      cursor: "start",
+    });
+  };
+  useEffect(() => {
+    focusOtp();
+  }, []);
   const handleChange = (value, index) => {
     const newOtp = [...otp];
     if (/^[0-9]$/.test(value)) {
@@ -24,6 +33,9 @@ export const OTPInput = ({ length, onChange }) => {
     if (e.key === "Backspace" && !otp[index] && index > 0) {
       document.getElementById(`otp-input-${index - 1}`).focus();
     }
+    if (e.key === "Enter") {
+      handleLogin(register, pin);
+    }
   };
 
   return (
@@ -31,6 +43,7 @@ export const OTPInput = ({ length, onChange }) => {
       {otp.map((value, index) => (
         <Col key={index}>
           <Input
+            ref={index === 0 ? otpRef : noRef}
             id={`otp-input-${index}`}
             maxLength={1}
             value={value}

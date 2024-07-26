@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import myAxios from "../../lib/axios";
 import { useAuth } from "../AuthProvider";
 import { alert } from "../../lib/actions/alert.actions";
@@ -17,9 +17,8 @@ export const ClubContext = createContext({
   setClubFormEdit: () => {},
 });
 
- const ClubProvider = ({ children }) => {
+const ClubProvider = ({ children }) => {
   const { user } = useAuth();
-  console.log("test",user);
   const [clubs, setClubs] = useState([]);
   const [clubLoading, setClubLoading] = useState(false);
   const [clubFailed, setClubFailed] = useState(false);
@@ -44,7 +43,6 @@ export const ClubContext = createContext({
   };
 
   const getClubs = async () => {
-    console.log("getClubs");
     setClubLoading(true);
     try {
       const { data } = await myAxios.get("/api/club", {
@@ -52,8 +50,8 @@ export const ClubContext = createContext({
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log("CLUB DATA", data);
-      setClubs(data.clubs);
+      console.log("CLUB DATA", data.result);
+      setClubs(data.result);
       setClubFailed(false);
     } catch (error) {
       console.log("ERROR IN GET CLUBS", error);

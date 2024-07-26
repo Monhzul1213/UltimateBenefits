@@ -1,15 +1,15 @@
+import React from "react";
 import { Button } from "antd";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-export const CareCard = ({
-  info,
+const ClubCard = ({
+  club,
   idx,
   openIdx,
   hideIdx,
   handleCardOpen,
   isTwo,
-  cardData,
 }) => {
   const displayArrow = idx === openIdx ? "hide" : "show";
 
@@ -60,6 +60,7 @@ export const CareCard = ({
           transition: { opacity: { duration: 0.3 }, display: { delay: 0.3 } },
         },
       };
+
   const textVariants = {
     show: {
       opacity: 1,
@@ -72,47 +73,40 @@ export const CareCard = ({
       transition: { duration: 0.1 },
     },
   };
+
   return (
     <motion.div
-      id={isTwo && "care-card-two"}
-      onClick={() => {
-        handleCardOpen(idx);
-      }}
+      onClick={() => handleCardOpen(idx)}
       variants={variants}
       animate={openIdx === idx ? "show" : idx === hideIdx ? "none" : "hide"}
-      className={`care-card care-card-${cardData?.AvailableDesc}`}
+      className={`club-card club-card-${club.Name}`}
     >
-      <Button
-        type="primary"
-        className={`care-card-button care-card-button-${cardData?.AvailableDesc}`}
-      >
-        {cardData?.AvailableDesc}
+      <Button type="primary" className={`club-card-button club-card-button-${club.Name}`}>
+        {club.Name}
       </Button>
-      <div id={isTwo && "care-card-two-flex"}>
-        <div>
-          <img src={"data:image/jpeg;base64," + cardData.Image} />
-          <h3>{cardData?.Name.toUpperCase()}</h3>
-        </div>
-        <motion.p
-          variants={textVariants}
-          animate={openIdx === idx ? "show" : "hide"}
-          className="care-card-description"
-        >
-          {cardData?.Descr}
-        </motion.p>
+      <div>
+        <img src={club.Image} alt={club.Name} />
+        <h3>{club.Name.toUpperCase()}</h3>
       </div>
+      <motion.p
+        variants={textVariants}
+        animate={openIdx === idx ? "show" : "hide"}
+        className="club-card-description"
+      >
+        {club.Descr}
+      </motion.p>
       <motion.div
         initial={{ display: "none", opacity: 0 }}
         variants={textVariants}
         animate={openIdx === idx ? "show" : "hide"}
-        className="care-card-footer"
+        className="club-card-footer"
       >
-        <Button className="care-card-footer-btn">Буцах</Button>
-        <Button className="care-card-footer-btn btn-primary">
-          Багцын мэдээлэл харах
-        </Button>
+        <Button className="club-card-footer-btn">Back</Button>
+        <Button className="club-card-footer-btn btn-primary">View Details</Button>
       </motion.div>
-      <FaArrowRight size={25} className={`care-card-arrow ${displayArrow}`} />
+      <FaArrowRight size={25} className={`club-card-arrow ${displayArrow}`} />
     </motion.div>
   );
 };
+
+export default ClubCard;

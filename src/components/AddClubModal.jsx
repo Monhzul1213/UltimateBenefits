@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useClub } from '../context/ClubsProvider';
+import { Input } from 'antd';
 
 export const AddClubModal = ({ isOpen, onClose }) => {
-
   const { addClub } = useClub();
   const [clubForm, setClubForm] = useState({
     Name: '',
@@ -51,13 +51,14 @@ export const AddClubModal = ({ isOpen, onClose }) => {
           className="modal-content"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="add-header">
-              <h2>ШИНЭ КЛУБ НЭМЭХ</h2>
-          </div>
-          <form onSubmit={handleSubmit}>
+      <div className="add-header">
+        <h2>ШИНЭ КЛУБ НЭМЭХ</h2>
+          <button className="close-button" onClick={onClose}>X</button>
+      </div>    
+      <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="Name">Клубын нэр</label>
-              <input
+              <Input
                 placeholder='Клубын нэрээ оруулна уу'
                 type="text"
                 id="Name"
@@ -80,7 +81,7 @@ export const AddClubModal = ({ isOpen, onClose }) => {
             </div>
             <div className="form-group">
               <label htmlFor="Contact">Утасны дугаар</label>
-              <input
+              <Input
                 placeholder='Утасны дугаараа оруулна уу'
                 type="tel"
                 id="Contact"
@@ -90,18 +91,20 @@ export const AddClubModal = ({ isOpen, onClose }) => {
                 required
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="Image">Зураг</label>
-              <input
-                placeholder='Зурагаа оруулна уу'
-                type="File"
-                id="Image"
-                name="Image"
-                accept="image/*"
-                onChange={handleImageChange}
-                required
-              />
-            </div>
+      <div className="form-group-image">
+          <label htmlFor="Image" className="file-upload-button">
+            <span className="icon">&#8595;</span> Зураг хавсаргах
+          </label>
+            <Input
+              type="file"
+              id="Image"
+              name="Image"
+              accept="image/*"
+              onChange={handleImageChange}
+              required
+              style={{ display: 'none' }}
+          />
+          </div>
             <div className="form-actions">
               <button type="button" onClick={onClose} className="cancel-button">Болих</button>
               <button type="submit" className="submit-button">Нэмэх</button>

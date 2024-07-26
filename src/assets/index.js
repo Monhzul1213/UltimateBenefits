@@ -20,21 +20,17 @@ import vaccine from "./vaccine.svg";
 import car from "./car.svg";
 import day01 from "./day01.png";
 import day16 from "./day16.png";
-import bonus1 from "./bonus1.png";
-import bonus2 from "./bonus2.png";
+import bonus from "./bonus.png";
 import bday from "./bday.png";
 import phone from "./phone.png";
-import phone1 from "./phone1.png";
-import lunch1 from "./lunch1.png";
-import lunch2 from "./lunch2.png";
-import gym1 from "./gym1.png";
-import gym2 from "./gym2.png";
+import lunch from "./lunch.png";
+import gym from "./gym.png";
 import add_card from "./add_card.png";
 import hands from "./hands.png";
 import dotka from "./dotka.png";
-import volleyball from "./volleyball.png";
+import volleyball from "./volleyball.jpg";
 import movie from "./movie.png";
-import people from "./peoples.png";
+import people from "./peoples.jpg";
 import AddClubs from "./AddClubs.png";
 import downloadFileIcon from "./downloadFile.png";
 import excelBack from "./excelBack.png";
@@ -76,15 +72,11 @@ export {
   learning,
   bell,
   rules,
-  bonus1,
-  bonus2,
+  bonus,
   bday,
   phone,
-  phone1,
-  lunch1,
-  lunch2,
-  gym1,
-  gym2,
+  lunch,
+  gym,
   add_card,
   hands,
   dotka,

@@ -94,11 +94,11 @@ export const TrainingFileCard = ({
             alignItems: "center",
           }}
         >
-          <div className="video-desc">
+          <div style={{ marginTop: 20 }} className="video-desc">
             <Avatar
-              src={learning?.Picture?.replace("./public/upload/", "/upload/")}
+              src={learning?.Picture}
               className="video-author-avatar"
-              size={60}
+              size={50}
             />
             <div>
               <p>{learning.UserName}</p>
@@ -108,8 +108,7 @@ export const TrainingFileCard = ({
           <div style={{ textAlign: "right" }}>
             <img
               onClick={() => {
-                // downloadFile(learning.FileDesc);
-                console.log("Learning", learning);
+                downloadFile(learning.FileDesc);
               }}
               className="downloadfile-icon"
               src={downloadFileIcon}
