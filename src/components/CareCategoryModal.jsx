@@ -106,6 +106,8 @@ const CareCategoryModal = ({ isEdit, open, handleAddModal }) => {
               size="large"
               onClick={() => {
                 createCareCategory();
+                clearForm();
+                handleAddModal(false);
               }}
               style={{ fontWeight: 700, marginLeft: 10 }}
               type="primary"
