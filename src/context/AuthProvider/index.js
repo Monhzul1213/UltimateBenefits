@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
 
   const checkIsLogged = () => {
     const token = sessionStorage.getItem("userToken");
-    const image = sessionStorage.getItem("userImage");
+    const image = sessionStorage.getItem("userProfile");
     if (token) {
       setIsAuth(true);
       const decoded = jwtDecode(JSON.stringify(token));
@@ -68,13 +68,19 @@ const AuthProvider = ({ children }) => {
     try {
       let formData = new FormData();
       formData.append("profile", photo);
-      const data = myAxios.put(`/api/users/profile/${user.ID}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
-        },
-      });
+      const { data } = await myAxios.put(
+        `/api/users/profile/${user.ID}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
       alert("Зураг амжилттай солигдлоо");
+      setImage(data.result);
+      sessionStorage.setItem("userProfile", data.result);
     } catch (error) {
       console.log("error in changing photo", error);
     }

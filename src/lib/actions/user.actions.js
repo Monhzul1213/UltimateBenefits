@@ -8,11 +8,10 @@ export const checkRegister = async (register) => {
     });
     return res.data.success;
   } catch (error) {
-    console.log("ERROR IN CHECK REGISTER", error);
     if (!error.response) {
       alert("Уучлаарай, сүлжээ унасан байна", "error");
     } else {
-      // alert(error.response.data.error.message, "error");
+      alert(error.response.data.error.message, "error");
     }
   }
 };

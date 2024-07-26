@@ -21,6 +21,7 @@ export const MyDrawer = () => {
     changeUserPhoto,
     userImage,
   } = useAuth();
+
   const { dayItems, calendarLoading, calenderFailed, retryCalendarData } =
     useCalendar();
   const inputRef = useRef();
@@ -32,7 +33,7 @@ export const MyDrawer = () => {
   };
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-    console.log("file", file);
+
     if (file) {
       changeUserPhoto(file);
     }

@@ -60,7 +60,6 @@ const CareProvider = ({ children }) => {
         let chunk = array.slice(i, i + 2);
         result.push(chunk);
       }
-      console.log("Get cares", result);
       setCareCategory(result);
     } catch (error) {
       if (!error.response) {
