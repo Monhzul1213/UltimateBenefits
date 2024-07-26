@@ -9,6 +9,7 @@ const CareContext = createContext({
   careLoading: false,
   careFailed: false,
   careCategoryForm: {},
+  editImg: "",
   handleCategoryForm: () => {},
   createCareCategory: () => {},
   editCareCategory: () => {},
@@ -17,6 +18,10 @@ const CareContext = createContext({
   getCareDetail: () => {},
   createCareDetail: () => {},
   clearForm: () => {},
+  categoryEdit: false,
+  setCategoryEdit: () => {},
+  setCategoryForm: () => {},
+  setEditImg: () => {},
 });
 
 const CareProvider = ({ children }) => {
@@ -25,6 +30,9 @@ const CareProvider = ({ children }) => {
   const [careCategory, setCareCategory] = useState();
   const [careLoading, setCareLoading] = useState(false);
   const [careFailed, setCareFailed] = useState(false);
+
+  const [categoryEdit, setCategoryEdit] = useState(false);
+  const [editImg, setEditImg] = useState();
 
   const [careCategoryForm, setCategoryForm] = useState({
     Name: "",
@@ -39,6 +47,8 @@ const CareProvider = ({ children }) => {
       Image: "",
       AvailableMonth: "",
     });
+    setCategoryEdit(false);
+    setEditImg("");
   };
   const handleCategoryForm = (name, value) => {
     setCategoryForm((prev) => ({ ...prev, [name]: value }));
@@ -74,7 +84,7 @@ const CareProvider = ({ children }) => {
   };
   const createCareCategory = async () => {
     const formData = new FormData();
-    formData.append("Name", "Ner");
+    formData.append("Name", careCategoryForm.Name);
     formData.append("Descr", careCategoryForm.Descr);
     formData.append("Image", careCategoryForm.Image);
     formData.append("AvailableMonth", careCategoryForm.AvailableMonth);
@@ -96,9 +106,22 @@ const CareProvider = ({ children }) => {
     }
   };
   const editCareCategory = async (id) => {
+    const formData = new FormData();
+    console.log(careCategoryForm);
+    formData.append("Name", careCategoryForm.Name);
+    formData.append("Descr", careCategoryForm.Descr);
+    formData.append("Image", careCategoryForm.Image);
+    formData.append("AvailableMonth", careCategoryForm.AvailableMonth);
     try {
-      const { data } = myAxios.put(`/api/socialProvision/category/${id}`);
+      await myAxios.put(`/api/socialProvision/category/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      getCares();
     } catch (error) {
+      console.log("ERROR IN EDIT", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -108,7 +131,13 @@ const CareProvider = ({ children }) => {
   };
   const deleteCareCategory = async (id) => {
     try {
-      const { data } = myAxios.delete(`/api/socialProvision/category/${id}`);
+      await myAxios.delete(`/api/socialProvision/category/${id}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай устгагдлаа", "success");
+      getCares();
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
@@ -119,7 +148,12 @@ const CareProvider = ({ children }) => {
   };
   const getCareDetail = async (id) => {
     try {
-      const { data } = myAxios.get(`/api/socialProvision/detail/${id}`);
+      const { data } = await myAxios.get(`/api/socialProvision/detail/${id}`, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
@@ -169,6 +203,11 @@ const CareProvider = ({ children }) => {
         careFailed,
         careCategory,
         careCategoryForm,
+        categoryEdit,
+        editImg,
+        setCategoryEdit,
+        setCategoryForm,
+        setEditImg,
         handleCategoryForm,
         createCareCategory,
         editCareCategory,

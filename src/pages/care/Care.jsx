@@ -11,6 +11,7 @@ import { IoReload } from "react-icons/io5";
 import { checkRole } from "../../lib/utils/checkRole";
 import { nemeh } from "../../assets";
 import CareCategoryModal from "../../components/CareCategoryModal";
+import CareDetailModal from "../../components/CareDetailModal";
 
 const Care = ({ size }) => {
   const isOne = size?.width <= 1010;
@@ -40,12 +41,16 @@ const Care = ({ size }) => {
     getCares(user.UserID);
   }, [user.UserID]);
 
-  //ADD EDIT DELETE
+  //ADD EDIT DELETE CATEGORY
   const [addOpen, setAddOpen] = useState(false);
   const handleAddModal = (value) => {
     setAddOpen(value);
   };
-
+  //ADD EDIT DETAIL
+  const [detailOpen, setDetailOpen] = useState(false);
+  const handleDetailModal = (value) => {
+    setDetailOpen(value);
+  };
   return (
     <>
       <CustomHeader title="Нийгмийн хангамж" />
@@ -70,6 +75,8 @@ const Care = ({ size }) => {
               <div key={index} className="care-cards" id={isTwo && "cards-two"}>
                 {data.map((card, idx) => (
                   <CareCard
+                    handleDetailModal={handleDetailModal}
+                    handleAddModal={handleAddModal}
                     key={idx}
                     cardData={card}
                     isTwo={isTwo}
@@ -96,6 +103,10 @@ const Care = ({ size }) => {
         )}
       </main>
       <CareCategoryModal open={addOpen} handleAddModal={handleAddModal} />
+      <CareDetailModal
+        open={detailOpen}
+        handleDetailModal={handleDetailModal}
+      />
     </>
   );
 };
