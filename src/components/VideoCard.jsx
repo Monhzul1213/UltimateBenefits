@@ -56,7 +56,7 @@ export const VideoCard = ({
           <Avatar
             src={learning?.Picture}
             className="video-author-avatar"
-            size={60}
+            size={50}
           />
           <div>
             <p>{learning.UserName}</p>

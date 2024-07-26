@@ -24,6 +24,7 @@ export const login = async (register, pin) => {
       Password: pin,
     });
     sessionStorage.setItem("userToken", res.data.result);
+    sessionStorage.setItem("userProfile", res.data.Image);
     alert("Амжилттай нэвтэрлээ", "success");
     return res.data.success;
   } catch (error) {
