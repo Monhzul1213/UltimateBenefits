@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useClub } from '../context/ClubsProvider';
 
 export const AddClubModal = ({ isOpen, onClose }) => {
+
   const { addClub } = useClub();
   const [clubForm, setClubForm] = useState({
     Name: '',
@@ -50,11 +51,14 @@ export const AddClubModal = ({ isOpen, onClose }) => {
           className="modal-content"
           onClick={(e) => e.stopPropagation()}
         >
-          <h2>Шинэ клуб нэмэх</h2>
+          <div className="add-header">
+              <h2>ШИНЭ КЛУБ НЭМЭХ</h2>
+          </div>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="Name">Клубын нэр</label>
               <input
+                placeholder='Клубын нэрээ оруулна уу'
                 type="text"
                 id="Name"
                 name="Name"
@@ -66,6 +70,7 @@ export const AddClubModal = ({ isOpen, onClose }) => {
             <div className="form-group">
               <label htmlFor="Descr">Тайлбар</label>
               <textarea
+                placeholder='Тайлбар оруулна уу'
                 id="Descr"
                 name="Descr"
                 value={clubForm.clubDescription}
@@ -76,6 +81,7 @@ export const AddClubModal = ({ isOpen, onClose }) => {
             <div className="form-group">
               <label htmlFor="Contact">Утасны дугаар</label>
               <input
+                placeholder='Утасны дугаараа оруулна уу'
                 type="tel"
                 id="Contact"
                 name="Contact"
@@ -87,6 +93,7 @@ export const AddClubModal = ({ isOpen, onClose }) => {
             <div className="form-group">
               <label htmlFor="Image">Зураг</label>
               <input
+                placeholder='Зурагаа оруулна уу'
                 type="File"
                 id="Image"
                 name="Image"

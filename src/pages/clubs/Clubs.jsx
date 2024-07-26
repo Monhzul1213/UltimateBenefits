@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { CustomHeader } from "../../components";
 import { clubsItems } from "../../constants";
 import { ClubsModal, AddClubModal } from "../../components";
+import { useClub } from "../../context/ClubsProvider";
 import "../../css/club.css";
 import { Alert } from "../../lib/actions/alert.actions";
+import { clubs } from "../../assets";
 
 const AlertMessage = () => {
   const [visible, setVisible] = useState(true);
@@ -38,7 +40,7 @@ const AddClubCard = ({ onClick }) => (
 const Clubs = () => {
   const [selectedClub, setSelectedClub] = useState(null);
   const [isAddClubModalOpen, setIsAddClubModalOpen] = useState(false);
-
+  const {Clubs} = useClub();
   const handleCardOpen = (club) => {
     setSelectedClub(club);
   };

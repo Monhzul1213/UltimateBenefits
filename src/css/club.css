@@ -34,15 +34,26 @@
   object-fit: cover;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap');
+
 .card-title {
   position: absolute;
   bottom: 10px;
   left: 10px;
   color: white;
   font-size: 35px;
-  font-family: 'Montserrat BLACK', sans-serif;
-  font-weight:bold;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.add-header{
+  border-bottom: 1px solid #858585;
+  margin-top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Montserrat', 'Light' sans-serif;
 }
 
 .modal-overlay {
@@ -69,20 +80,23 @@
 }
 
 .modal-content h2 {
-  margin-bottom: 20px;
-  font-size: 18px;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-family: 'Montserrat';
   font-weight: bold;
 }
 
 .modal-description {
   font-size: 14px;
   color: #666;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  font-family: 'Montserrat', 'Light' sans-serif;
 }
 
 .club-info p {
   margin: 5px 0;
   font-size: 14px;
+  
 }
 
 .member-info {
@@ -126,14 +140,15 @@
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
-  color: #666;
+  font-weight:600;
+  color: #181717;
 }
 
 .form-group input {
@@ -142,15 +157,6 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
-}
-
-.date-inputs {
-  display: flex;
-  gap: 10px;
-}
-
-.date-inputs input {
-  flex: 1;
 }
 
 .form-actions {
