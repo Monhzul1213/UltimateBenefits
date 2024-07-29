@@ -120,6 +120,7 @@ const Care = ({ size }) => {
         handleDetailModal={handleDetailModal}
       />
       <CareDetailWatch
+        handleDetailModal={handleDetailModal}
         watchTitle={watchTitle}
         watchModal={watchModal}
         setWatchModal={setWatchModal}

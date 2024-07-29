@@ -9,8 +9,8 @@ const CareDetailModal = ({ open, handleDetailModal }) => {
     careDetailForm,
     createCareDetail,
     clearDetailForm,
-    categoryEdit,
-    editCareCategory,
+    detailEdit,
+    editCareDetail,
   } = useCare();
   const handleInput = (e) => {
     handleDetailForm(e.target.name, e.target.value);
@@ -28,7 +28,7 @@ const CareDetailModal = ({ open, handleDetailModal }) => {
       <div className="training-modal-container">
         <div className="emp-modal-header">
           <h2>
-            {categoryEdit ? "Мэдээлэл засах" : "Дэлгэрэнгүй мэдээлэл нэмэх"}
+            {detailEdit ? "Мэдээлэл засах" : "Дэлгэрэнгүй мэдээлэл нэмэх"}
           </h2>
         </div>
         <div className="training-modal-input">
@@ -64,11 +64,11 @@ const CareDetailModal = ({ open, handleDetailModal }) => {
           >
             Хаах
           </Button>
-          {categoryEdit ? (
+          {detailEdit ? (
             <Button
               size="large"
               onClick={() => {
-                editCareCategory(careDetailForm?.ID);
+                editCareDetail(careDetailForm?.ID);
                 clearDetailForm();
                 handleDetailModal(false);
               }}

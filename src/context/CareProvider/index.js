@@ -28,6 +28,10 @@ const CareContext = createContext({
   setCategoryEdit: () => {},
   setCategoryForm: () => {},
   setEditImg: () => {},
+  detailEdit: () => {},
+  setDetailEdit: () => {},
+  setCareDetailForm: () => {},
+  editCareDetail: () => {},
 });
 
 const CareProvider = ({ children }) => {
@@ -38,6 +42,7 @@ const CareProvider = ({ children }) => {
   const [careFailed, setCareFailed] = useState(false);
 
   const [categoryEdit, setCategoryEdit] = useState(false);
+  const [detailEdit, setDetailEdit] = useState(false);
   const [editImg, setEditImg] = useState();
 
   const [careCategoryForm, setCategoryForm] = useState({
@@ -192,7 +197,17 @@ const CareProvider = ({ children }) => {
   };
   const editCareDetail = async (id) => {
     try {
-      myAxios.put(`/api/socialProvision/detail/${id}`);
+      const { data } = await myAxios.put(
+        `/api/socialProvision/category/detail/${id}`,
+        careDetailForm,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      console.log("EDIT", data);
+      alert("Амжилттай засагдлаа", "success");
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
@@ -203,7 +218,12 @@ const CareProvider = ({ children }) => {
   };
   const deleteCareDetail = async (id) => {
     try {
-      myAxios.delete(`/api/socialProvision/detail/${id}`);
+      await myAxios.delete(`/api/socialProvision/category/detail/${id}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай устгагдлаа", "success");
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
@@ -265,6 +285,9 @@ const CareProvider = ({ children }) => {
         clearDetailForm,
         careDetailForm,
         careDetail,
+        detailEdit,
+        setDetailEdit,
+        setCareDetailForm,
       }}
     >
       {children}
