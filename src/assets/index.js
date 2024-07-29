@@ -28,9 +28,9 @@ import gym from "./gym.png";
 import add_card from "./add_card.png"
 import hands from "./hands.png";
 import dotka from "./dotka.png";
-import volleyball from "./volleyball.png";
+import volleyball from "./volleyball.jpg";
 import movie from "./movie.png";
-import people from "./peoples.png";
+import people from "./peoples.jpg";
 import AddClubs from "./AddClubs.png";
 import downloadFileIcon from "./downloadFile.png";
 import excelBack from "./excelBack.png";

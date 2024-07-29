@@ -19,8 +19,9 @@ export const MyDrawer = () => {
     openDrawer,
     setOpenDrawer,
     changeUserPhoto,
-    userPicture,
+    userImage,
   } = useAuth();
+
   const { dayItems, calendarLoading, calenderFailed, retryCalendarData } =
     useCalendar();
   const inputRef = useRef();
@@ -30,13 +31,11 @@ export const MyDrawer = () => {
   const onClose = () => {
     setOpenDrawer(false);
   };
-  const [testPicture, setTestPicture] = useState();
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-    console.log("file", file);
+
     if (file) {
       changeUserPhoto(file);
-      setTestPicture(file);
     }
   };
   return (
@@ -60,7 +59,7 @@ export const MyDrawer = () => {
                 inputRef.current.click();
               }}
               className="avatar"
-              src={testPicture}
+              src={"data:image/jpeg;base64," + userImage}
               size={150}
             />
             <CiEdit className="edit-icon" size={40} />

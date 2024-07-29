@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 import { withSize } from "react-sizeme";
-import { cares } from "../../constants";
 import { useAuth } from "../../context/AuthProvider";
-import { Spin } from "antd";
-import { getCares } from "../../lib/actions/cares.action";
+import { Button, Spin } from "antd";
 
-import { CustomHeader, CareCard } from "../../components";
+import { CustomHeader, CareCard, Loader } from "../../components";
 
 import "../../css/care.css";
+import { useCare } from "../../context/CareProvider";
+import { IoReload } from "react-icons/io5";
+import { checkRole } from "../../lib/utils/checkRole";
+import { nemeh } from "../../assets";
+import CareCategoryModal from "../../components/CareCategoryModal";
+import CareDetailModal from "../../components/CareDetailModal";
+import CareDetailWatch from "../../components/careDetailWatch";
 
 const Care = ({ size }) => {
+  let counter = 1;
+
   const isOne = size?.width <= 1010;
   const isTwo = size?.width <= 1525 && size?.width >= 1010;
 
   const { user } = useAuth();
+  const { getCares, careFailed, careLoading, careCategory } = useCare();
 
   const [openIdx, setOpenIdx] = useState(null);
   const [hideIdx, setHideIdx] = useState(null);
@@ -23,105 +31,100 @@ const Care = ({ size }) => {
       setHideIdx(null);
     } else {
       setOpenIdx(idx);
-      if (
-        (isTwo & (idx === 1)) |
-        (isTwo & (idx === 4)) |
-        (isTwo & (idx === 7))
-      ) {
-        setHideIdx(idx - 1);
+      if (idx % 2 === 0) {
+        isTwo && setHideIdx(idx - 1);
+        isOne && setHideIdx(null);
       } else {
-        setHideIdx(isOne ? null : idx + 1);
+        setHideIdx(idx + 1);
       }
     }
   };
 
-  const [cardData, setCardData] = useState();
-
   useEffect(() => {
-    const getCareData = async () => {
-      const caresData = await getCares(user.UserID);
-      setCardData(caresData);
-    };
-    getCareData();
+    getCares(user.UserID);
   }, [user.UserID]);
 
+  //ADD EDIT DELETE CATEGORY
+  const [addOpen, setAddOpen] = useState(false);
+  const handleAddModal = (value) => {
+    setAddOpen(value);
+  };
+  //ADD EDIT DETAIL
+  const [detailOpen, setDetailOpen] = useState(false);
+  const handleDetailModal = (value) => {
+    setDetailOpen(value);
+  };
+  //WATCH DETAIL
+  const [watchModal, setWatchModal] = useState(false);
+  const [watchTitle, setWatchTitle] = useState("");
   return (
     <>
       <CustomHeader title="Нийгмийн хангамж" />
       <main className="care-container">
-        {cardData ? (
-          <div className="care-cards-container">
-            <div className="care-cards" id={isTwo && "cards-two"}>
-              <CareCard
-                cardData={cardData?.healthInsurance}
-                isTwo={isTwo}
-                hideIdx={hideIdx}
-                handleCardOpen={handleCardOpen}
-                setOpenIdx={setOpenIdx}
-                openIdx={openIdx}
-                idx={0}
-                info={cares[0]}
-              />
-              <CareCard
-                cardData={cardData?.preventiveExamination}
-                isTwo={isTwo}
-                hideIdx={hideIdx}
-                handleCardOpen={handleCardOpen}
-                setOpenIdx={setOpenIdx}
-                openIdx={openIdx}
-                idx={1}
-                info={cares[1]}
-              />
-            </div>
-            <div className="care-cards" id={isTwo && "cards-two"}>
-              <CareCard
-                cardData={cardData?.vaccine}
-                isTwo={isTwo}
-                hideIdx={hideIdx}
-                handleCardOpen={handleCardOpen}
-                setOpenIdx={setOpenIdx}
-                openIdx={openIdx}
-                idx={3}
-                info={cares[2]}
-              />
-              <CareCard
-                cardData={cardData?.apartment}
-                isTwo={isTwo}
-                hideIdx={hideIdx}
-                handleCardOpen={handleCardOpen}
-                setOpenIdx={setOpenIdx}
-                openIdx={openIdx}
-                idx={4}
-                info={cares[3]}
-              />
-            </div>
-            <div className="care-cards cards-last " id={isTwo && "cards-two"}>
-              <CareCard
-                cardData={cardData?.companyCar}
-                isTwo={isTwo}
-                hideIdx={hideIdx}
-                handleCardOpen={handleCardOpen}
-                setOpenIdx={setOpenIdx}
-                openIdx={openIdx}
-                idx={6}
-                info={cares[4]}
-              />
-              <CareCard
-                cardData={cardData?.companyProductLogo}
-                isTwo={isTwo}
-                hideIdx={hideIdx}
-                handleCardOpen={handleCardOpen}
-                setOpenIdx={setOpenIdx}
-                openIdx={openIdx}
-                idx={7}
-                info={cares[5]}
-              />
-            </div>
+        {careLoading ? (
+          <Loader />
+        ) : careFailed ? (
+          <div className="employee-error">
+            <p>Алдаа гарлаа</p>
+            <Button
+              onClick={() => {
+                getCares(user.UserID);
+              }}
+              icon={<IoReload />}
+            >
+              Дахин оролдох
+            </Button>
           </div>
         ) : (
-          <Spin />
+          <div className="care-cards-container">
+            {careCategory?.map((data, index) => (
+              <div key={index} className="care-cards" id={isTwo && "cards-two"}>
+                {data.map((card, idx) => {
+                  const currentIdx = counter;
+                  counter++;
+                  return (
+                    <CareCard
+                      setWatchTitle={setWatchTitle}
+                      setWatchModal={setWatchModal}
+                      handleDetailModal={handleDetailModal}
+                      handleAddModal={handleAddModal}
+                      key={idx}
+                      cardData={card}
+                      isTwo={isTwo}
+                      hideIdx={hideIdx}
+                      handleCardOpen={handleCardOpen}
+                      setOpenIdx={setOpenIdx}
+                      openIdx={openIdx}
+                      idx={currentIdx}
+                    />
+                  );
+                })}
+              </div>
+            ))}
+            {checkRole(user?.Role) && (
+              <img
+                onClick={() => {
+                  handleAddModal(true);
+                }}
+                className="care-category-add"
+                src={nemeh}
+                alt=""
+              />
+            )}
+          </div>
         )}
       </main>
+      <CareCategoryModal open={addOpen} handleAddModal={handleAddModal} />
+      <CareDetailModal
+        open={detailOpen}
+        handleDetailModal={handleDetailModal}
+      />
+      <CareDetailWatch
+        handleDetailModal={handleDetailModal}
+        watchTitle={watchTitle}
+        watchModal={watchModal}
+        setWatchModal={setWatchModal}
+      />
     </>
   );
 };
