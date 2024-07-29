@@ -1,19 +1,22 @@
-.discounts-container {
-  padding: 50px;
+
+.discounts-container-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
 }
-
+.discounts-container {
+  width: calc(100vw - 80px);
+  padding: 40px 0px;
+  max-width: 1725px;
+}
 /* Cards grid */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 60px;
   margin-right: 200px;
-  max-width: 1200px;
+  max-width: 1725px;
   width: 100%;
+  justify-content: center;
 }
 
 @media (max-width: 1024px) {
@@ -135,4 +138,11 @@
 
 .status-toggle {
   margin-top: 40px;
+}
+.dis-modal-flex {
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

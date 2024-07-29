@@ -203,26 +203,31 @@ export const learnVideos = [
 export const discountsi = [
   {
     title:"ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
+    discountName: "ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
     description: "Сар бүрийн АГҮ-р тэргүүлсэн алба бүрийн 1 шилдэг ажилтан 300,000₮",
     images: [bonus] 
   },
   {
     title:"УТАСНЫ ТӨЛБӨР",
+    discountName:"УТАСНЫ ТӨЛБӨР",
     description: "Байгууллагын дугаар ашигладаг албан тушаалтнуудын утасны төлбөрийн хөнгөлөлт",
     images: [phone] 
   },
   {
     title:"АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
+    discountName:"АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
     description: "Өдрийн сет хоол-Өдрийн хоолны төлбөрийн 40%-ийг байгууллагаас хөнгөлнө",
     images: [lunch] 
   },
   {
     title: " ЦАЛИНТАЙ ЧӨЛӨӨ",
+    discountName:" ЦАЛИНТАЙ ЧӨЛӨӨ",
     description: "   ",
     images: [bday] 
   },
   {
     title: "ФИТНЕССИЙН ЭРХ",
+    discountName:"ФИТНЕССИЙН ЭРХ",
     description: "3 сар дарааллан Сарын шилдэг ажилтан болсон тохиолдолд Gold's gym 3 сарын эрх",
     images: [gym] 
   },
