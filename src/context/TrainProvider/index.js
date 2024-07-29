@@ -16,6 +16,8 @@ const trainContext = createContext({
   setSelectedType: () => {},
   deleteLearningData: () => {},
   updateLearningData: () => {},
+  updateTrainingType: () => {},
+  deleteTrainingType: () => {},
   selectedType: "",
   selectedCategory: 1,
   trainingTypes: [],
@@ -87,6 +89,46 @@ const TrainProvider = ({ children }) => {
       });
       setTrainingTypes(data.result);
       setSelectedCategory(data?.result[0]?.ID);
+    } catch (error) {
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert("Алдаа гарлаа", "error");
+      }
+    }
+  };
+  const updateTrainingType = async (id, Name) => {
+    try {
+      await myAxios.put(
+        `/api/training/category/${id}`,
+        {
+          Name,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      alert("Амжилттай засагдлаа", "success");
+      getTrainingType();
+    } catch (error) {
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert("Алдаа гарлаа", "error");
+      }
+    }
+  };
+  const deleteTrainingType = async (id) => {
+    try {
+      await myAxios.delete(`/api/training/category/${id}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай устгагдлаа", "success");
+      getTrainingType();
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
@@ -228,6 +270,8 @@ const TrainProvider = ({ children }) => {
         selectedType,
         setSelectedType,
         updateLearningData,
+        updateTrainingType,
+        deleteTrainingType,
       }}
     >
       {children}

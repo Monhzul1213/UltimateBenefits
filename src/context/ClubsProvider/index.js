@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import myAxios from "../../lib/axios";
 import { useAuth } from "../AuthProvider";
 import { alert } from "../../lib/actions/alert.actions";
@@ -17,7 +17,7 @@ export const ClubContext = createContext({
   setClubFormEdit: () => {},
 });
 
- const ClubProvider = ({ children }) => {
+const ClubProvider = ({ children }) => {
   const { user } = useAuth();
   const [clubs, setClubs] = useState([]);
   const [clubLoading, setClubLoading] = useState(false);
@@ -50,9 +50,11 @@ export const ClubContext = createContext({
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      setClubs(data.clubs);
+      console.log("CLUB DATA", data.result);
+      setClubs(data.result);
       setClubFailed(false);
     } catch (error) {
+      console.log("ERROR IN GET CLUBS", error);
       setClubFailed(true);
     } finally {
       setClubLoading(false);

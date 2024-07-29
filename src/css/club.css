@@ -1,12 +1,24 @@
+/* Club Page Styling */
 .club-container {
   padding: 20px;
-  max-width: 1100px; 
+  max-width: 1100px;
 }
 
 .cards-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+}
+
+.add-club-card {
+  width: 415px;
+  height: 290px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  object-fit: fill;
 }
 
 .image-container {
@@ -29,7 +41,7 @@
 }
 
 .club-image-container img {
-  width: 415px;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
@@ -40,13 +52,24 @@
   left: 10px;
   color: white;
   font-size: 35px;
-  font-family: 'Montserrat BLACK', sans-serif;
-  font-weight:bold;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
+.add-header {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 20px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-top: 10px;
+  padding-bottom:10px;
+  font-family: 'Montserrat', 'Light' sans-serif;
+}
+
+/* Modal Styling */
 .modal-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.75);
   position: fixed;
   top: 0;
   left: 0;
@@ -59,64 +82,64 @@
 }
 
 .modal-content {
-  background-color: white;
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
   padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  max-height: 80vh;
-  overflow-y: auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.modal-content h2 {
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 10px;
   margin-bottom: 20px;
-  font-size: 18px;
+}
+
+.modal-header h2 {
+  margin: 0;
+
+  font-size: 24px;
+  font-family: 'Montserrat' , sans-serif;
   font-weight: bold;
 }
 
-.modal-description {
-  font-size: 14px;
-  color: #666;
+.close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-body {
   margin-bottom: 20px;
 }
 
-.club-info p {
-  margin: 5px 0;
-  font-size: 14px;
+.modal-section {
+  margin-bottom: 20px;
 }
 
-.member-info {
-  background-color: #f5f5f5;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 10px;
+.modal-footer {
+  text-align: right;
 }
 
-.member-info p {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.modal-close-button {
+.close-modal-button {
   background-color: #007bff;
-  color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
-  margin-top: 20px;
+  font-size: 16px;
 }
 
-.modal-close-button:hover {
+.close-modal-button:hover {
   background-color: #0056b3;
-}
-
-.add-club-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
 }
 
 .modal-content form {
@@ -126,22 +149,55 @@
 }
 
 .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .form-group label {
   display: block;
   margin-bottom: 5px;
   font-size: 14px;
-  color: #666;
+  font-weight: 600;
+  color: #181717;
 }
 
-.form-group input {
+.form-group input,
+.form-group textarea {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-group-image {
+  margin-top: 20px;
+}
+
+.file-upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #495057;
+  width: 100%;
+}
+
+.file-upload-button:hover {
+  background-color: #f8f9fa;
+}
+
+.file-upload-button .icon {
+  margin-right: 8px;
+  font-size: 16px;
 }
 
 .date-inputs {
@@ -159,16 +215,9 @@
   gap: 10px;
   margin-top: 20px;
 }
-.form-group textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-  resize: vertical;
-  min-height: 100px;
-}
-.cancel-button, .submit-button {
+
+.cancel-button,
+.submit-button {
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
@@ -186,6 +235,45 @@
   color: white;
 }
 
+.context-menu {
+  position: absolute;
+  background: white;
+  border: 5px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 5px 0;
+  margin: 0;
+  z-index: 1001;
+}
+
+.context-menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.context-menu li:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+
+}
+
+
+/* Responsive Styles */
 @media (max-width: 1024px) {
   .club-container {
     max-width: 95%;
