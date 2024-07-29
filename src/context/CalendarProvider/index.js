@@ -48,7 +48,6 @@ const CalendarProvider = ({ children }) => {
           Authorization: `Bearer ${userToken}`,
         },
       });
-      console.log("CALENDAR DATA", data);
       setDayItems(data);
     } catch (error) {
       setCalendarFailed(true);

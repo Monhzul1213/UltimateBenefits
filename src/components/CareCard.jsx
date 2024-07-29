@@ -16,6 +16,8 @@ export const CareCard = ({
   cardData,
   handleAddModal,
   handleDetailModal,
+  setWatchTitle,
+  setWatchModal,
 }) => {
   const { user } = useAuth();
   const displayArrow = idx === openIdx ? "hide" : "show";
@@ -177,6 +179,8 @@ export const CareCard = ({
               <Button
                 onClick={() => {
                   getCareDetail(cardData.ID);
+                  setWatchTitle(cardData?.Name.toUpperCase());
+                  setWatchModal(true);
                 }}
                 className="care-card-footer-btn btn-primary"
               >

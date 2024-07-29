@@ -5,6 +5,7 @@ import { useAuth } from "../AuthProvider";
 
 const CareContext = createContext({
   getCares: () => {},
+  careDetail: [],
   careCategory: [],
   careLoading: false,
   careFailed: false,
@@ -168,6 +169,7 @@ const CareProvider = ({ children }) => {
       }
     }
   };
+  const [careDetail, setCareDetail] = useState();
   const getCareDetail = async (id) => {
     try {
       const { data } = await myAxios.get(
@@ -178,7 +180,8 @@ const CareProvider = ({ children }) => {
           },
         }
       );
-      console.log("CARE DETAIL data", data);
+      console.log(data.result);
+      setCareDetail(data.result);
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
@@ -261,6 +264,7 @@ const CareProvider = ({ children }) => {
         clearForm,
         clearDetailForm,
         careDetailForm,
+        careDetail,
       }}
     >
       {children}
