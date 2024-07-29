@@ -19,8 +19,9 @@ const CareDetailModal = ({ open, handleDetailModal }) => {
   return (
     <Modal
       open={open}
-      onCancel={() => {
+      onClose={() => {
         handleDetailModal(false);
+        clearDetailForm();
       }}
       footer={null}
       closable={false}

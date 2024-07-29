@@ -80,6 +80,7 @@ const CareProvider = ({ children }) => {
       Text: "",
     });
     setSelectedCategory(null);
+    setDetailEdit(false);
   };
 
   const getCares = async () => {
@@ -248,6 +249,7 @@ const CareProvider = ({ children }) => {
           },
         }
       );
+      alert("Амжилттай нэмэгдлээ", "success");
     } catch (error) {
       console.log("ERROR IN CREATE DETAIL", error);
       if (!error.response) {
