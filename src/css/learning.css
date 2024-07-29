@@ -1,6 +1,6 @@
 .learning-container {
   overflow: hidden;
-  padding: 20px 80px;
+  padding: 30px 140px;
   display: flex;
 }
 .learning-videos-container {
@@ -9,7 +9,7 @@
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 50px;
   text-transform: uppercase;
 }
 .video-card {

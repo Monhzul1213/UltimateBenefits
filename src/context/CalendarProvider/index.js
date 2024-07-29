@@ -41,6 +41,7 @@ const CalendarProvider = ({ children }) => {
 
   const getDayItems = async (day) => {
     setCalendarLoading(true);
+    setCalendarFailed(false);
     try {
       const { data } = await myAxios.get(`/api/calendar/getCalendar/${day}`, {
         headers: {

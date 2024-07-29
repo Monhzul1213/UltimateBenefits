@@ -5,11 +5,17 @@ import { useAuth } from "../AuthProvider";
 
 const CareContext = createContext({
   getCares: () => {},
+  careDetail: [],
   careCategory: [],
   careLoading: false,
   careFailed: false,
   careCategoryForm: {},
+  editImg: "",
+  careDetailForm: "",
+  selectedCategory: 0,
+  setSelectedCategory: () => {},
   handleCategoryForm: () => {},
+  handleDetailForm: () => {},
   createCareCategory: () => {},
   editCareCategory: () => {},
   deleteCareCategory: () => {},
@@ -17,6 +23,11 @@ const CareContext = createContext({
   getCareDetail: () => {},
   createCareDetail: () => {},
   clearForm: () => {},
+  clearDetailForm: () => {},
+  categoryEdit: false,
+  setCategoryEdit: () => {},
+  setCategoryForm: () => {},
+  setEditImg: () => {},
 });
 
 const CareProvider = ({ children }) => {
@@ -25,6 +36,9 @@ const CareProvider = ({ children }) => {
   const [careCategory, setCareCategory] = useState();
   const [careLoading, setCareLoading] = useState(false);
   const [careFailed, setCareFailed] = useState(false);
+
+  const [categoryEdit, setCategoryEdit] = useState(false);
+  const [editImg, setEditImg] = useState();
 
   const [careCategoryForm, setCategoryForm] = useState({
     Name: "",
@@ -39,9 +53,28 @@ const CareProvider = ({ children }) => {
       Image: "",
       AvailableMonth: "",
     });
+    setCategoryEdit(false);
+    setEditImg("");
   };
   const handleCategoryForm = (name, value) => {
     setCategoryForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  //Detail section
+  const [careDetailForm, setCareDetailForm] = useState({
+    Name: "",
+    Text: "",
+  });
+  const [selectedCategory, setSelectedCategory] = useState();
+  const handleDetailForm = (name, value) => {
+    setCareDetailForm((prev) => ({ ...prev, [name]: value }));
+  };
+  const clearDetailForm = () => {
+    setCareDetailForm({
+      Name: "",
+      Text: "",
+    });
+    setSelectedCategory(null);
   };
 
   const getCares = async () => {
@@ -74,7 +107,7 @@ const CareProvider = ({ children }) => {
   };
   const createCareCategory = async () => {
     const formData = new FormData();
-    formData.append("Name", "Ner");
+    formData.append("Name", careCategoryForm.Name);
     formData.append("Descr", careCategoryForm.Descr);
     formData.append("Image", careCategoryForm.Image);
     formData.append("AvailableMonth", careCategoryForm.AvailableMonth);
@@ -96,9 +129,22 @@ const CareProvider = ({ children }) => {
     }
   };
   const editCareCategory = async (id) => {
+    const formData = new FormData();
+    console.log(careCategoryForm);
+    formData.append("Name", careCategoryForm.Name);
+    formData.append("Descr", careCategoryForm.Descr);
+    formData.append("Image", careCategoryForm.Image);
+    formData.append("AvailableMonth", careCategoryForm.AvailableMonth);
     try {
-      const { data } = myAxios.put(`/api/socialProvision/category/${id}`);
+      await myAxios.put(`/api/socialProvision/category/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      getCares();
     } catch (error) {
+      console.log("ERROR IN EDIT", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -108,7 +154,13 @@ const CareProvider = ({ children }) => {
   };
   const deleteCareCategory = async (id) => {
     try {
-      const { data } = myAxios.delete(`/api/socialProvision/category/${id}`);
+      await myAxios.delete(`/api/socialProvision/category/${id}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай устгагдлаа", "success");
+      getCares();
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
@@ -117,14 +169,24 @@ const CareProvider = ({ children }) => {
       }
     }
   };
+  const [careDetail, setCareDetail] = useState();
   const getCareDetail = async (id) => {
     try {
-      const { data } = myAxios.get(`/api/socialProvision/detail/${id}`);
+      const { data } = await myAxios.get(
+        `/api/socialProvision/category/detail/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      console.log(data.result);
+      setCareDetail(data.result);
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
-        alert(error.response.data.error.message, "error");
+        // alert(error.response.data.error.message, "error");
       }
     }
   };
@@ -151,9 +213,23 @@ const CareProvider = ({ children }) => {
     }
   };
   const createCareDetail = async () => {
+    console.log("CREATING DETAIL", selectedCategory, careDetailForm);
     try {
-      myAxios.get(`/api/socialProvision/detail`);
+      await myAxios.post(
+        `/api/socialProvision/category/detail`,
+        {
+          Name: careDetailForm.Name,
+          Text: careDetailForm.Text,
+          CategoryID: parseInt(selectedCategory),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
     } catch (error) {
+      console.log("ERROR IN CREATE DETAIL", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -169,7 +245,16 @@ const CareProvider = ({ children }) => {
         careFailed,
         careCategory,
         careCategoryForm,
+        categoryEdit,
+        editImg,
+        selectedCategory,
+        getCareDetail,
+        setSelectedCategory,
+        setCategoryEdit,
+        setCategoryForm,
+        setEditImg,
         handleCategoryForm,
+        handleDetailForm,
         createCareCategory,
         editCareCategory,
         deleteCareCategory,
@@ -177,6 +262,9 @@ const CareProvider = ({ children }) => {
         editCareDetail,
         deleteCareDetail,
         clearForm,
+        clearDetailForm,
+        careDetailForm,
+        careDetail,
       }}
     >
       {children}

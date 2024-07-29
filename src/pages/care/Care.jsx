@@ -11,8 +11,12 @@ import { IoReload } from "react-icons/io5";
 import { checkRole } from "../../lib/utils/checkRole";
 import { nemeh } from "../../assets";
 import CareCategoryModal from "../../components/CareCategoryModal";
+import CareDetailModal from "../../components/CareDetailModal";
+import CareDetailWatch from "../../components/careDetailWatch";
 
 const Care = ({ size }) => {
+  let counter = 1;
+
   const isOne = size?.width <= 1010;
   const isTwo = size?.width <= 1525 && size?.width >= 1010;
 
@@ -40,12 +44,19 @@ const Care = ({ size }) => {
     getCares(user.UserID);
   }, [user.UserID]);
 
-  //ADD EDIT DELETE
+  //ADD EDIT DELETE CATEGORY
   const [addOpen, setAddOpen] = useState(false);
   const handleAddModal = (value) => {
     setAddOpen(value);
   };
-
+  //ADD EDIT DETAIL
+  const [detailOpen, setDetailOpen] = useState(false);
+  const handleDetailModal = (value) => {
+    setDetailOpen(value);
+  };
+  //WATCH DETAIL
+  const [watchModal, setWatchModal] = useState(false);
+  const [watchTitle, setWatchTitle] = useState("");
   return (
     <>
       <CustomHeader title="Нийгмийн хангамж" />
@@ -68,18 +79,26 @@ const Care = ({ size }) => {
           <div className="care-cards-container">
             {careCategory?.map((data, index) => (
               <div key={index} className="care-cards" id={isTwo && "cards-two"}>
-                {data.map((card, idx) => (
-                  <CareCard
-                    key={idx}
-                    cardData={card}
-                    isTwo={isTwo}
-                    hideIdx={hideIdx}
-                    handleCardOpen={handleCardOpen}
-                    setOpenIdx={setOpenIdx}
-                    openIdx={openIdx}
-                    idx={card.ID}
-                  />
-                ))}
+                {data.map((card, idx) => {
+                  const currentIdx = counter;
+                  counter++;
+                  return (
+                    <CareCard
+                      setWatchTitle={setWatchTitle}
+                      setWatchModal={setWatchModal}
+                      handleDetailModal={handleDetailModal}
+                      handleAddModal={handleAddModal}
+                      key={idx}
+                      cardData={card}
+                      isTwo={isTwo}
+                      hideIdx={hideIdx}
+                      handleCardOpen={handleCardOpen}
+                      setOpenIdx={setOpenIdx}
+                      openIdx={openIdx}
+                      idx={currentIdx}
+                    />
+                  );
+                })}
               </div>
             ))}
             {checkRole(user?.Role) && (
@@ -96,6 +115,15 @@ const Care = ({ size }) => {
         )}
       </main>
       <CareCategoryModal open={addOpen} handleAddModal={handleAddModal} />
+      <CareDetailModal
+        open={detailOpen}
+        handleDetailModal={handleDetailModal}
+      />
+      <CareDetailWatch
+        watchTitle={watchTitle}
+        watchModal={watchModal}
+        setWatchModal={setWatchModal}
+      />
     </>
   );
 };
