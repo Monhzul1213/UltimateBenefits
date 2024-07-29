@@ -25,7 +25,7 @@ import bday from "./bday.png";
 import phone from "./phone.png";
 import lunch from "./lunch.png";
 import gym from "./gym.png";
-import add_card from "./add_card.png";
+import add_card from "./add_card.png"
 import hands from "./hands.png";
 import dotka from "./dotka.png";
 import volleyball from "./volleyball.jpg";
