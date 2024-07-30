@@ -1,4 +1,4 @@
-import { RulesBod, RulesDj, RulesGa, RulesHut } from "../../assets";
+import { add_card, RulesBod, RulesDj, RulesGa, RulesHut } from "../../assets";
 import { CustomHeader } from "../../components";
 import RuleCategoryCard from "../../components/RuleCategoryCard";
 import "../../css/rule.css";
@@ -17,6 +17,9 @@ const Rules = () => {
         {data.map((rule) => {
           return <RuleCategoryCard rule={rule} />;
         })}
+        <div className="ruleCARD">  
+          <img  src={add_card}/>
+        </div>
       </main>
     </>
   );

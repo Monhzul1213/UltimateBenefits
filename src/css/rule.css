@@ -160,7 +160,6 @@
 
 .rules-card-container {
   display: flex;
-  justify-content: center;
   gap: 50px;
   flex-wrap: wrap;
   margin: 50px;
@@ -169,7 +168,8 @@
 .rule-category-card {
   width: 415px;
   height: 290px;
-  background-color: blueviolet;
+  background-image: url('../assets/RuleBackground.png');
+  background-position: center;
   padding: 30px;
   border-radius: 15px;
 }
@@ -180,4 +180,9 @@
   margin-top: 90px;
   font-size: 25px;
   color: white;
+}
+.ruleCARD img {
+  width: 415px;
+  height: 290px;
+  position: center;
 }
