@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, Modal } from "antd";
+import { Avatar, Button, Dropdown, Modal, Tooltip } from "antd";
 import React from "react";
 import { FaPlay } from "react-icons/fa";
 import { useTraining } from "../context/TrainProvider";
@@ -53,14 +53,18 @@ export const VideoCard = ({
           <FaPlay color="white" size={40} />
         </div>
         <div className="video-desc">
-          <Avatar
-            src={learning?.Picture}
-            className="video-author-avatar"
-            size={50}
-          />
+          <div className="video-desc-avatar">
+            <Avatar
+              src={learning?.Picture}
+              className="video-author-avatar"
+              size={50}
+            />
+          </div>
           <div>
-            <p>{learning.UserName}</p>
-            <h4>{learning.Name}</h4>
+            <p>{learning?.UserName}</p>
+            <Tooltip title={learning?.Name}>
+              <h4>{learning?.Name}</h4>
+            </Tooltip>
           </div>
         </div>
         <Modal
@@ -74,9 +78,9 @@ export const VideoCard = ({
           <iframe
             ref={iframeRef}
             allowFullScreen={true}
-            title={learning.Name}
+            title={learning?.Name}
             className="video-frame"
-            src={learning.FileDesc}
+            src={learning?.FileDesc}
           ></iframe>
           <Button onClick={closeModal}>Хаах</Button>
         </Modal>

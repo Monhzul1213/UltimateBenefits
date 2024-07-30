@@ -68,6 +68,15 @@
   font-size: 18px;
   font-weight: 250;
 }
+.video-desc-avatar {
+  width: 50px;
+}
+.video-desc h4 {
+  width: 350px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .training-modal-container {
   display: flex;
   flex-direction: column;

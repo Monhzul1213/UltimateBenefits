@@ -1,4 +1,4 @@
-import { Avatar, Dropdown } from "antd";
+import { Avatar, Dropdown, Tooltip } from "antd";
 import {
   downloadFileIcon,
   excelBack,
@@ -95,14 +95,18 @@ export const TrainingFileCard = ({
           }}
         >
           <div style={{ marginTop: 20 }} className="video-desc">
-            <Avatar
-              src={learning?.Picture}
-              className="video-author-avatar"
-              size={50}
-            />
+            <div className="video-desc-avatar">
+              <Avatar
+                src={learning?.Picture}
+                className="video-author-avatar"
+                size={50}
+              />
+            </div>
             <div>
-              <p>{learning.UserName}</p>
-              <h4>{learning.Name}</h4>
+              <p>{learning?.UserName}</p>
+              <Tooltip title={learning?.Name}>
+                <h4>{learning?.Name}</h4>
+              </Tooltip>
             </div>
           </div>
           <div style={{ textAlign: "right" }}>

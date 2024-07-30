@@ -163,7 +163,7 @@
   cursor: pointer;
 }
 .detail-one {
-  width: 412px;
+  width: 390px;
 }
 .detail-title {
   font-size: 24px;
@@ -172,6 +172,9 @@
   max-width: 1000px;
   max-height: 700px;
   overflow: scroll;
+}
+.detail-section-container::-webkit-scrollbar {
+  display: none;
 }
 .detail-section {
   display: flex;
