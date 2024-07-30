@@ -1,38 +1,114 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { CustomHeader } from "../../components";
-import { clubsItems } from "../../constants";
+import { ClubsModal, AddClubModal } from "../../components";
+import { useClub } from "../../context/ClubsProvider";
 import "../../css/club.css";
-import {ClubsModal} from "../../components"; 
+import { alert } from "../../lib/actions/alert.actions";
+import { nemeh } from "../../assets";
 
-const ClubCard = ({ club, onClick }) => (
-  <div className="image-container club-image-container" onClick={onClick}>
-    <img src={club.Image} alt={club.altText} />
-    <div className="card-title">{club.title}</div>
+const AlertMessage = () => {
+  const [visible, setVisible] = useState(true);
+  const handleDismiss = () => {
+    setVisible(false);
+  };
+
+  return (
+    visible && (
+      <div className="alert-message">
+        <button onClick={handleDismiss}>Dismiss</button>
+      </div>
+    )
+  );
+};
+
+const ClubCard = ({ club, onClick, onRightClick }) => (
+  <div className="image-container club-image-container" onClick={onClick} onContextMenu={onRightClick}>
+    <img src={`data:image/png;base64,${club.Image}`} alt={club.Name} />
+    <div className="card-title">
+      {club.Name.split(' ')[0]}<br />{club.Name.split(' ')[1]}
+    </div>
+  </div>
+);
+
+const AddClubCard = ({ onClick }) => (
+  <div className="image-container club-image-container add-club-card" onClick={onClick}>
+    <img src={nemeh} alt="Шинэ клуб нэмэх" />
   </div>
 );
 
 const Clubs = () => {
   const [selectedClub, setSelectedClub] = useState(null);
+  const [isAddClubModalOpen, setIsAddClubModalOpen] = useState(false);
+  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, club: null });
+  const { clubs, editClub, deleteClub, setClubFormEdit } = useClub();
 
   const handleCardOpen = (club) => {
     setSelectedClub(club);
   };
 
+  const handleEditClub = async (club) => {
+    await editClub(club);
+    alert.success("Клуб амжилттай засагдлаа");
+  };
   const handleCloseModal = () => {
     setSelectedClub(null);
   };
 
+  const handleAddClubClick = () => {
+    setIsAddClubModalOpen(true);
+  };
+
+  const handleCloseAddClubModal = () => {
+    setIsAddClubModalOpen(false);
+  };
+
+  const handleRightClick = (event, club) => {
+    event.preventDefault();
+    setContextMenu({ visible: true, x: event.clientX, y: event.clientY, club });
+  };
+
+  const handleContextMenuOptionClick = async (option) => {
+    if (option === 'Edit') {
+      setClubFormEdit(handleEditClub);
+      setSelectedClub(editClub.club);
+    } else if (option === 'Delete') {
+      await deleteClub(contextMenu.club.ID);
+    }
+    setContextMenu({ visible: false, x: 0, y: 0, club: null });
+  };
+
+  const handleModalClick = () => {
+    setContextMenu({ visible: false, x: 0, y: 0, club: null });
+  };
+
+  console.log("CLUBS", clubs);
+
   return (
     <>
       <CustomHeader title="Сонирхлын клубууд" />
-      <main className="club-container">
+      <main className="club-container" onClick={handleModalClick}>
         <div className="cards-container">
-          {clubsItems.map((club, index) => (
-            <ClubCard key={index} club={club} onClick={() => handleCardOpen(club)} />
-          ))}
-        </div>
+          {clubs?.map((club, ID) => {
+            return (
+              <ClubCard
+                key={ID}
+                club={club}
+                onClick={() => handleCardOpen(club)}
+                onRightClick={(event) => handleRightClick(event, club)}
+              />
+            );
+          })}
+          <AddClubCard onClick={handleAddClubClick} />
+        </div >
       </main>
-      <ClubsModal isOpen={!!selectedClub} onClose={handleCloseModal} club={selectedClub} />
+      <ClubsModal isOpen={!!selectedClub} onRequestClose={handleCloseModal} club={selectedClub} />
+      <AddClubModal isOpen={isAddClubModalOpen} onClose={handleCloseAddClubModal} />
+      {contextMenu.visible && (
+        <ul className="context-menu" style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}>
+          <li onClick={() => handleContextMenuOptionClick('Edit')}>Edit</li>
+          <li onClick={() => handleContextMenuOptionClick('Delete')}>Delete</li>
+        </ul>
+      )}
     </>
   );
 };

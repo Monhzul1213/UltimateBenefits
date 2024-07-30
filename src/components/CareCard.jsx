@@ -1,6 +1,10 @@
-import { Button } from "antd";
+import { Button, Dropdown } from "antd";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useCare } from "../context/CareProvider";
+import Swal from "sweetalert2";
+import { checkRole } from "../lib/utils/checkRole";
+import { useAuth } from "../context/AuthProvider";
 
 export const CareCard = ({
   info,
@@ -10,7 +14,12 @@ export const CareCard = ({
   handleCardOpen,
   isTwo,
   cardData,
+  handleAddModal,
+  handleDetailModal,
+  setWatchTitle,
+  setWatchModal,
 }) => {
+  const { user } = useAuth();
   const displayArrow = idx === openIdx ? "hide" : "show";
 
   const variants = isTwo
@@ -35,14 +44,14 @@ export const CareCard = ({
             width: { duration: 0.3, type: "linear" },
             opacity: { duration: 0.3, type: "linear" },
             padding: { duration: 0.3, type: "linear" },
-            display: { delay: 0.4 },
+            display: { delay: 0.3 },
           },
         },
       }
     : {
         show: {
           height: 680,
-          transition: { duration: 0.3, type: "easeInOut" },
+          transition: { delay: 0.3, duration: 0.3, type: "easeInOut" },
         },
         hide: {
           height: 290,
@@ -72,47 +81,169 @@ export const CareCard = ({
       transition: { duration: 0.1 },
     },
   };
+
+  const {
+    setCategoryEdit,
+    setCategoryForm,
+    deleteCareCategory,
+    setEditImg,
+    setSelectedCategory,
+    getCareDetail,
+  } = useCare();
+  const handleEdit = () => {
+    setCategoryEdit(true);
+    setCategoryForm(cardData);
+    handleAddModal(true);
+    setEditImg(cardData.Image);
+    setCategoryForm((prev) => ({ ...prev, Image: null }));
+  };
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Устгахдаа итгэлтэй байна уу?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Болих",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Устгах",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteCareCategory(cardData.ID);
+      }
+    });
+  };
+  const handleAddDetail = () => {
+    handleDetailModal(true);
+    setSelectedCategory(cardData.ID);
+  };
+  const items = [
+    {
+      label: "Дэлгэрэнгүй нэмэх",
+      key: "1",
+      onClick: handleAddDetail,
+    },
+    {
+      label: "Засах",
+      key: "2",
+      onClick: handleEdit,
+    },
+    {
+      label: "Устгах",
+      key: "3",
+      danger: true,
+      onClick: handleDelete,
+    },
+  ];
+
   return (
-    <motion.div
-      id={isTwo && "care-card-two"}
-      onClick={() => {
-        handleCardOpen(idx);
-      }}
-      variants={variants}
-      animate={openIdx === idx ? "show" : idx === hideIdx ? "none" : "hide"}
-      className={`care-card care-card-${cardData?.possible}`}
-    >
-      <Button
-        type="primary"
-        className={`care-card-button care-card-button-${cardData?.possible}`}
-      >
-        {cardData?.possible}
-      </Button>
-      <div id={isTwo && "care-card-two-flex"}>
-        <div>
-          <img src={info.icon} alt={`${info.title}`} />
-          <h3>{cardData?.Name.toUpperCase()}</h3>
-        </div>
-        <motion.p
-          variants={textVariants}
-          animate={openIdx === idx ? "show" : "hide"}
-          className="care-card-description"
+    <>
+      {checkRole(user.Role) ? (
+        <Dropdown menu={{ items }} trigger={["contextMenu"]}>
+          <motion.div
+            id={isTwo && "care-card-two"}
+            onClick={() => {
+              handleCardOpen(idx);
+            }}
+            variants={variants}
+            animate={
+              openIdx === idx ? "show" : idx === hideIdx ? "none" : "hide"
+            }
+            className={`care-card care-card-${cardData?.AvailableDesc}`}
+          >
+            <Button
+              type="primary"
+              className={`care-card-button care-card-button-${cardData?.AvailableDesc}`}
+            >
+              {cardData?.AvailableDesc}
+            </Button>
+            <div id={isTwo && "care-card-two-flex"}>
+              <div>
+                <img src={"data:image/jpeg;base64," + cardData.Image} />
+                <h3>{cardData?.Name.toUpperCase()}</h3>
+              </div>
+              <motion.p
+                variants={textVariants}
+                animate={openIdx === idx ? "show" : "hide"}
+                className="care-card-description"
+              >
+                {cardData?.Descr}
+              </motion.p>
+            </div>
+            <motion.div
+              initial={{ display: "none", opacity: 0 }}
+              variants={textVariants}
+              animate={openIdx === idx ? "show" : "hide"}
+              className="care-card-footer"
+            >
+              <Button className="care-card-footer-btn">Буцах</Button>
+              <Button
+                onClick={() => {
+                  getCareDetail(cardData.ID);
+                  setWatchTitle(cardData?.Name.toUpperCase());
+                  setWatchModal(true);
+                }}
+                className="care-card-footer-btn btn-primary"
+              >
+                Багцын мэдээлэл харах
+              </Button>
+            </motion.div>
+            <FaArrowRight
+              size={25}
+              className={`care-card-arrow ${displayArrow}`}
+            />
+          </motion.div>
+        </Dropdown>
+      ) : (
+        <motion.div
+          id={isTwo && "care-card-two"}
+          onClick={() => {
+            handleCardOpen(idx);
+          }}
+          variants={variants}
+          animate={openIdx === idx ? "show" : idx === hideIdx ? "none" : "hide"}
+          className={`care-card care-card-${cardData?.AvailableDesc}`}
         >
-          {cardData?.possibleDescr}
-        </motion.p>
-      </div>
-      <motion.div
-        initial={{ display: "none", opacity: 0 }}
-        variants={textVariants}
-        animate={openIdx === idx ? "show" : "hide"}
-        className="care-card-footer"
-      >
-        <Button className="care-card-footer-btn">Буцах</Button>
-        <Button className="care-card-footer-btn btn-primary">
-          Багцын мэдээлэл харах
-        </Button>
-      </motion.div>
-      <FaArrowRight size={25} className={`care-card-arrow ${displayArrow}`} />
-    </motion.div>
+          <Button
+            type="primary"
+            className={`care-card-button care-card-button-${cardData?.AvailableDesc}`}
+          >
+            {cardData?.AvailableDesc}
+          </Button>
+          <div id={isTwo && "care-card-two-flex"}>
+            <div>
+              <img src={"data:image/jpeg;base64," + cardData.Image} />
+              <h3>{cardData?.Name.toUpperCase()}</h3>
+            </div>
+            <motion.p
+              variants={textVariants}
+              animate={openIdx === idx ? "show" : "hide"}
+              className="care-card-description"
+            >
+              {cardData?.Descr}
+            </motion.p>
+          </div>
+          <motion.div
+            initial={{ display: "none", opacity: 0 }}
+            variants={textVariants}
+            animate={openIdx === idx ? "show" : "hide"}
+            className="care-card-footer"
+          >
+            <Button className="care-card-footer-btn">Буцах</Button>
+            <Button
+              onClick={() => {
+                getCareDetail(cardData.ID);
+              }}
+              className="care-card-footer-btn btn-primary"
+            >
+              Багцын мэдээлэл харах
+            </Button>
+          </motion.div>
+          <FaArrowRight
+            size={25}
+            className={`care-card-arrow ${displayArrow}`}
+          />
+        </motion.div>
+      )}
+    </>
   );
 };

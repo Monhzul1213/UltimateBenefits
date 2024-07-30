@@ -9,14 +9,19 @@ export function RegisterSelect({
   open,
   setOpen,
   registerLetters,
+  focusInput,
+  handleSelectKeyDown,
 }) {
   const content = (
     <div className="alphabets-container">
       {alphabets.map((item) => (
         <div
           onClick={() => {
-            setOpen(false);
+            setOpen(index + 1);
             onChange(item.value, index);
+            if (index === 1) {
+              focusInput();
+            }
           }}
           className="alphabet"
         >

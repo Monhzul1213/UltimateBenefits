@@ -1,46 +1,66 @@
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState } from 'react';
+import Modal from 'react-modal';
 
-export const ClubsModal = ({ isOpen, onClose, club }) => {
-  if (!isOpen || !club) return null;
+export const ClubsModal = ({ isOpen, onRequestClose, club }) => {
+  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0 });
+
+  if (!club) return null;
+
+  const handleRightClick = (event) => {
+    event.preventDefault();
+    setContextMenu({
+      visible: true,
+      x: event.clientX,
+      y: event.clientY,
+    });
+  };
+
+  const handleContextMenuOptionClick = (option) => {
+    console.log(`Selected option: ${option}`);
+    setContextMenu({ visible: false, x: 0, y: 0 });
+    // Add custom logic for each option here
+  };
+
+  const handleModalClick = () => {
+    setContextMenu({ visible: false, x: 0, y: 0 });
+  };
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="modal-overlay"
-        onClick={onClose}
-      >
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -50, opacity: 0 }}
-          className="modal-content"
-          onClick={(e) => e.stopPropagation()}
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="Club Information"
+      className="modal-content"
+      overlayClassName="modal-overlay"
+      onClick={handleModalClick}
+    >
+      <div className="modal-header" onContextMenu={handleRightClick}>
+        <h2>{club.Name}</h2>
+        <button onClick={onRequestClose} className="close-button-header">X</button>
+      </div>
+      <div className="modal-body" onContextMenu={handleRightClick}>
+        <div className="modal-section">
+          <strong>Description:</strong>
+          <p>{club.Descr}</p>
+        </div>
+        <div className="modal-section">
+          <strong>Contact:</strong>
+          <p>{club.Contact}</p>
+        </div>
+      </div>
+      <div className="modal-footer">
+        <button onClick={onRequestClose} className="close-modal-button">Болих</button>
+      </div>
+      {contextMenu.visible && (
+        <ul
+          className="context-menu"
+          style={{ top: `${contextMenu.x}px`, left: `${contextMenu.y}px` }}
         >
-          <h2>{club.title}</h2>
-          <p>{club.description}</p>
-          
-          <h3>Клубын мэдээлэл</h3>
-          <p><strong>Category:</strong> {club.category}</p>
-          <p><strong>Facebook:</strong> <a href={club.fbLink} target="_blank" rel="noopener noreferrer">Club Facebook Page</a></p>
-          
-          <h3>Members :</h3>
-          {club.members.map((member, index) => (
-            <div key={index} className="member-info">
-              <p><strong>Name:</strong> {member.name}</p>
-              <p><strong>Position:</strong> {member.position}</p>
-              <p><strong>Company:</strong> {member.company}</p>
-              <p><strong>Telephone:</strong> {member.telephone}</p>
-            </div>
-          ))}
-          
-          <button onClick={onClose}>Close</button>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
+          <li onClick={() => handleContextMenuOptionClick('Option 1')}>Option 1</li>
+          <li onClick={() => handleContextMenuOptionClick('Option 2')}>Option 2</li>
+        </ul>
+      )}
+    </Modal>
   );
 };
 

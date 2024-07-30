@@ -10,11 +10,18 @@ import { MyCalendar, AddCalendar, CalendarItem } from "../components";
 import "../css/drawer.css";
 import { useCalendar } from "../context/CalendarProvider";
 import { checkRole } from "../lib/utils/checkRole";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 export const MyDrawer = () => {
-  const { user, logout, openDrawer, setOpenDrawer, changeUserPhoto } =
-    useAuth();
+  const {
+    user,
+    logout,
+    openDrawer,
+    setOpenDrawer,
+    changeUserPhoto,
+    userImage,
+  } = useAuth();
+
   const { dayItems, calendarLoading, calenderFailed, retryCalendarData } =
     useCalendar();
   const inputRef = useRef();
@@ -26,7 +33,7 @@ export const MyDrawer = () => {
   };
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-    console.log("file", file);
+
     if (file) {
       changeUserPhoto(file);
     }
@@ -52,7 +59,7 @@ export const MyDrawer = () => {
                 inputRef.current.click();
               }}
               className="avatar"
-              src={user?.Picture}
+              src={"data:image/jpeg;base64," + userImage}
               size={150}
             />
             <CiEdit className="edit-icon" size={40} />
@@ -84,7 +91,7 @@ export const MyDrawer = () => {
               <Avatar size={15} />
               {user?.HireDate} аас хойш ажиллаж байгаа.
             </p>
-            <p>
+            <p style={{ textAlign: "left" }}>
               <Avatar size={15} />
               {user?.Address}
             </p>
@@ -115,7 +122,7 @@ export const MyDrawer = () => {
                 className="add-calendar-btn add-calendar-btn-absolute"
                 type="primary"
               >
-                +
+                <h1>+</h1>
               </Button>
             </Popover>
           ) : (

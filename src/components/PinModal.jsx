@@ -19,7 +19,13 @@ export const PinModal = ({ open, setOpen, register }) => {
       width={300}
     >
       <div>
-        <OTPInput length={4} onChange={handlePin} />
+        <OTPInput
+          register={register}
+          pin={pin}
+          handleLogin={handleLogin}
+          length={4}
+          onChange={handlePin}
+        />
         <LoginButton
           loading={loading}
           handleClick={() => {

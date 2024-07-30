@@ -11,15 +11,11 @@ import {
   rules,
   umbrella,
   vaccine,
-  bonus1,
-  bonus2,
+  bonus,
   phone,
-  phone1,
-  lunch1, 
-  lunch2,
+  lunch, 
   bday,
-  gym1, 
-  gym2,
+  gym,
   add_card,
   volleyball,
   hands,
@@ -74,7 +70,6 @@ export const benefits = [
   { title: "Хөнгөлөлт урамшуулал", icon: discounts, route: "/discounts" },
   { title: "Нийгмийн хангамж", icon: care, route: "/care" },
   { title: "Сонирхлын клуб", icon: clubs, route: "/clubs" },
-  { title: "Ажилтнууд", icon: clubs, route: "/employees" },
 ];
 
 export const cares = [
@@ -207,28 +202,29 @@ export const learnVideos = [
   }]
 export const discountsi = [
   {
-    title:"САР БҮРИЙН ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
-    description: "Сар бүрийн шилдэг гүйцэтгэлийн урамшуулал-Сар бүрийн АГҮ-р тэргүүлсэн алба бүрийн 1 шилдэг ажилтан 300,000₮",
-    images: [bonus1, bonus2] 
+    title:"ШИЛДЭГ АЖИЛТНЫ УРАМШУУЛАЛ",
+    description: "Сар бүрийн АГҮ-р тэргүүлсэн алба бүрийн 1 шилдэг ажилтан 300,000₮",
+    images: [bonus] 
   },
   {
     title:"УТАСНЫ ТӨЛБӨР",
     description: "Байгууллагын дугаар ашигладаг албан тушаалтнуудын утасны төлбөрийн хөнгөлөлт",
-    images: [phone1, phone] 
+    images: [phone] 
   },
   {
     title:"АМТ ЧАНАРТАЙ ӨДРИЙН ХООЛ",
     description: "Өдрийн сет хоол-Өдрийн хоолны төлбөрийн 40%-ийг байгууллагаас хөнгөлнө",
-    images: [lunch1, lunch2] 
+    images: [lunch] 
   },
   {
-    description: "          ",
+    title: " ЦАЛИНТАЙ ЧӨЛӨӨ",
+    description: "   ",
     images: [bday] 
   },
   {
-    title: "GYM",
+    title: "ФИТНЕССИЙН ЭРХ",
     description: "3 сар дарааллан Сарын шилдэг ажилтан болсон тохиолдолд Gold's gym 3 сарын эрх",
-    images: [gym1, gym2] 
+    images: [gym] 
   },
   {
     description: "           ",
@@ -259,7 +255,7 @@ export const discountsi = [
       ],
       fbLink: "https://www.facebook.com/groups/329454226106597",
       icon: "path/to/movie-club-icon.png",
-      category: "Entertainment"
+      category: "Edutainment"
 
     },
     {
@@ -278,7 +274,7 @@ export const discountsi = [
     {
       title: "SPORT CLUB",
       Image : volleyball,
-      altText: "Movie Club Image",
+      altText: "Sport Club Image",
       description: "Өсвөрийн зохион бүтээгчдийн ахлах сургуулиын спорт зааланд 7 хоног бүрийн Пүрэв гарагийн 19:00-21.00 цагийн хооронд",
       members: [
         { name: "John Doe", position: "President", company: "UltimateSOlution", telephone: "99999999" }
@@ -290,19 +286,19 @@ export const discountsi = [
     {
     title: "E-SPORT CLUB",
     Image : dotka,
-    altText: "Movie Club Image",
+    altText: "E-sport Club Image",
     description: "E-sport-д сонирхолтой хэн ч нэгдэх боломжтой ",
     members: [
-      { name: "John Doe", position: "CEE", company: "UltimateSolutions", telephone: "99999999" }
+      {
+        name: "John Doe",
+        position: "President",
+        company: "UltimateSOlution",
+        telephone: "99999999",
+      },
     ],
     fbLink: "https://www.facebook.com/groups/329454226106597",
     icon: "path/to/movie-club-icon.png",
-    category: "Entertainment"
-    },
-    {
-     description : "Border",
-     Image: AddClubs
-    },
-
-    
-  ]
+    category: "Entertainment",
+  },
+  
+];

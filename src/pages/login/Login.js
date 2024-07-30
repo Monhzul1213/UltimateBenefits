@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import { loginlogo, logo } from "../../assets";
 import { PinModal, LoginButton, RegisterSelect } from "../../components";
 import "../../css/login.css";
 
 export function Login() {
+  const inputRef = useRef();
+  const focusInput = () => {
+    inputRef.current.focus({
+      cursor: "start",
+    });
+  };
   const [openAb, setOpenAb] = useState();
   let [registerLetters] = useState([]);
   const [registerNums, setRegisterNums] = useState("");
@@ -15,7 +21,15 @@ export function Login() {
   const handleSelecet = (value, index) => {
     registerLetters[index] = value;
   };
+  const handleSelectKeyDown = (e) => {
+    console.log(e);
+  };
   const { handleCheckRegister, loading, open, setOpen } = useAuth();
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleCheckRegister(registerLetters, registerNums);
+    }
+  };
 
   return (
     <main className="login-page">
@@ -32,26 +46,32 @@ export function Login() {
             <p className="subtext">Регистрийн дугаар</p>
             <div className="input-div">
               <RegisterSelect
+                focusInput={focusInput}
                 registerLetters={registerLetters}
                 open={openAb}
                 setOpen={setOpenAb}
                 index={0}
                 onChange={handleSelecet}
+                handleSelectKeyDown={handleSelectKeyDown}
               />
               <RegisterSelect
+                focusInput={focusInput}
                 registerLetters={registerLetters}
                 open={openAb}
                 setOpen={setOpenAb}
                 index={1}
                 onChange={handleSelecet}
+                handleSelectKeyDown={handleSelectKeyDown}
               />
               <input
+                ref={inputRef}
                 value={registerNums}
                 onChange={handleInput}
                 placeholder="12345678"
                 className="register-input"
                 type="text"
                 maxLength={8}
+                onKeyDown={handleKeyDown}
               />
             </div>
             <LoginButton

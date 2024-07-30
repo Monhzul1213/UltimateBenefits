@@ -1,55 +1,41 @@
-import React, { useState, useEffect } from "react";
-import { Button, Modal, Form, Input, Upload } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button, Modal, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 
-const DiscountsCard = ({ visible, onClose, data }) => {
-  const [description, setDescription] = useState(data?.description || "");
+const DiscountsAdd = ({ visible, onClose }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   const onFinish = (values) => {
     console.log("Received values of form: ", { ...values, imageUrl });
     onClose();
-    };
+  };
 
   const handleImageChange = ({ file }) => {
     if (file.status === "done") {
-       setImageUrl(URL.createObjectURL(file.originFileObj));
+      setImageUrl(URL.createObjectURL(file.originFileObj));
     }
   };
-
-  useEffect(() => {
-    if (data) {
-      setDescription(data.description || "");
-    }
-  }, [data]);
-
-  const handleInput = (e) => {
-    setDescription(e.target.value);
-  };
-
-  if (!data) return null;
 
   return (
     <Modal
+      visible={visible}
+      onCancel={onClose}
+      centered
       title={
-        <div
-          style={{
-            textAlign: "center",
-            paddingBottom: "10px",
-            borderBottom: "1px solid #f0f0f0",
-          }}
-        >
-          {data.title || ""}
+        <div style={{ textAlign: "center", paddingBottom: "10px", borderBottom: "1px solid #f0f0f0" }}>
+          ХӨНГӨЛӨЛТ УРАМШУУЛАЛ НЭМЭХ
         </div>
       }
-      open={visible}
-      onCancel={onClose}
       footer={null}
-      centered
     >
-      <Form layout="vertical">
-      <div className="dis-modal-flex">
-        <div style={{ width: "100%" }}>
+      <Form
+        id="discounts-form"
+        name="discounts-form"
+        onFinish={onFinish}
+        layout="vertical"
+      >
+        <div className="dis-modal-flex">
+        <div style={{ width: "100%"}}>
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Хөнгөлөлт, урамшууллын нэр</p>
           <Form.Item
             name="discountName"
@@ -63,21 +49,22 @@ const DiscountsCard = ({ visible, onClose, data }) => {
           </Form.Item>
         </div>
         </div>
-      <div className="dis-modal-flex">
-        <div style={{ width: "100%" }}>
-          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Тайлбар</p>
-          <Form.Item>
-            <Input.TextArea
-              size="large"
-              value={description}
-              onChange={handleInput}
-              placeholder="No description available"
-            />
-          </Form.Item>
+        <div className="dis-modal-flex">
+          <div style={{ width: "100%" }}>
+            <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Тайлбар</p>
+            <Form.Item
+              name="description"
+              rules={[{ required: true, message: 'Тайлбараа оруулна уу' }]}
+            >
+              <Input
+                size="large"
+                placeholder="Тайлбараа оруулна уу"
+              />
+            </Form.Item>
+          </div>
         </div>
-      </div>
-      <div className="dis-modal-flex">
-         <div style={{ width: "100%" }}>
+        <div className="dis-modal-flex">
+        <div style={{ width: "100%" }}>
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Ажилласан жилийн шаардлага/сараар/ хэдэн удаа</p>
           <Form.Item
             name="requirements"
@@ -116,32 +103,12 @@ const DiscountsCard = ({ visible, onClose, data }) => {
           </Upload>
           {imageUrl && <img src={imageUrl} alt="Uploaded" style={{ marginTop: 10, maxWidth: "100%" }} />}
         </div>
-
-        <div
-          style={{
-            textAlign: "center",
-            marginTop: "20px",
-            borderTop: "1px solid #f0f0f0",
-            paddingTop: "10px",
-          }}
-        >
-          
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              alignItems: "center",
-            }}
-          >
-            <Button
-              key="cancel"
-              type="default"
-              onClick={onClose}
-              style={{ marginRight: "10px" }}
-            >
+        <div style={{ textAlign: "center", marginTop: "20px", borderTop: "1px solid #f0f0f0", paddingTop: "10px" }}>
+          <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center" }}>
+            <Button key="cancel" type="default" onClick={onClose} style={{ marginRight: "10px" }}>
               Болих
             </Button>
-            <Button key="save" type="primary" onClick={onClose}>
+            <Button key="save" type="primary" htmlType="submit" form="discounts-form">
               Хадгалах
             </Button>
           </div>
@@ -151,4 +118,4 @@ const DiscountsCard = ({ visible, onClose, data }) => {
   );
 };
 
-export default DiscountsCard;
+export default DiscountsAdd;

@@ -16,6 +16,8 @@ const trainContext = createContext({
   setSelectedType: () => {},
   deleteLearningData: () => {},
   updateLearningData: () => {},
+  updateTrainingType: () => {},
+  deleteTrainingType: () => {},
   selectedType: "",
   selectedCategory: 1,
   trainingTypes: [],
@@ -66,10 +68,8 @@ const TrainProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log("LEARNING DATA", data);
       setLearningDatas(data.result);
     } catch (error) {
-      console.log("ERROR IN GET TRAININGS", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -89,9 +89,47 @@ const TrainProvider = ({ children }) => {
       });
       setTrainingTypes(data.result);
       setSelectedCategory(data?.result[0]?.ID);
-      console.log(data);
     } catch (error) {
-      console.log("ERROR IN GET TYPES", error);
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert("Алдаа гарлаа", "error");
+      }
+    }
+  };
+  const updateTrainingType = async (id, Name) => {
+    try {
+      await myAxios.put(
+        `/api/training/category/${id}`,
+        {
+          Name,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      alert("Амжилттай засагдлаа", "success");
+      getTrainingType();
+    } catch (error) {
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert("Алдаа гарлаа", "error");
+      }
+    }
+  };
+  const deleteTrainingType = async (id) => {
+    try {
+      await myAxios.delete(`/api/training/category/${id}`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай устгагдлаа", "success");
+      getTrainingType();
+    } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -131,7 +169,6 @@ const TrainProvider = ({ children }) => {
     formData.append("IsFile", trainForm.IsFile);
     formData.append("FileDesc", trainForm.FileDescr);
     try {
-      console.log("Addid train data", trainForm);
       await myAxios.post("/api/training", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -141,7 +178,6 @@ const TrainProvider = ({ children }) => {
       alert("Амжилттай хадгаллаа", "success");
       getLearningData(selectedCategory);
     } catch (error) {
-      console.log("error in adding data", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -150,7 +186,6 @@ const TrainProvider = ({ children }) => {
     }
   };
   const deleteLearningData = async (id) => {
-    console.log("DELETE data", id);
     try {
       await myAxios.delete(`/api/training/${id}`, {
         headers: {
@@ -161,7 +196,6 @@ const TrainProvider = ({ children }) => {
       alert("Амжилттай устгагдлаа", "success");
       getLearningData(1);
     } catch (error) {
-      console.log("error in delte data", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -176,7 +210,6 @@ const TrainProvider = ({ children }) => {
     formData.append("IsFile", trainForm.IsFile);
     formData.append("FileDesc", trainForm.FileDescr);
     try {
-      console.log("edit data", formData);
       await myAxios.put(`/api/training/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -185,7 +218,6 @@ const TrainProvider = ({ children }) => {
       });
       alert("Амжилттай засагдлаа", "success");
     } catch (error) {
-      console.log("error in update data", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -195,6 +227,7 @@ const TrainProvider = ({ children }) => {
   };
 
   const downloadFile = async (filePath) => {
+    const fileName = filePath.split("/").pop();
     try {
       const { data } = await myAxios.get(
         `/api/file/download?filePath=${filePath}`,
@@ -208,7 +241,7 @@ const TrainProvider = ({ children }) => {
       const url = window.URL.createObjectURL(new Blob([data]));
       const a = document.createElement("a");
       a.href = url;
-      a.download = "1.pdf";
+      a.download = fileName;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -237,6 +270,8 @@ const TrainProvider = ({ children }) => {
         selectedType,
         setSelectedType,
         updateLearningData,
+        updateTrainingType,
+        deleteTrainingType,
       }}
     >
       {children}
