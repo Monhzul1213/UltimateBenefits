@@ -163,7 +163,7 @@
   cursor: pointer;
 }
 .detail-one {
-  width: 422px;
+  width: 412px;
 }
 .detail-title {
   font-size: 24px;
@@ -193,6 +193,7 @@
 }
 .detail-html {
   margin-top: 20px;
+  padding-left: 25px;
 }
 .detail-html h1 {
   margin: 30px 0px 5px 0;
