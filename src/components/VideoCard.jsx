@@ -74,6 +74,8 @@ export const VideoCard = ({
           closeIcon={null}
           open={openModal === idx}
           footer={null}
+          onClose={closeModal}
+          onCancel={closeModal}
         >
           <iframe
             ref={iframeRef}
