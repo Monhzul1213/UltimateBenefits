@@ -27,6 +27,7 @@ export const PinModal = ({ open, setOpen, register }) => {
           onChange={handlePin}
         />
         <LoginButton
+          disabled={pin.length === 4 ? false : true}
           loading={loading}
           handleClick={() => {
             handleLogin(register, pin);

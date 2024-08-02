@@ -17,6 +17,8 @@ export const authContext = createContext({
   userImage: "",
   setOpenDrawer: () => {},
   setOpen: () => {},
+  checkOldPassword: () => {},
+  changePassword: () => {},
 });
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
@@ -78,11 +80,62 @@ const AuthProvider = ({ children }) => {
           },
         }
       );
-      alert("Зураг амжилттай солигдлоо");
+      alert("Зураг амжилттай солигдлоо", "success");
       setImage(data.result);
       sessionStorage.setItem("userProfile", data.result);
     } catch (error) {
-      console.log("error in changing photo", error);
+      alert("Зураг солиход алдаа гарлаа", "error");
+    }
+  };
+
+  const checkOldPassword = async (Password) => {
+    try {
+      const { data } = await myAxios.post(
+        "/api/users/checkPassword",
+        {
+          Password,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      console.log("response", data);
+      return data.success;
+    } catch (error) {
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
+      return false;
+    }
+  };
+  const changePassword = async (NewPassword, OldPassword) => {
+    console.log(OldPassword, NewPassword);
+    try {
+      const { data } = await myAxios.post(
+        "/api/users/changedPassword",
+        {
+          OldPassword,
+          NewPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      alert("Таны нууц үг амжилттай солигдлоо", "success");
+      console.log("password changed", data);
+    } catch (error) {
+      console.log("Error in changin", error);
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
     }
   };
 
@@ -98,6 +151,8 @@ const AuthProvider = ({ children }) => {
         handleLogin,
         checkIsLogged,
         logout,
+        checkOldPassword,
+        changePassword,
         loading,
         user,
         isAuth,
