@@ -1,4 +1,4 @@
-import { Avatar, Dropdown } from "antd";
+import { Avatar, Dropdown, Tooltip } from "antd";
 import {
   downloadFileIcon,
   excelBack,
@@ -9,6 +9,8 @@ import {
   wordIcon,
 } from "../assets";
 import { useTraining } from "../context/TrainProvider";
+import { checkRole } from "../lib/utils/checkRole";
+import { useAuth } from "../context/AuthProvider";
 
 export const TrainingFileCard = ({
   learning,
@@ -16,6 +18,7 @@ export const TrainingFileCard = ({
   setIsEdit,
   handleTrainingModal,
 }) => {
+  const { user } = useAuth();
   const {
     editTrainForm,
     setSelectedType,
@@ -50,7 +53,10 @@ export const TrainingFileCard = ({
   ];
 
   return (
-    <Dropdown menu={{ items }} trigger={["contextMenu"]}>
+    <Dropdown
+      menu={checkRole(user?.Role) ? { items } : {}}
+      trigger={["contextMenu"]}
+    >
       <div className="video-card">
         <div className="training-file-card">
           {(learning.FileType === "pdf" || learning.FileType === "pptx") && (
@@ -95,14 +101,18 @@ export const TrainingFileCard = ({
           }}
         >
           <div style={{ marginTop: 20 }} className="video-desc">
-            <Avatar
-              src={learning?.Picture}
-              className="video-author-avatar"
-              size={50}
-            />
+            <div className="video-desc-avatar">
+              <Avatar
+                src={learning?.Picture}
+                className="video-author-avatar"
+                size={50}
+              />
+            </div>
             <div>
-              <p>{learning.UserName}</p>
-              <h4>{learning.Name}</h4>
+              <p>{learning?.UserName}</p>
+              <Tooltip title={learning?.Name}>
+                <h4>{learning?.Name}</h4>
+              </Tooltip>
             </div>
           </div>
           <div style={{ textAlign: "right" }}>

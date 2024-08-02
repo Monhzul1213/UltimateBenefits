@@ -10,6 +10,7 @@ export function RegisterSelect({
   setOpen,
   registerLetters,
   focusInput,
+  handleSelectKeyDown,
 }) {
   const content = (
     <div className="alphabets-container">

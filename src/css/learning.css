@@ -1,6 +1,6 @@
 .learning-container {
   overflow: hidden;
-  padding: 20px 80px;
+  padding: 30px 140px;
   display: flex;
 }
 .learning-videos-container {
@@ -9,7 +9,7 @@
   margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 50px;
   text-transform: uppercase;
 }
 .video-card {
@@ -67,6 +67,15 @@
   align-items: center;
   font-size: 18px;
   font-weight: 250;
+}
+.video-desc-avatar {
+  width: 50px;
+}
+.video-desc h4 {
+  width: 350px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .training-modal-container {
   display: flex;

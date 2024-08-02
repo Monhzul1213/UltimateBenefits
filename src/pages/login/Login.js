@@ -21,6 +21,9 @@ export function Login() {
   const handleSelecet = (value, index) => {
     registerLetters[index] = value;
   };
+  const handleSelectKeyDown = (e) => {
+    console.log(e);
+  };
   const { handleCheckRegister, loading, open, setOpen } = useAuth();
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -49,6 +52,7 @@ export function Login() {
                 setOpen={setOpenAb}
                 index={0}
                 onChange={handleSelecet}
+                handleSelectKeyDown={handleSelectKeyDown}
               />
               <RegisterSelect
                 focusInput={focusInput}
@@ -57,6 +61,7 @@ export function Login() {
                 setOpen={setOpenAb}
                 index={1}
                 onChange={handleSelecet}
+                handleSelectKeyDown={handleSelectKeyDown}
               />
               <input
                 ref={inputRef}

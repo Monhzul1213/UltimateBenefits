@@ -10,6 +10,8 @@ export const employeeContext = createContext({
   empLoading: false,
   empFailed: false,
   empFormEdit: {},
+  employeeSearch: () => {},
+  searchValue: "",
   addEmployee: () => {},
   getEmployees: () => {},
   handleEmpForm: () => {},
@@ -47,6 +49,18 @@ const EmployeeProvider = ({ children }) => {
     }));
   };
 
+  //Search
+  const [originEmpData, setOriginEmpData] = useState();
+  const [searchValue, setSearchValue] = useState();
+  const employeeSearch = (e) => {
+    setSearchValue(e.target.value);
+    const searchResults = originEmpData?.filter((data) => {
+      const name = data.FirstName.toLowerCase();
+      const searchV = e.target.value.toLowerCase();
+      return name.includes(searchV);
+    });
+    setEmpForm(searchResults);
+  };
   const getEmployees = async () => {
     setEmpLoading(true);
     try {
@@ -56,6 +70,7 @@ const EmployeeProvider = ({ children }) => {
         },
       });
       setEmpCount(data.user);
+      setOriginEmpData(data.result);
       setEmpForm(data.result);
       setEmpFailed(false);
     } catch (error) {
@@ -115,6 +130,8 @@ const EmployeeProvider = ({ children }) => {
         addEmployee,
         handleEmpForm,
         setEmpFormEdit,
+        employeeSearch,
+        searchValue,
         empCount,
         empForm,
         empFormEdit,

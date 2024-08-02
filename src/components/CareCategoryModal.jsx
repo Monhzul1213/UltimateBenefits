@@ -3,12 +3,16 @@ import { useCare } from "../context/CareProvider";
 import { MdOutlineFileUpload } from "react-icons/md";
 import TextArea from "antd/es/input/TextArea";
 
-const CareCategoryModal = ({ isEdit, open, handleAddModal }) => {
+const CareCategoryModal = ({ open, handleAddModal }) => {
+  let fileName = "";
   const {
     handleCategoryForm,
     careCategoryForm,
     createCareCategory,
     clearForm,
+    categoryEdit,
+    editCareCategory,
+    editImg,
   } = useCare();
   const handleInput = (e) => {
     handleCategoryForm(e.target.name, e.target.value);
@@ -16,9 +20,9 @@ const CareCategoryModal = ({ isEdit, open, handleAddModal }) => {
   const handleFileChange = ({ file }) => {
     if (file?.status !== "removed") {
       handleCategoryForm("Image", file);
+      fileName = file.name;
     }
   };
-
   return (
     <Modal
       open={open}
@@ -31,13 +35,14 @@ const CareCategoryModal = ({ isEdit, open, handleAddModal }) => {
     >
       <div className="training-modal-container">
         <div className="emp-modal-header">
-          <h2>{isEdit ? "Мэдээлэл засах" : "Хангамж нэмэх"}</h2>
+          <h2>{categoryEdit ? "Мэдээлэл засах" : "Хангамж нэмэх"}</h2>
         </div>
         <div className="training-modal-input">
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
             Гарчиг
           </p>
           <Input
+            value={careCategoryForm.Name}
             size="large"
             variant="filled"
             name="Name"
@@ -50,6 +55,7 @@ const CareCategoryModal = ({ isEdit, open, handleAddModal }) => {
             Шаарлагтай ажилласан хугацаа /сараар/
           </p>
           <Input
+            value={careCategoryForm.AvailableMonth}
             type="number"
             size="large"
             variant="filled"
@@ -63,6 +69,7 @@ const CareCategoryModal = ({ isEdit, open, handleAddModal }) => {
             Тайлбар
           </p>
           <TextArea
+            value={careCategoryForm.Descr}
             name="Descr"
             rows={4}
             size="large"
@@ -77,8 +84,13 @@ const CareCategoryModal = ({ isEdit, open, handleAddModal }) => {
             onChange={handleFileChange}
             beforeUpload={() => false}
             maxCount={1}
+            fileList={careCategoryForm.Image ? [careCategoryForm.Image] : []}
           >
-            <Button icon={<MdOutlineFileUpload />}>Зураг хавсаргах</Button>
+            {categoryEdit ? (
+              <Button icon={<MdOutlineFileUpload />}>Зураг солих</Button>
+            ) : (
+              <Button icon={<MdOutlineFileUpload />}>Зураг хавсаргах</Button>
+            )}
           </Upload>
         </div>
         <div className="emp-modal-buttons">
@@ -92,10 +104,14 @@ const CareCategoryModal = ({ isEdit, open, handleAddModal }) => {
           >
             Хаах
           </Button>
-          {isEdit ? (
+          {categoryEdit ? (
             <Button
               size="large"
-              onClick={() => {}}
+              onClick={() => {
+                editCareCategory(careCategoryForm?.ID);
+                clearForm();
+                handleAddModal(false);
+              }}
               style={{ fontWeight: 700, marginLeft: 10 }}
               type="primary"
             >

@@ -5,6 +5,9 @@
   width: 100%;
   margin: 20px 0;
   text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
 }
 .employee-table-container {
   margin-top: 30px;

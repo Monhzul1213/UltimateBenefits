@@ -25,7 +25,7 @@ import bday from "./bday.png";
 import phone from "./phone.png";
 import lunch from "./lunch.png";
 import gym from "./gym.png";
-import add_card from "./add_card.png";
+import add_card from "./add_card.png"
 import hands from "./hands.png";
 import dotka from "./dotka.png";
 import volleyball from "./volleyball.jpg";
@@ -40,8 +40,16 @@ import pdfBack from "./pdfBack.png";
 import pdfIcon from "./pdfIcon.png";
 import wordBack from "./wordBack.png";
 import wordIcon from "./wordIcon.png";
+import RulesBod from "./RulesBod.png";
+import RulesDj from "./RulesDJ.png";
+import RulesGa from "./RulesGA.png";
+import RulesHut from "./RulesHut.png";
 
 export {
+  RulesBod,
+  RulesDj,
+  RulesGa,
+  RulesHut,
   downloadFileIcon,
   excelBack,
   excelIcon,

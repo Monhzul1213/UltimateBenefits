@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useClub } from '../context/ClubsProvider';
+<<<<<<< HEAD
 import { Input, Button } from 'antd';
 import Upload from 'antd/es/upload/Upload';
 import { MdOutlineFileUpload } from 'react-icons/md';
 import TextArea from 'antd/es/input/TextArea';
+=======
+import { Input } from 'antd';
+>>>>>>> main
 
 export const AddClubModal = ({ isOpen, onClose }) => {
   const { addClub } = useClub();
@@ -54,6 +58,7 @@ export const AddClubModal = ({ isOpen, onClose }) => {
           className="modal-content"
           onClick={(e) => e.stopPropagation()}
         >
+<<<<<<< HEAD
 
             <div className="add-header">
               <h2>ШИНЭ КЛУБ НЭМЭХ</h2>
@@ -113,6 +118,67 @@ export const AddClubModal = ({ isOpen, onClose }) => {
                 <Button type="primary" size='large' htmlType="submit">Нэмэх</Button>
               </div>
             </form>
+=======
+      <div className="add-header">
+        <h2>ШИНЭ КЛУБ НЭМЭХ</h2>
+          <button className="close-button" onClick={onClose}>X</button>
+      </div>    
+      <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="Name">Клубын нэр</label>
+              <Input
+                placeholder='Клубын нэрээ оруулна уу'
+                type="text"
+                id="Name"
+                name="Name"
+                value={clubForm.clubName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="Descr">Тайлбар</label>
+              <textarea
+                placeholder='Тайлбар оруулна уу'
+                id="Descr"
+                name="Descr"
+                value={clubForm.clubDescription}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="Contact">Утасны дугаар</label>
+              <Input
+                placeholder='Утасны дугаараа оруулна уу'
+                type="tel"
+                id="Contact"
+                name="Contact"
+                value={clubForm.clubContact}
+                onChange={handleChange}
+                required
+              />
+            </div>
+      <div className="form-group-image">
+          <label htmlFor="Image" className="file-upload-button">
+            <span className="icon">&#8595;</span> Зураг хавсаргах
+          </label>
+            <Input
+              type="file"
+              id="Image"
+              name="Image"
+              accept="image/*"
+              onChange={handleImageChange}
+              required
+              style={{ display: 'none' }}
+          />
+          </div>
+            <div className="form-actions">
+              <button type="button" onClick={onClose} className="cancel-button">Болих</button>
+              <button type="submit" className="submit-button">Нэмэх</button>
+            </div>
+          </form>
+>>>>>>> main
         </motion.div>
       </motion.div>
     </AnimatePresence>

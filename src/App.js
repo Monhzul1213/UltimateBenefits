@@ -7,14 +7,9 @@ import {
 } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
-import {
-  Learning,
-  Careers,
-  NewRules,
-  Home,
-  Login,
-  Employees,
-} from "./pages";
+import Rules from "./pages/rules/Rules";
+
+import { Learning, Careers, NewRules, Home, Login, Employees } from "./pages";
 import { useAuth } from "./context/AuthProvider";
 import Care from "./pages/care/Care";
 import Discounts from "./pages/discounts/Discounts";
@@ -44,7 +39,7 @@ export function App() {
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/discounts" element={<Discounts />} />
-                <Route path="/rules" element={<NewRules />} />
+                <Route path="/rules" element={<Rules />} />
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/care" element={<Care />} />
                 <Route path="/training" element={<Learning />} />

@@ -62,6 +62,7 @@
   width: 100px;
   height: 100px;
   margin-bottom: 20px;
+  object-fit: contain;
 }
 .care-card-description {
   color: gray;
@@ -141,7 +142,73 @@
   color: white;
   font-weight: 700;
 }
-
+.detail-container {
+  padding: 20px;
+  position: relative;
+  width: 100%;
+}
+.detail-close-button {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding: 4px;
+  color: white;
+  background-color: red;
+  border-radius: 50%;
+  right: -10px;
+  top: -10px;
+  cursor: pointer;
+}
+.detail-one {
+  width: 412px;
+}
+.detail-title {
+  font-size: 24px;
+}
+.detail-section-container {
+  max-width: 1000px;
+  max-height: 700px;
+  overflow: scroll;
+}
+.detail-section-container::-webkit-scrollbar {
+  display: none;
+}
+.detail-section {
+  display: flex;
+  gap: 60px;
+  width: fit-content;
+  height: fit-content;
+}
+.detail-name {
+  margin-top: 20px;
+  padding: 8px 60px;
+  width: fit-content;
+  border-radius: 8px;
+  color: white;
+  background-color: #00c3ee;
+  font-size: 13px;
+}
+.detail-html {
+  margin-top: 20px;
+  padding-left: 25px;
+}
+.detail-html h1 {
+  margin: 30px 0px 5px 0;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.detail-html p {
+  font-weight: 300;
+}
+.detail-html p:nth-child(even) {
+  background-color: #f0f0f0;
+}
+.detail-html li:nth-child(odd) {
+  background-color: #f0f0f0;
+}
 @media only screen and (max-width: 1525px) {
   .cards-last {
     width: 100%;
