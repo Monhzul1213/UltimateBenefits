@@ -1,8 +1,8 @@
 import { CustomHeader, Loader } from "../../components";
 import * as XLSX from "xlsx";
 import { useEmployee } from "../../context/EmployeeProvider";
-import { Button, Dropdown } from "antd";
-import { IoIosAdd } from "react-icons/io";
+import { Button, Dropdown, Input } from "antd";
+import { IoIosAdd, IoIosSearch } from "react-icons/io";
 import "../../css/employees.css";
 import { IoReload } from "react-icons/io5";
 import { useRef, useState } from "react";
@@ -44,6 +44,8 @@ export const Employees = () => {
     empLoading,
     getEmployees,
     setEmpFormEdit,
+    searchValue,
+    employeeSearch,
   } = useEmployee();
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -117,6 +119,13 @@ export const Employees = () => {
       ) : (
         <div className="employee-container">
           <div className="employee-add-section">
+            <Input
+              prefix={<IoIosSearch size={24} color="gray" />}
+              style={{ width: "300px" }}
+              placeholder="Нэрээр хайх"
+              value={searchValue}
+              onChange={employeeSearch}
+            />
             <Dropdown menu={{ items }}>
               <Button
                 size="large"

@@ -2,6 +2,8 @@ import { Avatar, Button, Dropdown, Modal, Tooltip } from "antd";
 import React from "react";
 import { FaPlay } from "react-icons/fa";
 import { useTraining } from "../context/TrainProvider";
+import { useAuth } from "../context/AuthProvider";
+import { checkRole } from "../lib/utils/checkRole";
 
 export const VideoCard = ({
   iframeRef,
@@ -14,6 +16,7 @@ export const VideoCard = ({
   setIsEdit,
   handleTrainingModal,
 }) => {
+  const { user } = useAuth();
   const { editTrainForm, setSelectedType, trainingTypes, deleteLearningData } =
     useTraining();
   const handleClick = () => {
@@ -42,7 +45,10 @@ export const VideoCard = ({
     },
   ];
   return (
-    <Dropdown menu={{ items }} trigger={["contextMenu"]}>
+    <Dropdown
+      menu={checkRole(user?.Role) ? { items } : {}}
+      trigger={["contextMenu"]}
+    >
       <div className="video-card">
         <div
           className="play-container"

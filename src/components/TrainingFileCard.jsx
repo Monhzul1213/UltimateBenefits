@@ -9,6 +9,8 @@ import {
   wordIcon,
 } from "../assets";
 import { useTraining } from "../context/TrainProvider";
+import { checkRole } from "../lib/utils/checkRole";
+import { useAuth } from "../context/AuthProvider";
 
 export const TrainingFileCard = ({
   learning,
@@ -16,6 +18,7 @@ export const TrainingFileCard = ({
   setIsEdit,
   handleTrainingModal,
 }) => {
+  const { user } = useAuth();
   const {
     editTrainForm,
     setSelectedType,
@@ -50,7 +53,10 @@ export const TrainingFileCard = ({
   ];
 
   return (
-    <Dropdown menu={{ items }} trigger={["contextMenu"]}>
+    <Dropdown
+      menu={checkRole(user?.Role) ? { items } : {}}
+      trigger={["contextMenu"]}
+    >
       <div className="video-card">
         <div className="training-file-card">
           {(learning.FileType === "pdf" || learning.FileType === "pptx") && (

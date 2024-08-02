@@ -11,6 +11,7 @@ import "../css/drawer.css";
 import { useCalendar } from "../context/CalendarProvider";
 import { checkRole } from "../lib/utils/checkRole";
 import { useRef, useState } from "react";
+import ChangePinModal from "./ChangePinModal";
 
 export const MyDrawer = () => {
   const {
@@ -38,6 +39,8 @@ export const MyDrawer = () => {
       changeUserPhoto(file);
     }
   };
+  //change pin Modal
+  const [changePinModalVisible, setChangePinModalVisible] = useState(false);
   return (
     <>
       <div className="drawer-handle" onClick={showDrawer}>
@@ -95,14 +98,24 @@ export const MyDrawer = () => {
               <Avatar size={15} />
               {user?.Address}
             </p>
-            <Button
-              onClick={() => {
-                logout();
-              }}
-              className="logout"
-            >
-              Системээс гарах
-            </Button>
+            <div style={{ display: "flex", gap: "15px" }}>
+              <Button
+                onClick={() => {
+                  setChangePinModalVisible(true);
+                }}
+                className="change-password-button"
+              >
+                Нууц үг солих
+              </Button>
+              <Button
+                onClick={() => {
+                  logout();
+                }}
+                className="logout"
+              >
+                Системээс гарах
+              </Button>
+            </div>
           </div>
           <div className="top-border" />
         </div>
@@ -160,6 +173,10 @@ export const MyDrawer = () => {
           </div>
         </div>
       </Drawer>
+      <ChangePinModal
+        open={changePinModalVisible}
+        setOpen={setChangePinModalVisible}
+      />
     </>
   );
 };
