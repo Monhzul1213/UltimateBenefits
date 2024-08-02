@@ -50,11 +50,10 @@ const ClubProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log("CLUB DATA", data.result);
+
       setClubs(data.result);
       setClubFailed(false);
     } catch (error) {
-      console.log("ERROR IN GET CLUBS", error);
       setClubFailed(true);
     } finally {
       setClubLoading(false);

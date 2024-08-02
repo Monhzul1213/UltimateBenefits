@@ -81,7 +81,6 @@ const Clubs = () => {
     setContextMenu({ visible: false, x: 0, y: 0, club: null });
   };
 
-  console.log("CLUBS", clubs);
 
   return (
     <>
@@ -105,8 +104,8 @@ const Clubs = () => {
       <AddClubModal isOpen={isAddClubModalOpen} onClose={handleCloseAddClubModal} />
       {contextMenu.visible && (
         <ul className="context-menu" style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}>
-          <li onClick={() => handleContextMenuOptionClick('Edit')}>Edit</li>
-          <li onClick={() => handleContextMenuOptionClick('Delete')}>Delete</li>
+          <li onClick={() => handleContextMenuOptionClick('Edit')}>Засах</li>
+          <li  style={{ color: 'red' }} onClick={() => handleContextMenuOptionClick('Delete')}>Устгах</li>
         </ul>
       )}
     </>
