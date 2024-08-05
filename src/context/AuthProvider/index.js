@@ -19,6 +19,7 @@ export const authContext = createContext({
   setOpen: () => {},
   checkOldPassword: () => {},
   changePassword: () => {},
+  resetPassword: () => {},
 });
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
@@ -139,6 +140,20 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const resetPassword = async (UserID) => {
+    try {
+      const { data } = await myAxios.post("/api/users/forget", { UserID });
+      alert(data.result, "success");
+    } catch (error) {
+      console.log("Error resetPassword", error);
+      if (!error.response) {
+        alert("Уучлаарай, сүлжээ унасан байна", "error");
+      } else {
+        alert(error.response.data.error.message, "error");
+      }
+    }
+  };
+
   useEffect(() => {
     checkIsLogged();
   }, []);
@@ -146,6 +161,7 @@ const AuthProvider = ({ children }) => {
   return (
     <authContext.Provider
       value={{
+        resetPassword,
         changeUserPhoto,
         handleCheckRegister,
         handleLogin,
