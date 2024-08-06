@@ -20,3 +20,4 @@ export * from "./modalSignup";
 export * from "./TrainingFileCard";
 export * from "./DiscountsAdd";
 export * from "./DiscountsCard";
+export * from "./ForgetModal";

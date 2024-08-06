@@ -5,16 +5,19 @@ import { alert } from "../../lib/actions/alert.actions";
 
 export const DiscountsContext = createContext({
   discounts: [],
+  handleChange:[],
   discountsLoading: false,
   discountsFailed: false,
   discountsForm: {},
   discountsFormEdit: {},
+  handleImageChange: [],
   addDiscounts: () => {},
   getDiscounts: () => {},
   editDiscounts: () => {},
   deleteDiscounts: () => {},
   handleDiscountsForm: () => {},
   setDiscountsFormEdit: () => {},
+  setDiscountsForm: () => {},
 });
 
 const DiscountsProvider = ({ children }) => {
@@ -36,6 +39,16 @@ const DiscountsProvider = ({ children }) => {
     AvailableCount: "",
     Image: "null",
   });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDiscountsForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleImageChange = ({ file }) => {
+    if (file?.status !== "removed") {
+      setDiscountsForm((prev) => ({ ...prev, Image: file }));
+    }
+  };
 
   const handleDiscountsForm = (name, value) => {
     setDiscountsFormEdit((prev) => ({
@@ -62,18 +75,18 @@ const DiscountsProvider = ({ children }) => {
     }
   };
 
-  const addDiscounts = async (data) => {
-    console.log("data", data)
+  const addDiscounts = async () => {
     const formData = new FormData();
-    for (const key in data) {
-      formData.append(key, data[key]);
+    for (const key  in discountsForm) {
+      formData.append(key, discountsForm[key]);
     }
     try {
-      await myAxios.post("/api/discount", formData, {
+      const data = await myAxios.post("/api/discount", formData, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
+      console.log("data", data)
       alert("Хөнгөлөлт, урамшуулал амжилттай нэмэгдлээ", "success");
       getDiscounts();
     } catch (error) {
@@ -136,6 +149,8 @@ const DiscountsProvider = ({ children }) => {
     <DiscountsContext.Provider
       value={{
         discounts,
+        handleChange,
+        handleImageChange,
         discountsLoading,
         discountsFailed,
         discountsForm,
@@ -146,6 +161,7 @@ const DiscountsProvider = ({ children }) => {
         deleteDiscounts,
         handleDiscountsForm,
         setDiscountsFormEdit,
+        setDiscountsForm,
       }}
     >
       {children}
