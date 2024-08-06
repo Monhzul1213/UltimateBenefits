@@ -39,19 +39,20 @@ const AddClubCard = ({ onClick }) => (
 const Clubs = () => {
   const [selectedClub, setSelectedClub] = useState(null);
   const [isAddClubModalOpen, setIsAddClubModalOpen] = useState(false);
+  const [isClubsModalOpen, setIsClubsModalOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, club: null });
-  const { clubs, editClub, deleteClub, setClubFormEdit } = useClub();
+  const { clubs, deleteClub, setClubFormEdit } = useClub();
 
   const handleCardOpen = (club) => {
+    setIsClubsModalOpen(true);
     setSelectedClub(club);
+    setClubFormEdit(club);
   };
 
-  const handleEditClub = async (club) => {
-    await editClub(club);
-    alert.success("Клуб амжилттай засагдлаа");
-  };
   const handleCloseModal = () => {
-    setSelectedClub(null);
+    setIsClubsModalOpen(false);
+    setIsEditing(false);
   };
 
   const handleAddClubClick = () => {
@@ -69,8 +70,10 @@ const Clubs = () => {
 
   const handleContextMenuOptionClick = async (option) => {
     if (option === 'Edit') {
-      setClubFormEdit(handleEditClub);
-      setSelectedClub(editClub.club);
+      setIsEditing(true);
+      setIsClubsModalOpen(true);
+      setSelectedClub(contextMenu.club);
+      setClubFormEdit(contextMenu.club);
     } else if (option === 'Delete') {
       await deleteClub(contextMenu.club.ID);
     }
@@ -81,32 +84,34 @@ const Clubs = () => {
     setContextMenu({ visible: false, x: 0, y: 0, club: null });
   };
 
-  console.log("CLUBS", clubs);
-
   return (
     <>
       <CustomHeader title="Сонирхлын клубууд" />
       <main className="club-container" onClick={handleModalClick}>
         <div className="cards-container">
-          {clubs?.map((club, ID) => {
-            return (
-              <ClubCard
-                key={ID}
-                club={club}
-                onClick={() => handleCardOpen(club)}
-                onRightClick={(event) => handleRightClick(event, club)}
-              />
-            );
-          })}
+          {clubs?.map((club, ID) => (
+            <ClubCard
+              key={ID}
+              club={club}
+              onClick={() => handleCardOpen(club)}
+              onRightClick={(event) => handleRightClick(event, club)}
+            />
+          ))}
           <AddClubCard onClick={handleAddClubClick} />
-        </div >
+        </div>
       </main>
-      <ClubsModal isOpen={!!selectedClub} onRequestClose={handleCloseModal} club={selectedClub} />
+      <ClubsModal
+        isOpen={isClubsModalOpen}
+        onRequestClose={handleCloseModal}
+        club={selectedClub}
+        isEditing={isEditing}
+        setIsEditing={setIsEditing}
+      />
       <AddClubModal isOpen={isAddClubModalOpen} onClose={handleCloseAddClubModal} />
       {contextMenu.visible && (
         <ul className="context-menu" style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}>
-          <li onClick={() => handleContextMenuOptionClick('Edit')}>Edit</li>
-          <li onClick={() => handleContextMenuOptionClick('Delete')}>Delete</li>
+          <li onClick={() => handleContextMenuOptionClick('Edit')}>Засах</li>
+          <li style={{ color: 'red' }} onClick={() => handleContextMenuOptionClick('Delete')}>Устгах</li>
         </ul>
       )}
     </>

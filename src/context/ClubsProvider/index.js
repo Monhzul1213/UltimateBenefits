@@ -33,6 +33,7 @@ const ClubProvider = ({ children }) => {
     Contact: "",
     Descr: "",
     Image: "",
+    ID: "",
   });
 
   const handleClubForm = (name, value) => {
@@ -50,7 +51,6 @@ const ClubProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log("CLUB DATA", data.result);
       setClubs(data.result);
       setClubFailed(false);
     } catch (error) {
@@ -79,10 +79,10 @@ const ClubProvider = ({ children }) => {
     }
   };
 
-  const editClub = async (id) => {
+  const editClub = async (club) => {
     setClubLoading(true);
     try {
-      await myAxios.put(`/api/club/${id}`, clubFormEdit, {
+      await myAxios.put(`/api/club/${club.ID}`, clubFormEdit, {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },

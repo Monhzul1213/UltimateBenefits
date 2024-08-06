@@ -1,7 +1,7 @@
 /* Club Page Styling */
 .club-container {
   padding: 20px;
-  max-width: 1100px;
+  /* max-width: 1100px; */
 }
 
 .cards-container {
@@ -18,7 +18,8 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  object-fit: fill;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='%2300C7F0FF' stroke-width='2' stroke-dasharray=' 9' stroke-dashoffset='9' stroke-linecap='square'/%3e%3c/svg%3e");
+  object-fit: cover;
 }
 
 .image-container {
@@ -58,7 +59,7 @@
 }
 
 .add-header {
-  font-size: 24px;
+  font-size: 14px;
   text-align: center;
   margin-top: 20px;
   border-bottom: 1px solid #f0f0f0;
@@ -237,8 +238,8 @@
 
 .context-menu {
   position: absolute;
-  background: white;
-  border: 5px solid #ccc;
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   list-style: none;
   padding: 5px 0;
@@ -247,12 +248,12 @@
 }
 
 .context-menu li {
-  padding: 8px 12px;
+  padding: 5px 12px;
   cursor: pointer;
 }
 
 .context-menu li:hover {
-  background-color: #007bff;
+   background-color: #ff0000; 
   color: white;
 }
 
@@ -269,6 +270,8 @@
   font-weight: bold;
   cursor: pointer;
   display: flex;
+  align-items: center;
+  justify-content: center;
 
 }
 
