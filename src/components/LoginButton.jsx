@@ -1,12 +1,12 @@
 import { Button } from "antd";
 
-export const LoginButton = ({ handleClick, loading }) => {
+export const LoginButton = ({ handleClick, loading, isForgot = false }) => {
   const style = {
     width: "100%",
     height: "60px",
     fontSize: "16px",
     backgroundColor: "#00c7f0",
-    marginTop: "20px",
+    marginTop: "10px",
   };
   return (
     <Button
@@ -15,7 +15,7 @@ export const LoginButton = ({ handleClick, loading }) => {
       type="primary"
       loading={loading}
     >
-      Нэвтрэх
+      {isForgot ? "Сэргээх" : "Нэвтрэх"}
     </Button>
   );
 };

@@ -6,6 +6,7 @@ import { createContext, useContext, useState } from "react";
 
 const trainContext = createContext({
   getLearningData: () => {},
+  trainingSearch: () => {},
   getTrainingType: () => {},
   handleTrainForm: () => {},
   addLearningData: () => {},
@@ -19,6 +20,7 @@ const trainContext = createContext({
   updateTrainingType: () => {},
   deleteTrainingType: () => {},
   selectedType: "",
+  searchValue: "",
   selectedCategory: 1,
   trainingTypes: [],
   learningDatas: [],
@@ -59,7 +61,20 @@ const TrainProvider = ({ children }) => {
     setSelectedCategory(id);
   };
 
+  //search
+  const [originLearningDatas, setOriginLearningDatas] = useState();
+  const [searchValue, setSearchValue] = useState();
+  const trainingSearch = (e) => {
+    setSearchValue(e.target.value);
+    const searchResults = originLearningDatas?.filter((data) => {
+      const name = data.Name.toLowerCase();
+      const searchV = e.target.value.toLowerCase();
+      return name.includes(searchV);
+    });
+    setLearningDatas(searchResults);
+  };
   const getLearningData = async (id) => {
+    setSearchValue("");
     setIsLoading(true);
     setIsFailed(false);
     try {
@@ -68,6 +83,7 @@ const TrainProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
+      setOriginLearningDatas(data.result);
       setLearningDatas(data.result);
     } catch (error) {
       if (!error.response) {
@@ -80,6 +96,7 @@ const TrainProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
+
   const getTrainingType = async () => {
     try {
       const { data } = await myAxios.get("/api/training/category", {
@@ -253,6 +270,7 @@ const TrainProvider = ({ children }) => {
       value={{
         downloadFile,
         loading,
+        searchValue,
         learningDatas,
         trainForm,
         trainingTypes,
@@ -272,6 +290,7 @@ const TrainProvider = ({ children }) => {
         updateLearningData,
         updateTrainingType,
         deleteTrainingType,
+        trainingSearch,
       }}
     >
       {children}

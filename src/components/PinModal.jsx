@@ -2,7 +2,7 @@ import { Modal } from "antd";
 import { LoginButton, OTPInput } from "../components";
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
-export const PinModal = ({ open, setOpen, register }) => {
+export const PinModal = ({ open, setOpen, register, handleForget }) => {
   const { handleLogin, loading } = useAuth();
   const [pin, setPin] = useState("");
   const handlePin = (val) => {
@@ -26,12 +26,23 @@ export const PinModal = ({ open, setOpen, register }) => {
           length={4}
           onChange={handlePin}
         />
+
         <LoginButton
+          disabled={pin.length === 4 ? false : true}
           loading={loading}
           handleClick={() => {
             handleLogin(register, pin);
           }}
         />
+        <p
+          onClick={() => {
+            handleForget(true);
+            setOpen(false);
+          }}
+          className="forget-button"
+        >
+          FORGOT PIN?
+        </p>
       </div>
     </Modal>
   );

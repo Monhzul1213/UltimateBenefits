@@ -110,6 +110,15 @@
 .ant-otp-input {
   font-size: 40px;
 }
+.forget-button {
+  text-align: right;
+  color: rgb(121, 164, 255);
+  cursor: pointer;
+  margin-top: 10px;
+}
+.forget-button:hover {
+  text-decoration: underline;
+}
 @media only screen and (max-width: 1050px) {
   .right-section {
     display: none;
