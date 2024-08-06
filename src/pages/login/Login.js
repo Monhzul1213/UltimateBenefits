@@ -1,7 +1,12 @@
 import { useRef, useState } from "react";
 import { useAuth } from "../../context/AuthProvider";
 import { loginlogo, logo } from "../../assets";
-import { PinModal, LoginButton, RegisterSelect } from "../../components";
+import {
+  PinModal,
+  LoginButton,
+  RegisterSelect,
+  ForgetModal,
+} from "../../components";
 import "../../css/login.css";
 
 export function Login() {
@@ -30,7 +35,11 @@ export function Login() {
       handleCheckRegister(registerLetters, registerNums);
     }
   };
-
+  //FORGET PASSWORD
+  const [forgetModal, setForgetModal] = useState(false);
+  const handleForget = (value) => {
+    setForgetModal(value);
+  };
   return (
     <main className="login-page">
       <section className="left-section">
@@ -38,7 +47,9 @@ export function Login() {
           open={open}
           setOpen={setOpen}
           register={registerLetters?.join("") + registerNums}
+          handleForget={handleForget}
         />
+        <ForgetModal open={forgetModal} setOpen={handleForget} />
         <img className="login-logo" src={loginlogo} alt="" />
         <div className="input-section">
           <h1 className="login-header">Welcome back ULTIMATE family!</h1>

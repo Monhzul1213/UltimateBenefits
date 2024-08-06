@@ -135,10 +135,11 @@
 }
 
 .add-card-image {
-  width: 100%;
-  height: 100%;
+  width: 419px;
+  height: 290px;
   object-fit: contain;
   transition: transform 0.3s ease;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='%2300C7F0FF' stroke-width='2' stroke-dasharray=' 9' stroke-dashoffset='9' stroke-linecap='square'/%3e%3c/svg%3e");
 }
 
 .add-card-container:hover .add-card-image {
@@ -158,4 +159,39 @@
   height: auto;
   float: right;
   margin-right: 30px;
+}
+
+.add_header {
+  width: 100%;
+  text-align: center;
+  height: 20px;
+  font-family: 'Montserrat', 'Light', sans-serif;
+}
+
+.context1-menu {
+  position: absolute;
+  background: white;
+  border: 5px solid #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 2px 0;
+  margin: 0;
+  z-index: 1001;
+  border-radius: 10px; 
+}
+
+.context1-menu li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.context1-menu li:hover {
+  background-color: #F8F8F8;
+  color: black;
+}
+.detail1-container {
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  width: 100%;
 }

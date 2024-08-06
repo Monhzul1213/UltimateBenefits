@@ -43,6 +43,7 @@ export const OTPInput = ({ length, onChange, register, pin, handleLogin }) => {
       {otp.map((value, index) => (
         <Col key={index}>
           <Input
+            type="password"
             ref={index === 0 ? otpRef : noRef}
             id={`otp-input-${index}`}
             maxLength={1}
