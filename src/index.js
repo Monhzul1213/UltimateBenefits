@@ -12,6 +12,7 @@ import EmployeeProvider from "./context/EmployeeProvider";
 import TrainProvider from "./context/TrainProvider";
 import ClubProvider from "./context/ClubsProvider";
 import CareProvider from "./context/CareProvider";
+import DiscountsProvider from "./context/DiscountsProvider";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -25,7 +26,9 @@ root.render(
               <CareProvider>
                 <TrainProvider>
                   <ClubProvider>
+                    <DiscountsProvider>
                     <App />
+                    </DiscountsProvider>
                   </ClubProvider>
                 </TrainProvider>
               </CareProvider>

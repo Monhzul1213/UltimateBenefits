@@ -6,8 +6,8 @@ const DiscountsCard = ({ visible, onClose, data }) => {
   const [description, setDescription] = useState(data?.description || "");
   const [imageUrl, setImageUrl] = useState(null);
 
-  const onFinish = (values) => {
-    console.log("Received values of form: ", { ...values, imageUrl });
+  const onFinish = (discounts) => {
+    console.log("Card ",discounts);
     onClose();
     };
 
@@ -44,6 +44,7 @@ const DiscountsCard = ({ visible, onClose, data }) => {
       }
       open={visible}
       onCancel={onClose}
+      onFinish={onFinish}
       footer={null}
       centered
     >
@@ -52,7 +53,6 @@ const DiscountsCard = ({ visible, onClose, data }) => {
         <div style={{ width: "100%" }}>
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Хөнгөлөлт, урамшууллын нэр</p>
           <Form.Item
-            name="discountName"
             rules={[{ required: true, message: 'Хөнгөлөлт, урамшууллын нэрээ оруулна уу' }]}
           >
             <Input
@@ -66,26 +66,41 @@ const DiscountsCard = ({ visible, onClose, data }) => {
       <div className="dis-modal-flex">
         <div style={{ width: "100%" }}>
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Тайлбар</p>
-          <Form.Item>
-            <Input.TextArea
+          <Form.Item
+            rules={[{ required: true, message: 'Тайлбараа оруулна уу' }]}
+          >
+            <Input
               size="large"
-              value={description}
               onChange={handleInput}
-              placeholder="No description available"
+              placeholder="Тайлбараа оруулна уу"
             />
           </Form.Item>
         </div>
       </div>
       <div className="dis-modal-flex">
          <div style={{ width: "100%" }}>
-          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Ажилласан жилийн шаардлага/сараар/ хэдэн удаа</p>
+          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Ажилласан жилийн шаардлага/сараар/</p>
           <Form.Item
-            name="requirements"
-            rules={[{ required: true, message: 'Шаардлагыг оруулна уу' }]}
+            rules={[{ required: true, message: '' }]}
           >
-            <Input.TextArea
+            <Input
               size="large"
-              placeholder="Ажилласан жилийн шаардлага оруулна уу"
+              onChange={handleInput}
+              placeholder="Ажилласан сар"
+            />
+          </Form.Item>
+        </div>
+        </div>
+        <div className="dis-modal-flex">
+         <div style={{ width: "100%" }}>
+          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}> Хэдэн удаа</p>
+          <Form.Item
+            rules={[{ required: true, message: 'Хэдэн удаа /тоогоо оруулна уу/' }]}
+          >
+            <Input
+              size="large"
+              onChange={handleInput}
+              placeholder="Хэдэн удаа / тоогоо оруулна уу/"
             />
           </Form.Item>
         </div>
@@ -94,7 +109,6 @@ const DiscountsCard = ({ visible, onClose, data }) => {
         <div style={{ width: "100%" }}>
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Дэлгэрэнгүй</p>
           <Form.Item
-            name="details"
             rules={[{ required: true, message: 'Дэлгэрэнгүй мэдээллийг оруулна уу' }]}
           >
             <Input.TextArea
