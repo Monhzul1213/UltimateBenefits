@@ -1,13 +1,17 @@
 /* Club Page Styling */
 .club-container {
-  padding: 20px;
-  /* max-width: 1100px; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 100px;
 }
 
 .cards-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  
+  gap: 50px;
 }
 
 .add-club-card {
@@ -24,8 +28,6 @@
 
 .image-container {
   position: relative;
-  margin-top: 30px;
-  margin-left: 30px;
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -126,6 +128,9 @@
 }
 
 .modal-footer {
+  text-align: right;
+}
+.add-footer{
   text-align: right;
 }
 
@@ -279,7 +284,7 @@
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .club-container {
-    max-width: 95%;
+    padding: 20px , 40px;
   }
   .cards-container {
     justify-content: center;
@@ -288,7 +293,7 @@
 
 @media (max-width: 768px) {
   .cards-container {
-    grid-template-columns: repeat(2, 1fr);
+    padding: 10px 20px;
   }
 }
 

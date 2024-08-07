@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Modal from 'react-modal';
+import { Modal, Button } from "antd";
 import { useClub } from '../context/ClubsProvider';
-import { Button } from 'antd/es/radio';
 import Input from 'antd/es/input/Input';
 import TextArea from 'antd/es/input/TextArea';
 
@@ -30,56 +29,28 @@ export const ClubsModal = ({ isOpen, onRequestClose, club,isEditing,setIsEditing
 
   return (
     <Modal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
+      open={isOpen}
+      onCancel={onRequestClose}
       contentLabel="Club Information"
-      className="modal-content"
-      overlayClassName="modal-overlay"
+      footer={null}
+      closable={false}
     >
       <div className="modal-header">
-        <h2>{isEditing ? "Мэдээлэл засах" : club.Name}</h2>
+        <h2> {club.Name}</h2>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
             <div className="modal-section">
             <strong>Тайлбар:</strong>
-            {isEditing ? (
-              <TextArea
-                name="Descr" 
-                value={clubFormEdit.Descr} 
-                onChange={handleInputChange}
-              />
-            ) : (
               <p>{club.Descr}</p>
-            )}
           </div>
           <div className="modal-section">
             <strong>Холбогдох дугаар:</strong>
-            {isEditing ? (
-              <Input
-                type="number" 
-                name="Contact" 
-                value={clubFormEdit.Contact} 
-                onChange={handleInputChange}
-              />
-            ) : (
               <p>{club.Contact}</p>
-            )}
-          </div>
+            </div>
         </div>
         <div className="modal-footer">
-          {isEditing ? (
-            <>
-              <Button type="Button" onClick={() => setIsEditing(false)}>Цуцлах</Button>
-              <Button type="submit">Өөрчлөлт хадгалах</Button>
-              
-            </>
-          ) : (
-            <>
-              <Button type="Button" onClick={onRequestClose}>Болих</Button>
-           
-            </>
-          )}
+          <Button size='large' onClick={onRequestClose}>Болих</Button>
         </div>
       </form>
     </Modal>
