@@ -36,10 +36,10 @@ const ClubProvider = ({ children }) => {
     ID: "",
   });
 
-  const handleClubForm = (name, value) => {
+  const handleClubForm = (e) => {
     setClubFormEdit((prev) => ({
       ...prev,
-      [name]: value,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -61,10 +61,15 @@ const ClubProvider = ({ children }) => {
     }
   };
 
-  const addClub = async (club) => {
+  const addClub = async () => {
+    const formData = new FormData();
+    Object.keys(clubFormEdit).forEach(key => {
+        formData.append(key, clubFormEdit[key]);
+    });
     try {
-      await myAxios.post("/api/club", club, {
+      await myAxios.post("/api/club", formData, {
         headers: {
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
@@ -79,11 +84,12 @@ const ClubProvider = ({ children }) => {
     }
   };
 
-  const editClub = async (club) => {
+  const editClub = async (id) => {
     setClubLoading(true);
     try {
-      await myAxios.put(`/api/club/${club.ID}`, clubFormEdit, {
+      await myAxios.put(`/api/club/${id}`, clubFormEdit, {
         headers: {
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
