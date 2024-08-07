@@ -62,10 +62,11 @@ const DiscountsProvider = ({ children }) => {
     try {
       const {data} = await myAxios.get("/api/discount", {
         headers: {
+          
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      //console.log("DATA", data.result);
+      // console.log("DATA", data.result);
       setDiscounts(data.result || []);
       setDiscountsFailed(false);
     } catch (error) {
@@ -77,12 +78,19 @@ const DiscountsProvider = ({ children }) => {
 
   const addDiscounts = async () => {
     const formData = new FormData();
-    for (const key  in discountsForm) {
-      formData.append(key, discountsForm[key]);
-    }
+    formData.append("Name",discountsForm.Name)
+    formData.append("Descr",discountsForm.Descr)
+    formData.append("Type",discountsForm.Type)
+    formData.append("AvailableCount",discountsForm.AvailableCount)
+    formData.append("Image",discountsForm.Image)
+    // for (const key  in discountsForm) {
+    //   formData.append(key, discountsForm[key]);
+    // }
+    console.log("adding", formData.get("Image"))
     try {
       const data = await myAxios.post("/api/discount", formData, {
         headers: {
+          "Content-Type":"multipart/form-data",
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
@@ -101,9 +109,11 @@ const DiscountsProvider = ({ children }) => {
   
   const editDiscounts = async (id) => {
     setDiscountsLoading(true);
+    console.log(discountsForm)
     try {
-      await myAxios.put(`/api/discount/${id}`, discountsFormEdit, {
+      await myAxios.put(`/api/discount/${id}`, discountsForm, {
         headers: {
+          "Content-Type":"multipart/form-data",
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });

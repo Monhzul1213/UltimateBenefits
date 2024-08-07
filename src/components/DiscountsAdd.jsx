@@ -5,7 +5,7 @@ import { useDiscounts } from "../context/DiscountsProvider";
 import { MdOutlineFileUpload } from "react-icons/md";
 
 const DiscountsAdd = ({ isOpen, onClose, EditDiscounts }) => {
-  const { addDiscounts, discountsForm, setDiscountsForm, handleChange, handleImageChange } = useDiscounts();
+  const { addDiscounts, discountsForm, setDiscountsForm, handleChange, handleImageChange, editDiscounts } = useDiscounts();
   const [submittedForms, setSubmittedForms] = useState([]);
 
   if (!isOpen) return null;
@@ -16,7 +16,11 @@ const DiscountsAdd = ({ isOpen, onClose, EditDiscounts }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await addDiscounts(discountsForm);
+    if(EditDiscounts){
+      editDiscounts(discountsForm.ID)
+    }else{
+      addDiscounts(discountsForm);
+    }
     setSubmittedForms((prev) => [...prev, discountsForm]);
     setDiscountsForm({
       Name: "",
@@ -133,7 +137,7 @@ const DiscountsAdd = ({ isOpen, onClose, EditDiscounts }) => {
         <div style={{ textAlign: "center", marginTop: "20px", borderTop: "1px solid #f0f0f0", paddingTop: "10px" }}>
           <div className="form-actions">
             <button type="button" onClick={onClose} className="cancel-button">Болих</button>
-            <button type="submit" className="submit-button">{EditDiscounts ? "Засах" : "Нэмэх"}</button>
+            <button type="submit" className="submit-button">{EditDiscounts ? "Өөрчлөлтийг хадгалах" : "Нэмэх"}</button>
           </div>
         </div>
       </form>
