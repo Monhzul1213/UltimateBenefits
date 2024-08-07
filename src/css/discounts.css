@@ -1,9 +1,10 @@
 .discounts-container {
-  padding: 40px;
+  padding: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Ensure wrapping of items */
+  flex-wrap: wrap;
+  gap: 50px;
 }
 
 .cards-grid {
