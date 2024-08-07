@@ -61,7 +61,7 @@ export const VideoCard = ({
         <div className="video-desc">
           <div className="video-desc-avatar">
             <Avatar
-              src={learning?.Picture}
+              src={"data:image/jpeg;base64," + learning?.Image}
               className="video-author-avatar"
               size={50}
             />

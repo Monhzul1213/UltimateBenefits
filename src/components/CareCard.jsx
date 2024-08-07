@@ -99,13 +99,14 @@ export const CareCard = ({
   };
   const handleDelete = () => {
     Swal.fire({
-      title: "Устгахдаа итгэлтэй байна уу?",
+      title: "Та уг үйлдлийг хийхдээ итгэлтэй байна уу?",
+      text: "Уг категориг устгаснаар доторх бүх файл болон мэдээллүүд устах болно",
       icon: "warning",
       showCancelButton: true,
-      cancelButtonText: "Болих",
+      cancelButtonText: "Үгүй",
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Устгах",
+      confirmButtonText: "Тийм",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteCareCategory(cardData.ID);
