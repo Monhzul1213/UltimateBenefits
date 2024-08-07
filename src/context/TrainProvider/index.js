@@ -73,6 +73,7 @@ const TrainProvider = ({ children }) => {
     });
     setLearningDatas(searchResults);
   };
+  //GET LEARNING DATA
   const getLearningData = async (id) => {
     setSearchValue("");
     setIsLoading(true);
@@ -83,6 +84,7 @@ const TrainProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
+      console.log(data.result);
       setOriginLearningDatas(data.result);
       setLearningDatas(data.result);
     } catch (error) {
@@ -255,20 +257,21 @@ const TrainProvider = ({ children }) => {
           FilePath: learning.FileDesc,
         },
         {
-          // responseType: "blob",
+          responseType: "blob",
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
           },
         }
       );
-      // const url = window.URL.createObjectURL(new Blob([data]));
-      // const a = document.createElement("a");
-      // a.href = url;
-      // a.download = fileName;
-      // document.body.appendChild(a);
-      // a.click();
-      // document.body.removeChild(a);
-      // window.URL.revokeObjectURL(url);
+      const url = window.URL.createObjectURL(new Blob([data]));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      getLearningData(1);
     } catch (error) {
       console.log(error);
     }
