@@ -44,7 +44,7 @@ export const CareCard = ({
             width: { duration: 0.3, type: "linear" },
             opacity: { duration: 0.3, type: "linear" },
             padding: { duration: 0.3, type: "linear" },
-            display: { delay: 0.3 },
+            display: { delay: 0.45 },
           },
         },
       }
@@ -66,7 +66,7 @@ export const CareCard = ({
         none: {
           display: "none",
           opacity: 0,
-          transition: { opacity: { duration: 0.3 }, display: { delay: 0.3 } },
+          transition: { opacity: { duration: 0.3 }, display: { delay: 0.01 } },
         },
       };
   const textVariants = {
