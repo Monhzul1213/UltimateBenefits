@@ -7,6 +7,7 @@ import RuleCategoryModal from "../../components/RuleCategoryModal";
 import { useAuth } from "../../context/AuthProvider";
 import { checkRole } from "../../lib/utils/checkRole";
 import { useRule } from "../../context/RuleProvider";
+import NewRules from "./NewRules";
 const Rules = () => {
   const { user } = useAuth();
   const { getRulesCategory, rulesCategory, catError, loading } = useRule();
@@ -47,7 +48,7 @@ const Rules = () => {
             />
           </div>
         )}
-
+        {/* <NewRules /> */}
         <RuleCategoryModal
           open={isModalOpen}
           handleAddModal={handleCategoryModal}

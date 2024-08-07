@@ -6,13 +6,14 @@ import { Button, Spin } from "antd";
 import { CustomHeader, CareCard, Loader } from "../../components";
 
 import "../../css/care.css";
-import { useCare } from "../../context/CareProvider";
 import { IoReload } from "react-icons/io5";
 import { checkRole } from "../../lib/utils/checkRole";
 import { nemeh } from "../../assets";
-import CareCategoryModal from "../../components/CareCategoryModal";
-import CareDetailModal from "../../components/CareDetailModal";
-import CareDetailWatch from "../../components/careDetailWatch";
+import { useCareer } from "../../context/CareerProvider";
+import CareerCard from "../../components/career/CareerCard";
+import CareerDetailModal from "../../components/career/CareerDetailModal";
+import CareerCategoryModal from "../../components/career/CareCategoryModal";
+import CareerDetailWatch from "../../components/career/CareerDetailWatchModal";
 
 const CareerPage = ({ size }) => {
   let counter = 1;
@@ -21,7 +22,7 @@ const CareerPage = ({ size }) => {
   const isTwo = size?.width <= 1525 && size?.width >= 1010;
 
   const { user } = useAuth();
-  const { getCares, careFailed, careLoading, careCategory } = useCare();
+  const { getCares, careFailed, careLoading, careCategory } = useCareer();
 
   const [openIdx, setOpenIdx] = useState(null);
   const [hideIdx, setHideIdx] = useState(null);
@@ -83,7 +84,7 @@ const CareerPage = ({ size }) => {
                   const currentIdx = counter;
                   counter++;
                   return (
-                    <CareCard
+                    <CareerCard
                       setWatchTitle={setWatchTitle}
                       setWatchModal={setWatchModal}
                       handleDetailModal={handleDetailModal}
@@ -114,12 +115,12 @@ const CareerPage = ({ size }) => {
           </div>
         )}
       </main>
-      <CareCategoryModal open={addOpen} handleAddModal={handleAddModal} />
-      <CareDetailModal
+      <CareerCategoryModal open={addOpen} handleAddModal={handleAddModal} />
+      <CareerDetailModal
         open={detailOpen}
         handleDetailModal={handleDetailModal}
       />
-      <CareDetailWatch
+      <CareerDetailWatch
         handleDetailModal={handleDetailModal}
         watchTitle={watchTitle}
         watchModal={watchModal}
