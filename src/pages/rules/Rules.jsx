@@ -1,51 +1,58 @@
-import { useState } from "react";
-import { add_card, RulesBod, RulesDj, RulesGa, RulesHut } from "../../assets";
-import { CustomHeader } from "../../components";
+import { useEffect, useState } from "react";
+import { add_card } from "../../assets";
+import { CustomHeader, Loader } from "../../components";
 import RuleCategoryCard from "../../components/RuleCategoryCard";
 import "../../css/rule.css";
-import { Modal } from "antd";
-import { Input } from "antd";
-import { Button,  Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
-
+import RuleCategoryModal from "../../components/RuleCategoryModal";
+import { useAuth } from "../../context/AuthProvider";
+import { checkRole } from "../../lib/utils/checkRole";
+import { useRule } from "../../context/RuleProvider";
+import NewRules from "./NewRules";
 const Rules = () => {
-  const data = [
-    { title: "Дүрэм журам", image: RulesDj },
-    { title: "Бодлого", image: RulesBod },
-    { title: "Хөтөлбөр", image: RulesHut },
-    { title: "Гарын авлага", image: RulesGa },
-  ];
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const openModal = ()=> {setIsModalOpen(true)}
-  const exitModal = ()=> {setIsModalOpen(false)}
+  const { user } = useAuth();
+  const { getRulesCategory, rulesCategory, catError, loading } = useRule();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleCategoryModal = (value) => {
+    setIsModalOpen(value);
+  };
+  useEffect(() => {
+    getRulesCategory();
+  }, []);
   return (
     <>
       <CustomHeader title="Дүрэм журам" />
       <main className="rules-card-container">
-        {data.map((rule) => {
-          return <RuleCategoryCard rule={rule} />;
-        })}
-        <div className="ruleCARD">  
-          <img  src={add_card} onClick={openModal}
-           />
-        </div>
-        <Modal
-        title="Дүрэм журам нэмэх"
-        open={isModalOpen}
-        onOk={exitModal}
-        onCancel={exitModal}
- >
-        <p className="RuleGarchig"> 
-          Гарчиг
-        </p>
-        <Input placeholder="Дүрэм журам" className="RulePlaceHolder"/>
-        <p className="RuleZurag"> 
-           Зураг
-        </p>
-        <Upload >
-    <Button icon={<UploadOutlined />}>Click to Upload</Button>
-  </Upload>
-      </Modal>
+        {loading ? (
+          <Loader />
+        ) : catError ? (
+          ""
+        ) : (
+          rulesCategory?.map((rule) => {
+            return (
+              <RuleCategoryCard
+                key={rule.ID}
+                rule={rule}
+                handleCategoryModal={handleCategoryModal}
+              />
+            );
+          })
+        )}
+
+        {checkRole(user.Role) && (
+          <div className="ruleCARD">
+            <img
+              src={add_card}
+              onClick={() => {
+                handleCategoryModal(true);
+              }}
+            />
+          </div>
+        )}
+        {/* <NewRules /> */}
+        <RuleCategoryModal
+          open={isModalOpen}
+          handleAddModal={handleCategoryModal}
+        />
       </main>
     </>
   );

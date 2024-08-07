@@ -103,7 +103,7 @@ export const TrainingFileCard = ({
           <div style={{ marginTop: 20 }} className="video-desc">
             <div className="video-desc-avatar">
               <Avatar
-                src={learning?.Picture}
+                src={"data:image/jpeg;base64," + learning?.Image}
                 className="video-author-avatar"
                 size={50}
               />
@@ -118,7 +118,7 @@ export const TrainingFileCard = ({
           <div style={{ textAlign: "right" }}>
             <img
               onClick={() => {
-                downloadFile(learning.FileDesc);
+                downloadFile(learning);
               }}
               className="downloadfile-icon"
               src={downloadFileIcon}

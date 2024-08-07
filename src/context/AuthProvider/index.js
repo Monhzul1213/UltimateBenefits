@@ -63,8 +63,9 @@ const AuthProvider = ({ children }) => {
   };
   const logout = () => {
     setIsAuth(false);
-    sessionStorage.removeItem("userToken");
     alert("Амжилттай системээс гарлаа", "success");
+    sessionStorage.removeItem("userProfile");
+    sessionStorage.removeItem("userToken");
   };
 
   const changeUserPhoto = async (photo) => {

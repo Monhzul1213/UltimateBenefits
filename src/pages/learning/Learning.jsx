@@ -78,7 +78,7 @@ export const Learning = () => {
         <div className="learning-page">
           <div className="training-categorys-container">
             {trainingTypes?.map((item, index) => (
-              <>
+              <div key={index}>
                 <Dropdown
                   menu={
                     checkRole(user?.Role)
@@ -121,7 +121,7 @@ export const Learning = () => {
                     <h2>{item.Name}</h2>
                   </div>
                 </Dropdown>
-              </>
+              </div>
             ))}
             <Input
               prefix={<IoIosSearch size={24} color="gray" />}

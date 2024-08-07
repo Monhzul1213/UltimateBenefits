@@ -243,27 +243,35 @@ const TrainProvider = ({ children }) => {
     }
   };
 
-  const downloadFile = async (filePath) => {
-    const fileName = filePath.split("/").pop();
+  const downloadFile = async (learning) => {
+    console.log(learning);
+    const fileName = learning.FileDesc.split("/").pop();
     try {
-      const { data } = await myAxios.get(
-        `/api/file/download?filePath=${filePath}`,
+      const { data } = await myAxios.post(
+        `/api/training/fileDownload`,
         {
-          responseType: "blob",
+          TrainingID: learning.ID,
+          CategoryID: learning.CategoryID,
+          FilePath: learning.FileDesc,
+        },
+        {
+          // responseType: "blob",
           headers: {
             Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
           },
         }
       );
-      const url = window.URL.createObjectURL(new Blob([data]));
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {}
+      // const url = window.URL.createObjectURL(new Blob([data]));
+      // const a = document.createElement("a");
+      // a.href = url;
+      // a.download = fileName;
+      // document.body.appendChild(a);
+      // a.click();
+      // document.body.removeChild(a);
+      // window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <trainContext.Provider

@@ -1,12 +1,12 @@
 import { Button, Dropdown } from "antd";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { useCare } from "../context/CareProvider";
 import Swal from "sweetalert2";
-import { checkRole } from "../lib/utils/checkRole";
-import { useAuth } from "../context/AuthProvider";
+import { checkRole } from "../../lib/utils/checkRole";
+import { useAuth } from "../../context/AuthProvider";
+import { useCareer } from "../../context/CareerProvider";
 
-export const CareCard = ({
+const CareerCard = ({
   info,
   idx,
   openIdx,
@@ -89,7 +89,7 @@ export const CareCard = ({
     setEditImg,
     setSelectedCategory,
     getCareDetail,
-  } = useCare();
+  } = useCareer();
   const handleEdit = () => {
     setCategoryEdit(true);
     setCategoryForm(cardData);
@@ -149,14 +149,14 @@ export const CareCard = ({
             animate={
               openIdx === idx ? "show" : idx === hideIdx ? "none" : "hide"
             }
-            className={`care-card care-card-${cardData?.AvailableDesc}`}
+            className={`care-card care-card-Боломжтой`}
           >
-            <Button
+            {/* <Button
               type="primary"
               className={`care-card-button care-card-button-${cardData?.AvailableDesc}`}
             >
               {cardData?.AvailableDesc}
-            </Button>
+            </Button> */}
             <div id={isTwo && "care-card-two-flex"}>
               <div>
                 <img src={"data:image/jpeg;base64," + cardData.Image} />
@@ -185,7 +185,7 @@ export const CareCard = ({
                 }}
                 className="care-card-footer-btn btn-primary"
               >
-                Багцын мэдээлэл харах
+                Дэлгэрэнгүй харах
               </Button>
             </motion.div>
             <FaArrowRight
@@ -248,3 +248,4 @@ export const CareCard = ({
     </>
   );
 };
+export default CareerCard;

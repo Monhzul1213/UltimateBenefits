@@ -9,12 +9,13 @@ import { createBrowserHistory } from "history";
 
 import Rules from "./pages/rules/Rules";
 
-import { Learning, Careers, NewRules, Home, Login, Employees } from "./pages";
+import { Learning, Home, Login, Employees } from "./pages";
 import { useAuth } from "./context/AuthProvider";
 import Care from "./pages/care/Care";
 import Discounts from "./pages/discounts/Discounts";
 import Clubs from "./pages/clubs/Clubs";
 import { MyDrawer, Loader } from "./components";
+import Careers from "./pages/careers/Careers";
 export function App() {
   const { isAuth } = useAuth();
   const userToken = sessionStorage.getItem("userToken");
