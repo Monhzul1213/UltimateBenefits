@@ -68,7 +68,6 @@ const Clubs = () => {
   const handleCardOpen = (club) => {
     setIsClubsModalOpen(true);
     setSelectedClub(club);
-    setClubFormEdit(club);
   };
 
   const handleCloseModal = () => {
