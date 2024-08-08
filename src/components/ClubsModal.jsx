@@ -50,7 +50,12 @@ export const ClubsModal = ({ isOpen, onRequestClose, club,isEditing,setIsEditing
             </div>
         </div>
         <div className="modal-footer">
-          <Button size='large' onClick={onRequestClose}>Болих</Button>
+          <Button
+            size='large'
+            style={{ fontWeight: 700, marginLeft: 10 }}
+            onClick={onRequestClose}
+             >Болих
+          </Button>
         </div>
       </form>
     </Modal>
