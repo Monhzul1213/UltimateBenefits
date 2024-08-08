@@ -7,11 +7,11 @@ import TextArea from 'antd/es/input/TextArea';
 export const ClubsModal = ({ isOpen, onRequestClose, club,isEditing,setIsEditing }) => {
   const { editClub, clubFormEdit, setClubFormEdit } = useClub();
 
-  useEffect(() => {
-    if (club) {
-      setClubFormEdit(club);
-    }
-  }, [club, setClubFormEdit]);
+  // useEffect(() => {
+  //   if (club) {
+  //     setClubFormEdit(club);
+  //   }
+  // }, [club, setClubFormEdit]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +29,7 @@ export const ClubsModal = ({ isOpen, onRequestClose, club,isEditing,setIsEditing
 
   return (
     <Modal
+      centered
       open={isOpen}
       onCancel={onRequestClose}
       contentLabel="Club Information"
@@ -50,7 +51,12 @@ export const ClubsModal = ({ isOpen, onRequestClose, club,isEditing,setIsEditing
             </div>
         </div>
         <div className="modal-footer">
-          <Button size='large' onClick={onRequestClose}>Болих</Button>
+          <Button
+            size='large'
+            style={{ fontWeight: 700, marginLeft: 10 }}
+            onClick={onRequestClose}
+             >Болих
+          </Button>
         </div>
       </form>
     </Modal>
