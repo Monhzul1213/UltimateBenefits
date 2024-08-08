@@ -1,9 +1,9 @@
 .discounts-container {
-  padding: 40px;
+  padding: 50px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; /* Ensure wrapping of items */
+  flex-wrap: wrap;
+  gap: 100px;
 }
 
 .cards-grid {
@@ -165,7 +165,7 @@
   width: 100%;
   text-align: center;
   height: 20px;
-  font-family: 'Montserrat', 'Light', sans-serif;
+  font-family: "Montserrat", "Light", sans-serif;
 }
 
 .context1-menu {
@@ -177,7 +177,7 @@
   padding: 2px 0;
   margin: 0;
   z-index: 1001;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 .context1-menu li {
@@ -186,7 +186,7 @@
 }
 
 .context1-menu li:hover {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   color: black;
 }
 .detail1-container {

@@ -7,6 +7,7 @@ import "../../css/discounts.css";
 import { useDiscounts } from "../../context/DiscountsProvider";
 import DiscountsAdd from "../../components/DiscountsAdd";
 import DiscountsModal from "../../components/DiscountsModal";
+import { Dropdown } from "antd";
 
 const AlertMessage = () => {
   const [visible, setVisible] = useState(true);
@@ -21,14 +22,32 @@ const AlertMessage = () => {
   );
 };
 
-const DiscountsCard = ({ discount, onClick, onRightClick }) => (
-  <div className="image-container club-image-container" onClick={onClick} onContextMenu={onRightClick}>
+const DiscountsCard = ({ discount, onClick, onRightClick, ustgah, setIsDiscountsAddOpen, setDiscountsForm, setEditDiscounts }) => {
+  const items = [
+    {
+      label: 'Засах',
+      key: '1',
+      onClick:()=>{
+        setEditDiscounts(true)
+        setDiscountsForm(discount)
+        setIsDiscountsAddOpen(true)}
+    },
+    {
+      label: 'Устгах',
+      key: '2',
+      danger: true,
+      onClick:()=>{ustgah(discount.ID)}
+    },
+  ];
+ return <Dropdown menu={{ items }} trigger={['contextMenu']}>
+  <div className="image-container club-image-container" onClick={onClick}>
     <img src={`data:image/jpg;base64,${discount.Image}`}  />
     <div className="card-title">
       {discount.Name.split(' ')[0]}<br />{discount.Name.split(' ')[1]}
     </div>
   </div>
-);
+  </Dropdown>
+};
 
 const AddDiscountCard = ({ onClick }) => (
   <div className="image-container club-image-container add-card-image" onClick={onClick}>
@@ -40,7 +59,8 @@ const Discounts = () => {
   const [selectedDiscounts, setSelectedDiscounts] = useState(null);
   const [isDiscountsAddOpen, setIsDiscountsAddOpen] = useState(false);
   const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, discount: null });
-  const { discounts, editDiscounts, deleteDiscounts, setDiscountsFormEdit } = useDiscounts();
+  const { discounts, editDiscounts, deleteDiscounts, setDiscountsForm } = useDiscounts();
+  const [EditDiscounts, setEditDiscounts] = useState(false)
 
   const handleCardOpen = (discount) => {
     console.log("Opening modal with discount:", discount);
@@ -52,11 +72,21 @@ const Discounts = () => {
     alert.success("Хөнгөлөлт, урамшуулал амжилттай засагдлаа");
   };
 
-  const handleCloseModal = () => setSelectedDiscounts(null);
+  const handleCloseModal = () => setInfoModal(false);
 
-  const handleDiscountsAddClick = () => setIsDiscountsAddOpen(true);
+  const handleDiscountsAddClick = () => {
+    setEditDiscounts(false)
+    setIsDiscountsAddOpen(true)};
 
-  const handleCloseDiscountsAddModal = () => setIsDiscountsAddOpen(false);
+  const handleCloseDiscountsAddModal = () => {
+    setDiscountsForm({
+      Name: "",
+      Descr: "",
+      Type: "",
+      AvailableCount: "",
+      Image: null,
+    });
+    setIsDiscountsAddOpen(false)};
 
   const handleRightClick = (event, discount) => {
     event.preventDefault();
@@ -65,7 +95,6 @@ const Discounts = () => {
 
   const handleContextMenuOptionClick = async (option) => {
     if (option === 'Edit') {
-      setDiscountsFormEdit(handleEditDiscount);
       setSelectedDiscounts(contextMenu.discount);
     } else if (option === 'Delete') {
       await deleteDiscounts(contextMenu.discount.ID);
@@ -74,7 +103,7 @@ const Discounts = () => {
   };
 
   const handleModalClick = () => setContextMenu({ visible: false, x: 0, y: 0, discount: null });
-
+  const [infoModal, setInfoModal] = useState(false)
   return (
     <>
       <CustomHeader title="Хөнгөлөлт, урамшуулал" />
@@ -82,27 +111,21 @@ const Discounts = () => {
         <div className="discounts-container">
           {discounts?.map((discount) => (
             <DiscountsCard
+            setEditDiscounts= {setEditDiscounts}
+            setDiscountsForm= {setDiscountsForm}
+            setIsDiscountsAddOpen={setIsDiscountsAddOpen}
+              ustgah={deleteDiscounts}
               discount={discount}
-              onClick={() => handleCardOpen(discount)}
-              onRightClick={(event) => handleRightClick(event, discount)}
+              onClick={() =>{ 
+                setInfoModal(true)
+                handleCardOpen(discount)}}
             />
           ))}
           <AddDiscountCard onClick={handleDiscountsAddClick} />
         </div>
       </main>
-      <DiscountsModal isOpen={!!selectedDiscounts} onRequestClose={handleCloseModal} discount={selectedDiscounts} />
-      <DiscountsAdd isOpen={isDiscountsAddOpen} onClose={handleCloseDiscountsAddModal} />
-      {contextMenu.visible && (
-        <ul
-          className="context1-menu"
-          style={{ top: `${contextMenu.y}px`, left: `${contextMenu.x}px` }}
-        >
-          <li onClick={() => handleContextMenuOptionClick('Edit')}>Засах</li>
-          <li onClick={() => handleContextMenuOptionClick('Delete')} style={{ color: 'red' }}>
-            Устгах
-          </li>
-        </ul>
-      )}
+      <DiscountsModal isOpen={infoModal} onRequestClose={handleCloseModal} discount={selectedDiscounts} />
+      <DiscountsAdd EditDiscounts={EditDiscounts} isOpen={isDiscountsAddOpen} onClose={handleCloseDiscountsAddModal} />
     </>
   );
 };

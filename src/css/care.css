@@ -1,5 +1,5 @@
 .care-container {
-  padding: 40px;
+  padding: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -38,7 +38,7 @@
   width: 415px;
   height: 290px;
   cursor: pointer;
-  transition: all 100ms ease-in-out;
+  transition: all 0.5s;
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='%2300C7F0FF' stroke-width='2' stroke-dasharray=' 9' stroke-dashoffset='9' stroke-linecap='square'/%3e%3c/svg%3e");
   border-radius: 10px;
   object-fit: cover;

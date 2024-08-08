@@ -73,6 +73,7 @@ const TrainProvider = ({ children }) => {
     });
     setLearningDatas(searchResults);
   };
+  //GET LEARNING DATA
   const getLearningData = async (id) => {
     setSearchValue("");
     setIsLoading(true);
@@ -83,6 +84,7 @@ const TrainProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
+      console.log(data.result);
       setOriginLearningDatas(data.result);
       setLearningDatas(data.result);
     } catch (error) {
@@ -243,11 +245,17 @@ const TrainProvider = ({ children }) => {
     }
   };
 
-  const downloadFile = async (filePath) => {
-    const fileName = filePath.split("/").pop();
+  const downloadFile = async (learning) => {
+    console.log(learning);
+    const fileName = learning.FileDesc.split("/").pop();
     try {
-      const { data } = await myAxios.get(
-        `/api/file/download?filePath=${filePath}`,
+      const { data } = await myAxios.post(
+        `/api/training/fileDownload`,
+        {
+          TrainingID: learning.ID,
+          CategoryID: learning.CategoryID,
+          FilePath: learning.FileDesc,
+        },
         {
           responseType: "blob",
           headers: {
@@ -263,7 +271,10 @@ const TrainProvider = ({ children }) => {
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
-    } catch (error) {}
+      getLearningData(1);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <trainContext.Provider

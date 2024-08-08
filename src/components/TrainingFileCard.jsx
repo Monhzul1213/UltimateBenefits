@@ -11,6 +11,7 @@ import {
 import { useTraining } from "../context/TrainProvider";
 import { checkRole } from "../lib/utils/checkRole";
 import { useAuth } from "../context/AuthProvider";
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 export const TrainingFileCard = ({
   learning,
@@ -103,7 +104,7 @@ export const TrainingFileCard = ({
           <div style={{ marginTop: 20 }} className="video-desc">
             <div className="video-desc-avatar">
               <Avatar
-                src={learning?.Picture}
+                src={"data:image/jpeg;base64," + learning?.Image}
                 className="video-author-avatar"
                 size={50}
               />
@@ -115,10 +116,21 @@ export const TrainingFileCard = ({
               </Tooltip>
             </div>
           </div>
-          <div style={{ textAlign: "right" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 20,
+            }}
+          >
+            {learning.Perc === 100 ? (
+              <FaRegCircleCheck size={40} color="green" />
+            ) : (
+              ""
+            )}
             <img
               onClick={() => {
-                downloadFile(learning.FileDesc);
+                downloadFile(learning);
               }}
               className="downloadfile-icon"
               src={downloadFileIcon}
