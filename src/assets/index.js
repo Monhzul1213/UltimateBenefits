@@ -56,6 +56,8 @@ import english  from "./english.png";
 import dota2 from "./dota2.png";
 import movieNight from "./movieNight.png";
 import adventure from "./adventure.png";
+import tuya from "./tuya.png";
+import bataa from "./bataa.png";
 
 export {
   RulesBod,
@@ -116,4 +118,6 @@ export {
   dota2,
   english,
   movieNight,
+  tuya, 
+  bataa,
 };
