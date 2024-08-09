@@ -8,6 +8,7 @@ import { useDiscounts } from "../../context/DiscountsProvider";
 import DiscountsAdd from "../../components/DiscountsAdd";
 import DiscountsModal from "../../components/DiscountsModal";
 import { Dropdown } from "antd";
+import Swal from "sweetalert2";
 
 const AlertMessage = () => {
   const [visible, setVisible] = useState(true);
@@ -36,14 +37,28 @@ const DiscountsCard = ({ discount, onClick, onRightClick, ustgah, setIsDiscounts
       label: 'Устгах',
       key: '2',
       danger: true,
-      onClick:()=>{ustgah(discount.ID)}
+      onClick: () => {
+        Swal.fire({
+          title: "Устгахдаа итгэлтэй байна уу?",
+          icon: "warning",
+          showCancelButton: true,
+          cancelButtonText: "Болих",
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#3085d6",
+          confirmButtonText: "Устгах",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            ustgah(discount.ID);
+          }
+        });
+      }
     },
   ];
  return <Dropdown menu={{ items }} trigger={['contextMenu']}>
   <div className="image-container club-image-container" onClick={onClick}>
     <img src={`data:image/jpg;base64,${discount.Image}`}  />
-    <div className="card-title">
-      {discount.Name.split(' ')[0]}<br />{discount.Name.split(' ')[1]}
+    <div className="discounts-card-title">
+      {discount.Name}
     </div>
   </div>
   </Dropdown>
@@ -82,9 +97,10 @@ const Discounts = () => {
     setDiscountsForm({
       Name: "",
       Descr: "",
-      Type: "",
+      Type: "0",
       AvailableCount: "",
       Image: null,
+      
     });
     setIsDiscountsAddOpen(false)};
 
