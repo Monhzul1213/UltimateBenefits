@@ -44,6 +44,8 @@ import RulesBod from "./RulesBod.png";
 import RulesDj from "./RulesDJ.png";
 import RulesGa from "./RulesGA.png";
 import RulesHut from "./RulesHut.png";
+import tuya from "./tuya.png";
+import bataa from "./bataa.png";
 
 export {
   RulesBod,
@@ -92,4 +94,6 @@ export {
   movie,
   people,
   AddClubs,
+  tuya, 
+  bataa,
 };
