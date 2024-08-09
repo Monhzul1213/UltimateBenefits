@@ -9,7 +9,6 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
   const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
-    // This effect runs when clubFormEdit changes to reset the file list
     if (isEditing) {
       setFileList([]);
     }

@@ -6,6 +6,8 @@ import "../../css/club.css";
 import { alert } from "../../lib/actions/alert.actions";
 import { nemeh } from "../../assets";
 import { Dropdown } from "antd";
+import { checkRole } from "../../lib/utils/checkRole";
+import { useAuth } from "../../context/AuthProvider";
 const AlertMessage = () => {
   const [visible, setVisible] = useState(true);
   const handleDismiss = () => {
@@ -22,6 +24,7 @@ const AlertMessage = () => {
 };
 
 const ClubCard = ({ club, onClick ,deleteClub,setClubFormEdit,setIsEditing,setIsClubsModalOpen}) => {
+  const {user} = useAuth()
   const items = [
     {
       label: 'Засах',
@@ -41,7 +44,13 @@ const ClubCard = ({ club, onClick ,deleteClub,setClubFormEdit,setIsEditing,setIs
       },
     },
   ];
-  return <Dropdown trigger={["contextMenu"] } menu={{items}}>
+  return <Dropdown trigger={["contextMenu"] } menu={checkRole(user.Role) ? {items} : {items:[{
+    label: 'delgerengui',
+    key: '1',
+    onClick: () => {
+      onClick()
+    },
+  },]}}>
 
   <div className="image-container club-image-container" onClick={onClick} >
     <img src={`data:image/png;base64,${club.Image}`} alt={club.Name} />
@@ -68,9 +77,11 @@ const Clubs = () => {
   const handleCardOpen = (club) => {
     setIsClubsModalOpen(true);
     setSelectedClub(club);
+  
   };
 
   const handleCloseModal = () => {
+    console.log("close mod")
     setIsClubsModalOpen(false);
     setIsEditing(false);
   };
@@ -87,6 +98,7 @@ const Clubs = () => {
       Descr: "",
       Image: "",
     })
+    setIsEditing(false);
   };
 
   return (
