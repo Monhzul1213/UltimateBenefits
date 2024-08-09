@@ -44,6 +44,18 @@ import RulesBod from "./RulesBod.png";
 import RulesDj from "./RulesDJ.png";
 import RulesGa from "./RulesGA.png";
 import RulesHut from "./RulesHut.png";
+import gerlee from "./gerlee.png";
+import insta from "./insta.png";
+import fb from "./fb.png";
+import discord from "./discord.png";
+import twitter from "./twitter.png";
+import sport from "./sport.png";
+import sagsanbum from "./sagsanbum.png";
+import volley from "./volley.png";
+import english  from "./english.png";
+import dota2 from "./dota2.png";
+import movieNight from "./movieNight.png";
+import adventure from "./adventure.png";
 
 export {
   RulesBod,
@@ -92,4 +104,16 @@ export {
   movie,
   people,
   AddClubs,
+  gerlee,
+  insta,
+  fb,
+  discord,
+  twitter,
+  sport,
+  sagsanbum,
+  volley,
+  adventure,
+  dota2,
+  english,
+  movieNight,
 };
