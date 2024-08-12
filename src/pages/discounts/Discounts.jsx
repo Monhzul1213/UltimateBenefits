@@ -9,6 +9,8 @@ import DiscountsAdd from "../../components/DiscountsAdd";
 import DiscountsModal from "../../components/DiscountsModal";
 import { Dropdown } from "antd";
 import Swal from "sweetalert2";
+import { checkRole } from "../../lib/utils/checkRole";
+import { useAuth } from "../../context/AuthProvider";
 
 const AlertMessage = () => {
   const [visible, setVisible] = useState(true);
@@ -26,8 +28,13 @@ const AlertMessage = () => {
 const DiscountsCard = ({ discount, onClick, onRightClick, ustgah, setIsDiscountsAddOpen, setDiscountsForm, setEditDiscounts }) => {
   const items = [
     {
+      label: "Дэлгэрэнгүй нэмэх",
+      key: "1",
+      //onClick: handleAddDetail,
+    },
+    {
       label: 'Засах',
-      key: '1',
+      key: '2',
       onClick:()=>{
         setEditDiscounts(true)
         setDiscountsForm(discount)
@@ -35,7 +42,7 @@ const DiscountsCard = ({ discount, onClick, onRightClick, ustgah, setIsDiscounts
     },
     {
       label: 'Устгах',
-      key: '2',
+      key: '3',
       danger: true,
       onClick: () => {
         Swal.fire({
@@ -74,11 +81,11 @@ const Discounts = () => {
   const [selectedDiscounts, setSelectedDiscounts] = useState(null);
   const [isDiscountsAddOpen, setIsDiscountsAddOpen] = useState(false);
   const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, discount: null });
-  const { discounts, editDiscounts, deleteDiscounts, setDiscountsForm } = useDiscounts();
+  const { discounts, editDiscounts, deleteDiscounts, setDiscountsForm,  trainingSearch, searchValue, } = useDiscounts();
   const [EditDiscounts, setEditDiscounts] = useState(false)
+  const { user } = useAuth()
 
   const handleCardOpen = (discount) => {
-    console.log("Opening modal with discount:", discount);
     setSelectedDiscounts(discount);
   };
 
@@ -137,7 +144,7 @@ const Discounts = () => {
                 handleCardOpen(discount)}}
             />
           ))}
-          <AddDiscountCard onClick={handleDiscountsAddClick} />
+          {checkRole(user.Role)?<AddDiscountCard onClick={handleDiscountsAddClick} />:""}
         </div>
       </main>
       <DiscountsModal isOpen={infoModal} onRequestClose={handleCloseModal} discount={selectedDiscounts} />

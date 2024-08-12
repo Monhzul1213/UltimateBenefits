@@ -88,8 +88,9 @@
   bottom: 10px;
   left: 10px;
   color: white;
-  font-size: 35px;
-  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  /* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+  font-family: "Montserrat", sans-serif; */
   font-weight: 800;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
@@ -225,8 +226,8 @@
 .discounts-detail-container {
   padding: 15px;
   padding-top: 10px;
-  width-right: 20%;
-  font-size: 20px;
+  width-right: 10%;
+  font-size: 18px;
 }
 
 .dis-modal-buttons {
@@ -283,8 +284,8 @@ height: 100%;
   color: white;
   background-color: red;
   border-radius: 50%;
-  right: -10px;
-  top: -10px;
+  right: 5px;
+  top: 5px;
   cursor: pointer;
 }
 .discount-file-box {

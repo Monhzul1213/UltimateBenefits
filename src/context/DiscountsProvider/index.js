@@ -83,6 +83,7 @@ const DiscountsProvider = ({ children }) => {
     formData.append("Type",discountsForm.Type)
     formData.append("AvailableCount",discountsForm.AvailableCount)
     formData.append("Image",discountsForm.Image)
+    //console.log(discountsForm)
     // for (const key  in discountsForm) {
     //   formData.append(key, discountsForm[key]);
     // }
