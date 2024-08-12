@@ -4,6 +4,7 @@ import { IoMdArrowDropright } from "react-icons/io";
 import { IoReload } from "react-icons/io5";
 import { CiEdit } from "react-icons/ci";
 
+import { UserOutlined } from "@ant-design/icons";
 import { useAuth } from "../context/AuthProvider";
 import { MyCalendar, AddCalendar, CalendarItem } from "../components";
 
@@ -62,7 +63,8 @@ export const MyDrawer = () => {
                 inputRef.current.click();
               }}
               className="avatar"
-              src={"data:image/jpeg;base64," + userImage}
+              src={userImage ? `data:image/jpeg;base64,${userImage}` : ""}
+              icon={!userImage ? <UserOutlined /> : ""}
               size={150}
             />
             <CiEdit className="edit-icon" size={40} />

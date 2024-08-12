@@ -47,7 +47,11 @@ export function Login() {
           register={registerLetters?.join("") + registerNums}
           handleForget={handleForget}
         />
-        <ForgetModal open={forgetModal} setOpen={handleForget} />
+        <ForgetModal
+          open={forgetModal}
+          setOpen={handleForget}
+          loginOpen={setOpen}
+        />
         <img className="login-logo" src={loginlogo} alt="" />
         <div className="input-section">
           <h1 className="login-header">Welcome back ULTIMATE family!</h1>

@@ -51,7 +51,7 @@ const CareerCategoryModal = ({ open, handleAddModal }) => {
             onChange={handleInput}
           />
         </div>
-        <div className="training-modal-input">
+        {/* <div className="training-modal-input">
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
             Шаарлагтай ажилласан хугацаа /сараар/
           </p>
@@ -64,7 +64,7 @@ const CareerCategoryModal = ({ open, handleAddModal }) => {
             placeholder="12"
             onChange={handleInput}
           />
-        </div>
+        </div> */}
         <div>
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
             Тайлбар

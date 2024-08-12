@@ -88,7 +88,7 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
               size="large"
               value={empFormEdit.WorkPhone}
               name="WorkPhone"
-              placeholder="Ажлийн утас"
+              placeholder="Ажлын утас"
               onChange={handleInput}
             />
           </div>
