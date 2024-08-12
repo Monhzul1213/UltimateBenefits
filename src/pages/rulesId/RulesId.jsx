@@ -40,11 +40,9 @@ const RulesIdPage = () => {
             Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
           },
         });
-        console.log(data);
         setCategoryName(data.CategoryName);
         setData(data.result);
       } catch (error) {
-        console.log(error);
         setError(true);
       } finally {
         setLoading(false);
