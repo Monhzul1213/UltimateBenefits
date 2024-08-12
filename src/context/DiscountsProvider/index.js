@@ -28,14 +28,14 @@ const DiscountsProvider = ({ children }) => {
   const [discountsForm, setDiscountsForm] = useState({
     Name: "",
     Descr: "",
-    Type: "",
+    Type: "0",
     AvailableCount: "",
     Image: "null",
   });
   const [discountsFormEdit, setDiscountsFormEdit] = useState({
     Name: "",
     Descr: "",
-    Type: "",
+    Type: "0",
     AvailableCount: "",
     Image: "null",
   });

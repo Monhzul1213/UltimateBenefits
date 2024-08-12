@@ -9,7 +9,6 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
   const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
-    // This effect runs when clubFormEdit changes to reset the file list
     if (isEditing) {
       setFileList([]);
     }
@@ -57,10 +56,11 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
       >
         Клуб {isEditing ? "засах" : "нэмэх"}
       </h2>
-      <div>
-        <label>Клубын нэр</label>
+      <div className='modal-inputs'>
+      <label>Клубын нэр</label>
         <Input
           name="Name"
+          variant="filled"
           onChange={handleClubForm}
           value={clubFormEdit.Name}
           size="large"
@@ -68,30 +68,32 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
           required
         />
       </div>
-      <div>
+      <div className='modal-inputs'>
         <label>Тайлбар</label>
         <TextArea
           name="Descr"
+          variant="filled"
           onChange={handleClubForm}
           value={clubFormEdit.Descr}
           size="large"
-          placeholder="Тайлбар оруулна уу"
+          placeholder="Клубын тайлбараа оруулна уу"
           required
         />
       </div>
-      <div>
+      <div className='modal-inputs'>
         <label>Утасны дугаар</label>
+
         <Input
           name="Contact"
+          variant="filled"
           onChange={handleClubForm}
           value={clubFormEdit.Contact}
           size="large"
-          placeholder="Утасны дугаараа оруулна уу"
+          placeholder="Холбогдох утасны дугаараа оруулна уу"
           required
         />
       </div>
       <div>
-        <label>Зураг</label>
         <div className="training-file-box">
           <Upload
             accept=".png, .jpeg, .jpg"
@@ -100,13 +102,25 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
             maxCount={1}
             fileList={clubFormEdit.Image ? [clubFormEdit.Image] : []}
           >
-            <Button icon={<MdOutlineFileUpload />}>Зураг хавсаргах</Button>
+            {isEditing ? (
+              <Button icon={<MdOutlineFileUpload />}>Зураг солих</Button>
+            ) : (
+              <Button icon={<MdOutlineFileUpload />}>Зураг хавсаргах</Button>
+            )}
           </Upload>
         </div>
       </div>
       <div className="add-footer">
-        <Button size="large" onClick={handleCancel}>Болих</Button>
-        <Button type="primary" size="large" style={{ margin: 8 }} onClick={handleSubmit}>
+        <Button size="large" 
+                onClick={handleCancel}
+                style={{ fontWeight: 700, marginLeft: 10 }}
+                >Хаах
+        </Button>
+        <Button type="primary" 
+                style={{ fontWeight: 700, marginLeft: 10 }}
+                size="large" 
+                onClick={handleSubmit}>
+                
           { isEditing ? "Өөрчлөлт хадгалах" : "Нэмэх"}
         </Button>
       </div>
