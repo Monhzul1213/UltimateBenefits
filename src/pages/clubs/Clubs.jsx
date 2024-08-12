@@ -23,46 +23,70 @@ const AlertMessage = () => {
   );
 };
 
-const ClubCard = ({ club, onClick ,deleteClub,setClubFormEdit,setIsEditing,setIsClubsModalOpen}) => {
-  const {user} = useAuth()
+const ClubCard = ({
+  club,
+  onClick,
+  deleteClub,
+  setClubFormEdit,
+  setIsEditing,
+  setIsClubsModalOpen,
+}) => {
+  const { user } = useAuth();
   const items = [
     {
-      label: 'Засах',
-      key: '1',
+      label: "Засах",
+      key: "1",
       onClick: () => {
         setClubFormEdit(club);
         setIsEditing(true);
-        setIsClubsModalOpen(true);  
+        setIsClubsModalOpen(true);
       },
     },
     {
-      label: 'Устгах',
-      key: '2',
-      danger:true,
+      label: "Устгах",
+      key: "2",
+      danger: true,
       onClick: () => {
         deleteClub(club.ID);
       },
     },
   ];
-  return <Dropdown trigger={["contextMenu"] } menu={checkRole(user.Role) ? {items} : {items:[{
-    label: 'delgerengui',
-    key: '1',
-    onClick: () => {
-      onClick()
-    },
-  },]}}>
-
-  <div className="image-container club-image-container" onClick={onClick} >
-    <img src={`data:image/png;base64,${club.Image}`} alt={club.Name} />
-    <div className="card-title">
-      {club.Name.split(' ')[0]}<br />{club.Name.split(' ')[1]}
-    </div>
-  </div>
-  </Dropdown>
-}
+  return (
+    <Dropdown
+      trigger={["contextMenu"]}
+      menu={
+        checkRole(user.Role)
+          ? { items }
+          : {
+              items: [
+                {
+                  label: "delgerengui",
+                  key: "1",
+                  onClick: () => {
+                    onClick();
+                  },
+                },
+              ],
+            }
+      }
+    >
+      <div className="image-container club-image-container" onClick={onClick}>
+        <img src={`data:image/png;base64,${club.Image}`} alt={club.Name} />
+        <div className="card-title">
+          {club.Name.split(" ")[0]}
+          <br />
+          {club.Name.split(" ")[1]}
+        </div>
+      </div>
+    </Dropdown>
+  );
+};
 
 const AddClubCard = ({ onClick }) => (
-  <div className="image-container club-image-container add-club-card" onClick={onClick}>
+  <div
+    className="image-container club-image-container add-club-card"
+    onClick={onClick}
+  >
     <img src={nemeh} alt="Шинэ клуб нэмэх" />
   </div>
 );
@@ -77,11 +101,9 @@ const Clubs = () => {
   const handleCardOpen = (club) => {
     setIsClubsModalOpen(true);
     setSelectedClub(club);
-  
   };
 
   const handleCloseModal = () => {
-    console.log("close mod")
     setIsClubsModalOpen(false);
     setIsEditing(false);
   };
@@ -97,7 +119,7 @@ const Clubs = () => {
       Contact: "",
       Descr: "",
       Image: "",
-    })
+    });
     setIsEditing(false);
   };
 
@@ -110,9 +132,9 @@ const Clubs = () => {
             <ClubCard
               key={ID}
               club={club}
-              onClick={() => {handleCardOpen(club)
-setIsEditing(false)
-
+              onClick={() => {
+                handleCardOpen(club);
+                setIsEditing(false);
               }}
               deleteClub={deleteClub}
               setClubFormEdit={setClubFormEdit}
@@ -130,7 +152,11 @@ setIsEditing(false)
         isEditing={isEditing}
         setIsEditing={setIsEditing}
       />
-      <AddClubModal isEditing={isEditing} isOpen={isAddClubModalOpen} onClose={handleCloseAddClubModal} />
+      <AddClubModal
+        isEditing={isEditing}
+        isOpen={isAddClubModalOpen}
+        onClose={handleCloseAddClubModal}
+      />
     </>
   );
 };

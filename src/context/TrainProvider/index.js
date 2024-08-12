@@ -84,7 +84,7 @@ const TrainProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log(data.result);
+
       setOriginLearningDatas(data.result);
       setLearningDatas(data.result);
     } catch (error) {
@@ -246,7 +246,6 @@ const TrainProvider = ({ children }) => {
   };
 
   const downloadFile = async (learning) => {
-    console.log(learning);
     const fileName = learning.FileDesc.split("/").pop();
     try {
       const { data } = await myAxios.post(
@@ -272,9 +271,7 @@ const TrainProvider = ({ children }) => {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
       getLearningData(1);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   return (
     <trainContext.Provider

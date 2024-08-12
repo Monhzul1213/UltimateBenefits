@@ -12,7 +12,7 @@ const RuleCategoryCard = ({ rule, handleCategoryModal }) => {
   const handleEditCat = () => {
     handleCategoryModal(true);
     setIsEdit(true);
-    console.log(rule.Name);
+
     handleCategoryForm("Name", rule.Name);
     handleCategoryForm("ID", rule.ID);
   };

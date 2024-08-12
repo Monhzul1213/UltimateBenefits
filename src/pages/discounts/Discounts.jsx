@@ -23,19 +23,28 @@ const AlertMessage = () => {
   );
 };
 
-const DiscountsCard = ({ discount, onClick, onRightClick, ustgah, setIsDiscountsAddOpen, setDiscountsForm, setEditDiscounts }) => {
+const DiscountsCard = ({
+  discount,
+  onClick,
+  onRightClick,
+  ustgah,
+  setIsDiscountsAddOpen,
+  setDiscountsForm,
+  setEditDiscounts,
+}) => {
   const items = [
     {
-      label: 'Засах',
-      key: '1',
-      onClick:()=>{
-        setEditDiscounts(true)
-        setDiscountsForm(discount)
-        setIsDiscountsAddOpen(true)}
+      label: "Засах",
+      key: "1",
+      onClick: () => {
+        setEditDiscounts(true);
+        setDiscountsForm(discount);
+        setIsDiscountsAddOpen(true);
+      },
     },
     {
-      label: 'Устгах',
-      key: '2',
+      label: "Устгах",
+      key: "2",
       danger: true,
       onClick: () => {
         Swal.fire({
@@ -51,21 +60,24 @@ const DiscountsCard = ({ discount, onClick, onRightClick, ustgah, setIsDiscounts
             ustgah(discount.ID);
           }
         });
-      }
+      },
     },
   ];
- return <Dropdown menu={{ items }} trigger={['contextMenu']}>
-  <div className="image-container club-image-container" onClick={onClick}>
-    <img src={`data:image/jpg;base64,${discount.Image}`}  />
-    <div className="discounts-card-title">
-      {discount.Name}
-    </div>
-  </div>
-  </Dropdown>
+  return (
+    <Dropdown menu={{ items }} trigger={["contextMenu"]}>
+      <div className="image-container club-image-container" onClick={onClick}>
+        <img src={`data:image/jpg;base64,${discount.Image}`} />
+        <div className="discounts-card-title">{discount.Name}</div>
+      </div>
+    </Dropdown>
+  );
 };
 
 const AddDiscountCard = ({ onClick }) => (
-  <div className="image-container club-image-container add-card-image" onClick={onClick}>
+  <div
+    className="image-container club-image-container add-card-image"
+    onClick={onClick}
+  >
     <img src={add_card} alt="Add Discount" />
   </div>
 );
@@ -73,12 +85,17 @@ const AddDiscountCard = ({ onClick }) => (
 const Discounts = () => {
   const [selectedDiscounts, setSelectedDiscounts] = useState(null);
   const [isDiscountsAddOpen, setIsDiscountsAddOpen] = useState(false);
-  const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0, discount: null });
-  const { discounts, editDiscounts, deleteDiscounts, setDiscountsForm } = useDiscounts();
-  const [EditDiscounts, setEditDiscounts] = useState(false)
+  const [contextMenu, setContextMenu] = useState({
+    visible: false,
+    x: 0,
+    y: 0,
+    discount: null,
+  });
+  const { discounts, editDiscounts, deleteDiscounts, setDiscountsForm } =
+    useDiscounts();
+  const [EditDiscounts, setEditDiscounts] = useState(false);
 
   const handleCardOpen = (discount) => {
-    console.log("Opening modal with discount:", discount);
     setSelectedDiscounts(discount);
   };
 
@@ -90,8 +107,9 @@ const Discounts = () => {
   const handleCloseModal = () => setInfoModal(false);
 
   const handleDiscountsAddClick = () => {
-    setEditDiscounts(false)
-    setIsDiscountsAddOpen(true)};
+    setEditDiscounts(false);
+    setIsDiscountsAddOpen(true);
+  };
 
   const handleCloseDiscountsAddModal = () => {
     setDiscountsForm({
@@ -100,48 +118,66 @@ const Discounts = () => {
       Type: "0",
       AvailableCount: "",
       Image: null,
-      
     });
-    setIsDiscountsAddOpen(false)};
+    setIsDiscountsAddOpen(false);
+  };
 
   const handleRightClick = (event, discount) => {
     event.preventDefault();
-    setContextMenu({ visible: true, x: event.clientX, y: event.clientY, discount });
+    setContextMenu({
+      visible: true,
+      x: event.clientX,
+      y: event.clientY,
+      discount,
+    });
   };
 
   const handleContextMenuOptionClick = async (option) => {
-    if (option === 'Edit') {
+    if (option === "Edit") {
       setSelectedDiscounts(contextMenu.discount);
-    } else if (option === 'Delete') {
+    } else if (option === "Delete") {
       await deleteDiscounts(contextMenu.discount.ID);
     }
     setContextMenu({ visible: false, x: 0, y: 0, discount: null });
   };
 
-  const handleModalClick = () => setContextMenu({ visible: false, x: 0, y: 0, discount: null });
-  const [infoModal, setInfoModal] = useState(false)
+  const handleModalClick = () =>
+    setContextMenu({ visible: false, x: 0, y: 0, discount: null });
+  const [infoModal, setInfoModal] = useState(false);
   return (
     <>
       <CustomHeader title="Хөнгөлөлт, урамшуулал" />
-      <main className="discounts-container-container" onClick={handleModalClick}>
+      <main
+        className="discounts-container-container"
+        onClick={handleModalClick}
+      >
         <div className="discounts-container">
           {discounts?.map((discount) => (
             <DiscountsCard
-            setEditDiscounts= {setEditDiscounts}
-            setDiscountsForm= {setDiscountsForm}
-            setIsDiscountsAddOpen={setIsDiscountsAddOpen}
+              setEditDiscounts={setEditDiscounts}
+              setDiscountsForm={setDiscountsForm}
+              setIsDiscountsAddOpen={setIsDiscountsAddOpen}
               ustgah={deleteDiscounts}
               discount={discount}
-              onClick={() =>{ 
-                setInfoModal(true)
-                handleCardOpen(discount)}}
+              onClick={() => {
+                setInfoModal(true);
+                handleCardOpen(discount);
+              }}
             />
           ))}
           <AddDiscountCard onClick={handleDiscountsAddClick} />
         </div>
       </main>
-      <DiscountsModal isOpen={infoModal} onRequestClose={handleCloseModal} discount={selectedDiscounts} />
-      <DiscountsAdd EditDiscounts={EditDiscounts} isOpen={isDiscountsAddOpen} onClose={handleCloseDiscountsAddModal} />
+      <DiscountsModal
+        isOpen={infoModal}
+        onRequestClose={handleCloseModal}
+        discount={selectedDiscounts}
+      />
+      <DiscountsAdd
+        EditDiscounts={EditDiscounts}
+        isOpen={isDiscountsAddOpen}
+        onClose={handleCloseDiscountsAddModal}
+      />
     </>
   );
 };

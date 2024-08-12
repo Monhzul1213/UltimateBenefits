@@ -41,10 +41,8 @@ const RulesIdPage = () => {
         });
         setCategoryName(data.CategoryName);
         setData(data.result);
-        console.log(data);
       } catch (error) {
         setError(true);
-        console.log(error);
       } finally {
         setLoading(false);
       }

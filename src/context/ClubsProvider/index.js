@@ -54,7 +54,6 @@ const ClubProvider = ({ children }) => {
       setClubs(data.result);
       setClubFailed(false);
     } catch (error) {
-      console.log("ERROR IN GET CLUBS", error);
       setClubFailed(true);
     } finally {
       setClubLoading(false);
@@ -63,8 +62,8 @@ const ClubProvider = ({ children }) => {
 
   const addClub = async () => {
     const formData = new FormData();
-    Object.keys(clubFormEdit).forEach(key => {
-        formData.append(key, clubFormEdit[key]);
+    Object.keys(clubFormEdit).forEach((key) => {
+      formData.append(key, clubFormEdit[key]);
     });
     try {
       await myAxios.post("/api/club", formData, {
