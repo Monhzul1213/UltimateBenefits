@@ -3,7 +3,14 @@ export const Footer = () => {
   const currentYear = currentDate.getFullYear();
   return (
     <footer>
-      <h4>www.ultimate.mn</h4>
+      <a
+        style={{ color: "white" }}
+        href="http://ultimate.mn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <h4>www.ultimate.mn</h4>
+      </a>
       <h4>Ultimate LLC @copyright {currentYear}</h4>
     </footer>
   );

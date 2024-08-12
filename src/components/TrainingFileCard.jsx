@@ -106,7 +106,7 @@ export const TrainingFileCard = ({
               <img className="training-file-icon" src={excelIcon} alt="" />
             </>
           )}
-          <p className="training-file-title">{learning.Name}</p>
+          {/* <p className="training-file-title">{learning.Name}</p> */}
         </div>
         <div
           style={{

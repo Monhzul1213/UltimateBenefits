@@ -16,10 +16,10 @@ export const Header = () => {
       <div onClick={() => setOpenDrawer(true)} className="header-right-side">
         <img className="header-notf" src={bell} alt="" />
         <Avatar
-          src={"data:image/jpeg;base64," + userImage}
-          style={{ backgroundColor: "white", marginLeft: 20 }}
+          src={userImage ? `data:image/jpeg;base64,${userImage}` : ""}
+          icon={!userImage ? <UserOutlined /> : ""}
+          style={{ backgroundColor: "gray", marginLeft: 20 }}
           size={40}
-          icon={<UserOutlined />}
         />
         <div className="header-user-section">
           <h1>{user.FirstName}</h1>

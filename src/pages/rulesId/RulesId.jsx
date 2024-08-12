@@ -14,7 +14,8 @@ import RuleAddModal from "../../components/rules/RuleAddModal";
 import { IoArrowBack, IoReload } from "react-icons/io5";
 import { useRule } from "../../context/RuleProvider";
 import TrainSkeleton from "../../components/skeletons/TrainSkeleton";
-import { Button } from "antd";
+import { Button, Input } from "antd";
+import { IoIosSearch } from "react-icons/io";
 
 const RulesIdPage = () => {
   const iframeRef = useRef(null);
@@ -23,6 +24,7 @@ const RulesIdPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [data, setData] = useState(null);
+  const [originData, setOriginData] = useState(null);
   const [categoryName, setCategoryName] = useState("");
   const { getRuleDetail, setGetRuleDetail } = useRule();
   const [videoModal, setVideoModal] = useState(-1);
@@ -31,6 +33,14 @@ const RulesIdPage = () => {
   };
   const closeModal = () => {
     setVideoModal(-1);
+  };
+  const search = (e) => {
+    const searchResults = originData?.filter((data) => {
+      const name = data.Name.toLowerCase();
+      const searchV = e.target.value.toLowerCase();
+      return name.includes(searchV);
+    });
+    setData(searchResults);
   };
   useEffect(() => {
     const getData = async () => {
@@ -42,6 +52,7 @@ const RulesIdPage = () => {
         });
         setCategoryName(data.CategoryName);
         setData(data.result);
+        setOriginData(data.result);
       } catch (error) {
         setError(true);
       } finally {
@@ -60,15 +71,27 @@ const RulesIdPage = () => {
       <CustomHeader title="Дүрэм журам" />
       <section className="learning-container">
         <div className="learning-page">
-          <Link to="/rules">
-            <div className="rule-id-back">
-              <IoArrowBack size={20} />
-              <h1>Буцах</h1>
-              <h1 style={{ marginLeft: "30px", textTransform: "uppercase" }}>
-                {categoryName}
-              </h1>
-            </div>
-          </Link>
+          <div className="rule-id-back">
+            <Link to="/rules">
+              <IoArrowBack size={30} />
+            </Link>
+            <h1
+              style={{
+                marginLeft: "30px",
+                textTransform: "uppercase",
+                fontSize: "30px",
+                fontWeight: "500",
+              }}
+            >
+              {categoryName}
+            </h1>
+            <Input
+              prefix={<IoIosSearch size={24} color="gray" />}
+              style={{ width: "300px", marginLeft: "30px", fontSize: "20px" }}
+              placeholder="Нэрээр хайх"
+              onChange={search}
+            />
+          </div>
 
           <main className="learning-videos-container">
             {loading ? (

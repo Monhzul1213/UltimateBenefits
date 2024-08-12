@@ -1,8 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { Input, Row, Col } from "antd";
 
-export const OTPInput = ({ length, onChange, register, pin, handleLogin }) => {
-  const [otp, setOtp] = useState(Array(length).fill(""));
+export const OTPInput = ({
+  length,
+  onChange,
+  register,
+  pin,
+  handleLogin,
+  otp,
+  setOtp,
+}) => {
+  // const [otp, setOtp] = useState(Array(length).fill(""));
   const otpRef = useRef();
   const noRef = useRef();
   const focusOtp = () => {
@@ -35,6 +43,7 @@ export const OTPInput = ({ length, onChange, register, pin, handleLogin }) => {
     }
     if (e.key === "Enter") {
       handleLogin(register, pin);
+      setOtp(Array(length).fill(""));
     }
   };
 
