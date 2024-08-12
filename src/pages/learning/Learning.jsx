@@ -17,6 +17,7 @@ import { IoReload } from "react-icons/io5";
 import { nemeh } from "../../assets";
 import Swal from "sweetalert2";
 import TrainEditModal from "../../components/TrainEditModal";
+import TrainSkeleton from "../../components/skeletons/TrainSkeleton";
 
 export const Learning = () => {
   const iframeRef = useRef(null);
@@ -144,7 +145,12 @@ export const Learning = () => {
           </div>
           <section className="learning-videos-container">
             {loading ? (
-              <Loader />
+              <>
+                <TrainSkeleton />
+                <TrainSkeleton />
+                <TrainSkeleton />
+                <TrainSkeleton />
+              </>
             ) : isFailed ? (
               <div className="employee-error">
                 <p>Алдаа гарлаа</p>

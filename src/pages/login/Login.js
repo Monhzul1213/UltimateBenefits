@@ -26,9 +26,7 @@ export function Login() {
   const handleSelecet = (value, index) => {
     registerLetters[index] = value;
   };
-  const handleSelectKeyDown = (e) => {
-    console.log(e);
-  };
+  const handleSelectKeyDown = (e) => {};
   const { handleCheckRegister, loading, open, setOpen } = useAuth();
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {

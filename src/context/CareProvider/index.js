@@ -136,7 +136,6 @@ const CareProvider = ({ children }) => {
   };
   const editCareCategory = async (id) => {
     const formData = new FormData();
-    console.log(careCategoryForm);
     formData.append("Name", careCategoryForm.Name);
     formData.append("Descr", careCategoryForm.Descr);
     formData.append("Image", careCategoryForm.Image);
@@ -150,7 +149,6 @@ const CareProvider = ({ children }) => {
       });
       getCares();
     } catch (error) {
-      console.log("ERROR IN EDIT", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -186,7 +184,6 @@ const CareProvider = ({ children }) => {
           },
         }
       );
-      console.log(data.result);
       setCareDetail(data.result);
     } catch (error) {
       if (!error.response) {
@@ -207,7 +204,7 @@ const CareProvider = ({ children }) => {
           },
         }
       );
-      console.log("EDIT", data);
+
       alert("Амжилттай засагдлаа", "success");
     } catch (error) {
       if (!error.response) {
@@ -234,7 +231,6 @@ const CareProvider = ({ children }) => {
     }
   };
   const createCareDetail = async () => {
-    console.log("CREATING DETAIL", selectedCategory, careDetailForm);
     try {
       await myAxios.post(
         `/api/socialProvision/category/detail`,
@@ -251,7 +247,6 @@ const CareProvider = ({ children }) => {
       );
       alert("Амжилттай нэмэгдлээ", "success");
     } catch (error) {
-      console.log("ERROR IN CREATE DETAIL", error);
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {

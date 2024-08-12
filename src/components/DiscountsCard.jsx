@@ -7,13 +7,12 @@ const DiscountsCard = ({ visible, onClose, data }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   const onFinish = (discounts) => {
-    console.log("Card ",discounts);
     onClose();
-    };
+  };
 
   const handleImageChange = ({ file }) => {
     if (file.status === "done") {
-       setImageUrl(URL.createObjectURL(file.originFileObj));
+      setImageUrl(URL.createObjectURL(file.originFileObj));
     }
   };
 
@@ -49,77 +48,101 @@ const DiscountsCard = ({ visible, onClose, data }) => {
       centered
     >
       <Form layout="vertical">
-      <div className="dis-modal-flex">
-        <div style={{ width: "100%" }}>
-          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Хөнгөлөлт, урамшууллын нэр</p>
-          <Form.Item
-            rules={[{ required: true, message: 'Хөнгөлөлт, урамшууллын нэрээ оруулна уу' }]}
-          >
-            <Input
-              size="large"
-              style={{backgroundColor: "#F5F5F5"}}
-              placeholder="Хөнгөлөлт, урамшууллын нэрээ оруулна уу"
-            />
-          </Form.Item>
-        </div>
-        </div>
-      <div className="dis-modal-flex">
-        <div style={{ width: "100%" }}>
-          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Тайлбар</p>
-          <Form.Item
-            rules={[{ required: true, message: 'Тайлбараа оруулна уу' }]}
-          >
-            <Input
-              size="large"
-              onChange={handleInput}
-              placeholder="Тайлбараа оруулна уу"
-            />
-          </Form.Item>
-        </div>
-      </div>
-      <div className="dis-modal-flex">
-         <div style={{ width: "100%" }}>
-          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Ажилласан жилийн шаардлага/сараар/</p>
-          <Form.Item
-            rules={[{ required: true, message: '' }]}
-          >
-            <Input
-              size="large"
-              onChange={handleInput}
-              placeholder="Ажилласан сар"
-            />
-          </Form.Item>
-        </div>
+        <div className="dis-modal-flex">
+          <div style={{ width: "100%" }}>
+            <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
+              Хөнгөлөлт, урамшууллын нэр
+            </p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Хөнгөлөлт, урамшууллын нэрээ оруулна уу",
+                },
+              ]}
+            >
+              <Input
+                size="large"
+                style={{ backgroundColor: "#F5F5F5" }}
+                placeholder="Хөнгөлөлт, урамшууллын нэрээ оруулна уу"
+              />
+            </Form.Item>
+          </div>
         </div>
         <div className="dis-modal-flex">
-         <div style={{ width: "100%" }}>
-          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}> Хэдэн удаа</p>
-          <Form.Item
-            rules={[{ required: true, message: 'Хэдэн удаа /тоогоо оруулна уу/' }]}
-          >
-            <Input
-              size="large"
-              onChange={handleInput}
-              placeholder="Хэдэн удаа / тоогоо оруулна уу/"
-            />
-          </Form.Item>
-        </div>
+          <div style={{ width: "100%" }}>
+            <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
+              Тайлбар
+            </p>
+            <Form.Item
+              rules={[{ required: true, message: "Тайлбараа оруулна уу" }]}
+            >
+              <Input
+                size="large"
+                onChange={handleInput}
+                placeholder="Тайлбараа оруулна уу"
+              />
+            </Form.Item>
+          </div>
         </div>
         <div className="dis-modal-flex">
-        <div style={{ width: "100%" }}>
-          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}>Дэлгэрэнгүй</p>
-          <Form.Item
-            rules={[{ required: true, message: 'Дэлгэрэнгүй мэдээллийг оруулна уу' }]}
-          >
-            <Input.TextArea
-              size="large"
-              placeholder="Дэлгэрэнгүй мэдээллийг оруулна уу"
-            />
-          </Form.Item>
+          <div style={{ width: "100%" }}>
+            <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
+              Ажилласан жилийн шаардлага/сараар/
+            </p>
+            <Form.Item rules={[{ required: true, message: "" }]}>
+              <Input
+                size="large"
+                onChange={handleInput}
+                placeholder="Ажилласан сар"
+              />
+            </Form.Item>
+          </div>
         </div>
+        <div className="dis-modal-flex">
+          <div style={{ width: "100%" }}>
+            <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
+              {" "}
+              Хэдэн удаа
+            </p>
+            <Form.Item
+              rules={[
+                { required: true, message: "Хэдэн удаа /тоогоо оруулна уу/" },
+              ]}
+            >
+              <Input
+                size="large"
+                onChange={handleInput}
+                placeholder="Хэдэн удаа / тоогоо оруулна уу/"
+              />
+            </Form.Item>
+          </div>
         </div>
-        <div className="training-file-box" style={{ width: "100%", textAlign: "center" }}>
-          <p style={{ fontSize: 15, fontWeight: 500, marginBottom:5 }}></p>
+        <div className="dis-modal-flex">
+          <div style={{ width: "100%" }}>
+            <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
+              Дэлгэрэнгүй
+            </p>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: "Дэлгэрэнгүй мэдээллийг оруулна уу",
+                },
+              ]}
+            >
+              <Input.TextArea
+                size="large"
+                placeholder="Дэлгэрэнгүй мэдээллийг оруулна уу"
+              />
+            </Form.Item>
+          </div>
+        </div>
+        <div
+          className="training-file-box"
+          style={{ width: "100%", textAlign: "center" }}
+        >
+          <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}></p>
           <Upload
             accept=".jpg,.jpeg,.png"
             onChange={handleImageChange}
@@ -128,7 +151,13 @@ const DiscountsCard = ({ visible, onClose, data }) => {
           >
             <Button icon={<UploadOutlined />}>Зураг хавсаргах</Button>
           </Upload>
-          {imageUrl && <img src={imageUrl} alt="Uploaded" style={{ marginTop: 10, maxWidth: "100%" }} />}
+          {imageUrl && (
+            <img
+              src={imageUrl}
+              alt="Uploaded"
+              style={{ marginTop: 10, maxWidth: "100%" }}
+            />
+          )}
         </div>
 
         <div
@@ -139,7 +168,6 @@ const DiscountsCard = ({ visible, onClose, data }) => {
             paddingTop: "10px",
           }}
         >
-          
           <div
             style={{
               display: "flex",

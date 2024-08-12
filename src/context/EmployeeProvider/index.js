@@ -69,7 +69,6 @@ const EmployeeProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log("employees", data.result);
       setEmpCount(data.user);
       setOriginEmpData(data.result);
       setEmpForm(data.result);
@@ -82,7 +81,6 @@ const EmployeeProvider = ({ children }) => {
   };
   const addEmployee = async (employees, isOne) => {
     const empData = isOne ? [employees] : employees;
-    console.log("ADDING EMPLOYEES", empData);
     setEmpLoading(true);
     try {
       await myAxios.post("/api/users/register", empData, {
@@ -119,7 +117,6 @@ const EmployeeProvider = ({ children }) => {
     }
   };
   const editEmployee = async (id) => {
-    console.log("editing user", empFormEdit);
     try {
       await myAxios.put(`/api/users/${id}`, empFormEdit, {
         headers: {

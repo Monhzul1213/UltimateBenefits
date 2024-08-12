@@ -41,7 +41,6 @@ const RuleProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log(data);
       setError(false);
       setRulesCategory(data.result);
     } catch (error) {
@@ -68,7 +67,7 @@ const RuleProvider = ({ children }) => {
   };
   const createRuleCategory = async () => {
     const formData = new FormData();
-    console.log("ADDING RULE", ruleCategoryForm);
+
     formData.append("Name", ruleCategoryForm.Name);
     formData.append("Image", ruleCategoryForm.Image);
     try {
@@ -81,7 +80,6 @@ const RuleProvider = ({ children }) => {
       alert("Амжилттай нэмэгдлээ", "success");
       getRulesCategory();
     } catch (error) {
-      console.log(error);
       alert("Алдаа гарлаа", "error");
     }
   };
@@ -89,7 +87,7 @@ const RuleProvider = ({ children }) => {
   const [isEdit, setIsEdit] = useState(false);
   const editRuleCategory = async () => {
     const formData = new FormData();
-    console.log("ADDING RULE", ruleCategoryForm);
+
     formData.append("Name", ruleCategoryForm.Name);
     formData.append("Image", ruleCategoryForm.Image);
     try {
@@ -106,7 +104,6 @@ const RuleProvider = ({ children }) => {
       alert("Амжилттай нэмэгдлээ", "success");
       getRulesCategory();
     } catch (error) {
-      console.log(error);
       alert("Алдаа гарлаа", "error");
     }
   };
@@ -144,7 +141,6 @@ const RuleProvider = ({ children }) => {
     setEditDetail(false);
   };
   const createRuleDetail = async (categoryId) => {
-    console.log(ruleDetailForm);
     const formData = new FormData();
     formData.append("Name", ruleDetailForm.Name);
     formData.append("IsFile", ruleDetailForm.IsFile);
@@ -160,13 +156,11 @@ const RuleProvider = ({ children }) => {
       alert("Амжилттай нэмэгдлээ", "success");
       setGetRuleDetail(!getRuleDetail);
     } catch (error) {
-      console.log("error", error);
       alert("Алдаа гарлаа", "error");
     }
   };
   //EDIT RULE DETAIL
   const editRuleDetail = async (id) => {
-    console.log(ruleDetailForm);
     const formData = new FormData();
     formData.append("Name", ruleDetailForm.Name);
     formData.append("IsFile", ruleDetailForm.IsFile);
@@ -181,7 +175,6 @@ const RuleProvider = ({ children }) => {
       alert("Амжилттай засагдлаа", "success");
       setGetRuleDetail(!getRuleDetail);
     } catch (error) {
-      console.log("error", error);
       alert("Алдаа гарлаа", "error");
     }
   };
@@ -196,7 +189,6 @@ const RuleProvider = ({ children }) => {
       alert("Амжилттай устгагдлаа", "success");
       setGetRuleDetail(!getRuleDetail);
     } catch (error) {
-      console.log("error", error);
       alert("Алдаа гарлаа", "error");
     }
   };

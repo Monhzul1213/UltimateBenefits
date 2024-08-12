@@ -22,7 +22,6 @@ const RuleAddModal = ({ open, handleAddModal, id }) => {
     handleRuleDetailForm(e.target.name, e.target.value);
   };
   const handleCheck = ({ target }) => {
-    console.log(target.checked);
     handleRuleDetailForm("IsFile", target.checked ? "Y" : "N");
   };
   return (

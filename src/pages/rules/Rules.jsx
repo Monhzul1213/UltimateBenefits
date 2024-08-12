@@ -10,6 +10,7 @@ import { useRule } from "../../context/RuleProvider";
 import NewRules from "./NewRules";
 import { Button } from "antd";
 import { IoReload } from "react-icons/io5";
+import RuleSkeleton from "../../components/skeletons/RuleSkeleton";
 const Rules = () => {
   const { user } = useAuth();
   const { getRulesCategory, rulesCategory, catError, loading } = useRule();
@@ -26,7 +27,12 @@ const Rules = () => {
       <section className="rule-page-container">
         <main className="rules-card-container">
           {loading ? (
-            <Loader />
+            <>
+              <RuleSkeleton />
+              <RuleSkeleton />
+              <RuleSkeleton />
+              <RuleSkeleton />
+            </>
           ) : catError ? (
             <div className="employee-error">
               <p>Алдаа гарлаа</p>
