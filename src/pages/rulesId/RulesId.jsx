@@ -13,6 +13,7 @@ import { add_card } from "../../assets";
 import RuleAddModal from "../../components/rules/RuleAddModal";
 import { IoArrowBack } from "react-icons/io5";
 import { useRule } from "../../context/RuleProvider";
+import TrainSkeleton from "../../components/skeletons/TrainSkeleton";
 
 const RulesIdPage = () => {
   const iframeRef = useRef(null);
@@ -71,7 +72,19 @@ const RulesIdPage = () => {
           </Link>
 
           <main className="learning-videos-container">
-            {loading ? <Loader /> : error ? "" : ""}
+            {loading ? (
+              <>
+                <TrainSkeleton />
+                <TrainSkeleton />
+                <TrainSkeleton />
+                <TrainSkeleton />
+              </>
+            ) : error ? (
+              ""
+            ) : (
+              ""
+            )}
+
             {data?.map((rule, idx) => {
               if (rule.IsFile === "Y") {
                 return (
