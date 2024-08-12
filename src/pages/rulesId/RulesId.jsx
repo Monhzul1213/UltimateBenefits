@@ -11,9 +11,10 @@ import { checkRole } from "../../lib/utils/checkRole";
 import { useAuth } from "../../context/AuthProvider";
 import { add_card } from "../../assets";
 import RuleAddModal from "../../components/rules/RuleAddModal";
-import { IoArrowBack } from "react-icons/io5";
+import { IoArrowBack, IoReload } from "react-icons/io5";
 import { useRule } from "../../context/RuleProvider";
 import TrainSkeleton from "../../components/skeletons/TrainSkeleton";
+import { Button } from "antd";
 
 const RulesIdPage = () => {
   const iframeRef = useRef(null);
@@ -23,7 +24,7 @@ const RulesIdPage = () => {
   const [error, setError] = useState(false);
   const [data, setData] = useState(null);
   const [categoryName, setCategoryName] = useState("");
-  const { getRuleDetail } = useRule();
+  const { getRuleDetail, setGetRuleDetail } = useRule();
   const [videoModal, setVideoModal] = useState(-1);
   const showModal = (index) => {
     setVideoModal(index);
@@ -39,9 +40,11 @@ const RulesIdPage = () => {
             Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
           },
         });
+        console.log(data);
         setCategoryName(data.CategoryName);
         setData(data.result);
       } catch (error) {
+        console.log(error);
         setError(true);
       } finally {
         setLoading(false);
@@ -78,7 +81,18 @@ const RulesIdPage = () => {
                 <TrainSkeleton />
               </>
             ) : error ? (
-              ""
+              <div className="employee-error">
+                <p>Алдаа гарлаа</p>
+                <Button
+                  onClick={() => {
+                    // getRuleDetail()
+                    setGetRuleDetail(!getRuleDetail);
+                  }}
+                  icon={<IoReload />}
+                >
+                  Дахин оролдох
+                </Button>
+              </div>
             ) : (
               ""
             )}
