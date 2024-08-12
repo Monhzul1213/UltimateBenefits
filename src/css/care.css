@@ -8,7 +8,8 @@
   display: flex;
   gap: 100px;
   flex-wrap: wrap;
-  justify-content: center;
+  width: 1545px;
+  /* justify-content: center; */
 }
 .care-cards {
   display: flex;
@@ -174,7 +175,18 @@
   overflow: scroll;
 }
 .detail-section-container::-webkit-scrollbar {
-  display: none;
+  height: 5px;
+  width: 0px;
+}
+
+.detail-section-container::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: #eeeeee;
+}
+
+.detail-section-container::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: #b0b0b0;
 }
 .detail-section {
   display: flex;
@@ -208,6 +220,11 @@
 }
 .detail-html li:nth-child(odd) {
   background-color: #f0f0f0;
+}
+@media only screen and (max-width: 1545px) {
+  .care-cards-container {
+    justify-content: center;
+  }
 }
 @media only screen and (max-width: 1525px) {
   .cards-last {

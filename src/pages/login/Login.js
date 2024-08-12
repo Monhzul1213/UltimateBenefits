@@ -26,9 +26,7 @@ export function Login() {
   const handleSelecet = (value, index) => {
     registerLetters[index] = value;
   };
-  const handleSelectKeyDown = (e) => {
-    console.log(e);
-  };
+  const handleSelectKeyDown = (e) => {};
   const { handleCheckRegister, loading, open, setOpen } = useAuth();
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -49,7 +47,11 @@ export function Login() {
           register={registerLetters?.join("") + registerNums}
           handleForget={handleForget}
         />
-        <ForgetModal open={forgetModal} setOpen={handleForget} />
+        <ForgetModal
+          open={forgetModal}
+          setOpen={handleForget}
+          loginOpen={setOpen}
+        />
         <img className="login-logo" src={loginlogo} alt="" />
         <div className="input-section">
           <h1 className="login-header">Welcome back ULTIMATE family!</h1>

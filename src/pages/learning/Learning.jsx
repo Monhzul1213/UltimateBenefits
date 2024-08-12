@@ -17,6 +17,7 @@ import { IoReload } from "react-icons/io5";
 import { nemeh } from "../../assets";
 import Swal from "sweetalert2";
 import TrainEditModal from "../../components/TrainEditModal";
+import TrainSkeleton from "../../components/skeletons/TrainSkeleton";
 
 export const Learning = () => {
   const iframeRef = useRef(null);
@@ -103,7 +104,18 @@ export const Learning = () => {
                             },
                           ],
                         }
-                      : {}
+                      : {
+                          items: [
+                            {
+                              label: "Дэлгэрэнгүй",
+                              key: "1",
+                              onClick: () => {
+                                getLearningData(item.ID);
+                                handleSelectedCategory(item.ID);
+                              },
+                            },
+                          ],
+                        }
                   }
                   key={index}
                   trigger={["contextMenu"]}
@@ -133,7 +145,12 @@ export const Learning = () => {
           </div>
           <section className="learning-videos-container">
             {loading ? (
-              <Loader />
+              <>
+                <TrainSkeleton />
+                <TrainSkeleton />
+                <TrainSkeleton />
+                <TrainSkeleton />
+              </>
             ) : isFailed ? (
               <div className="employee-error">
                 <p>Алдаа гарлаа</p>
@@ -177,7 +194,7 @@ export const Learning = () => {
                     );
                   }
                 })}
-                {checkRole(user?.Role) && (
+                {checkRole(user?.Role) ? (
                   <img
                     onClick={() => {
                       setAddModal(true);
@@ -186,6 +203,8 @@ export const Learning = () => {
                     src={nemeh}
                     alt=""
                   />
+                ) : (
+                  ""
                 )}
               </>
             )}

@@ -2,11 +2,16 @@ import { Input, Modal } from "antd";
 import { LoginButton, OTPInput } from "../components";
 import { useState } from "react";
 import { useAuth } from "../context/AuthProvider";
-export const ForgetModal = ({ open, setOpen }) => {
+export const ForgetModal = ({ open, setOpen, loginOpen }) => {
   const { loading, resetPassword } = useAuth();
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
   const handleInput = (e) => {
     setInputValue(e.target.value);
+  };
+  const handleClick = async () => {
+    await resetPassword(inputValue);
+    setInputValue("");
+    setOpen(false);
   };
   return (
     <Modal
@@ -15,19 +20,36 @@ export const ForgetModal = ({ open, setOpen }) => {
       open={open}
       footer={null}
       onOk={() => setOpen(false)}
-      onCancel={() => setOpen(false)}
+      onCancel={() => {
+        setOpen(false);
+        setInputValue("");
+      }}
       width={300}
     >
       <div>
-        <Input size="large" onChange={handleInput} />
+        <Input
+          style={{ fontSize: "30px" }}
+          value={inputValue}
+          size="large"
+          onChange={handleInput}
+        />
         <LoginButton
           isForgot={true}
           loading={loading}
           handleClick={() => {
-            setOpen(false);
-            resetPassword(inputValue);
+            handleClick();
           }}
         />
+        <p
+          onClick={() => {
+            setOpen(false);
+            loginOpen(true);
+            setInputValue("");
+          }}
+          className="forget-button"
+        >
+          LOGIN
+        </p>
       </div>
     </Modal>
   );

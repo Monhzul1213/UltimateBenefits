@@ -8,6 +8,9 @@ import { useAuth } from "../../context/AuthProvider";
 import { checkRole } from "../../lib/utils/checkRole";
 import { useRule } from "../../context/RuleProvider";
 import NewRules from "./NewRules";
+import { Button } from "antd";
+import { IoReload } from "react-icons/io5";
+import RuleSkeleton from "../../components/skeletons/RuleSkeleton";
 const Rules = () => {
   const { user } = useAuth();
   const { getRulesCategory, rulesCategory, catError, loading } = useRule();
@@ -21,39 +24,58 @@ const Rules = () => {
   return (
     <>
       <CustomHeader title="Дүрэм журам" />
-      <main className="rules-card-container">
-        {loading ? (
-          <Loader />
-        ) : catError ? (
-          ""
-        ) : (
-          rulesCategory?.map((rule) => {
-            return (
-              <RuleCategoryCard
-                key={rule.ID}
-                rule={rule}
-                handleCategoryModal={handleCategoryModal}
-              />
-            );
-          })
-        )}
+      <section className="rule-page-container">
+        <main className="rules-card-container">
+          {loading ? (
+            <>
+              <RuleSkeleton />
+              <RuleSkeleton />
+              <RuleSkeleton />
+              <RuleSkeleton />
+            </>
+          ) : catError ? (
+            <div className="employee-error">
+              <p>Алдаа гарлаа</p>
+              <Button
+                onClick={() => {
+                  getRulesCategory();
+                }}
+                icon={<IoReload />}
+              >
+                Дахин оролдох
+              </Button>
+            </div>
+          ) : (
+            rulesCategory?.map((rule) => {
+              return (
+                <RuleCategoryCard
+                  key={rule.ID}
+                  rule={rule}
+                  handleCategoryModal={handleCategoryModal}
+                />
+              );
+            })
+          )}
 
-        {checkRole(user.Role) && (
-          <div className="ruleCARD">
-            <img
-              src={add_card}
-              onClick={() => {
-                handleCategoryModal(true);
-              }}
-            />
-          </div>
-        )}
-        {/* <NewRules /> */}
-        <RuleCategoryModal
-          open={isModalOpen}
-          handleAddModal={handleCategoryModal}
-        />
-      </main>
+          {checkRole(user.Role) ? (
+            <div className="ruleCARD">
+              <img
+                src={add_card}
+                onClick={() => {
+                  handleCategoryModal(true);
+                }}
+              />
+            </div>
+          ) : (
+            ""
+          )}
+          {/* <NewRules /> */}
+          <RuleCategoryModal
+            open={isModalOpen}
+            handleAddModal={handleCategoryModal}
+          />
+        </main>
+      </section>
     </>
   );
 };

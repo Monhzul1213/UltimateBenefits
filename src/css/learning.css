@@ -1,27 +1,28 @@
 .learning-container {
   overflow: hidden;
-  padding: 30px 140px;
+  padding: 50px;
   display: flex;
+  /* justify-content: center; */
 }
 .learning-videos-container {
   overflow: hidden;
-  max-width: 1670px;
   margin-top: 30px;
   display: flex;
+  max-width: 1755px;
   flex-wrap: wrap;
   gap: 50px;
   text-transform: uppercase;
 }
 .video-card {
-  width: 500px;
-  height: 340px;
-  padding-bottom: 15px;
+  position: relative;
+  width: 400px;
+  height: 290px;
   border-bottom: 2px solid rgba(218, 218, 218, 0.613);
 }
 .training-file-card {
   position: relative;
-  width: 500px;
-  height: 260px;
+  width: 400px;
+  height: 223px;
   display: flex;
   justify-content: end;
   align-items: end;
@@ -30,6 +31,7 @@
 }
 .training-file-image {
   width: 100%;
+  height: 223px;
   position: absolute;
   top: 0;
   left: 0;
@@ -47,8 +49,9 @@
   width: 64%;
 }
 .play-container {
+  position: relative;
   width: 100%;
-  height: 270px;
+  height: 223px;
   background-color: black;
   display: flex;
   justify-content: center;
@@ -63,19 +66,35 @@
   margin-top: 10px;
   width: 100%;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 250;
 }
 .video-desc-avatar {
   width: 50px;
 }
 .video-desc h4 {
-  width: 320px;
+  width: 240px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.video-thumbnail {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+.video-thumbnail-cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
 }
 .training-modal-container {
   display: flex;
@@ -101,8 +120,8 @@
   gap: 5px;
 }
 .training-add {
-  width: 500px;
-  height: 270px;
+  width: 400px;
+  height: 223px;
   cursor: pointer;
   transition: all 100ms ease-in-out;
 }
@@ -114,6 +133,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  width: fit-content;
 }
 .training-category {
   width: fit-content;
@@ -132,10 +152,15 @@
   border: 2px solid rgb(154, 154, 247);
 }
 .downloadfile-icon {
-  width: 50px;
+  width: 35px;
   cursor: pointer;
 }
-@media only screen and (max-width: 1275px) {
+@media only screen and (max-width: 1755px) {
+  .learning-videos-container {
+    max-width: 1300px;
+  }
+}
+@media only screen and (max-width: 1399px) {
   .learning-videos-container {
     justify-content: center;
   }

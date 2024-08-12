@@ -5,7 +5,7 @@ import { alert } from "../../lib/actions/alert.actions";
 
 export const DiscountsContext = createContext({
   discounts: [],
-  handleChange:[],
+  handleChange: [],
   discountsLoading: false,
   discountsFailed: false,
   discountsForm: {},
@@ -60,13 +60,12 @@ const DiscountsProvider = ({ children }) => {
   const getDiscounts = async () => {
     setDiscountsLoading(true);
     try {
-      const {data} = await myAxios.get("/api/discount", {
+      const { data } = await myAxios.get("/api/discount", {
         headers: {
-          
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      // console.log("DATA", data.result);
+
       setDiscounts(data.result || []);
       setDiscountsFailed(false);
     } catch (error) {
@@ -83,23 +82,18 @@ const DiscountsProvider = ({ children }) => {
     formData.append("Type",discountsForm.Type)
     formData.append("AvailableCount",discountsForm.AvailableCount)
     formData.append("Image",discountsForm.Image)
-    //console.log(discountsForm)
-    // for (const key  in discountsForm) {
-    //   formData.append(key, discountsForm[key]);
-    // }
-    console.log("adding", formData.get("Image"))
+    
     try {
       const data = await myAxios.post("/api/discount", formData, {
         headers: {
-          "Content-Type":"multipart/form-data",
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
-      console.log("data", data)
+
       alert("Хөнгөлөлт, урамшуулал амжилттай нэмэгдлээ", "success");
       getDiscounts();
     } catch (error) {
-      console.log("error", error)
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -107,21 +101,20 @@ const DiscountsProvider = ({ children }) => {
       }
     }
   };
-  
+
   const editDiscounts = async (id) => {
     setDiscountsLoading(true);
-    console.log(discountsForm)
+
     try {
       await myAxios.put(`/api/discount/${id}`, discountsForm, {
         headers: {
-          "Content-Type":"multipart/form-data",
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
       alert("Амжилттай өөрчлөгдлөө", "success");
       getDiscounts();
     } catch (error) {
-      console.log("EditError", error)
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
@@ -143,8 +136,12 @@ const DiscountsProvider = ({ children }) => {
       alert("Хөнгөлөлт, урамшуулал амжилттай устгагдлаа", "success");
       getDiscounts();
     } catch (error) {
-      console.log("deleteError", error)
-      alert(error.response ? error.response.data.error.message : "Уучлаарай, сүлжээ унасан байна", "error");
+      alert(
+        error.response
+          ? error.response.data.error.message
+          : "Уучлаарай, сүлжээ унасан байна",
+        "error"
+      );
     } finally {
       setDiscountsLoading(false);
     }
@@ -181,6 +178,6 @@ const DiscountsProvider = ({ children }) => {
 };
 
 export default DiscountsProvider;
-export const useDiscounts = () =>{
-  return  useContext(DiscountsContext);
+export const useDiscounts = () => {
+  return useContext(DiscountsContext);
 };

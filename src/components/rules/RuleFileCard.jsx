@@ -7,37 +7,24 @@ import {
   pdfIcon,
   wordBack,
   wordIcon,
-} from "../assets";
-import { useTraining } from "../context/TrainProvider";
-import { checkRole } from "../lib/utils/checkRole";
-import { useAuth } from "../context/AuthProvider";
+} from "../../assets";
+import { useTraining } from "../../context/TrainProvider";
+import { checkRole } from "../../lib/utils/checkRole";
+import { useAuth } from "../../context/AuthProvider";
 import { FaRegCircleCheck } from "react-icons/fa6";
+import { useRule } from "../../context/RuleProvider";
 
-export const TrainingFileCard = ({
-  learning,
-  isEdit,
-  setIsEdit,
-  handleTrainingModal,
-}) => {
+export const RuleFileCard = ({ learning, handleModal }) => {
   const { user } = useAuth();
-  const {
-    editTrainForm,
-    setSelectedType,
-    trainingTypes,
-    deleteLearningData,
-    downloadFile,
-  } = useTraining();
+  const { downloadFile } = useTraining();
+  const { deleteRuleDetail, setRuleDetailForm, setEditDetail } = useRule();
   const handleClick = () => {
-    setIsEdit(true);
-    editTrainForm(learning);
-    handleTrainingModal(true);
-    const type = trainingTypes.filter(
-      (item) => item.ID === learning.CategoryID
-    )[0];
-    setSelectedType(type.Name);
+    setRuleDetailForm(learning);
+    setEditDetail(true);
+    handleModal(true);
   };
   const handleDeleteClick = () => {
-    deleteLearningData(learning.ID);
+    deleteRuleDetail(learning.ID);
   };
   const items = [
     {

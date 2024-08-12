@@ -14,6 +14,7 @@ import CareerCard from "../../components/career/CareerCard";
 import CareerDetailModal from "../../components/career/CareerDetailModal";
 import CareerCategoryModal from "../../components/career/CareCategoryModal";
 import CareerDetailWatch from "../../components/career/CareerDetailWatchModal";
+import CareSkeleton from "../../components/skeletons/CareSkeleton";
 
 const CareerPage = ({ size }) => {
   let counter = 1;
@@ -63,7 +64,14 @@ const CareerPage = ({ size }) => {
       <CustomHeader title="Карьер хөгжил" />
       <main className="care-container">
         {careLoading ? (
-          <Loader />
+          <div className="care-cards-container">
+            <CareSkeleton />
+            <CareSkeleton />
+            <CareSkeleton />
+            <CareSkeleton />
+            <CareSkeleton />
+            <CareSkeleton />
+          </div>
         ) : careFailed ? (
           <div className="employee-error">
             <p>Алдаа гарлаа</p>
@@ -102,7 +110,7 @@ const CareerPage = ({ size }) => {
                 })}
               </div>
             ))}
-            {checkRole(user?.Role) && (
+            {checkRole(user?.Role) ? (
               <img
                 onClick={() => {
                   handleAddModal(true);
@@ -111,6 +119,8 @@ const CareerPage = ({ size }) => {
                 src={nemeh}
                 alt=""
               />
+            ) : (
+              ""
             )}
           </div>
         )}

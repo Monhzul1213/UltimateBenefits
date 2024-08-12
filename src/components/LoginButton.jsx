@@ -1,6 +1,11 @@
 import { Button } from "antd";
 
-export const LoginButton = ({ handleClick, loading, isForgot = false }) => {
+export const LoginButton = ({
+  handleClick,
+  loading,
+  isForgot = false,
+  disabled,
+}) => {
   const style = {
     width: "100%",
     height: "60px",
@@ -10,6 +15,7 @@ export const LoginButton = ({ handleClick, loading, isForgot = false }) => {
   };
   return (
     <Button
+      disabled={disabled}
       onClick={!loading && handleClick}
       style={style}
       type="primary"

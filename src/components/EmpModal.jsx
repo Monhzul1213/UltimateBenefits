@@ -88,7 +88,7 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
               size="large"
               value={empFormEdit.WorkPhone}
               name="WorkPhone"
-              placeholder="Ажлийн утас"
+              placeholder="Ажлын утас"
               onChange={handleInput}
             />
           </div>
@@ -114,7 +114,18 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
               onChange={handleInput}
             />
           </div>
+          <div style={{ width: "100%" }}>
+            <p style={{ fontSize: 15, fontWeight: 500 }}>Албан тушаал</p>
+            <Input
+              size="large"
+              value={empFormEdit.Position}
+              name="Position"
+              placeholder="Албан тушаал"
+              onChange={handleInput}
+            />
+          </div>
         </div>
+
         {isEdit ? (
           <>
             <div className="emp-modal-flex">
@@ -174,21 +185,21 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
                   ]}
                 />
               </div>
-            </div>
-            <div>
-              <p style={{ fontSize: 15, fontWeight: 500 }}>Төлөв</p>
-              <Select
-                size="large"
-                value={empFormEdit.Status}
-                style={{ width: "100%" }}
-                name="Role"
-                placeholder="Идэвхтэй"
-                onChange={handleSelect}
-                options={[
-                  { value: "A", label: "Идэвхтэй", name: "Status" },
-                  { value: "I", label: "Идэвхгүй", name: "Status" },
-                ]}
-              />
+              <div style={{ width: "100%" }}>
+                <p style={{ fontSize: 15, fontWeight: 500 }}>Төлөв</p>
+                <Select
+                  size="large"
+                  value={empFormEdit.Status}
+                  style={{ width: "100%" }}
+                  name="Role"
+                  placeholder="Идэвхтэй"
+                  onChange={handleSelect}
+                  options={[
+                    { value: "A", label: "Идэвхтэй", name: "Status" },
+                    { value: "I", label: "Идэвхгүй", name: "Status" },
+                  ]}
+                />
+              </div>
             </div>
           </>
         ) : (
@@ -247,20 +258,20 @@ const EmpModal = ({ open, isEdit, handleClose }) => {
                   ]}
                 />
               </div>
-            </div>
-            <div>
-              <p style={{ fontSize: 15, fontWeight: 500 }}>Төлөв</p>
-              <Select
-                size="large"
-                style={{ width: "100%" }}
-                name="Role"
-                placeholder="Төлөв"
-                onChange={handleSelect}
-                options={[
-                  { value: "A", label: "Идэвхтэй", name: "Status" },
-                  { value: "I", label: "Идэвхгүй", name: "Status" },
-                ]}
-              />
+              <div style={{ width: "100%" }}>
+                <p style={{ fontSize: 15, fontWeight: 500 }}>Төлөв</p>
+                <Select
+                  size="large"
+                  style={{ width: "100%" }}
+                  name="Role"
+                  placeholder="Төлөв"
+                  onChange={handleSelect}
+                  options={[
+                    { value: "A", label: "Идэвхтэй", name: "Status" },
+                    { value: "I", label: "Идэвхгүй", name: "Status" },
+                  ]}
+                />
+              </div>
             </div>
           </>
         )}
