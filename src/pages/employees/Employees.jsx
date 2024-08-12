@@ -137,23 +137,21 @@ export const Employees = () => {
               </Button>
             </Dropdown>
             {fileName && (
-              <div className="employee-add-section">
-                <Button
-                  icon={<IoIosAdd size={28} />}
-                  type="primary"
-                  size="large"
-                  style={{
-                    backgroundColor: "green",
-                    color: "white",
-                    width: "195px",
-                  }}
-                  onClick={() => {
-                    addEmployee(empForm, false);
-                  }}
-                >
-                  {fileName}
-                </Button>
-              </div>
+              <Button
+                icon={<IoIosAdd size={28} />}
+                type="primary"
+                size="large"
+                style={{
+                  backgroundColor: "green",
+                  color: "white",
+                  width: "195px",
+                }}
+                onClick={() => {
+                  addEmployee(empForm, false);
+                }}
+              >
+                Хадгалах
+              </Button>
             )}
 
             <input

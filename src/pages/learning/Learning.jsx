@@ -103,7 +103,18 @@ export const Learning = () => {
                             },
                           ],
                         }
-                      : {}
+                      : {
+                          items: [
+                            {
+                              label: "Дэлгэрэнгүй",
+                              key: "1",
+                              onClick: () => {
+                                getLearningData(item.ID);
+                                handleSelectedCategory(item.ID);
+                              },
+                            },
+                          ],
+                        }
                   }
                   key={index}
                   trigger={["contextMenu"]}
@@ -177,7 +188,7 @@ export const Learning = () => {
                     );
                   }
                 })}
-                {checkRole(user?.Role) && (
+                {checkRole(user?.Role) ? (
                   <img
                     onClick={() => {
                       setAddModal(true);
@@ -186,6 +197,8 @@ export const Learning = () => {
                     src={nemeh}
                     alt=""
                   />
+                ) : (
+                  ""
                 )}
               </>
             )}

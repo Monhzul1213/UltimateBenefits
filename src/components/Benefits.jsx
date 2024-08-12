@@ -22,12 +22,14 @@ export const Benefits = () => {
               <FaArrowRight size={25} className="arrow" />
             </Link>
           ))}
-          {checkRole(user.Role) && (
+          {checkRole(user.Role) ? (
             <Link to="/employees" className="benefit">
               <img src={clubs} alt="employe icon" />
               <h3>Ажилтнууд</h3>
               <FaArrowRight size={25} className="arrow" />
             </Link>
+          ) : (
+            ""
           )}
         </section>
       </section>

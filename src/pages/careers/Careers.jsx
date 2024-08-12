@@ -102,7 +102,7 @@ const CareerPage = ({ size }) => {
                 })}
               </div>
             ))}
-            {checkRole(user?.Role) && (
+            {checkRole(user?.Role) ? (
               <img
                 onClick={() => {
                   handleAddModal(true);
@@ -111,6 +111,8 @@ const CareerPage = ({ size }) => {
                 src={nemeh}
                 alt=""
               />
+            ) : (
+              ""
             )}
           </div>
         )}

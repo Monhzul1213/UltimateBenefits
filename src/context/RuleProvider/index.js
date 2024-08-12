@@ -15,11 +15,22 @@ const ruleContext = createContext({
   ruleCategoryForm: {},
   handleCategoryForm: () => {},
   clearCategoryForm: () => {},
+  createRuleDetail: () => {},
+  handleRuleDetailForm: () => {},
+  ruleDetailForm: {},
+  editDetail: false,
+  getRuleDetail: false,
+  setEditDetail: () => {},
+  clearDetailForm: () => {},
+  deleteRuleDetail: () => {},
+  editRuleDetail: () => {},
+  setRuleDetailForm: () => {},
+  setGetRuleDetail: () => {},
 });
 
 const RuleProvider = ({ children }) => {
   const [rulesCategory, setRulesCategory] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [catError, setError] = useState(false);
   //GET RULES CATORY
   const getRulesCategory = async () => {
@@ -31,6 +42,7 @@ const RuleProvider = ({ children }) => {
         },
       });
       console.log(data);
+      setError(false);
       setRulesCategory(data.result);
     } catch (error) {
       setError(true);
@@ -112,9 +124,95 @@ const RuleProvider = ({ children }) => {
       alert("Алдаа гарлаа", "error");
     }
   };
+  //RULE DETAIL
+  const [getRuleDetail, setGetRuleDetail] = useState(false);
+  const [ruleDetailForm, setRuleDetailForm] = useState({
+    Name: "",
+    IsFile: "N",
+    FileDesc: "",
+  });
+  const [editDetail, setEditDetail] = useState(false);
+  const handleRuleDetailForm = (name, value) => {
+    setRuleDetailForm((prev) => ({ ...prev, [name]: value }));
+  };
+  const clearDetailForm = () => {
+    setRuleDetailForm({
+      Name: "",
+      IsFile: "",
+      FileDesc: "",
+    });
+    setEditDetail(false);
+  };
+  const createRuleDetail = async (categoryId) => {
+    console.log(ruleDetailForm);
+    const formData = new FormData();
+    formData.append("Name", ruleDetailForm.Name);
+    formData.append("IsFile", ruleDetailForm.IsFile);
+    formData.append("FileDesc", ruleDetailForm.FileDesc);
+    formData.append("CategoryID", categoryId);
+    try {
+      await myAxios.post("/api/rules", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай нэмэгдлээ", "success");
+      setGetRuleDetail(!getRuleDetail);
+    } catch (error) {
+      console.log("error", error);
+      alert("Алдаа гарлаа", "error");
+    }
+  };
+  //EDIT RULE DETAIL
+  const editRuleDetail = async (id) => {
+    console.log(ruleDetailForm);
+    const formData = new FormData();
+    formData.append("Name", ruleDetailForm.Name);
+    formData.append("IsFile", ruleDetailForm.IsFile);
+    formData.append("FileDesc", ruleDetailForm.FileDesc);
+    try {
+      await myAxios.put("/api/rules/" + id, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай засагдлаа", "success");
+      setGetRuleDetail(!getRuleDetail);
+    } catch (error) {
+      console.log("error", error);
+      alert("Алдаа гарлаа", "error");
+    }
+  };
+  //DELETE RULE DETAIL
+  const deleteRuleDetail = async (id) => {
+    try {
+      await myAxios.delete("/api/rules/" + id, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
+        },
+      });
+      alert("Амжилттай устгагдлаа", "success");
+      setGetRuleDetail(!getRuleDetail);
+    } catch (error) {
+      console.log("error", error);
+      alert("Алдаа гарлаа", "error");
+    }
+  };
   return (
     <ruleContext.Provider
       value={{
+        setGetRuleDetail,
+        deleteRuleDetail,
+        editRuleDetail,
+        clearDetailForm,
+        createRuleDetail,
+        handleRuleDetailForm,
+        ruleDetailForm,
+        getRuleDetail,
+        editDetail,
+        setEditDetail,
         rulesCategory,
         loading,
         catError,
@@ -127,6 +225,7 @@ const RuleProvider = ({ children }) => {
         ruleCategoryForm,
         handleCategoryForm,
         clearCategoryForm,
+        setRuleDetailForm,
       }}
     >
       {children}
