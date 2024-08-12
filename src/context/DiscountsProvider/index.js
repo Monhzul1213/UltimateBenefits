@@ -77,15 +77,12 @@ const DiscountsProvider = ({ children }) => {
 
   const addDiscounts = async () => {
     const formData = new FormData();
-    formData.append("Name", discountsForm.Name);
-    formData.append("Descr", discountsForm.Descr);
-    formData.append("Type", discountsForm.Type);
-    formData.append("AvailableCount", discountsForm.AvailableCount);
-    formData.append("Image", discountsForm.Image);
-    // for (const key  in discountsForm) {
-    //   formData.append(key, discountsForm[key]);
-    // }
-
+    formData.append("Name",discountsForm.Name)
+    formData.append("Descr",discountsForm.Descr)
+    formData.append("Type",discountsForm.Type)
+    formData.append("AvailableCount",discountsForm.AvailableCount)
+    formData.append("Image",discountsForm.Image)
+    
     try {
       const data = await myAxios.post("/api/discount", formData, {
         headers: {

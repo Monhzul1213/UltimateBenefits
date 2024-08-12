@@ -78,38 +78,12 @@ const DiscountsAdd = ({ isOpen, onClose, EditDiscounts }) => {
               fontWeight: 500,
               marginBottom: "5px",
               backgroundColor: "rgba(0, 0, 0, 0.04)",
-              color: "rgba(0, 0, 0, 0.3)",
-            }}
-          />
-        </div>
-
-        <div className="dis-modal-input">
-          <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
-          Нэмэлт мэдээлэл
-          </p>
-          <textarea
-            value={discountsForm.Descr}
-            name="Descr"
-            onChange={handleChange}
-            placeholder="Нэмэлт мэдээллээ оруулна уу"
-            rows={5}
-            style={{
-              width: "560px",
-              height: "80px",
-              padding: "8px",
-              border: "none",
-              borderRadius: "8px",
-              fontSize: "15px",
-              fontWeight: 500,
-              marginBottom: "5px",
-              backgroundColor: "rgba(0, 0, 0, 0.04)",
-              color: "rgba(0, 0, 0, 0.3)",
             }}
           />
         </div>
 
         <Checkbox
-          checked={discountsForm.Type === "1"}
+          checked={discountsForm?.Type === "0"? false: true}
           className="training-checkbox"
           onChange={handleCheck}
           style={{ marginTop: "10px" }}
@@ -117,7 +91,7 @@ const DiscountsAdd = ({ isOpen, onClose, EditDiscounts }) => {
           Сараар эсэх
         </Checkbox>
 
-        {discountsForm.Type == "0" ? (
+        {discountsForm.Type === "0" ? (
           <div>
             <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 5 }}>
               Хэдэн удаа
@@ -140,13 +114,13 @@ const DiscountsAdd = ({ isOpen, onClose, EditDiscounts }) => {
               size="large"
               variant="filled"
               value={discountsForm.AvailableCount}
-              name="Type"
+              name="AvailableCount"
               onChange={handleChange}
               placeholder="Ажилласан сараа оруулна уу"
             />
           </div>
         )}
-
+ 
         <div className="training-file-box" style={{ marginTop: "10px" }}>
           <Upload
             beforeUpload={() => false}
@@ -157,9 +131,19 @@ const DiscountsAdd = ({ isOpen, onClose, EditDiscounts }) => {
             <Button icon={<MdOutlineFileUpload />}>Зураг хавсаргах</Button>
           </Upload>
         </div>
-        <div className="dis-modal-buttons">
-          <button size="large" style={{ fontWeight: 700 }}type="button" onClick={onClose} className="cancel-button">Болих</button>
-          <button size="large" style={{ fontWeight: 700 }}type="submit" className="submit-button">{EditDiscounts ? "Өөрчлөлтийг хадгалах" : "Нэмэх"}</button>
+        <div className="add-footer">
+        <Button size="large" 
+                onClick={onClose}
+                style={{ fontWeight: 700, marginLeft: 10 }}
+                >Хаах
+        </Button>
+        <Button type="primary" 
+                style={{ fontWeight: 700, marginLeft: 10 }}
+                size="large" 
+                onClick={handleSubmit}>
+                
+          { EditDiscounts ? "Өөрчлөлт хадгалах" : "Нэмэх"}
+        </Button>
         </div>
       </form>
     </Modal>
