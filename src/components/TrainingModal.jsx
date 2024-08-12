@@ -177,7 +177,7 @@ const TrainingModal = ({
         ) : (
           <div className="training-file-box">
             <Upload
-              accept=".doc,.pptx,.pdf,xlsx"
+              accept=".doc,.pptx,.pdf,.xlsx"
               onChange={handleFileChange}
               beforeUpload={() => false}
               maxCount={1}

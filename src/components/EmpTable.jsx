@@ -198,7 +198,7 @@ const EmpTable = ({ empForm, setOpen, setIsEdit }) => {
       <Table
         bordered
         pagination={{ position: ["bottomCenter"] }}
-        dataSource={empForm}
+        dataSource={empForm ? empForm : ""}
         columns={columns}
         scroll={{
           y: 653,

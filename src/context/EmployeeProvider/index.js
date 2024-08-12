@@ -69,6 +69,7 @@ const EmployeeProvider = ({ children }) => {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
         },
       });
+      console.log("employees", data.result);
       setEmpCount(data.user);
       setOriginEmpData(data.result);
       setEmpForm(data.result);
@@ -81,6 +82,8 @@ const EmployeeProvider = ({ children }) => {
   };
   const addEmployee = async (employees, isOne) => {
     const empData = isOne ? [employees] : employees;
+    console.log("ADDING EMPLOYEES", empData);
+    setEmpLoading(true);
     try {
       await myAxios.post("/api/users/register", empData, {
         headers: {
@@ -88,18 +91,35 @@ const EmployeeProvider = ({ children }) => {
         },
       });
       alert("Ажилтан амжилттай нэмэгдлээ", "success");
-      getEmployees();
-      setEmpFormEdit();
+      setEmpFormEdit({
+        LastName: "",
+        FirstName: "",
+        RegisterNumber: "",
+        Gender: "",
+        CpnyID: "",
+        Department: "",
+        Position: "",
+        BirthDate: "",
+        Email: "",
+        PhoneNumber: "",
+        WorkPhone: "",
+        Address: "",
+        HireDate: "",
+        Role: "",
+        Status: "",
+      });
     } catch (error) {
       if (!error.response) {
         alert("Уучлаарай, сүлжээ унасан байна", "error");
       } else {
         alert(error.response.data.error.message, "error");
       }
+    } finally {
+      getEmployees();
     }
   };
   const editEmployee = async (id) => {
-    setEmpLoading(true);
+    console.log("editing user", empFormEdit);
     try {
       await myAxios.put(`/api/users/${id}`, empFormEdit, {
         headers: {

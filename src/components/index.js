@@ -21,3 +21,5 @@ export * from "./TrainingFileCard";
 export * from "./DiscountsAdd";
 export * from "./DiscountsCard";
 export * from "./ForgetModal";
+export * from "./rules/RuleVideoCard";
+export * from "./rules/RuleFileCard";

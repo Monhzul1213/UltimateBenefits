@@ -2,6 +2,8 @@ import { Dropdown, Modal } from "antd";
 import React, { useState } from "react";
 import { useCare } from "../context/CareProvider";
 import { FaXmark } from "react-icons/fa6";
+import { checkRole } from "../lib/utils/checkRole";
+import { useAuth } from "../context/AuthProvider";
 
 const CareDetailWatch = ({
   watchModal,
@@ -11,6 +13,7 @@ const CareDetailWatch = ({
 }) => {
   const { careDetail, deleteCareDetail, setDetailEdit, setCareDetailForm } =
     useCare();
+  const { user } = useAuth();
 
   return (
     <Modal
@@ -40,29 +43,44 @@ const CareDetailWatch = ({
               : careDetail?.map((detail) => {
                   return (
                     <Dropdown
-                      menu={{
-                        items: [
-                          {
-                            label: "Засах",
-                            key: "1",
-                            onClick: () => {
-                              setDetailEdit(true);
-                              setCareDetailForm(detail);
-                              handleDetailModal(true);
-                              setWatchModal(false);
-                            },
-                          },
-                          {
-                            label: "Устгах",
-                            key: "2",
-                            danger: true,
-                            onClick: () => {
-                              deleteCareDetail(detail.ID);
-                              setWatchModal(false);
-                            },
-                          },
-                        ],
-                      }}
+                      menu={
+                        checkRole(user.Role)
+                          ? {
+                              items: [
+                                {
+                                  label: "Засах",
+                                  key: "1",
+                                  onClick: () => {
+                                    setDetailEdit(true);
+                                    setCareDetailForm(detail);
+                                    handleDetailModal(true);
+                                    setWatchModal(false);
+                                  },
+                                },
+                                {
+                                  label: "Устгах",
+                                  key: "2",
+                                  danger: true,
+                                  onClick: () => {
+                                    deleteCareDetail(detail.ID);
+                                    setWatchModal(false);
+                                  },
+                                },
+                              ],
+                            }
+                          : {
+                              items: [
+                                {
+                                  // label: "Дэлгэрэнгүй",
+                                  // key: "1",
+                                  // onClick: () => {
+                                  //   getLearningData(item.ID);
+                                  //   handleSelectedCategory(item.ID);
+                                  // },
+                                },
+                              ],
+                            }
+                      }
                       trigger={["contextMenu"]}
                     >
                       <div className="detail-one">

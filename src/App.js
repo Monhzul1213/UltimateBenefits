@@ -16,6 +16,7 @@ import Discounts from "./pages/discounts/Discounts";
 import Clubs from "./pages/clubs/Clubs";
 import { MyDrawer, Loader } from "./components";
 import Careers from "./pages/careers/Careers";
+import RulesIdPage from "./pages/rulesId/RulesId";
 export function App() {
   const { isAuth } = useAuth();
   const userToken = sessionStorage.getItem("userToken");
@@ -41,6 +42,7 @@ export function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/discounts" element={<Discounts />} />
                 <Route path="/rules" element={<Rules />} />
+                <Route path="/rules/:id" element={<RulesIdPage />} />
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/care" element={<Care />} />
                 <Route path="/training" element={<Learning />} />

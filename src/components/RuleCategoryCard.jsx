@@ -3,8 +3,10 @@ import { checkRole } from "../lib/utils/checkRole";
 import { useAuth } from "../context/AuthProvider";
 import { useRule } from "../context/RuleProvider";
 import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 
 const RuleCategoryCard = ({ rule, handleCategoryModal }) => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { setIsEdit, handleCategoryForm, deleteRuleCategory } = useRule();
   const handleEditCat = () => {
@@ -32,30 +34,42 @@ const RuleCategoryCard = ({ rule, handleCategoryModal }) => {
   };
   const items = [
     {
-      label: "Дэлгэрэнгүй нэмэх",
-      key: "1",
-    },
-    {
       label: "Засах",
-      key: "2",
+      key: "1",
       onClick: handleEditCat,
     },
     {
       label: "Устгах",
-      key: "3",
+      key: "2",
       danger: true,
       onClick: handleDelete,
     },
   ];
   return (
     <Dropdown
-      menu={checkRole(user?.Role) ? { items } : {}}
+      menu={
+        checkRole(user?.Role)
+          ? { items }
+          : {
+              items: [
+                {
+                  label: "Дэлгэрэнгүй",
+                  key: "1",
+                  onClick: () => {
+                    navigate(`/rules/${rule.ID}`);
+                  },
+                },
+              ],
+            }
+      }
       trigger={["contextMenu"]}
     >
-      <div className="rule-category-card">
-        <img src={"data:image/jpeg;base64," + rule.Image} alt="icon..." />
-        <h3>{rule.Name}</h3>
-      </div>
+      <Link to={`/rules/${rule.ID}`}>
+        <div className="rule-category-card">
+          <img src={"data:image/jpeg;base64," + rule.Image} alt="icon..." />
+          <h3>{rule.Name}</h3>
+        </div>
+      </Link>
     </Dropdown>
   );
 };
