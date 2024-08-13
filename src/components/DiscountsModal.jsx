@@ -49,10 +49,10 @@ const DiscountsModal = ({ isOpen, onRequestClose, discount }) => {
           </div>
 
           <div className="discounts-modal-body" onContextMenu={handleRightClick}>
-            <div className="modal-section1">
-              <strong>МЭДЭЭЛЭЛ</strong>
-              <p>{discount.Descr}</p>
-            </div>
+          <div className="modal-section1">
+           <strong>МЭДЭЭЛЭЛ</strong>
+           <p style={{ whiteSpace: "pre-wrap" }}>{discount.Descr}</p>
+          </div>
             
             {discountsForm.Type === "0" ? (
             <div className="modal-section1">
