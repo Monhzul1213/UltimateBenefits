@@ -72,7 +72,7 @@ export const RuleFileCard = ({ learning, handleModal }) => {
             </>
           )}
 
-          {learning.FileType === "doc" && (
+          {(learning.FileType === "doc" || learning.FileType === "docx") && (
             <>
               <img
                 className="training-file-image"
