@@ -151,12 +151,6 @@ const CareerCard = ({
             }
             className={`care-card care-card-Боломжтой`}
           >
-            {/* <Button
-              type="primary"
-              className={`care-card-button care-card-button-${cardData?.AvailableDesc}`}
-            >
-              {cardData?.AvailableDesc}
-            </Button> */}
             <div id={isTwo && "care-card-two-flex"}>
               <div>
                 <img src={"data:image/jpeg;base64," + cardData.Image} />

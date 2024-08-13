@@ -1,9 +1,15 @@
+.discounts-container-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .discounts-container {
   padding: 50px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-wrap: wrap;
   gap: 100px;
+  max-width: 1545px;
 }
 
 .cards-grid {
@@ -167,7 +173,7 @@
   height: auto;
   width: 100%;
   width: 1000px;
-  height:650px;
+  height: 650px;
   margin: auto;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
@@ -249,9 +255,9 @@
 
   object-fit: contain;
 }
-.discounts-modal-image img{
-width: 100%;
-height: 100%;
+.discounts-modal-image img {
+  width: 100%;
+  height: 100%;
 }
 
 .modal-section1 {
@@ -259,13 +265,13 @@ height: 100%;
   margin-bottom: 30px;
   text-align: left;
 }
-.discount-modal-body{
+.discount-modal-body {
   text-align: left;
   flex-grow: 1;
   width: 600px;
   max-height: 600px;
 }
-.discounts-modal-body{
+.discounts-modal-body {
   text-align: left;
   flex-grow: 1;
   padding: 15px;
@@ -306,5 +312,5 @@ height: 100%;
 }
 
 .employee-photo-container {
-  text-align: center; 
+  text-align: center;
 }
