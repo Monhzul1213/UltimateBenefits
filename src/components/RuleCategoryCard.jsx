@@ -64,8 +64,8 @@ const RuleCategoryCard = ({ rule, handleCategoryModal }) => {
       }
       trigger={["contextMenu"]}
     >
-      <Link to={`/rules/${rule.ID}`}>
-        <div className="rule-category-card">
+      <Link className="rule-category-card" to={`/rules/${rule.ID}`}>
+        <div>
           <img src={"data:image/jpeg;base64," + rule.Image} alt="icon..." />
           <h3>{rule.Name}</h3>
         </div>
