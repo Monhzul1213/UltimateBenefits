@@ -277,7 +277,7 @@
   padding: 15px;
   width: 600px;
   height: 500px;
-  //overflow-y:scroll;
+  /* //overflow-y:scroll; */
 }
 .discounts-close-button {
   width: 35px;
@@ -313,4 +313,9 @@
 
 .employee-photo-container {
   text-align: center;
+}
+@media only screen and (max-width: 470px) {
+  .discounts-container {
+    gap: 50px;
+  }
 }

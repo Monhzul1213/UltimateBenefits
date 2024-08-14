@@ -58,14 +58,13 @@ const Rules = () => {
           )}
 
           {checkRole(user.Role) ? (
-            <div className="ruleCARD">
-              <img
-                src={add_card}
-                onClick={() => {
-                  handleCategoryModal(true);
-                }}
-              />
-            </div>
+            <img
+              className="care-category-add"
+              src={add_card}
+              onClick={() => {
+                handleCategoryModal(true);
+              }}
+            />
           ) : (
             ""
           )}
