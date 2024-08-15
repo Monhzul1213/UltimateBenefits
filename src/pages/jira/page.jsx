@@ -3,7 +3,7 @@ import { withSize } from "react-sizeme";
 const JiraPage = ({ size }) => {
   return (
     <>
-      <CustomHeader title="Жира үзүүлэлт" />
+      <CustomHeader title="Гүйцэтгэлийн мэдээ" />
       <main>
         <iframe
           title="Jira"
