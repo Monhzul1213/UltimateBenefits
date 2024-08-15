@@ -159,17 +159,9 @@
 }
 
 .discounts-modal-content {
-  display: flex;
-  position: relative;
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  height: auto;
-  width: 100%;
+  text-overflow: clip;
   width: 1000px;
-  height:650px;
-  margin: auto;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  height: 650px;
 }
 .discounst-modal-content1 {
   position: relative;
@@ -244,14 +236,16 @@
   width: 100%;
   padding-top: 15px;
 }
-.discounts-modal-image {
-  width: 400px;
 
-  object-fit: contain;
+.discounts-modal-image {
+  width: 80%;
+
 }
 .discounts-modal-image img{
 width: 100%;
 height: 100%;
+object-fit: cover;
+border-radius: 10px;
 }
 
 .modal-section1 {
@@ -271,7 +265,7 @@ height: 100%;
   padding: 15px;
   width: 600px;
   height: 500px;
-  //overflow-y:scroll;
+  overflow-y:scroll;
 }
 .discounts-close-button {
   width: 35px;
