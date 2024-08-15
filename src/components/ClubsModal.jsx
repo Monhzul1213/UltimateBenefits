@@ -26,6 +26,7 @@ export const ClubsModal = ({ isOpen, onRequestClose, club, isEditing, setIsEditi
       footer={null}
       className='club-modal-content'
       width={1000}
+       
     >
       <form onSubmit={handleSubmit}>
         <div className="modal-body">
@@ -118,7 +119,7 @@ export const ClubsModal = ({ isOpen, onRequestClose, club, isEditing, setIsEditi
                     background: 'none',
                     padding: '40px 10px',
                   }}
-                  onClick={() => window.open('https://instagram.com/YourTwitterHandle', '_blank')}
+                  onClick={() => window.open('https://www.instagram.com/ultimateerp2022/', '_blank')}
                 >
                   <img 
                     src={insta} 

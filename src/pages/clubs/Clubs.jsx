@@ -74,6 +74,7 @@ const Clubs = () => {
   const [isEditing, setIsEditing] = useState(false);
   const { clubs, deleteClub, setClubFormEdit } = useClub();
 
+  const {user} = useAuth()
   const handleCardOpen = (club) => {
     setIsClubsModalOpen(true);
     setSelectedClub(club);
@@ -120,7 +121,7 @@ setIsEditing(false)
               setIsClubsModalOpen={setIsAddClubModalOpen}
             />
           ))}
-          <AddClubCard onClick={handleAddClubClick} />
+          {checkRole(user?.Role)?<AddClubCard onClick={handleAddClubClick} />:""}
         </div>
       </main>
       <ClubsModal

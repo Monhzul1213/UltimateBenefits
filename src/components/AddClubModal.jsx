@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useClub } from '../context/ClubsProvider';
-import { Modal, Input, Button, Upload } from 'antd';
+import { Modal, Input, Button, Upload, Calendar } from 'antd';
 import { MdOutlineFileUpload } from 'react-icons/md';
 import TextArea from 'antd/es/input/TextArea';
 
 export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
-  const { addClub, handleClubForm, clubFormEdit,editClub, setClubFormEdit } = useClub();
+  const { addClub, handleClubForm, clubFormEdit, editClub, setClubFormEdit } = useClub();
   const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
@@ -15,9 +15,8 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
   }, [clubFormEdit, isEditing]);
 
   const handleSubmit = async () => {
- 
     if (isEditing) {
-      editClub(clubFormEdit.ID)
+      editClub(clubFormEdit.ID);
     } else {
       await addClub();
     }
@@ -30,9 +29,9 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
     onClose();
   };
 
-  const handleImageChange = ({file }) => {
-    if (file?.status !== "removed") {
-      setClubFormEdit((prev)=>({...prev, Image:file}))
+  const handleImageChange = ({ file }) => {
+    if (file?.status !== 'removed') {
+      setClubFormEdit((prev) => ({ ...prev, Image: file }));
     }
   };
 
@@ -42,22 +41,22 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
       open={isOpen}
       onCancel={handleCancel}
       footer={null}
-      closable={false}
+      width={600}
     >
       <h2
         style={{
-          fontSize: "14",
-          display: "flex",
-          justifyContent: "center",
-          borderBottom: "solid 2px #e3eeff",
-          paddingBottom: "10px",
-          marginBottom: "10px"
+          fontSize: 21, 
+          display: 'flex',
+          justifyContent: 'center',
+          borderBottom: 'solid 2px #e3eeff',
+          paddingBottom: 10,
+          marginBottom: 10,
         }}
       >
-        Клуб {isEditing ? "засах" : "нэмэх"}
+        Клуб {isEditing ? 'засах' : 'нэмэх'}
       </h2>
-      <div className='modal-inputs'>
-      <label>Клубын нэр</label>
+      <div className="club-modal-inputs">
+        <label>Клубын нэр</label>
         <Input
           name="Name"
           variant="filled"
@@ -68,9 +67,63 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
           required
         />
       </div>
-      <div className='modal-inputs'>
-        <label>Тайлбар</label>
+      <div className='club-image'>
+      <div style={{width:'50%'}}>
+      <label style={{ fontWeight: 500, fontSize: '15px' }}>Клубын зургууд</label>
+        <div className="training-file-box">
+        
+          <Upload
+            accept=".png, .jpeg, .jpg"
+            onChange={handleImageChange}
+            beforeUpload={() => false}
+            maxCount={1}
+            fileList={clubFormEdit.Image  ? [clubFormEdit.Image] : []}
+          >
+            <Button icon={<MdOutlineFileUpload />}>
+              {isEditing ? 'Зураг солих' : 'Зураг хавсаргах'}
+            </Button>
+          </Upload>
+        </div>
+      </div>
+     <div style={{width:'50%'}}>
+        <label style={{ fontWeight: 500, fontSize: '15px' }}>Клубын бусад зургууд</label>
+        <div className="training-file-box">
+        
+          <Upload
+            accept=".png, .jpeg, .jpg"
+            onChange={handleImageChange}
+            beforeUpload={() => false}
+            maxCount={1}
+            fileList={clubFormEdit.Image ? [clubFormEdit.Image] : []}
+          >
+            <Button icon={<MdOutlineFileUpload />}>
+              {isEditing ? 'Зураг солих' : 'Зураг хавсаргах'}
+            </Button>
+          </Upload>
+        </div>
+      </div>
+    </div>
+    <div className='club-schedule-input'>
+    <div>
+    <label style={{ fontWeight: 500, fontSize: '15px' }}>Хуваарь</label>
+      <div className="club-schedule">
+        <div style={{ margin: '0 auto' }}>
+          <Calendar
+            fullscreen={false}
+            mode="month"
+            className="border rounded-md"
+          />
+          </div>
+         </div>
+        </div>
+      <div>
+        <label style={{fontWeight:'500' , fontSize:'15'}}>Клубын дэлгэрэнгүй</label>
+      <div className="club-modal-inputs">
         <TextArea
+          style={{
+            width: '270px',
+            padding: 10,
+          }}
           name="Descr"
           variant="filled"
           onChange={handleClubForm}
@@ -79,22 +132,20 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
           placeholder="Клубын тайлбараа оруулна уу"
           required
         />
+        </div>
+       </div>
       </div>
-      <div className='modal-inputs'>
-        <label>Утасны дугаар</label>
-
-        <Input
-          name="Contact"
-          variant="filled"
-          onChange={handleClubForm}
-          value={clubFormEdit.Contact}
-          size="large"
-          placeholder="Холбогдох утасны дугаараа оруулна уу"
-          required
-        />
+      <div className='club-admin'>
+      <div className='club-modal-inputs'>
+        <label htmlFor="">Клубын админ</label>
+          <Input
+            name='Admin'
+            variant='filled'
+            size='large'
+            placeholder='Админы нэр '
+          />
       </div>
-      <div>
-        <div className="training-file-box">
+      <div className="training-file-box">
           <Upload
             accept=".png, .jpeg, .jpg"
             onChange={handleImageChange}
@@ -102,26 +153,64 @@ export const AddClubModal = ({ isOpen, onClose, isEditing }) => {
             maxCount={1}
             fileList={clubFormEdit.Image ? [clubFormEdit.Image] : []}
           >
-            {isEditing ? (
-              <Button icon={<MdOutlineFileUpload />}>Зураг солих</Button>
-            ) : (
-              <Button icon={<MdOutlineFileUpload />}>Зураг хавсаргах</Button>
-            )}
+            <Button icon={<MdOutlineFileUpload />}>
+              {isEditing ? 'Админы зураг солих' : 'Админы зураг хавсаргах'}
+            </Button>
           </Upload>
         </div>
+        <div className="club-modal-inputs">
+          <label>Утасны дугаар</label>
+            <Input
+              name="Contact"
+              variant="filled"
+              onChange={handleClubForm}
+              value={clubFormEdit.Contact}
+              size="large"
+              placeholder="Холбогдох утасны дугаараа оруулна уу"
+              required
+            />
+        </div>
       </div>
+        <label style={{fontWeight:'500' , fontSize:'15'}}>Клубын холбоо барих мэдээлэл</label>
+        <div className='club-links'>
+          <Input
+            placeholder='Facebook'
+            variant='filled'
+            size='large'
+          />
+          <Input
+            placeholder='Twitter'
+            variant='filled'
+            size='large'
+          />
+          <Input
+            placeholder='Instagram'
+            variant='filled'
+            size='large'
+          />
+          <Input
+            placeholder='Discord'
+            variant='filled'
+            size='large'
+          />
+        </div>
       <div className="add-footer">
-        <Button size="large" 
-                onClick={handleCancel}
-                style={{ fontWeight: 700, marginLeft: 10 }}
-                >Хаах
+        <Button
+          disabled ={true}
+          size="large"
+          onClick={handleCancel}
+          style={{ fontWeight: 700, marginLeft: 10 }}
+        >
+          Хаах
         </Button>
-        <Button type="primary" 
-                style={{ fontWeight: 700, marginLeft: 10 }}
-                size="large" 
-                onClick={handleSubmit}>
-                
-          { isEditing ? "Өөрчлөлт хадгалах" : "Нэмэх"}
+        
+        <Button
+          type="primary"
+          style={{ fontWeight: 700, marginLeft: 10 }}
+          size="large"
+          onClick={handleSubmit}
+        >
+          {isEditing ? 'Өөрчлөлт хадгалах' : 'Нэмэх'}
         </Button>
       </div>
     </Modal>

@@ -247,18 +247,47 @@ object-fit: contain;
   color: white;
 }
 
-.modal-inputs{
+.club-modal-inputs{
   font-weight: 500;
   font-size: 15;
   margin-bottom: 8px;
 }
 .training-file-box{
-  margin-bottom: 40px;
+  margin-bottom: 10px;
+}
+.club-image{
+  display: flex;
+  width: 100%;
+  height: 200px;
+  gap: 10px;
+  /* border-radius: 50%; */
+}
+.club-schedule-input{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
 }
 .club-modal-content{
   text-overflow: clip;
   width: 1000px;
   height: 650px;
+}
+.ant-modal-close-x{
+  color: white;
+  font-size:20px;
+  font-weight: bolder;
+  background-color: #ff0000;
+  border-radius: 20px;
+  height: 32px;
+}
+.club-links{
+  padding: 10px;
+  display: flex;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+
 }
 
 /* Responsive Styles */
