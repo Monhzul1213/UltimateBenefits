@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthProvider";
 import { Button, Spin } from "antd";
 
 import { CustomHeader, CareCard, Loader } from "../../components";
+import CareSkeleton from "../../components/skeletons/CareSkeleton";
 
 import "../../css/care.css";
 import { useCare } from "../../context/CareProvider";
@@ -62,7 +63,14 @@ const Care = ({ size }) => {
       <CustomHeader title="Нийгмийн хангамж" />
       <main className="care-container">
         {careLoading ? (
-          <Loader />
+          <div className="care-cards-container">
+            <CareSkeleton />
+            <CareSkeleton />
+            <CareSkeleton />
+            <CareSkeleton />
+            <CareSkeleton />
+            <CareSkeleton />
+          </div>
         ) : careFailed ? (
           <div className="employee-error">
             <p>Алдаа гарлаа</p>

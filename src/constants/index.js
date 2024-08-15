@@ -67,11 +67,11 @@ export const alphabets = [
 export const benefits = [
   { title: "Дүрэм журам", icon: rules, route: "/rules" },
   { title: "Карьер хөгжил", icon: careers, route: "/careers" },
-  { title: "Сургалтын материал", icon: learning, route: "/training" },
+  { title: "Сургалтын материал", icon: learning, route: "/trainings" },
   { title: "Хөнгөлөлт урамшуулал", icon: discounts, route: "/discounts" },
   { title: "Нийгмийн хангамж", icon: care, route: "/care" },
   { title: "Сонирхлын клуб", icon: clubs, route: "/clubs" },
-  { title: "Жира үзүүлэлт", icon: learning, route: "/jira" },
+  { title: "Гүйцэтгэлийн мэдээ", icon: learning, route: "/jira" },
 ];
 
 export const cares = [

@@ -1,12 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import {
-  CustomHeader,
-  Loader,
-  TrainingFileCard,
-  VideoCard,
-} from "../../components";
-
+import { CustomHeader, TrainingFileCard, VideoCard } from "../../components";
 import "../../css/learning.css";
 import { useAuth } from "../../context/AuthProvider";
 import { checkRole } from "../../lib/utils/checkRole";
@@ -19,7 +13,7 @@ import Swal from "sweetalert2";
 import TrainEditModal from "../../components/TrainEditModal";
 import TrainSkeleton from "../../components/skeletons/TrainSkeleton";
 
-export const Learning = () => {
+export const TrainingPage = () => {
   const iframeRef = useRef(null);
   const { user } = useAuth();
   const {

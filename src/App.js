@@ -9,7 +9,7 @@ import { createBrowserHistory } from "history";
 
 import Rules from "./pages/rules/Rules";
 
-import { Learning, Home, Login, Employees } from "./pages";
+import { Home, Login, Employees, TrainingPage } from "./pages";
 import { useAuth } from "./context/AuthProvider";
 import Care from "./pages/care/Care";
 import Discounts from "./pages/discounts/Discounts";
@@ -46,10 +46,10 @@ export function App() {
                 <Route path="/rules/:id" element={<RulesIdPage />} />
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/care" element={<Care />} />
-                <Route path="/training" element={<Learning />} />
                 <Route path="/clubs" element={<Clubs />} />
                 <Route path="/employees" element={<Employees />} />
                 <Route path="/jira" element={<JiraPage />} />
+                <Route path="/trainings" element={<TrainingPage />} />
               </Routes>
             </Suspense>
           </HistoryRouter>
