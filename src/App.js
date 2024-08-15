@@ -17,6 +17,7 @@ import Clubs from "./pages/clubs/Clubs";
 import { MyDrawer, Loader } from "./components";
 import Careers from "./pages/careers/Careers";
 import RulesIdPage from "./pages/rulesId/RulesId";
+import JiraPage from "./pages/jira/page";
 export function App() {
   const { isAuth } = useAuth();
   const userToken = sessionStorage.getItem("userToken");
@@ -48,6 +49,7 @@ export function App() {
                 <Route path="/training" element={<Learning />} />
                 <Route path="/clubs" element={<Clubs />} />
                 <Route path="/employees" element={<Employees />} />
+                <Route path="/jira" element={<JiraPage />} />
               </Routes>
             </Suspense>
           </HistoryRouter>

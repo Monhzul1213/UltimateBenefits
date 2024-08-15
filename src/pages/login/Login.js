@@ -82,7 +82,7 @@ export function Login() {
                 onChange={handleInput}
                 placeholder="12345678"
                 className="register-input"
-                type="text"
+                type="tel"
                 maxLength={8}
                 onKeyDown={handleKeyDown}
               />

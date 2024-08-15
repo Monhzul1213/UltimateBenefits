@@ -25,7 +25,7 @@ import bday from "./bday.png";
 import phone from "./phone.png";
 import lunch from "./lunch.png";
 import gym from "./gym.png";
-import add_card from "./add_card.png"
+import add_card from "./add_card.png";
 import hands from "./hands.png";
 import dotka from "./dotka.png";
 import volleyball from "./volleyball.jpg";
@@ -52,14 +52,16 @@ import twitter from "./twitter.png";
 import sport from "./sport.png";
 import sagsanbum from "./sagsanbum.png";
 import volley from "./volley.png";
-import english  from "./english.png";
+import english from "./english.png";
 import dota2 from "./dota2.png";
 import movieNight from "./movieNight.png";
 import adventure from "./adventure.png";
 import tuya from "./tuya.png";
 import bataa from "./bataa.png";
+import jira from "./jira.png";
 
 export {
+  jira,
   RulesBod,
   RulesDj,
   RulesGa,
@@ -118,6 +120,6 @@ export {
   dota2,
   english,
   movieNight,
-  tuya, 
+  tuya,
   bataa,
 };
