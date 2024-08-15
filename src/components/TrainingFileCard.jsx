@@ -85,7 +85,7 @@ export const TrainingFileCard = ({
             </>
           )}
 
-          {learning.FileType === "doc" && (
+          {(learning.FileType === "doc" || learning.FileType === "docx") && (
             <>
               <img
                 className="training-file-image"

@@ -1,5 +1,5 @@
 .learning-container {
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 50px;
   display: flex;
   /* justify-content: center; */
@@ -165,34 +165,20 @@
     justify-content: center;
   }
 }
-@media only screen and (max-width: 700px) {
-  .training-add {
-    width: 95%;
-    height: auto;
-  }
-  .training-file-card {
+
+@media only screen and (max-width: 768px) {
+  .learning-videos-container {
     width: 100%;
   }
-  .training-file-image {
-    width: 95%;
-    height: 100%;
-  }
-  .training-file-title {
-    position: relative;
-    color: white;
-    font-size: 25px;
-    width: 80%;
-  }
-}
-@media only screen and (max-width: 460px) {
   .video-card {
-    width: 95%;
+    width: 100%;
+  }
+  .training-file-card {
+    position: static;
+    width: 100%;
   }
   .learning-container {
     padding: 30px;
-  }
-  .video-author-avatar {
-    display: none;
   }
   .training-category {
     padding: 10px;
@@ -200,5 +186,10 @@
   .training-category h2 {
     font-size: 12px;
     font-weight: 400;
+  }
+  .training-add {
+    width: 100%;
+    object-fit: cover;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='10' ry='10' stroke='%2300C7F0FF' stroke-width='2' stroke-dasharray=' 9' stroke-dashoffset='9' stroke-linecap='square'/%3e%3c/svg%3e");
   }
 }

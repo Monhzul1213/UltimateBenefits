@@ -1,14 +1,14 @@
 .care-container {
-  padding: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 .care-cards-container {
   display: flex;
+  padding: 50px;
   gap: 100px;
   flex-wrap: wrap;
-  width: 1545px;
+  max-width: 1545px;
   /* justify-content: center; */
 }
 .care-cards {
@@ -234,8 +234,17 @@
     justify-content: center;
   }
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 768px) {
+  .care-cards-container {
+    gap: 50px;
+  }
   .care-card {
+    width: 100%;
+  }
+  .care-cards {
+    width: 100%;
+  }
+  .care-category-add {
     width: 100%;
   }
   .care-card-description {

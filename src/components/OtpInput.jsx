@@ -52,7 +52,9 @@ export const OTPInput = ({
       {otp.map((value, index) => (
         <Col key={index}>
           <Input
-            type="password"
+            className="password-like-input"
+            visibilityToggle={false}
+            type="tel"
             ref={index === 0 ? otpRef : noRef}
             id={`otp-input-${index}`}
             maxLength={1}
